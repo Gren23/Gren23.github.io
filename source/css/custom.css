@@ -1,0 +1,150 @@
+/* ============================
+   🎨 SuperDesign 美化样式
+   ============================ */
+
+/* 字体升级 */
+:root {
+  --font-sans: 'Inter', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  
+  /* 现代配色 - Vercel/Linear 风格 */
+  --color-primary: oklch(0.205 0 0);
+  --color-secondary: oklch(0.97 0 0);
+  --color-accent: oklch(0.65 0.18 260);
+  
+  /* 圆角优化 */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+  
+  /* 微妙的阴影 */
+  --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px oklch(0 0 0 / 0.1), 0 2px 4px -2px oklch(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px oklch(0 0 0 / 0.1), 0 4px 6px -4px oklch(0 0 0 / 0.1);
+}
+
+/* 导入字体 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* 卡片样式优化 */
+.card, .post-card, .article-card {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: transform 200ms ease, box-shadow 200ms ease !important;
+}
+
+.card:hover, .post-card:hover, .article-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md) !important;
+}
+
+/* 按钮样式 */
+button, .btn {
+  border-radius: var(--radius-sm) !important;
+  font-weight: 500;
+  transition: all 150ms ease !important;
+}
+
+button:active, .btn:active {
+  transform: scale(0.98);
+}
+
+/* 链接样式 */
+a {
+  transition: color 150ms ease, opacity 150ms ease !important;
+}
+
+/* 页面过渡动画 */
+body {
+  opacity: 0;
+  animation: fadeIn 400ms ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 卡片入场动画 */
+.post-card, .card {
+  opacity: 0;
+  animation: slideUp 400ms ease-out forwards;
+}
+
+.post-card:nth-child(1), .card:nth-child(1) { animation-delay: 0ms; }
+.post-card:nth-child(2), .card:nth-child(2) { animation-delay: 50ms; }
+.post-card:nth-child(3), .card:nth-child(3) { animation-delay: 100ms; }
+.post-card:nth-child(4), .card:nth-child(4) { animation-delay: 150ms; }
+.post-card:nth-child(5), .card:nth-child(5) { animation-delay: 200ms; }
+.post-card:nth-child(6), .card:nth-child(6) { animation-delay: 250ms; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: oklch(0.98 0 0);
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(0.85 0 0);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.7 0 0);
+}
+
+/* 选中文字颜色 */
+::selection {
+  background: oklch(0.85 0.1 260);
+  color: white;
+}
+
+/* 图片圆角 */
+img {
+  border-radius: var(--radius-sm);
+}
+
+/* 代码块优化 */
+pre, code {
+  font-family: var(--font-mono) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+/* 导航栏优化 */
+#nav {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* 暗色模式适配 */
+[data-theme="dark"] #nav {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: oklch(0.15 0 0);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: oklch(0.3 0 0);
+}
+
+/* 加载动画 */
+#loading {
+  background: linear-gradient(135deg, oklch(0.98 0 0) 0%, oklch(0.95 0 0) 100%);
+}
+
+/* 按钮 hover 效果 */
+#rightside > button:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
+}
