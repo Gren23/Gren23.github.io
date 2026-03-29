@@ -664,8 +664,8 @@ subtitle:
     - "Welcome to G/ren's blogのTiny Home!"
 
 # Loading Animation (加載動畫)
-# preloader: false
-preloader:
+# preloader_old: false
+preloader_old:
   enable: true # true|false
   load_color: # '#37474f'
   load_style: default # default|gear|ironheart|scarecrow|triangles|wizard|image|spincat|heo(新增)
@@ -1120,3 +1120,7 @@ rightside_item_order:
   enable: true
   hide: 
   show: toc,chat,comment
+
+# Preloader (禁用)
+preloader:
+  enable: false
