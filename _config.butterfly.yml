@@ -668,7 +668,7 @@ subtitle:
 preloader:
   enable: true # true|false
   load_color: # '#37474f'
-  load_style: heo # default|gear|ironheart|scarecrow|triangles|wizard|image|spincat|heo(新增)
+  load_style: default # default|gear|ironheart|scarecrow|triangles|wizard|image|spincat|heo(新增)
   load_image: # url
 
 # aside (側邊欄)
@@ -783,7 +783,7 @@ darkmode:
 # Don't modify the following settings unless you know how they work (非必要請不要修改 )
 # Choose: readmode,translate,darkmode,hideAside,toc,chat,comment
 # Don't repeat 不要重複
-rightside_item_order:
+rightside_item_order_old:
   enable: false
   hide: # readmode,translate,darkmode,hideAside
   show: # toc,chat,comment
@@ -1114,3 +1114,9 @@ index_card_style: multicard # slidecard | multicard
 # 灯笼开关 建议只在过年期间开启
 lantern:
   enable: false
+
+# Rightside buttons (右下角按钮)
+rightside_item_order:
+  enable: true
+  hide: 
+  show: toc,chat,comment

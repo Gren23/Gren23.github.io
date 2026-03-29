@@ -1,44 +1,39 @@
-#footer-wrap
-  #ft
-  if theme.footer.owner.enable
-    - var now = new Date()
-    - var nowYear = now.getFullYear()
-    //- if theme.footer.owner.since && theme.footer.owner.since != nowYear
-    //-   .copyright!= `&copy;${theme.footer.owner.since} - ${nowYear} By ${config.author}`
-    //- else
-    //-   .copyright!= `&copy;${nowYear} By ${config.author}`
-    //- 新加的
-    if theme.footer.owner.since && theme.footer.owner.since != nowYear
-      .copyright
-        span!= `<b>&copy;${theme.footer.owner.since}-${nowYear}</b>`
-        span!= `<b>&nbsp;&nbsp;By ${config.author}</b>`
-    else
-       .copyright
-         span!= `<b>&copy;${nowYear}</b>`
-         span!= `<b>&nbsp;&nbsp;By ${config.author}</b>`
-    //- 到这里
-  if theme.footer.copyright
-    .framework-info
-      span= _p('footer.framework') + ' '
-      a(href='https://hexo.io')= 'Hexo'
-      span.footer-separator |
-      span= _p('footer.theme') + ' '
-      a(href='https://github.com/jerryc127/hexo-theme-butterfly')= 'Butterfly'
+- const { nav, owner, copyright, custom_text } = theme.footer
+
+if nav
+  .footer-flex
+    for block in nav
+      .footer-flex-items(style=`${ block.width ? 'flex-grow:' + block.width : '' }`)
+        for blockItem in block.content
+          .footer-flex-item
+            .footer-flex-title= blockItem.title
+            .footer-flex-content
+              for subitem in blockItem.item
+                if subitem.html
+                  div!= subitem.html
+                else if subitem.url
+                  a(href=url_for(subitem.url), target='_blank' title=subitem.title)= subitem.title
+                else if subitem.title
+                  div!= subitem.title
+.footer-other
+  .footer-copyright
+    if owner.enable
+      - const currentYear = new Date().getFullYear()
+      - const sinceYear = owner.since
+      span.copyright
+        if sinceYear && sinceYear != currentYear
+          != `&copy;&nbsp;${sinceYear} - ${currentYear} By ${config.author}`
+        else
+          != `&copy;&nbsp;${currentYear} By ${config.author}`
+    if copyright.enable
+      - const v = copyright.version ? getVersion() : false
+      span.framework-info
+        if owner.enable && nav
+          span.footer-separator |
+        span= _p('footer.framework') + ' '
+        a(href='https://hexo.io')= `Hexo${ v ? ' ' + v.hexo : '' }`
+        span.footer-separator |
+        span= _p('footer.theme') + ' '
+        a(href='https://github.com/jerryc127/hexo-theme-butterfly')= `Butterfly${ v ? ' ' + v.theme : '' }`
   if theme.footer.custom_text
-    .footer_custom_text!=`${theme.footer.custom_text}`
-  #workboard
-  p#ghbdages
-    a.github-badge(target='_blank' href="https://hexo.io/" style='margin-inline:5px' title="博客框架为Hexo_v6.3.0")
-      img(src="https://sourcebucket.s3.ladydaily.com/badge/Frame-Hexo-blue.svg" alt='')
-
-    a.github-badge(target='_blank' href="https://butterfly.js.org/" style='margin-inline:5px' title="主题版本Butterfly_v4.3.1")
-      img(src="https://sourcebucket.s3.ladydaily.com/badge/Theme-Butterfly-6513df.svg" alt='')
-
-    a.github-badge(target='_blank' href="https://vercel.com/" style='margin-inline:5px' title="本站托管于Vercel")
-      img(src="https://sourcebucket.s3.ladydaily.com/badge/Hosted-Vercel-brightgreen.svg" alt='')
-
-    a.github-badge(target='_blank' href="https://github.com/" style='margin-inline:5px' title="本网站源码由Github提供存储仓库")
-      img(src=" https://sourcebucket.s3.ladydaily.com/badge/Source-Github-d021d6.svg" alt='')
-
-    //- a.github-badge(target='_blank' href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style='margin-inline:5px' title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可")
-    //-   img(src="https://sourcebucket.s3.ladydaily.com/badge/Copyright-BY--NC--SA--4.svg" alt='')
+    .footer_custom_text!= theme.footer.custom_text
