@@ -84,6 +84,7 @@ aplayer:
 index_generator:
   path: ''
   per_page: 12
+  indexName: index
   order_by: -date
 
 # Category & Tag
@@ -144,7 +145,7 @@ algolia:
   apiKey: ""
   adminApiKey: ""
   chunkSize: 
-  indexName: ""
+  indexName: "index"
   fields:
     - content:strip:truncate,0,30000
     - excerpt:strip
