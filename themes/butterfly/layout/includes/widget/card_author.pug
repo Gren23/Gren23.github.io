@@ -1,9 +1,27 @@
 if theme.aside.card_author.enable
   .card-widget.card-info.text-center
-    .avatar-img
-      img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
-    .author-info-name= config.author
-    .author-info-description!= theme.aside.card_author.description || config.description
+    //- 源代码START
+    //- .avatar-img
+    //-   img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
+    //- .author-info-name= config.author
+    //- .author-info-description!= theme.aside.card_author.description || config.description
+    //- 源代码END
+    
+    //- 魔改代码START
+    if config.card_info && config.card_info.enable
+      //- .card-info-top
+      //-   #card-info-hello
+      //-   .card-info-img
+      //-     img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
+      .author-info-name.is-center= config.author
+      .author-info-description!= theme.aside.card_author.description || config.description
+      script(defer data-pjax src=url_for(config.card_info.CDN))
+    else 
+      .avatar-img
+        img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
+      .author-info-name= config.author
+      .author-info-description!= theme.aside.card_author.description || config.description
+    //- 魔改代码END
 
     .site-data
       a(href=url_for(config.archive_dir) + '/')

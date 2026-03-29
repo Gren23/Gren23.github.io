@@ -103,6 +103,16 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(translateBody, translateDelay)
       }
     }
+
+    // 魔改代码START
+    rightMenuTranslateButtonObject = document.getElementById('menu-translate')
+    if (rightMenuTranslateButtonObject) {
+      if (currentEncoding !== targetEncoding) {
+        setTimeout(translateBody, translateDelay)
+      }
+      rightMenuTranslateButtonObject.addEventListener('click', translatePage, false)
+    }
+    // 魔改代码END
   }
 
   window.translateFn = {

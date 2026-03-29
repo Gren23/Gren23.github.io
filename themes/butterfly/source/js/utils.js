@@ -1,5 +1,74 @@
 (() => {
   const btfFn = {
+    // 魔改代码START
+    switchReadMode: function () { // read-mode
+      const $body = document.body
+      const newEle = document.createElement('button')
+
+      const exitReadMode = () => {
+        $body.classList.remove('read-mode')
+        newEle.remove()
+        newEle.removeEventListener('click', exitReadMode)
+        if (document.querySelector('#menu-readmode>span')) document.querySelector('#menu-readmode>span').innerHTML = '阅读模式'
+        GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow('已关闭阅读模式')
+      }
+
+      $body.classList.add('read-mode')
+      newEle.type = 'button'
+      newEle.className = 'fas fa-sign-out-alt exit-readmode'
+      newEle.addEventListener('click', exitReadMode)
+      $body.appendChild(newEle)
+      if (document.querySelector('#menu-readmode>span')) document.querySelector('#menu-readmode>span').innerHTML = '退出阅读'
+      GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow('已开启阅读模式')
+    },
+
+    switchDarkMode: function () { // Switch Between Light And Dark Mode
+      const willChangeMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
+      if (willChangeMode === 'dark') {
+        btf.activateDarkMode()
+        GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.day_to_night)
+      } else {
+        btf.activateLightMode()
+        GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.night_to_day)
+      }
+      btf.saveToLocal.set('theme', willChangeMode, 2)
+      handleThemeChange(willChangeMode)
+    },
+
+    hideAsideBtn: function () { // Hide aside
+      const $htmlDom = document.documentElement.classList
+      const saveStatus = $htmlDom.contains('hide-aside') ? 'show' : 'hide'
+      document.querySelector('#menu-hideside>span').innerHTML = $htmlDom.contains('hide-aside') ? '隐藏侧栏' : '显示侧栏'
+      btf.saveToLocal.set('aside-status', saveStatus, 2)
+      $htmlDom.toggle('hide-aside')
+      GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow($htmlDom.contains('hide-aside') ? '已显示侧边栏' : '已隐藏侧边栏')
+    },
+
+    adjustFontSize: function (plus) {
+      const fontSizeVal = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--global-font-size'))
+      let newValue = ''
+      if (plus) {
+        if (fontSizeVal >= 20) return
+        newValue = fontSizeVal + 1
+        document.documentElement.style.setProperty('--global-font-size', newValue + 'px')
+        !document.getElementById('nav').classList.contains('hide-menu') && adjustMenu(true)
+      } else {
+        if (fontSizeVal <= 10) return
+        newValue = fontSizeVal - 1
+        document.documentElement.style.setProperty('--global-font-size', newValue + 'px')
+        document.getElementById('nav').classList.contains('hide-menu') && adjustMenu(true)
+      }
+
+      saveToLocal.set('global-font-size', newValue, 2)
+      // document.getElementById('font-text').innerText = newValue
+    },
+
+    copyFn: function (text) {
+      navigator.clipboard.writeText(text)
+      btf.snackbarShow(GLOBAL_CONFIG.copy.success)
+    },
+    // 魔改代码END
+
     debounce: (func, wait = 0, immediate = false) => {
       let timeout
       return (...args) => {

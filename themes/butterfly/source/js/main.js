@@ -78,48 +78,56 @@ document.addEventListener('DOMContentLoaded', () => {
     const alertInfo = (ele, text) => {
       if (GLOBAL_CONFIG.Snackbar !== undefined) {
         btf.snackbarShow(text)
+      // 旧版
       } else {
-        const newEle = document.createElement('div')
-        newEle.className = 'copy-notice'
-        newEle.textContent = text
-        document.body.appendChild(newEle)
-
-        const buttonRect = ele.getBoundingClientRect()
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop
-        const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft
-
-        // X-axis boundary check
-        const halfWidth = newEle.offsetWidth / 2
-        const centerLeft = buttonRect.left + scrollLeft + buttonRect.width / 2
-        const finalLeft = Math.max(halfWidth + 10, Math.min(window.innerWidth - halfWidth - 10, centerLeft))
-
-        // Show tooltip below button if too close to top
-        const normalTop = buttonRect.top + scrollTop - 40
-        const shouldShowBelow = buttonRect.top < 60 || normalTop < 10
-
-        const topValue = shouldShowBelow ? buttonRect.top + scrollTop + buttonRect.height + 10 : normalTop
-
-        newEle.style.cssText = `
-      top: ${topValue + 10}px;
-      left: ${finalLeft}px;
-      transform: translateX(-50%);
-      opacity: 0;
-      transition: opacity 0.3s ease, top 0.3s ease;
-    `
-
-        requestAnimationFrame(() => {
-          newEle.style.opacity = '1'
-          newEle.style.top = `${topValue}px`
-        })
-
-        setTimeout(() => {
-          newEle.style.opacity = '0'
-          newEle.style.top = `${topValue + 10}px`
-          setTimeout(() => {
-            newEle?.remove()
-          }, 300)
-        }, 800)
+        ele.textContent = text
+        ele.style.opacity = 1
+        setTimeout(() => { ele.style.opacity = 0 }, 800)
       }
+      
+    //   新版
+    //   } else {
+    //     const newEle = document.createElement('div')
+    //     newEle.className = 'copy-notice'
+    //     newEle.textContent = text
+    //     document.body.appendChild(newEle)
+
+    //     const buttonRect = ele.getBoundingClientRect()
+    //     const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+    //     const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft
+
+    //     // X-axis boundary check
+    //     const halfWidth = newEle.offsetWidth / 2
+    //     const centerLeft = buttonRect.left + scrollLeft + buttonRect.width / 2
+    //     const finalLeft = Math.max(halfWidth + 10, Math.min(window.innerWidth - halfWidth - 10, centerLeft))
+
+    //     // Show tooltip below button if too close to top
+    //     const normalTop = buttonRect.top + scrollTop - 40
+    //     const shouldShowBelow = buttonRect.top < 60 || normalTop < 10
+
+    //     const topValue = shouldShowBelow ? buttonRect.top + scrollTop + buttonRect.height + 10 : normalTop
+
+    //     newEle.style.cssText = `
+    //   top: ${topValue + 10}px;
+    //   left: ${finalLeft}px;
+    //   transform: translateX(-50%);
+    //   opacity: 0;
+    //   transition: opacity 0.3s ease, top 0.3s ease;
+    // `
+
+    //     requestAnimationFrame(() => {
+    //       newEle.style.opacity = '1'
+    //       newEle.style.top = `${topValue}px`
+    //     })
+
+    //     setTimeout(() => {
+    //       newEle.style.opacity = '0'
+    //       newEle.style.top = `${topValue + 10}px`
+    //       setTimeout(() => {
+    //         newEle?.remove()
+    //       }, 300)
+    //     }, 800)
+    //   }
     }
 
     const copy = async (text, ctx) => {

@@ -559,4 +559,19 @@ window.addEventListener('load', () => {
     if (!btf.isHidden($searchMask)) closeSearch()
     searchClickFn()
   })
+
+  // 魔改代码START
+  // 右键搜索
+  document.getElementById('menu-search').addEventListener('click', function () {
+    openSearch()
+    setTimeout(() => {
+      let $input = document.querySelector('#algolia-search .ais-SearchBox-input')
+      let event = document.createEvent("HTMLEvents")
+      event.initEvent("input", false, false)
+      $input.value = rightMenuContext.text
+      $input.dispatchEvent(event)
+    }, 100)
+  })
+  // 魔改代码END
+
 })

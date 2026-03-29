@@ -1,12 +1,36 @@
+//- 源代码START
+//- extends includes/layout.pug
+
+//- block content
+//-   if theme.category_ui == 'index'
+//-     include ./includes/mixins/indexPostUI.pug
+//-     +indexPostUI
+//-   else
+//-     include ./includes/mixins/article-sort.pug
+//-     #category
+//-       .article-sort-title= _p('page.category') + ' - ' + page.category
+//-       +articleSort(page.posts)
+//-       include includes/pagination.pug
+//- 源代码END
+
 extends includes/layout.pug
 
 block content
-  if theme.category_ui == 'index'
-    include ./includes/mixins/indexPostUI.pug
-    +indexPostUI
-  else
-    include ./includes/mixins/article-sort.pug
-    #category
-      .article-sort-title= _p('page.category') + ' - ' + page.category
-      +articleSort(page.posts)
-      include includes/pagination.pug
+  div
+    if theme.category_ui == 'index'
+      include ./includes/mixins/indexPostUI.pug
+      +indexPostUI
+    else
+      include ./includes/mixins/article-sort.pug
+      #category
+        //- 二选一
+        //- <div id="categories-chart" data-parent="true" style="height: 300px; padding: 10px;"></div>
+        //- #categories-chart(data-parent="true" style="height: 300px; padding: 10px;")
+        #catalog-bar
+          i.fa-fw.fas.fa-shapes
+          #catalog-list
+            !=catalog_list("categories")
+          a.catalog-more(href="/categories/")!= '更多'
+        .article-sort-title= _p('page.category') + ' - ' + page.category
+        +articleSort(page.posts, page.current)
+        include includes/pagination.pug

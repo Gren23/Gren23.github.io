@@ -1,6 +1,7 @@
 mixin indexPostUI()
   - const indexLayout = theme.index_layout
   - const masonryLayoutClass = [6, 7].includes(indexLayout) ? 'masonry' : ''
+  - let sticky_post_num = 0 //- 魔改代码
   #recent-posts.recent-posts.nc(class=masonryLayoutClass)
     .recent-post-items
       each article, index in page.posts.data
@@ -10,7 +11,11 @@ mixin indexPostUI()
           - const leftOrRight = indexLayout === 3 ? (index % 2 === 0 ? 'left' : 'right') : (indexLayout === 2 ? 'right' : '')
           - const postCover = article.cover
           - const noCover = article.cover === false || !theme.cover.index_enable ? 'no-cover' : ''
-
+          //- 魔改代码START
+          - if(article.top || article.sticky > 0) sticky_post_num += 1
+          - const updated_post = article.updated > article.date ? 'article-title-update' : ''
+          - const new_post = is_current('/') ? (index === sticky_post_num ? ' article-title-new' : '') : ''
+          //- 魔改代码END
           if postCover && theme.cover.index_enable
             .post_cover(class=leftOrRight)
               a(href=url_for(link) title=title)
@@ -19,7 +24,8 @@ mixin indexPostUI()
                 else
                   div.post-bg(style=`background: ${postCover}`)
           .recent-post-info(class=noCover)
-            a.article-title(href=url_for(link) title=title)
+            //- a.article-title(href=url_for(link) title=title) //- 源代码
+            a.article-title(href=url_for(link) title=title class=updated_post + new_post)
               if globalPageType === 'home' && (article.top || article.sticky > 0)
                 i.fas.fa-thumbtack.sticky
               = title
@@ -43,11 +49,13 @@ mixin indexPostUI()
                     span.article-meta-label= dateTitle
                     time(datetime=date_xml(article[dateType]) title=dateTitle + ' ' + full_date(article[dateType]))= date(article[dateType], config.date_format)
               if theme.post_meta.page.categories && article.categories.data.length > 0
-                span.article-meta
+                //- span.article-meta //- 源代码
+                span.article-meta.category
                   span.article-meta-separator |
                   each item, index in article.categories.data
                     i.fas.fa-inbox
-                    a(href=url_for(item.path)).article-meta__categories #[=item.name]
+                    //- a(href=url_for(item.path)).article-meta__categories #[=item.name] //- 源代码
+                    a(href=url_for(item.path)).article-meta__categories #[=(config.emoji && config.emoji.categories && config.emoji.categories[item.name] || '') + item.name]
                     if index < article.categories.data.length - 1
                       i.fas.fa-angle-right.article-meta-link
               if theme.post_meta.page.tags && article.tags.length > 0
@@ -55,7 +63,8 @@ mixin indexPostUI()
                   span.article-meta-separator |
                   each item, index in article.tags.data
                     i.fas.fa-tag
-                    a(href=url_for(item.path)).article-meta__tags #[=item.name]
+                    //- a(href=url_for(item.path)).article-meta__tags #[=item.name] //- 源代码
+                    a(href=url_for(item.path)).article-meta__tags #[=(config.emoji && config.emoji.tags && config.emoji.tags[item.name] || '') + item.name]
                     if index < article.tags.data.length - 1
                       span.article-meta-link #[='•']
 

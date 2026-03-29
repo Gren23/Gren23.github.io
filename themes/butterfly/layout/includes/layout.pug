@@ -41,7 +41,9 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
 
     #body-wrap(class=pageType)
       include ./header/index.pug
-
+      //- 魔改代码START
+      include ./home.pug
+      //- 魔改代码END
       main#content-inner.layout(class=hideAside)
         if body
           div!= body
@@ -56,4 +58,7 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
         !=partial('includes/footer', {}, {cache: true})
 
     include ./rightside.pug
+    //- 魔改代码START
+    include ./rightmenu.pug
+    //- 魔改代码END
     include ./additional-js.pug

@@ -2,6 +2,13 @@ div
   script(src=url_for(theme.asset.utils))
   script(src=url_for(theme.asset.main))
 
+  //- 魔改代码START
+  //- script(src=url_for('/js/eurkon/rgbaster.min.js'))
+  script(src=url_for('/js/eurkon/color-thief.min.js'))
+  script(defer src=url_for('/js/eurkon/eurkon.js'))
+  script(defer data-pjax src=url_for('/js/eurkon/refresh.js'))
+  //- 魔改代码END
+
   if theme.translate.enable
     script(src=url_for(theme.asset.translate))
 

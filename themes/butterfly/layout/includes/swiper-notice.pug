@@ -1,0 +1,30 @@
+.notice-title
+  i.fas.fa-bullhorn.fa-shake
+  a(href='/notice/')= _p('aside.card_announcement')
+#notice-container
+  .swiper-wrapper
+    if site.data.notice
+      each i in site.data.notice
+        .notice-item.swiper-slide
+          span.notice-item-date!= '【' + i.date + '】'
+          span.notice-item-msg!= i.msg
+.notice-goto
+  a(href='/notice/' title='查看更多...')
+    i.fas.fa-arrow-circle-right
+script.
+  var noticeContainer = document.getElementById('notice-container');
+  var noticeSwiper = new Swiper('#notice-container', {
+    direction: 'vertical',
+    loop: true,
+    mousewheel: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: true,
+    }
+  })
+  noticeContainer.onmouseenter = function () {
+    noticeSwiper.autoplay.stop();
+  };
+  noticeContainer.onmouseleave = function () {
+    noticeSwiper.autoplay.start();
+  };

@@ -93,3 +93,55 @@ if hexo-config('preloader.enable') && hexo-config('preloader.source') == 1
 
     100%
       transform: rotate(-315deg)
+
+// 魔改代码START
+if hexo-config('preloader.enable') && hexo-config('preloader.source') == 3
+  .loading-bg
+    z-index 10000
+    width 50%
+    height 100%
+    background var(--global-bg)
+  #loading-box
+    .loading-left-bg
+      @extend .loading-bg
+      left 0
+    .loading-right-bg
+      @extend .loading-bg
+      right 0
+    &.loaded
+      z-index -10000
+      .loading-left-bg
+        transition all 1.0s
+        transform translate(-100%, 0)
+      .loading-right-bg
+        transition all 1.0s
+        transform translate(100%, 0)
+  #loading-box
+    position fixed
+    z-index 10000
+    display -webkit-box
+    display flex
+    -webkit-box-align center
+    align-items center
+    -webkit-box-pack center
+    justify-content center
+    -webkit-box-orient vertical
+    -webkit-box-direction normal
+    flex-direction column
+    flex-wrap wrap
+    width 100vw
+    height 100vh
+    overflow hidden
+
+    .load-spinner
+      font-size 10vw
+      position fixed
+      z-index 10001
+      display flex
+      justify-content center
+      align-items center
+
+    &.loaded
+      .load-spinner
+        display none
+// 魔改代码END

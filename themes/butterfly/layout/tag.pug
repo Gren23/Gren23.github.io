@@ -1,12 +1,40 @@
+//- 源代码START
+//- extends includes/layout.pug
+
+//- block content
+//-   if theme.tag_ui == 'index'
+//-     include ./includes/mixins/indexPostUI.pug
+//-     +indexPostUI
+//-   else
+//-     include ./includes/mixins/article-sort.pug
+//-     #tag
+//-       .article-sort-title= _p('page.tag') + ' - ' + page.tag
+//-       +articleSort(page.posts)
+//-       include includes/pagination.pug
+
+//- extends includes/layout.pug
+//- 源代码END
+
 extends includes/layout.pug
 
 block content
-  if theme.tag_ui == 'index'
-    include ./includes/mixins/indexPostUI.pug
-    +indexPostUI
-  else
-    include ./includes/mixins/article-sort.pug
-    #tag
-      .article-sort-title= _p('page.tag') + ' - ' + page.tag
-      +articleSort(page.posts)
-      include includes/pagination.pug
+  div
+    if theme.tag_ui == 'index'
+      include ./includes/mixins/indexPostUI.pug
+      +indexPostUI
+    else
+      include ./includes/mixins/article-sort.pug
+      #tag
+        //- 二选一
+        //- <div id="tags-chart" data-length="10" style="height: 300px; padding: 10px;"></div>
+        //- #tags-chart(data-length="10" style="height: 300px; padding: 10px;")
+        #catalog-bar
+          i.fa-fw.fas.fa-tags
+          #catalog-list
+            !=catalog_list("tags")
+          a.catalog-more(href="/tags/")!= '更多'
+        .tag-cloud-list.is-center
+          !=cloudTags({source: site.tags, orderby: page.orderby || 'random', order: page.order || 1, minfontsize: 1.2, maxfontsize: 2.1, limit: 0, unit: 'em'})
+        .article-sort-title= _p('page.tag') + ' - ' + page.tag
+        +articleSort(page.posts, page.current)
+        include includes/pagination.pug

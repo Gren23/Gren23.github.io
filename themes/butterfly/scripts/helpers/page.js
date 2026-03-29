@@ -73,12 +73,12 @@ hexo.extend.helper.register('cloudTags', function (options = {}) {
       const colorClass = resolveColorClass(idx)
       const color = userColors[idx % userColors.length]
       const style = generateStyle(size, unit, page, color)
-      return `<a href="${env.url_for(tag.path)}" class="tag-cloud-item ${colorClass}" style="${style}">${tag.name}</a>`
+      return `<a id="${tag.path}" href="${env.url_for(tag.path)}" class="tag-cloud-item ${colorClass}" style="${style}">${(hexo.config.emoji && hexo.config.emoji.tags && hexo.config.emoji.tags[tag.name] || '') + tag.name}<sup>${tag.length}</sup></a>`
     }
 
     const color = getRandomColor()
     const style = generateStyle(size, unit, page, color)
-    return `<a href="${env.url_for(tag.path)}" style="${style}">${tag.name}</a>`
+    return `<a id="${tag.path}" href="${env.url_for(tag.path)}" style="${style}">${(hexo.config.emoji && hexo.config.emoji.tags && hexo.config.emoji.tags[tag.name] || '') + tag.name}<sup>${tag.length}</sup></a>`
   }).join('')
 })
 
