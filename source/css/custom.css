@@ -139,9 +139,6 @@ pre, code {
 }
 
 /* 加载动画 */
-#loading {
-  background: linear-gradient(135deg, oklch(0.98 0 0) 0%, oklch(0.95 0 0) 100%);
-}
 
 /* 按钮 hover 效果 */
 #rightside > button:hover {
