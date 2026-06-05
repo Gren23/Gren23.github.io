@@ -145,3 +145,42 @@ pre, code {
   transform: scale(1.05);
   box-shadow: var(--shadow-md);
 }
+
+//* ============================
+   动态/说说页面样式
+   ============================ */
+.moments-page .shuoshuo-item {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  padding: 24px 28px 20px;
+  transition: all 0.25s ease;
+}
+.moments-page .shuoshuo-item:hover {
+  background: rgba(255, 255, 255, 0.85);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+[data-theme="dark"] .moments-page .shuoshuo-item {
+  background: rgba(30, 20, 60, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+[data-theme="dark"] .moments-page .shuoshuo-item:hover {
+  background: rgba(40, 25, 80, 0.8);
+}
+.moments-page .shuoshuo-avatar {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+}
+.moments-page .shuoshuo-content {
+  padding: 12px 0 8px !important;
+  font-size: 0.95rem !important;
+  line-height: 1.75 !important;
+  color: #333;
+}
+[data-theme="dark"] .moments-page .shuoshuo-content { color: #ccc; }
+.moments-page .shuoshuo-content img { border-radius: 12px !important; max-width: 100% !important; }
+.moments-page .shuoshuo-date { color: #999 !important; font-size: 0.78rem !important; }
