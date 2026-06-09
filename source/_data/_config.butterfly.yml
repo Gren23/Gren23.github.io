@@ -1,0 +1,7 @@
+# CDN 优化配置
+CDN:
+  third_party_provider: jsdelivr
+  version: true
+
+# 字体覆盖（解决 themes/butterfly/_config.yml 第 823 行解析错误）
+font: {}

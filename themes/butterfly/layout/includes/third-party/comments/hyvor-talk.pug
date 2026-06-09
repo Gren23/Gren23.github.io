@@ -1,0 +1,11 @@
+- const { website_id } = theme.hyvor_talk
+
+#hyvor-wrap
+
+script.
+  window.HYVOR_TALK_WEBSITE = "!{website_id}";
+  window.HYVOR_TALK_CONFIG = {
+    url: "!{page.permalink}",
+    id: "!{page.id || page.path}"
+  };
+script(async src="https://talk.hyvor.com/embed/embed.js" type="module")

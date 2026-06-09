@@ -1,0 +1,47 @@
+.recent-post-card
+  #recent-post-swiper
+    .swiper-wrapper
+      - let postLimit = theme.index_post_list_item.number
+      - let posts = site.posts.sort('date', -1).limit(postLimit)
+      each article, index in posts.toArray()
+        .recent-post-item
+          .post-card-cover
+            - let cover = article.cover
+            if cover
+              img(src=url_for(cover) onerror=`this.onerror=null;this.src='`+ url_for(theme.error_img.post_page) + `'` alt='')
+            else
+              .post-card-cover.no-cover
+          .post-card-info
+            - let title = article.title || _p('no_title')
+            a.article-header(href=url_for(article.link || article.path) title=title)
+              .article-title= title
+            .article-meta-wrap
+              if theme.index_post_list_item.meta.date
+                span.article-meta
+                  i.far.fa-calendar-alt
+                  span.article-meta-label= ' '
+                  time(datetime=article.date format=_p('date_format') title=article.date.toISOString())= article.date.format(_p('date_format'))
+              if theme.index_post_list_item.meta.category && article.categories.length > 0
+                span.article-meta
+                  i.fas.fa-folder-open
+                  span.article-meta-label= ' '
+                  - for (let i = 0; i < article.categories.data.length && i < 1; i++)
+                    = article.categories.data[i].name
+script.
+  var swiper = new Swiper('#recent-post-swiper', {
+    speed: 400,
+    spaceBetween: 20,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: true
+    },
+    loop: true,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true
+    }
+  })

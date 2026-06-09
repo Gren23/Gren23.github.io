@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+Disallow: /js/
+Disallow: /css/
+Disallow: /fonts/
+Disallow: /lib/
+Disallow: /source/
+
+Sitemap: https://www.hehehey.top/sitemap.xml
+Sitemap: https://www.hehehey.top/baidusitemap.xml

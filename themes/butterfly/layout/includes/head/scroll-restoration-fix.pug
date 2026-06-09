@@ -1,0 +1,15 @@
+script.
+  // 修复：页面加载稳定后，如果浏览器滚动位置与预期不符，强制纠正
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var nav = document.getElementById('nav');
+      var ci = document.getElementById('content-inner');
+      if (!nav || !ci) return;
+      // content-inner.offsetTop 是内容区到 offsetParent 的距离
+      var contentTop = ci.offsetTop;
+      // 如果当前滚动位置明显偏离 content-top（差值 > 2px），说明浏览器恢复位置错误
+      if (Math.abs(window.scrollY - contentTop) > 2) {
+        window.scrollTo({ top: contentTop, behavior: 'instant' });
+      }
+    }, 600);
+  }, { once: true });

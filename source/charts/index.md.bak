@@ -1,0 +1,55 @@
+---
+title: 文章统计
+date: 2026-05-20 09:00:00
+type: "charts"
+---
+
+# 📊 文章统计
+
+> 数据更新于 {% raw %}{{ date }}{% endraw %}
+
+## 📈 统计概览
+
+<style>
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin: 24px 0; }
+.stat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; transition: transform 0.2s; }
+.stat-card:hover { transform: translateY(-2px); }
+.stat-icon { font-size: 32px; margin-bottom: 8px; }
+.stat-num { font-size: 28px; font-weight: 700; color: var(--text-highlight); }
+.stat-label { font-size: 13px; color: var(--text-color); opacity: 0.7; margin-top: 4px; }
+</style>
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="stat-icon">📝</div>
+    <div class="stat-num">{% raw %}{{ site.posts.length }}{% endraw %}</div>
+    <div class="stat-label">文章总数</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon">📂</div>
+    <div class="stat-num">{% raw %}{{ site.categories.length }}{% endraw %}</div>
+    <div class="stat-label">分类数量</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon">🏷️</div>
+    <div class="stat-num">{% raw %}{{ site.tags.length }}{% endraw %}</div>
+    <div class="stat-label">标签数量</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon">📄</div>
+    <div class="stat-num">{% raw %}{{ site.pages.length }}{% endraw %}</div>
+    <div class="stat-label">页面数量</div>
+  </div>
+</div>
+
+## 🕐 最近更新
+
+| 📅 日期 | 📄 文章标题 |
+|----------|-------------|
+{% raw %}{% for post in site.posts.sort('date', -1).limit(10) %}
+| {{ post.date | date: 'YYYY-MM-DD' }} | {{ post.title }} |
+{% endfor %}{% endraw %}
+
+---
+
+*📊 自动同步于每次部署*

@@ -1,0 +1,17 @@
+link_list:
+  - image: /images/user/sql.png
+    color: "#4d4d4d"
+  - image: /images/user/echarts.png
+    color: "#ffffff"
+  - image: /images/user/html5.png
+    color: "#d84925"
+  - image: /images/user/js.png
+    color: "#f0c901"
+  - image: /images/user/css3.png
+    color: "#036fba"
+  - image: /images/user/python.png
+    color: "#ffffff"
+  - image: /images/user/java.png
+    color: "#ffffff"
+  - image: /images/user/git.png
+    color: "#ee4b26"

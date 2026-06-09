@@ -1,0 +1,19 @@
+# 动态/说说数据
+# 请按日期倒序排列（最新的在前）
+
+- author: G/ren
+  avatar: /img/头像.JPG
+  date: 2026-06-06 00:10
+  content: |
+    我的第一条动态测试。
+    博客的"动态"页面正式上线了 🎉
+    
+  tags: []
+
+- author: G/ren
+  avatar: /img/头像.JPG
+  date: 2026-05-31 22:15
+  content: |
+    今晚的夜色真美，风也温柔。
+    
+  tags: []

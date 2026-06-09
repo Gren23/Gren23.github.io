@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Front Matter 生成器 · hehehey.top</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2d5a3b;
+      --primary-light: #4a7c59;
+      --accent: #e07a5f;
+      --bg: #f0ede8;
+      --card-bg: rgba(255,255,255,0.72);
+      --text: #333;
+      --text-muted: #666;
+      --border: rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans SC', -apple-system, sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 40px 20px;
+      color: var(--text);
+    }
+    .page-header {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+      padding: 0 40px; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      z-index: 100;
+    }
+    .page-header .logo { font-size: 15px; font-weight: 600; color: var(--primary); }
+    .page-header .back-link { font-size: 13px; color: var(--text-muted); text-decoration: none; }
+    .page-header .back-link:hover { color: var(--primary); }
+    .page-header .tool-link { font-size: 13px; color: var(--primary); text-decoration: none; font-weight: 500; }
+    .page-header .tool-link:hover { text-decoration: underline; }
+    .wrapper { width: 100%; max-width: 1100px; padding-top: 20px; }
+    .page-title { text-align: center; margin-bottom: 32px; }
+    .page-title h1 { font-size: 24px; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+    .page-title p { font-size: 14px; color: var(--text-muted); }
+    .container { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    .panel {
+      background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.5); border-radius: 20px; padding: 24px;
+      box-shadow: 0 4px 24px rgba(45,90,59,0.07);
+    }
+    .panel-title { font-size: 11px; letter-spacing: 1.5px; color: var(--text-muted); text-transform: uppercase; font-weight: 500; margin-bottom: 18px; }
+    .field { margin-bottom: 14px; }
+    .field label { display: block; font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; }
+    .field label .hint { font-weight: 400; font-size: 11px; opacity: 0.7; margin-left: 4px; }
+    .field input, .field textarea, .field select {
+      width: 100%; padding: 10px 13px; border: 1.5px solid rgba(0,0,0,0.1); border-radius: 12px;
+      font-size: 14px; font-family: inherit; background: rgba(255,255,255,0.65);
+      transition: border-color 0.2s, box-shadow 0.2s; color: var(--text);
+    }
+    .field input:focus, .field textarea:focus, .field select:focus {
+      outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(45,90,59,0.12);
+    }
+    .field textarea { resize: vertical; min-height: 60px; }
+    .field-tags .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .tag-chip { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; background: var(--primary); color: white; border-radius: 20px; font-size: 12px; font-weight: 500; }
+    .tag-chip .remove { cursor: pointer; opacity: 0.8; font-size: 13px; }
+    .tag-chip .remove:hover { opacity: 1; }
+    .tag-input-row { display: flex; gap: 8px; }
+    .tag-input-row input { flex: 1; }
+    .tag-input-row button { padding: 10px 14px; background: var(--primary); color: white; border: none; border-radius: 12px; font-size: 14px; cursor: pointer; font-family: inherit; white-space: nowrap; }
+    .tag-input-row button:hover { background: var(--primary-light); }
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .code-output { position: relative; }
+    .code-block {
+      background: rgba(45,90,59,0.05); border: 1.5px solid rgba(45,90,59,0.12); border-radius: 14px;
+      padding: 16px; font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; font-size: 13px;
+      line-height: 1.7; color: var(--text); white-space: pre-wrap; word-break: break-all;
+      max-height: 420px; overflow-y: auto; min-height: 200px; user-select: all;
+    }
+    .code-block::-webkit-scrollbar { width: 6px; }
+    .code-block::-webkit-scrollbar-track { background: transparent; }
+    .code-block::-webkit-scrollbar-thumb { background: rgba(45,90,59,0.2); border-radius: 3px; }
+    .btn-row { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+    .btn-copy {
+      flex: 1; padding: 12px; background: var(--primary); color: white; border: none;
+      border-radius: 14px; font-size: 14px; font-weight: 600; cursor: pointer;
+      font-family: inherit; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .btn-copy:hover { background: var(--primary-light); transform: translateY(-1px); }
+    .btn-copy:active { transform: translateY(0); }
+    .btn-copy.copied { background: #4a7c59; }
+    .btn-reset {
+      flex: 1; padding: 12px; background: rgba(255,255,255,0.65); color: var(--text-muted);
+      border: 1.5px solid var(--border); border-radius: 14px; font-size: 14px; font-weight: 600;
+      cursor: pointer; font-family: inherit; transition: all 0.2s;
+    }
+    .btn-reset:hover { border-color: var(--accent); color: var(--accent); }
+    .tip { font-size: 11px; color: var(--text-muted); margin-top: 10px; text-align: center; opacity: 0.7; }
+    .url-param-tip { font-size: 11px; color: var(--text-muted); opacity: 0.7; margin-bottom: 16px; }
+    .section-label { font-size: 11px; letter-spacing: 1.5px; color: var(--text-muted); text-transform: uppercase; font-weight: 500; margin: 16px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+    .section-label:first-child { margin-top: 0; }
+    .brand-footer { text-align: center; margin-top: 24px; }
+    .brand-footer span { font-size: 11px; color: var(--text-muted); opacity: 0.5; }
+    .copied-msg { position: fixed; top: 80px; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; padding: 10px 24px; border-radius: 30px; font-size: 14px; font-weight: 600; z-index: 9999; box-shadow: 0 4px 20px rgba(45,90,59,0.25); opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+    .copied-msg.show { opacity: 1; }
+    @media (max-width: 800px) {
+      body { padding: 20px 16px; align-items: flex-start; }
+      .page-header { padding: 0 20px; }
+      .wrapper { padding-top: 60px; }
+      .container { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-header">
+    <span class="logo">G/ren</span>
+    <a href="/tools/cover-generator/" class="tool-link">封面生成器 →</a>
+    <a href="/" class="back-link">← 返回博客</a>
+  </div>
+
+  <div class="wrapper">
+    <div class="page-title">
+      <h1>Front Matter 生成器</h1>
+      <p>填表单，生成 Hexo 文章头部 YAML，一键复制</p>
+    </div>
+
+    <div class="container">
+
+      <!-- 左侧：表单 -->
+      <div class="panel">
+        <div class="panel-title">文章信息</div>
+
+        <div class="section-label">基本信息</div>
+        <div class="field">
+          <label>标题 <span class="hint">title</span></label>
+          <input type="text" id="fTitle" placeholder="文章标题">
+        </div>
+        <div class="row-2">
+          <div class="field">
+            <label>日期 <span class="hint">date</span></label>
+            <input type="date" id="fDate">
+          </div>
+          <div class="field">
+            <label>更新日期 <span class="hint">updated</span></label>
+            <input type="date" id="fUpdated">
+          </div>
+        </div>
+        <div class="field">
+          <label>作者 <span class="hint">author</span></label>
+          <input type="text" id="fAuthor" placeholder="G/ren" value="G/ren">
+        </div>
+        <div class="field">
+          <label>永久链接标识 <span class="hint">abbrlink（留空则自动生成）</span></label>
+          <input type="text" id="fAbbrlink" placeholder="留空自动生成">
+        </div>
+
+        <div class="section-label">分类与标签</div>
+        <div class="field">
+          <label>分类 <span class="hint">categories</span></label>
+          <input type="text" id="fCategories" placeholder="机器视觉">
+        </div>
+        <div class="field">
+          <label>标签 <span class="hint">tags（回车添加）</span></label>
+          <div class="tag-list" id="tagList"></div>
+          <div class="tag-input-row" style="margin-top:8px;">
+            <input type="text" id="tagInput" placeholder="输入标签后回车">
+            <button type="button" onclick="addTag()">+</button>
+          </div>
+        </div>
+
+        <div class="section-label">SEO 与展示</div>
+        <div class="field">
+          <label>描述 <span class="hint">description</span></label>
+          <textarea id="fDescription" placeholder="文章简介，用于 SEO 和摘要显示" rows="2"></textarea>
+        </div>
+        <div class="field">
+          <label>关键词 <span class="hint">keywords</span></label>
+          <input type="text" id="fKeywords" placeholder="用逗号分隔，如：机器视觉,机器人,梅卡曼德">
+        </div>
+        <div class="field">
+          <label>封面图片 <span class="hint">cover_image</span></label>
+          <input type="text" id="fCover" placeholder="图片 URL，留空则无封面">
+        </div>
+        <div class="row-2">
+          <div class="field">
+            <label>置顶封面 <span class="hint">top_img</span></label>
+            <input type="text" id="fTopImg" placeholder="留空同 cover">
+          </div>
+          <div class="field">
+            <label>MathJax <span class="hint">mathjax</span></label>
+            <select id="fMathjax">
+              <option value="">否</option>
+              <option value="true">是</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="section-label">布局选项</div>
+        <div class="row-2">
+          <div class="field">
+            <label>显示标题 <span class="hint">show_title</span></label>
+            <select id="fShowTitle">
+              <option value="">默认</option>
+              <option value="true">显示</option>
+              <option value="false">隐藏</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>侧边栏 <span class="hint">aside</span></label>
+            <select id="fAside">
+              <option value="">显示</option>
+              <option value="false">隐藏</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右侧：输出 -->
+      <div class="panel">
+        <div class="panel-title">生成的 Front Matter</div>
+        <div class="code-output">
+          <div class="code-block" id="codeOutput">---</div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-copy" id="btnCopy" onclick="copyCode()">
+            <span id="btnCopyText">📋 复制 YAML</span>
+          </button>
+          <button class="btn-reset" onclick="resetForm()">↺ 重置</button>
+        </div>
+        <p class="tip">复制后直接粘贴到 Markdown 文件顶部</p>
+        <div class="url-param-tip">支持 URL 参数：?title=xxx&amp;categories=机器视觉&amp;tags=a,b,c</div>
+        <div class="brand-footer"><span>Powered by hehehey.top</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="copied-msg" id="copiedMsg">✅ 已复制到剪贴板</div>
+
+  <script>
+    var currentTags = [];
+    var HISTORY_KEY = 'fm_generator_history';
+    var MAX_HISTORY = 10;
+
+    // URL 参数填充
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      if (params.has('title'))     document.getElementById('fTitle').value = decodeURIComponent(params.get('title'));
+      if (params.has('author'))    document.getElementById('fAuthor').value = decodeURIComponent(params.get('author'));
+      if (params.has('categories')) document.getElementById('fCategories').value = decodeURIComponent(params.get('categories'));
+      if (params.has('date'))      document.getElementById('fDate').value = params.get('date');
+      if (params.has('description')) document.getElementById('fDescription').value = decodeURIComponent(params.get('description'));
+      if (params.has('cover'))     document.getElementById('fCover').value = decodeURIComponent(params.get('cover'));
+      if (params.has('keywords'))  document.getElementById('fKeywords').value = decodeURIComponent(params.get('keywords'));
+      if (params.has('mathjax'))    document.getElementById('fMathjax').value = params.get('mathjax');
+      if (params.has('tags')) {
+        params.get('tags').split(',').forEach(function(t) { t = t.trim(); if (t) addTagSilent(t); });
+      }
+      if (params.has('abbrlink'))  document.getElementById('fAbbrlink').value = params.get('abbrlink');
+    })();
+
+    // 填充默认值日期
+    var today = new Date().toISOString().slice(0, 10);
+    if (!document.getElementById('fDate').value) document.getElementById('fDate').value = today;
+
+    function addTagSilent(name) {
+      name = name.trim();
+      if (!name || currentTags.indexOf(name) !== -1) return;
+      currentTags.push(name);
+      renderTags();
+    }
+
+    function addTag() {
+      var input = document.getElementById('tagInput');
+      var name = input.value.trim();
+      if (!name) return;
+      if (currentTags.indexOf(name) !== -1) { input.value = ''; return; }
+      currentTags.push(name);
+      input.value = '';
+      renderTags();
+      syncOutput();
+    }
+
+    function removeTag(name) {
+      currentTags = currentTags.filter(function(t) { return t !== name; });
+      renderTags();
+      syncOutput();
+    }
+
+    function renderTags() {
+      var el = document.getElementById('tagList');
+      el.innerHTML = currentTags.map(function(t) {
+        return '<span class="tag-chip">' + escHtml(t) + ' <span class="remove" onclick="removeTag(\'' + escAttr(t) + '\')">×</span></span>';
+      }).join('');
+    }
+
+    function escHtml(str) {
+      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+    function escAttr(str) {
+      return str.replace(/'/g, '&#39;').replace(/"/g, '&#34;');
+    }
+
+    // 回车添加标签
+    document.getElementById('tagInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { e.preventDefault(); addTag(); }
+    });
+
+    function generateAbbrlink() {
+      return Math.random().toString(36).slice(2, 8);
+    }
+
+    function formatDate(d) {
+      if (!d) return '';
+      // 确保格式为 YYYY-MM-DD HH:MM:SS
+      return d + ' ' + new Date().toTimeString().slice(0,8);
+    }
+
+    function escYaml(str) {
+      if (!str) return '';
+      // 如果包含冒号、换行、引号，需要加引号
+      if (/[:\n\"\'#|>]/.test(str)) {
+        return '"' + str.replace(/"/g, '\\"') + '"';
+      }
+      return str;
+    }
+
+    function syncOutput() {
+      var lines = [];
+      lines.push('---');
+      if (document.getElementById('fTitle').value) lines.push('title: ' + escYaml(document.getElementById('fTitle').value));
+      if (document.getElementById('fDate').value) lines.push('date: ' + formatDate(document.getElementById('fDate').value));
+      if (document.getElementById('fUpdated').value) lines.push('updated: ' + formatDate(document.getElementById('fUpdated').value));
+      if (document.getElementById('fAuthor').value) lines.push('author: ' + escYaml(document.getElementById('fAuthor').value));
+      if (document.getElementById('fCategories').value) lines.push('categories:');
+      document.getElementById('fCategories').value.split(',').map(function(c) { return c.trim(); }).filter(Boolean).forEach(function(c) {
+        lines.push('  - ' + c);
+      });
+      if (currentTags.length) {
+        lines.push('tags:');
+        currentTags.forEach(function(t) { lines.push('  - ' + t); });
+      }
+      if (document.getElementById('fKeywords').value) lines.push('keywords: ' + escYaml(document.getElementById('fKeywords').value));
+      if (document.getElementById('fDescription').value) lines.push('description: ' + escYaml(document.getElementById('fDescription').value));
+      if (document.getElementById('fCover').value) lines.push('cover: ' + document.getElementById('fCover').value);
+      if (document.getElementById('fTopImg').value) lines.push('top_img: ' + document.getElementById('fTopImg').value);
+      var abbrlink = document.getElementById('fAbbrlink').value.trim();
+      if (!abbrlink) abbrlink = generateAbbrlink();
+      lines.push('abbrlink: ' + abbrlink);
+      if (document.getElementById('fMathjax').value) lines.push('mathjax: ' + document.getElementById('fMathjax').value);
+      if (document.getElementById('fShowTitle').value) lines.push('show_title: ' + document.getElementById('fShowTitle').value);
+      if (document.getElementById('fAside').value) lines.push('aside: ' + document.getElementById('fAside').value);
+      lines.push('---');
+      document.getElementById('codeOutput').textContent = lines.join('\n');
+    }
+
+    var inputs = document.querySelectorAll('input, textarea, select');
+    inputs.forEach(function(el) {
+      el.addEventListener('input', syncOutput);
+      el.addEventListener('change', syncOutput);
+    });
+
+    function copyCode() {
+      var code = document.getElementById('codeOutput').textContent;
+      if (!code || code === '---') return;
+      var btn = document.getElementById('btnCopy');
+      var btnText = document.getElementById('btnCopyText');
+      navigator.clipboard.writeText(code).then(function() {
+        btn.classList.add('copied');
+        btnText.textContent = '✅ 已复制';
+        showCopiedMsg();
+        setTimeout(function() {
+          btn.classList.remove('copied');
+          btnText.textContent = '📋 复制 YAML';
+        }, 2000);
+      }).catch(function() {
+        // fallback
+        var ta = document.createElement('textarea');
+        ta.value = code;
+        ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showCopiedMsg();
+        btnText.textContent = '✅ 已复制';
+        setTimeout(function() { btnText.textContent = '📋 复制 YAML'; }, 2000);
+      });
+    }
+
+    function showCopiedMsg() {
+      var msg = document.getElementById('copiedMsg');
+      msg.classList.add('show');
+      setTimeout(function() { msg.classList.remove('show'); }, 1800);
+    }
+
+    function resetForm() {
+      document.querySelectorAll('input:not([type="date"]), textarea').forEach(function(el) { el.value = ''; });
+      document.querySelectorAll('select').forEach(function(el) { el.selectedIndex = 0; });
+      currentTags = [];
+      renderTags();
+      document.getElementById('fAuthor').value = 'G/ren';
+      document.getElementById('fDate').value = today;
+      syncOutput();
+    }
+
+    syncOutput();
+  </script>
+</body>
+</html>
