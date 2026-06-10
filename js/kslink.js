@@ -1,38 +1,60 @@
-var leonus = {
-    linkCom: e => {
+(function() {
+    var linkCom = function(e) {
         var t = document.querySelector(".el-textarea__inner");
-        "bf" == e ? (t.value = "```yml\n", t.value += "- name: \n  link: \n  avatar: \n  descr: \n  siteshot: ", t.value += "\n```", t.setSelectionRange(15, 15)) : (t.value = "站点名称：\n站点地址：\n头像链接：\n站点描述：\n站点截图：", t.setSelectionRange(5, 5)), t.focus()
-    },
-    owoBig: () => {
+        if (e === 'bf') {
+            t.value = "```yml\n";
+            t.value += "- name: \n  link: \n  avatar: \n  descr: \n  siteshot: ";
+            t.value += "\n```";
+            t.setSelectionRange(15, 15);
+        } else {
+            t.value = "站点名称：\n站点地址：\n头像链接：\n站点描述：\n站点截图：";
+            t.setSelectionRange(5, 5);
+        }
+        t.focus();
+    };
+
+    var owoBig = function() {
         if (!document.getElementById("post-comment") || document.body.clientWidth < 768) return;
-        let e = 1,
-            t = "",
-            o = document.createElement("div"),
-            n = document.querySelector("body");
-        o.id = "owo-big", n.appendChild(o), new MutationObserver((l => {
-            for (let a = 0; a < l.length; a++) {
-                let i = l[a].addedNodes,
-                    s = "";
-                if (2 == i.length && "OwO-body" == i[1].className) s = i[1];
-                else {
-                    if (1 != i.length || "tk-comment" != i[0].className) continue;
-                    s = i[0]
+        var e = 1;
+        var t = "";
+        var o = document.createElement("div");
+        var n = document.querySelector("body");
+        o.id = "owo-big";
+        n.appendChild(o);
+        new MutationObserver(function(l) {
+            for (var a = 0; a < l.length; a++) {
+                var i = l[a].addedNodes;
+                var s = "";
+                if (i.length === 2 && i[1].className === "OwO-body") {
+                    s = i[1];
+                } else {
+                    if (i.length !== 1 || i[0].className !== "tk-comment") continue;
+                    s = i[0];
                 }
-                s.onmouseover = l => {
-                    e && ("OwO-body" == s.className && "IMG" == l.target.tagName || "tk-owo-emotion" == l.target.className) && (e = 0, t = setTimeout((() => {
-                        let e = 3 * l.path[0].clientHeight,
-                            t = 3 * l.path[0].clientWidth,
-                            a = l.x - l.offsetX - (t - l.path[0].clientWidth) / 2,
-                            i = l.y - l.offsetY;
-                        a + t > n.clientWidth && (a -= a + t - n.clientWidth + 10), a < 0 && (a = 10), o.style.cssText = `display:flex; height:${e}px; width:${t}px; left:${a}px; top:${i}px;`, o.innerHTML = `<img src="${l.target.src}">`
-                    }), 300))
-                }, s.onmouseout = () => {
-                    o.style.display = "none", e = 1, clearTimeout(t)
-                }
+                s.onmouseover = function(l) {
+                    e && (s.className === "OwO-body" && l.target.tagName === "IMG" || l.target.className === "tk-owo-emotion") && (e = 0, t = setTimeout(function() {
+                        var c = 3 * l.path[0].clientHeight;
+                        var w = 3 * l.path[0].clientWidth;
+                        var left = l.x - l.offsetX - (w - l.path[0].clientWidth) / 2;
+                        var top = l.y - l.offsetY;
+                        if (left + w > n.clientWidth) left = left - (left + w - n.clientWidth + 10);
+                        if (left < 0) left = 10;
+                        o.style.cssText = "display:flex; height:" + c + "px; width:" + w + "px; left:" + left + "px; top:" + top + "px;";
+                        o.innerHTML = "<img src=" + l.target.src + ">";
+                    }, 300));
+                };
+                s.onmouseout = function() {
+                    o.style.display = "none";
+                    e = 1;
+                    clearTimeout(t);
+                };
             }
-        })).observe(document.getElementById("post-comment"), {
-            subtree: !0,
-            childList: !0
-        })
-    },
-};
+        }).observe(document.getElementById("post-comment"), {
+            subtree: true,
+            childList: true
+        });
+    };
+
+    // 暴露给全局（兼容旧调用方式）
+    window.kslink = { linkCom: linkCom, owoBig: owoBig };
+})();
