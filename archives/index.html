@@ -1,0 +1,992 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><meta name="baidu-site-verification" content="codeva-hfv5Au82rN"><title>归档 | G/ren的小破站</title><meta name="author" content="G/ren"><meta name="copyright" content="G/ren"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content=".archive-wrap {   max-width: 860px;   margin: 0 auto;   padding: 0 20px 60px;   --brand: #6C5CE7;   --brand-light: rgba(108, 92, 231, 0.18);   --brand-glow: rgba(108, 92, 231, 0.35); }  /* 统计横幅 */ .a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="归档">
+<meta property="og:url" content="https://www.hehehey.top/archives/index.html">
+<meta property="og:site_name" content="G/ren的小破站">
+<meta property="og:description" content=".archive-wrap {   max-width: 860px;   margin: 0 auto;   padding: 0 20px 60px;   --brand: #6C5CE7;   --brand-light: rgba(108, 92, 231, 0.18);   --brand-glow: rgba(108, 92, 231, 0.35); }  /* 统计横幅 */ .a">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.hehehey.top/img/%E5%A4%B4%E5%83%8F.JPG">
+<meta property="article:published_time" content="2026-05-20T01:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-05T16:41:03.000Z">
+<meta property="article:author" content="G/ren">
+<meta property="article:tag" content="机器视觉,Vision Master,Mech-Vision,视觉定位,海康,Hexo博客,技术分享,编程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.hehehey.top/img/%E5%A4%B4%E5%83%8F.JPG"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.hehehey.top/archives/index.html"><link rel="preconnect" href="//unpkg.com"><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://img.hehey.top/js/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '归档',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'page'
+}</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><style>[data-theme="light"] body{background:linear-gradient(180deg,#f0f9ff 0%,#e8f6fc 30%,#ffffff 100%) !important;}html{scroll-behavior:auto;}#footer-wrap{background-color:#ffffff!important;background-image:none!important;border-top:1px solid #e5e9ef !important;padding:10px 0 !important;min-height:unset !important;height:auto !important;line-height:1.6 !important;box-shadow:none !important;text-align:center;}#footer-wrap .copyright{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;}#footer-wrap .framework-info{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:8px;font-size:13px !important;color:#888 !important;flex-wrap:wrap;}#footer-wrap #ghbdages{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:5px;flex-wrap:wrap;}#footer-wrap a{color:#49b1f5!important;text-decoration:none;}#footer-wrap a:hover{text-decoration:underline;}</style>
+<style>[data-theme="dark"] body{background:linear-gradient(180deg,#1a2a3a 0%,#243447 50%,#1a2533 100%) !important;}#footer-wrap{background:#1a2533!important;border-top:1px solid #374151 !important;padding:10px 0 !important;min-height:unset !important;height:auto !important;line-height:1.6 !important;box-shadow:none !important;text-align:center;}#footer-wrap .copyright{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;}#footer-wrap .framework-info{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:8px;font-size:13px !important;color:#9ca3af !important;flex-wrap:wrap;}#footer-wrap #ghbdages{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:5px;flex-wrap:wrap;}#footer-wrap a{color:#93c5fd!important;text-decoration:none;}#footer-wrap a:hover{text-decoration:underline;}</style>
+<script src="https://img.hehey.top/js/echarts.min.js"></script><script defer="" src="https://hm.baidu.com/hm.js?187613fe21d57ca4e614119d64623d28"></script><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/%E5%A4%B4%E5%83%8F.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><span class="site-page group hide"><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/cover-generator/"><i class="fa-fw fas fa-image"></i><span> 封面生成</span></a></li><li><a class="site-page child" href="/tools/frontmatter-generator/"><i class="fa-fw fas fa-file-code"></i><span> Front Matter</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><span class="site-page group hide"><span> 统计</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/charts/"><i class="fa-fw fas fa-chart-bar"></i><span> 文章统计</span></a></li><li><a class="site-page child" href="/census/"><i class="fa-fw fas fa-chart-line"></i><span> 博客统计</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 博客</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-sync"></i><span> 更新</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fas fa-bullhorn"></i><span> 公告</span></a></li><li><a class="site-page child" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 信箱</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/moments/"><i class="fa-fw fas fa-comment-dots"></i><span> 动态</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">G/ren的小破站</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><span class="site-page group hide"><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/cover-generator/"><i class="fa-fw fas fa-image"></i><span> 封面生成</span></a></li><li><a class="site-page child" href="/tools/frontmatter-generator/"><i class="fa-fw fas fa-file-code"></i><span> Front Matter</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><span class="site-page group hide"><span> 统计</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/charts/"><i class="fa-fw fas fa-chart-bar"></i><span> 文章统计</span></a></li><li><a class="site-page child" href="/census/"><i class="fa-fw fas fa-chart-line"></i><span> 博客统计</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 博客</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-sync"></i><span> 更新</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fas fa-bullhorn"></i><span> 公告</span></a></li><li><a class="site-page child" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 信箱</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/moments/"><i class="fa-fw fas fa-comment-dots"></i><span> 动态</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><h1 class="title-seo">归档</h1></header><main class="layout" id="content-inner"><div id="page"><div class="page-title">归档</div><div class="container" id="article-container"><style>
+.archive-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+  --brand: #6C5CE7;
+  --brand-light: rgba(108, 92, 231, 0.18);
+  --brand-glow: rgba(108, 92, 231, 0.35);
+}
+
+/* 统计横幅 */
+.archive-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 14px 24px;
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 18px;
+  margin-bottom: 28px;
+  font-size: 13px;
+  color: #888;
+}
+.archive-stats .num {
+  font-weight: 700;
+  color: var(--brand);
+  font-size: 15px;
+}
+
+/* 搜索过滤区 */
+.archive-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.archive-search {
+  flex: 1;
+  min-width: 180px;
+  position: relative;
+}
+.archive-search input {
+  width: 100%;
+  padding: 10px 16px 10px 38px;
+  border-radius: 50px;
+  border: 1px solid rgba(108,92,231,0.15);
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(8px);
+  font-size: 13px;
+  color: var(--font-color);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+.archive-search input:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px var(--brand-light);
+}
+.archive-search::before {
+  content: '🔍';
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 13px;
+  pointer-events: none;
+}
+.filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.filter-pill {
+  padding: 7px 16px;
+  border-radius: 50px;
+  background: rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.6);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--sec-text);
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+.filter-pill:hover {
+  background: var(--brand-light);
+  border-color: var(--brand);
+}
+.filter-pill.active {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #fff;
+  box-shadow: 0 4px 14px var(--brand-glow);
+}
+
+/* 年份快捷锚点 */
+.archive-year-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(108,92,231,0.1);
+}
+.year-nav-dot {
+  font-size: 11px;
+  padding: 4px 12px;
+  border-radius: 50px;
+  background: rgba(108,92,231,0.06);
+  border: 1px solid rgba(108,92,231,0.12);
+  color: var(--sec-text);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.year-nav-dot:hover,
+.year-nav-dot.active {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #fff;
+}
+
+/* 时间线主区 */
+.archive-timeline {
+  position: relative;
+  padding-left: 28px;
+}
+.archive-timeline::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--brand), rgba(108,92,231,0.15));
+  opacity: 0.25;
+}
+
+/* 年份卡片 */
+.year-card {
+  margin-bottom: 20px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.5);
+  box-shadow: 0 2px 12px rgba(108,92,231,0.07);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+.year-card:hover {
+  box-shadow: 0 6px 24px rgba(108,92,231,0.13);
+}
+.year-card.old {
+  opacity: 0.75;
+}
+.year-card.ancient {
+  opacity: 0.55;
+}
+.year-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s;
+}
+.year-card-header:hover {
+  background: rgba(255,255,255,0.3);
+}
+.year-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.year-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--brand);
+  box-shadow: 0 0 8px var(--brand-glow);
+  flex-shrink: 0;
+}
+.year-label {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--brand);
+  letter-spacing: -0.02em;
+}
+.year-count {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 50px;
+  background: var(--brand-light);
+  color: var(--brand);
+  font-weight: 600;
+}
+.year-arrow {
+  font-size: 16px;
+  color: var(--sec-text);
+  transition: transform 0.3s ease;
+}
+.year-card.open .year-arrow {
+  transform: rotate(180deg);
+}
+.year-card-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+.year-card.open .year-card-body {
+  max-height: 20000px;
+}
+
+/* 月份标签 */
+.month-section {
+  padding: 0 24px 8px 24px;
+}
+.month-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sec-text);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding-left: 2px;
+  opacity: 0.8;
+}
+
+/* 文章卡片 */
+.post-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 16px;
+  border-radius: 14px;
+  margin-bottom: 8px;
+  background: rgba(255,255,255,0.45);
+  border: 1px solid rgba(255,255,255,0.4);
+  transition: transform 0.22s cubic-bezier(.34,1.3,.64,1),
+              box-shadow 0.22s ease,
+              background 0.22s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.post-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--brand), #a29bfe, #74b9ff);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.3s cubic-bezier(.34,1.2,.64,1);
+}
+.post-item:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.82);
+  box-shadow: 0 6px 20px rgba(108,92,231,0.18);
+}
+.post-item:hover::after {
+  transform: scaleX(1);
+}
+.post-date {
+  font-size: 12px;
+  color: var(--sec-text);
+  min-width: 44px;
+  text-align: center;
+  font-weight: 500;
+}
+.post-title {
+  flex: 1;
+  font-size: 14px;
+  color: var(--font-color);
+  font-weight: 500;
+  line-height: 1.4;
+  transition: color 0.2s;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.post-item:hover .post-title {
+  color: var(--brand);
+}
+.post-tag {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 50px;
+  background: var(--brand-light);
+  color: var(--brand);
+  font-weight: 600;
+  white-space: nowrap;
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: var(--sec-text);
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+/* 底部加载更多 */
+.load-more-btn {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 32px auto 0;
+  padding: 13px 24px;
+  text-align: center;
+  border-radius: 50px;
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(108,92,231,0.2);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--brand);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.load-more-btn:hover {
+  background: var(--brand);
+  color: #fff;
+  box-shadow: 0 6px 20px var(--brand-glow);
+  transform: translateY(-2px);
+}
+
+/* 过滤状态隐藏 */
+.post-item.hidden {
+  display: none;
+}
+.year-card.hidden {
+  display: none;
+}
+.no-result {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--sec-text);
+  font-size: 14px;
+  display: none;
+}
+.no-result.show {
+  display: block;
+}
+
+/* 暗色模式 */
+[data-theme="dark"] .archive-stats,
+[data-theme="dark"] .year-card,
+[data-theme="dark"] .post-item {
+  background: rgba(30,35,55,0.55);
+  border-color: rgba(255,255,255,0.08);
+}
+[data-theme="dark"] .archive-search input {
+  background: rgba(30,35,55,0.7);
+  color: var(--font-color);
+}
+[data-theme="dark"] .filter-pill {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.1);
+  color: var(--sec-text);
+}
+[data-theme="dark"] .year-card-header:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+/* 移动端 */
+@media screen and (max-width: 600px) {
+  .archive-stats { font-size: 12px; gap: 10px; }
+  .archive-filter { flex-direction: column; }
+  .archive-search { width: 100%; }
+  .archive-year-nav { gap: 6px; }
+  .year-card-header { padding: 14px 16px; }
+  .month-section { padding: 0 16px 8px; }
+  .post-item { padding: 12px; }
+}
+</style>
+
+<div class="archive-wrap">
+  <!-- 统计横幅 -->
+  <div class="archive-stats" id="archive-stats"></div>
+
+  <!-- 搜索与过滤 -->
+  <div class="archive-filter">
+    <div class="archive-search">
+      <input type="text" id="archive-search-input" placeholder="搜索文章标题…" autocomplete="off">
+    </div>
+    <div class="filter-pills" id="filter-pills"></div>
+  </div>
+
+  <!-- 年份快捷锚点 -->
+  <div class="archive-year-nav" id="archive-year-nav"></div>
+
+  <!-- 时间线 -->
+  <div class="archive-timeline" id="archive-timeline"></div>
+
+  <div class="no-result" id="no-result">没有找到符合条件的文章</div>
+  <button class="load-more-btn" id="load-more-btn" style="display:none;">查看更早的文章 ↓</button>
+</div>
+
+<script>
+(function() {
+  var allData = [];
+  var renderedYears = [];
+  var visibleCount = 0;
+  var searchKeyword = '';
+  var activeCategory = 'all';
+  var INITIAL_YEARS = 2;
+
+  var MONTHS = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+
+  function getAge(year) {
+    var currentYear = new Date().getFullYear();
+    return currentYear - year;
+  }
+
+  function getWeightClass(year) {
+    var age = getAge(year);
+    if (age >= 3) return 'ancient';
+    if (age >= 1) return 'old';
+    return '';
+  }
+
+  function formatDate(dateStr) {
+    var d = new Date(dateStr);
+    return d.getDate();
+  }
+
+  function getMonthStr(dateStr) {
+    var d = new Date(dateStr);
+    return MONTHS[d.getMonth()];
+  }
+
+  function getCategory(post) {
+    if (!post.categories || post.categories.length === 0) return '';
+    return post.categories[0];
+  }
+
+  function getCategories(data) {
+    var cats = {};
+    data.forEach(function(post) {
+      if (post.categories && post.categories.length > 0) {
+        cats[post.categories[0]] = true;
+      }
+    });
+    return Object.keys(cats).sort();
+  }
+
+  function buildStats(data) {
+    var years = {};
+    var total = data.length;
+    var allTags = {};
+    data.forEach(function(post) {
+      var y = new Date(post.date).getFullYear();
+      years[y] = true;
+      if (post.tags) {
+        post.tags.forEach(function(t) { allTags[t] = true; });
+      }
+    });
+    var yearCount = Object.keys(years).length;
+    var tagCount = Object.keys(allTags).length;
+    document.getElementById('archive-stats').innerHTML =
+      '共 <span class="num">' + yearCount + ' 年</span> · <span class="num">' + total + ' 篇文章</span> · <span class="num">' + tagCount + ' 个标签</span>';
+  }
+
+  function buildFilterPills(data) {
+    var cats = getCategories(data);
+    var container = document.getElementById('filter-pills');
+    var html = '<span class="filter-pill active" data-cat="all">全部</span>';
+    cats.forEach(function(cat) {
+      html += '<span class="filter-pill" data-cat="' + cat + '">' + cat + '</span>';
+    });
+    container.innerHTML = html;
+
+    container.querySelectorAll('.filter-pill').forEach(function(pill) {
+      pill.addEventListener('click', function() {
+        container.querySelectorAll('.filter-pill').forEach(function(p) { p.classList.remove('active'); });
+        this.classList.add('active');
+        activeCategory = this.getAttribute('data-cat');
+        searchKeyword = document.getElementById('archive-search-input').value.trim().toLowerCase();
+        rerender();
+      });
+    });
+  }
+
+  function buildYearNav(data) {
+    var years = {};
+    data.forEach(function(post) {
+      years[new Date(post.date).getFullYear()] = true;
+    });
+    var sorted = Object.keys(years).sort(function(a,b){ return b-a; });
+    var nav = document.getElementById('archive-year-nav');
+    nav.innerHTML = sorted.map(function(y) {
+      return '<span class="year-nav-dot' + (y == sorted[0] ? ' active' : '') + '" data-year="' + y + '">' + y + '</span>';
+    }).join(' · ');
+
+    nav.querySelectorAll('.year-nav-dot').forEach(function(dot) {
+      dot.addEventListener('click', function() {
+        var year = this.getAttribute('data-year');
+        nav.querySelectorAll('.year-nav-dot').forEach(function(d) { d.classList.remove('active'); });
+        this.classList.add('active');
+        document.getElementById('year-card-' + year).scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  }
+
+  function buildTimeline(data) {
+    var byYear = {};
+    data.forEach(function(post) {
+      var y = new Date(post.date).getFullYear();
+      if (!byYear[y]) byYear[y] = {};
+      var m = new Date(post.date).getMonth() + 1;
+      if (!byYear[y][m]) byYear[y][m] = [];
+      byYear[y][m].push(post);
+    });
+    var years = Object.keys(byYear).sort(function(a,b){ return b-a; });
+    var tl = document.getElementById('archive-timeline');
+    tl.innerHTML = '';
+    allData = data;
+    renderedYears = years;
+    visibleCount = 0;
+
+    years.forEach(function(year) {
+      var months = Object.keys(byYear[year]).sort(function(a,b){ return b-a; });
+      var totalPosts = 0;
+      months.forEach(function(m) { totalPosts += byYear[year][m].length; });
+
+      var card = document.createElement('div');
+      card.className = 'year-card ' + getWeightClass(year);
+      card.id = 'year-card-' + year;
+      if (visibleCount >= INITIAL_YEARS) card.classList.add('hidden');
+      if (visibleCount < INITIAL_YEARS) visibleCount++;
+
+      var bodyHtml = '';
+      months.forEach(function(m) {
+        var posts = byYear[year][m];
+        totalPosts += 0;
+        bodyHtml += '<div class="month-section"><div class="month-label">' + MONTHS[m-1] + '</div>';
+        posts.forEach(function(post) {
+          var tag = getCategory(post);
+          var tagHtml = tag ? '<span class="post-tag">' + tag + '</span>' : '';
+          bodyHtml += '<div class="post-item" onclick="location.href=\'/' + post.path + '\'">' +
+            '<span class="post-date">' + formatDate(post.date) + '日</span>' +
+            '<span class="post-title">' + post.title + '</span>' + tagHtml +
+            '</div>';
+        });
+        bodyHtml += '</div>';
+      });
+
+      card.innerHTML =
+        '<div class="year-card-header" onclick="toggleYear(\'' + year + '\')">' +
+          '<div class="year-card-title">' +
+            '<span class="year-dot"></span>' +
+            '<span class="year-label">' + year + '</span>' +
+            '<span class="year-count">' + totalPosts + ' 篇</span>' +
+          '</div>' +
+          '<span class="year-arrow">▾</span>' +
+        '</div>' +
+        '<div class="year-card-body" id="year-body-' + year + '">' + bodyHtml + '</div>';
+
+      // 默认展开最近一年
+      if (visibleCount === 1) {
+        card.classList.add('open');
+      }
+
+      tl.appendChild(card);
+    });
+
+    // 加载更多按钮
+    var btn = document.getElementById('load-more-btn');
+    if (visibleCount < years.length) {
+      btn.style.display = 'block';
+      btn.style.display = '';
+    }
+  }
+
+  function rerender() {
+    var filtered = allData.filter(function(post) {
+      var matchKw = !searchKeyword || post.title.toLowerCase().includes(searchKeyword);
+      var matchCat = activeCategory === 'all' || (post.categories && post.categories.indexOf(activeCategory) !== -1);
+      return matchKw && matchCat;
+    });
+
+    if (filtered.length === 0) {
+      document.getElementById('archive-timeline').style.display = 'none';
+      document.getElementById('no-result').classList.add('show');
+      document.getElementById('load-more-btn').style.display = 'none';
+      return;
+    }
+    document.getElementById('archive-timeline').style.display = '';
+    document.getElementById('no-result').classList.remove('show');
+
+    var byYear = {};
+    filtered.forEach(function(post) {
+      var y = new Date(post.date).getFullYear();
+      if (!byYear[y]) byYear[y] = {};
+      var m = new Date(post.date).getMonth() + 1;
+      if (!byYear[y][m]) byYear[y][m] = [];
+      byYear[y][m].push(post);
+    });
+    var years = Object.keys(byYear).sort(function(a,b){ return b-a; });
+
+    var tl = document.getElementById('archive-timeline');
+    tl.innerHTML = '';
+
+    years.forEach(function(year) {
+      var months = Object.keys(byYear[year]).sort(function(a,b){ return b-a; });
+      var totalPosts = 0;
+      months.forEach(function(m) { totalPosts += byYear[year][m].length; });
+
+      var card = document.createElement('div');
+      card.className = 'year-card ' + getWeightClass(year);
+      card.id = 'year-card-' + year;
+
+      var bodyHtml = '';
+      months.forEach(function(m) {
+        var posts = byYear[year][m];
+        bodyHtml += '<div class="month-section"><div class="month-label">' + MONTHS[m-1] + '</div>';
+        posts.forEach(function(post) {
+          var tag = getCategory(post);
+          var tagHtml = tag ? '<span class="post-tag">' + tag + '</span>' : '';
+          bodyHtml += '<div class="post-item" onclick="location.href=\'/' + post.path + '\'">' +
+            '<span class="post-date">' + formatDate(post.date) + '日</span>' +
+            '<span class="post-title">' + post.title + '</span>' + tagHtml +
+            '</div>';
+        });
+        bodyHtml += '</div>';
+      });
+
+      card.innerHTML =
+        '<div class="year-card-header" onclick="toggleYear(\'' + year + '\')">' +
+          '<div class="year-card-title">' +
+            '<span class="year-dot"></span>' +
+            '<span class="year-label">' + year + '</span>' +
+            '<span class="year-count">' + totalPosts + ' 篇</span>' +
+          '</div>' +
+          '<span class="year-arrow">▾</span>' +
+        '</div>' +
+        '<div class="year-card-body" id="year-body-' + year + '">' + bodyHtml + '</div>';
+
+      card.classList.add('open');
+      tl.appendChild(card);
+    });
+  }
+
+  window.toggleYear = function(year) {
+    var card = document.getElementById('year-card-' + year);
+    var body = document.getElementById('year-body-' + year);
+    if (!card || !body) return;
+    var isOpen = card.classList.contains('open');
+    if (isOpen) {
+      card.classList.remove('open');
+    } else {
+      card.classList.add('open');
+      card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  document.getElementById('archive-search-input').addEventListener('input', function() {
+    searchKeyword = this.value.trim().toLowerCase();
+    rerender();
+  });
+
+  document.getElementById('load-more-btn').addEventListener('click', function() {
+    var cards = document.querySelectorAll('.year-card.hidden');
+    var count = 0;
+    cards.forEach(function(card) {
+      if (count < 1) {
+        card.classList.remove('hidden');
+        count++;
+      }
+    });
+    if (cards.length <= 1) this.style.display = 'none';
+  });
+
+  fetch('/api/archives.json').then(function(r){ return r.json(); })
+    .then(function(data) {
+      // 按日期降序
+      data.sort(function(a,b){ return new Date(b.posts[0].date) - new Date(a.posts[0].date); });
+      // 拍平
+      var flat = [];
+      data.forEach(function(y) {
+        y.posts.forEach(function(p) {
+          flat.push({
+            title: p.title,
+            url: p.url,
+            date: p.date,
+            path: p.url.replace(/^\//, ''),
+            categories: p.categories || [],
+            tags: p.tags || []
+          });
+        });
+      });
+      buildStats(flat);
+      buildFilterPills(flat);
+      buildYearNav(flat);
+      buildTimeline(flat);
+    });
+})();
+</script></div><hr class="custom-hr"><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/%E5%A4%B4%E5%83%8F.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info-name">G/ren</div><div class="author-info-description">机器视觉调试工程师 | 技术分享</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Gren23" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/img/wechat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #07c160;"></i></a><a class="social-icon" href="tencent://message/?uin=1955561070" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #1296db;"></i></a><a class="social-icon" href="mailto:i@hehehey.top" target="_blank" title="邮箱"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的小破站！</div></div><div class="sticky_layout"></div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"></div><div class="copyright"><span><b>©2025-2026</b></span><span><b>&nbsp;&nbsp;By G/ren</b></span></div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div id="workboard"></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://unpkg.com/mathjax@4.1.0/tex-mml-chtml.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twiikoo.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = (el = document, path = location.pathname) => {
+    twikoo.init({
+      el: el.querySelector('#twikoo-wrap'),
+      envId: 'https://twiikoo.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      },
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    
+
+    isShuoshuo && (window.shuoshuoComment.destroyTwikoo = () => {
+      if (el.children.length) {
+        el.innerHTML = ''
+        el.classList.add('no-comment')
+      }
+    })
+  }
+
+  const loadTwikoo = (el, path) => {
+    if (typeof twikoo === 'object') setTimeout(() => init(el, path), 0)
+    else btf.getScript('https://cdn.jsdelivr.net/npm/twikoo@1.7.9/dist/twikoo.all.min.js').then(() => init(el, path))
+  }
+
+  if (isShuoshuo) {
+    'Twikoo' === 'Twikoo'
+      ? window.shuoshuoComment = { loadComment: loadTwikoo }
+      : window.loadOtherComment = loadTwikoo
+    return
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script>window.HYVOR_TALK_WEBSITE = "15451";</script><script async="" src="https://talk.hyvor.com/embed/embed.js" type="module"></script><link rel="stylesheet" href="/css/custom-index.css"><link rel="stylesheet" href="/css/font-local.css"><script src="/js/view-counter.js" defer=""></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="输入关键词搜索..." type="text"></div><hr><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.4"></script></div></div><script>var posts=[{"title":"梅卡曼德 3D 视觉引导系统 通用 SOP","path":"/posts/3d-sop/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"SOP","path":"/tags/SOP/"},{"name":"拆垛","path":"/tags/拆垛/"},{"name":"3D视觉","path":"/tags/3D视觉/"},{"name":"手眼标定","path":"/tags/手眼标定/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2026-02-14T01:37:16.000Z","updated":"2026-06-09T04:09:09.062Z"},{"title":"ABB RobotWare + 梅卡曼德视觉系统完整操作流程","path":"/posts/abb-robotware/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"ABB","path":"/tags/ABB/"},{"name":"RobotWare","path":"/tags/RobotWare/"},{"name":"梅卡曼德","path":"/tags/梅卡曼德/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-03-28T08:46:17.000Z","updated":"2026-06-09T04:09:09.098Z"},{"title":"CGXi（希克斯）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/cgxi/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"CGXi","path":"/tags/CGXi/"},{"name":"希克斯","path":"/tags/希克斯/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-10-09T08:44:07.000Z","updated":"2026-06-09T04:09:09.098Z"},{"title":"DENSO（电装）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/denso/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"DENSO","path":"/tags/DENSO/"},{"name":"电装","path":"/tags/电装/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-01-20T15:37:33.000Z","updated":"2026-06-09T04:09:09.098Z"},{"title":"DOBOT（越疆）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/dobot/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"DOBOT","path":"/tags/DOBOT/"},{"name":"越疆","path":"/tags/越疆/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2026-02-25T18:20:51.000Z","updated":"2026-06-09T04:09:09.102Z"},{"title":"ELITE（艾利特）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/elite/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"ELITE","path":"/tags/ELITE/"},{"name":"艾利特","path":"/tags/艾利特/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-09-25T21:30:32.000Z","updated":"2026-06-09T04:09:09.102Z"},{"title":"ESTUN（埃斯顿）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/estun/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"ESTUN","path":"/tags/ESTUN/"},{"name":"埃斯顿","path":"/tags/埃斯顿/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-09-02T23:24:22.000Z","updated":"2026-06-09T04:09:09.102Z"},{"title":"FANUC（发那科）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/fanuc/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"FANUC","path":"/tags/FANUC/"},{"name":"发那科","path":"/tags/发那科/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-01-03T06:02:34.000Z","updated":"2026-06-09T04:09:09.102Z"},{"title":"JAKA（节卡）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/jaka/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"JAKA","path":"/tags/JAKA/"},{"name":"节卡","path":"/tags/节卡/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-09-30T02:09:15.000Z","updated":"2026-06-09T04:09:09.106Z"},{"title":"KUKA（库卡）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/kuka/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"KUKA","path":"/tags/KUKA/"},{"name":"库卡","path":"/tags/库卡/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-11-06T01:12:19.000Z","updated":"2026-06-09T04:09:09.106Z"},{"title":"Mech-Vision 方案构建思路","path":"/posts/mech-vision-1/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"Mech-Vision","path":"/tags/Mech-Vision/"},{"name":"方案构建","path":"/tags/方案构建/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-03-03T04:14:39.000Z","updated":"2026-06-09T04:09:09.106Z"},{"title":"Mech-Vision 步骤参考指南","path":"/posts/mech-vision-2/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"Mech-Vision","path":"/tags/Mech-Vision/"},{"name":"步骤参考","path":"/tags/步骤参考/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-05-17T23:59:08.000Z","updated":"2026-06-09T04:09:09.110Z"},{"title":"Markdown语法与外挂标签写法汇总","path":"/posts/markdown/","categories":[{"name":"文章","path":"/categories/文章/"}],"tags":[{"name":"Markdown","path":"/tags/Markdown/"},{"name":"外挂标签","path":"/tags/外挂标签/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-08-27T09:36:17.000Z","updated":"2022-10-23T14:00:00.000Z"},{"title":"Mech-Vision 安装指南","path":"/posts/mech-vision/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"Mech-Vision","path":"/tags/Mech-Vision/"},{"name":"安装","path":"/tags/安装/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2026-02-13T17:42:31.000Z","updated":"2026-06-09T04:09:09.110Z"},{"title":"兰空图床图片审核-nsfwjs配置","path":"/posts/nsfwjs/","categories":[{"name":"文章","path":"/categories/文章/"}],"tags":[{"name":"图床","path":"/tags/图床/"},{"name":"nsfw","path":"/tags/nsfw/"},{"name":"辅助工具","path":"/tags/辅助工具/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-02-23T01:51:10.000Z","updated":"2026-06-09T04:09:09.110Z"},{"title":"西门子PLC Modbus TCP通讯教程","path":"/posts/plc-modbus-tcp/","categories":[{"name":"PLC通讯","path":"/categories/PLC通讯/"}],"tags":[{"name":"ModbusTCP","path":"/tags/ModbusTCP/"},{"name":"西门子","path":"/tags/西门子/"},{"name":"PLC","path":"/tags/PLC/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-04-28T11:29:24.000Z","updated":"2026-06-09T04:09:09.110Z"},{"title":"拆垛工程项目 SOP 模板","path":"/posts/sop/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"SOP","path":"/tags/SOP/"},{"name":"拆垛","path":"/tags/拆垛/"},{"name":"模板","path":"/tags/模板/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-03-05T18:05:18.000Z","updated":"2026-06-09T04:09:09.118Z"},{"title":"TM（创孔）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/tm/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"TM","path":"/tags/TM/"},{"name":"创孔","path":"/tags/创孔/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-09-27T16:38:26.000Z","updated":"2026-06-09T04:09:09.110Z"},{"title":"UR（优傲）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/ur/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"UR","path":"/tags/UR/"},{"name":"优傲","path":"/tags/优傲/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-07-30T23:06:09.000Z","updated":"2026-06-09T04:09:09.114Z"},{"title":"Vision Master 通讯配置","path":"/posts/visionmaster-1/","categories":[{"name":"视觉","path":"/categories/视觉/"}],"tags":[{"name":"VisionMaster","path":"/tags/VisionMaster/"},{"name":"通讯","path":"/tags/通讯/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-09-01T20:27:12.000Z","updated":"2026-06-09T05:09:37.544Z"},{"title":"YASKAWA（安川）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/yaskawa-1/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"YASKAWA","path":"/tags/YASKAWA/"},{"name":"安川","path":"/tags/安川/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2026-02-27T02:17:12.000Z","updated":"2026-06-09T04:09:09.114Z"},{"title":"YASKAWA + 梅卡曼德通信教程","path":"/posts/yaskawa/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"YASKAWA","path":"/tags/YASKAWA/"},{"name":"安川","path":"/tags/安川/"},{"name":"通信基础","path":"/tags/通信基础/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2026-01-24T04:32:12.000Z","updated":"2026-06-09T04:09:09.114Z"},{"title":"Vision Master 入门指南","path":"/posts/visionmaster/","categories":[{"name":"视觉","path":"/categories/视觉/"}],"tags":[{"name":"VisionMaster","path":"/tags/VisionMaster/"},{"name":"入门","path":"/tags/入门/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-10-21T01:52:26.000Z","updated":"2026-06-09T05:09:37.544Z"}];function toRandomPost(){ window.pjax ? pjax.loadUrl(posts[Math.floor(Math.random()*posts.length)].path) : window.open(posts[Math.floor(Math.random()*posts.length)].path, "_self"); };</script></body></html>
