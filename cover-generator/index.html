@@ -6,8 +6,8 @@
 <meta property="og:description" content="封面图生成器 · hehehey.top                    :root {       --primary: #2d5a3b;       --primary-light: #4a7c59;       --accent: #e07a5f;       --bg: #f0ede8;       --card-bg: rgba(255,255,255,0.7">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.hehehey.top/img/%E5%A4%B4%E5%83%8F.JPG">
-<meta property="article:published_time" content="2026-06-10T01:23:10.984Z">
-<meta property="article:modified_time" content="2026-06-10T01:23:10.984Z">
+<meta property="article:published_time" content="2026-06-10T01:36:42.089Z">
+<meta property="article:modified_time" content="2026-06-10T01:36:42.089Z">
 <meta property="article:author" content="G/ren">
 <meta property="article:tag" content="机器视觉,Vision Master,Mech-Vision,视觉定位,海康,Hexo博客,技术分享,编程">
 <meta name="twitter:card" content="summary">
@@ -940,7 +940,14 @@
         // 保存历史缩略图
         var tc = document.createElement('canvas'); tc.width = 160; tc.height = 84;
         var ti = new Image(); ti.onload = function() { tc.getContext('2d').drawImage(ti, 0, 0, 160, 84); addHistory(opts, tc.toDataURL('image/png', 0.6)); }; ti.src = dataUrl;
-        btn.disabled = false; btn.textContent = '⬇ 下载封面 PNG';
+        // 下载完成后短暂确认反馈
+        btn.textContent = '✅ 已下载';
+        btn.style.background = 'var(--primary-light)';
+        setTimeout(function() {
+          btn.textContent = '⬇ 下载封面 PNG';
+          btn.style.background = '';
+          btn.disabled = false;
+        }, 1500);
       }).catch(function(err) { btn.disabled = false; btn.textContent = '⬇ 下载封面 PNG'; alert('生成失败: ' + err); });
     }
 
@@ -968,8 +975,14 @@
             if (i < dataUrls.length - 1) setTimeout(function() {}, 200);
           });
         }
-        btn.disabled = false; btn.textContent = '⬇ 下载封面 PNG';
-      }).catch(function(err) { btn.disabled = false; btn.textContent = '⬇ 下载封面 PNG'; alert('批量生成失败: ' + err); });
+        btn.textContent = '✅ 已下载 ' + dataUrls.length + ' 张';
+        btn.style.background = 'var(--primary-light)';
+        setTimeout(function() {
+          btn.textContent = '⬇ 下载封面 PNG';
+          btn.style.background = '';
+          btn.disabled = false;
+        }, 2000);
+      }).catch(function(err) { btn.disabled = false; btn.textContent = '⬇ 下载封面 PNG'; btn.style.background = ''; alert('批量生成失败: ' + err); });
     }
 
     function handleExport() {
