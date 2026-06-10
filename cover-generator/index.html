@@ -6,8 +6,8 @@
 <meta property="og:description" content="封面图生成器 · hehehey.top                    :root {       --primary: #2d5a3b;       --primary-light: #4a7c59;       --accent: #e07a5f;       --bg: #f0ede8;       --card-bg: rgba(255,255,255,0.7">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.hehehey.top/img/%E5%A4%B4%E5%83%8F.JPG">
-<meta property="article:published_time" content="2026-06-10T01:54:06.745Z">
-<meta property="article:modified_time" content="2026-06-10T01:54:06.745Z">
+<meta property="article:published_time" content="2026-06-10T01:59:08.623Z">
+<meta property="article:modified_time" content="2026-06-10T01:59:08.623Z">
 <meta property="article:author" content="G/ren">
 <meta property="article:tag" content="机器视觉,Vision Master,Mech-Vision,视觉定位,海康,Hexo博客,技术分享,编程">
 <meta name="twitter:card" content="summary">
@@ -446,6 +446,7 @@
     /* 历史记录 */
     .history-section { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
     .history-title { font-size: 11px; letter-spacing: 1.5px; color: var(--text-muted); text-transform: uppercase; font-weight: 500; margin-bottom: 12px; }
+    .history-hint { font-size: 10px; font-weight: 400; text-transform: none; letter-spacing: 0; opacity: 0.6; }
     .history-list { display: flex; flex-direction: column; gap: 8px; }
     .history-item {
       display: flex; align-items: center; gap: 10px;
@@ -681,7 +682,7 @@
         <div class="brand-footer"><span>Powered by hehehey.top</span></div>
 
         <div class="history-section" id="historySection" style="display:none;">
-          <div class="history-title">最近生成</div>
+          <div class="history-title">最近生成 <span class="history-hint">· 刷新页面查看缩略图</span></div>
           <div class="history-list" id="historyList"></div>
         </div>
       </div>
@@ -967,7 +968,7 @@
         var ti = document.createElement('img');
         ti.onload = function() {
           tc.getContext('2d').drawImage(ti, 0, 0, 192, 100);
-          addHistory(opts, tc.toDataURL('image/jpeg', 0.88));
+          addHistory(opts, tc.toDataURL('image/png', 1.0));
           // 缩略图保存完成后才能显示"已生成"
           btn.textContent = '✅ 已生成';
           btn.style.background = 'var(--primary-light)';
