@@ -1,374 +1,57 @@
-/* ================================================
-   自定义首页布局：极简留白 · 精选内容感
-   ================================================ */
+/* 首页自定义布局 - 极简留白 / 多列文章卡片 */
+@import url('/css/font-local.css');
 
-/* 变量定义 */
-:root {
-  --custom-bg: #fafaf8;
-  --custom-text: #222222;
-  --custom-meta: #999999;
-  --custom-accent: #5a7a6a;
-  --custom-separator: #e0e0e0;
-  --custom-card-gap: 56px;
-  --custom-card-max: 700px;
-}
-
-/* 深色模式 */
-[data-theme="dark"] {
-  --custom-bg: #1a1a1a;
-  --custom-text: #e8e8e8;
-  --custom-meta: #888888;
-  --custom-accent: #8faea0;
-  --custom-separator: #333333;
-}
-
-/* 背景色 */
-body {
-  background: var(--custom-bg) !important;
-}
-
-/* 博客引言（副标题） */
-#home-banner {
-  text-align: center;
-  padding: 60px 20px 40px;
-  max-width: var(--custom-card-max);
+/* 文章列表网格布局 */
+#main-inner > #content-wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+  padding: 0 0 60px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-#home-banner .site-subtitle {
-  font-size: 16px;
-  color: var(--custom-meta);
-  font-style: italic;
-  letter-spacing: 2px;
-  font-family: 'Source Han Serif SC', 'Noto Serif SC', Georgia, serif;
+/* 排除首页标题块（第一个 post-block） */
+#main-inner > #content-wrap > .post-block:first-child {
+  grid-column: 1 / -1;
 }
 
-/* 文章列表容器 */
-#recent-posts {
-  max-width: var(--custom-card-max);
-  margin: 0 auto;
-  padding: 0 20px;
+/* 文章卡片样式 */
+#main-inner > #content-wrap > .post-block:not(:first-child) {
+  border-radius: 16px;
+  padding: 24px 28px;
+  margin: 0;
 }
 
-/* 文章卡片 */
-.recent-post-item {
-  max-width: 100%;
-  margin-bottom: var(--custom-card-gap);
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  padding-bottom: var(--custom-card-gap);
-  border-bottom: 1px solid var(--custom-separator);
-}
-
-.recent-post-item:last-child {
-  border-bottom: none;
-}
-
-/* 封面区域 - 窄横幅 */
-.post_cover {
-  width: 100%;
-  height: 180px;
-  margin-bottom: 24px;
-  border-radius: 8px;
-  overflow: hidden;
-  position: relative;
-}
-
-.post_cover a {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.post-bg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-
-/* 封面蒙层 */
-.post_cover::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.1) 0%,
-    rgba(0, 0, 0, 0.3) 100%
-  );
-  pointer-events: none;
-}
-
-/* 封面悬停效果 */
-.recent-post-item:hover .post-bg {
-  transform: scale(1.03);
-}
-
-/* 文章信息区域 */
-.recent-post-info {
-  padding: 0;
-}
-
-/* 标题 */
-.article-title {
-  font-size: 28px;
+/* 文章标题 */
+#main-inner > #content-wrap > .post-block .post-title {
+  font-size: 20px;
   font-weight: 700;
-  color: var(--custom-text);
+  margin-bottom: 10px;
   line-height: 1.4;
-  margin-bottom: 16px;
-  font-family: 'Source Han Serif SC', 'Noto Serif SC', 'Playfair Display', Georgia, serif;
-  transition: color 0.2s;
 }
 
-.article-title:hover {
-  color: var(--custom-accent);
-}
-
-/* 元信息横向排列 */
-.article-meta-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-bottom: 16px;
+/* 文章元信息 */
+#main-inner > #content-wrap > .post-block .post-meta {
   font-size: 12px;
-  color: var(--custom-meta);
-  gap: 4px;
+  opacity: 0.7;
+  margin-bottom: 12px;
 }
 
-.article-meta-wrap > span {
-  display: inline-flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-/* 分隔符 */
-.article-meta-separator {
-  color: var(--custom-separator);
-  margin: 0 10px;
-}
-
-/* 分类样式 */
-.article-meta__categories {
-  color: var(--custom-accent);
-  background: rgba(90, 122, 106, 0.1);
-  padding: 2px 10px;
-  border-radius: 4px;
-  font-size: 12px;
-  transition: background 0.2s;
-}
-
-.article-meta__categories:hover {
-  background: rgba(90, 122, 106, 0.2);
-}
-
-/* 标签样式 */
-.article-meta__tags {
-  color: var(--custom-meta);
-  border: 1px solid var(--custom-separator);
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 11px;
-  transition: all 0.2s;
-}
-
-.article-meta__tags:hover {
-  border-color: var(--custom-accent);
-  color: var(--custom-accent);
-}
-
-/* 文章摘要 */
-.content {
-  font-size: 14px;
-  color: var(--custom-meta);
-  line-height: 1.8;
-  margin-top: 8px;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-[data-theme="dark"] .content {
-  color: #777;
-}
-
-/* 分页器 */
-#pagination {
-  max-width: var(--custom-card-max);
-  margin: 60px auto;
-  padding: 0 20px;
-  justify-content: center;
-}
-
-.pagination .page-number {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 40px;
-  height: 40px;
-  padding: 0 14px;
-  margin: 0 4px;
-  border: 1px solid var(--custom-separator);
-  border-radius: 6px;
-  font-size: 14px;
-  color: var(--custom-text);
-  transition: all 0.2s;
-  background: transparent;
-}
-
-.pagination .page-number:hover {
-  border-color: var(--custom-accent);
-  color: var(--custom-accent);
-}
-
-.pagination .current.page-number,
-.pagination .page-number.current {
-  background: var(--custom-accent);
-  border-color: var(--custom-accent);
-  color: #fff;
-  font-weight: 600;
-}
-
-.pagination .extend {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 40px;
-  height: 40px;
-  padding: 0 12px;
-  margin: 0 4px;
-  border: 1px solid var(--custom-separator);
-  border-radius: 6px;
-  color: var(--custom-meta);
-  transition: all 0.2s;
-  background: transparent;
-}
-
-.pagination .extend:hover {
-  border-color: var(--custom-accent);
-  color: var(--custom-accent);
-}
-
-/* 移动端适配 */
+/* 响应式：手机端单列 */
 @media (max-width: 768px) {
-  .article-title {
-    font-size: 22px;
-  }
-
-  .post_cover {
-    height: 160px;
-  }
-
-  .article-meta-wrap {
-    font-size: 12px;
-  }
-
-  .article-meta-separator {
-    margin: 0 6px;
-  }
-
-  #home-banner {
-    padding: 40px 16px 30px;
-  }
-
-  #home-banner .site-subtitle {
-    font-size: 14px;
-  }
-
-  :root {
-    --custom-card-gap: 40px;
+  #main-inner > #content-wrap {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 }
 
-/* 无封面时的样式 */
-.no-cover .recent-post-info {
-  padding-left: 0;
-}
-
-/* 强制全宽网格（隐藏侧边栏干扰） */
-#recent-posts {
-  width: 100%;
-}
-
-/* 去除 butterfly 默认的一些样式干扰 */
-.recent-post-item {
-  border-radius: 0;
-}
-
-.recent-post-item .post_cover {
-  order: -1;
-}
-
-/* 精简动画 */
-/* ================================================
-   DeepSeek 卡片美化增强（整合版）
-   ================================================ */
-
-/* 卡片整体 — 底部渐变色条，悬停时滑入 */
-#recent-posts .recent-post-item {
-  position: relative;
-  overflow: hidden;
-}
-
-#recent-posts .recent-post-item::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #2d5a3b, #e07a5f);
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
-#recent-posts .recent-post-item:hover::after {
-  transform: scaleX(1);
-}
-
-/* 封面图悬停放大 */
-#recent-posts .recent-post-item .post_cover img,
-#recent-posts .recent-post-item .card-cover img {
-  transition: transform 0.5s ease;
-}
-#recent-posts .recent-post-item:hover .post_cover img,
-#recent-posts .recent-post-item:hover .card-cover img {
-  transform: scale(1.05);
-}
-
-/* 标题下划线滑入动画 */
-#recent-posts .recent-post-item .article-title {
-  position: relative;
-  background: linear-gradient(#2d5a3b, #2d5a3b) no-repeat left bottom;
-  background-size: 0 2px;
-  transition: background-size 0.3s ease;
-}
-#recent-posts .recent-post-item:hover .article-title {
-  background-size: 100% 2px;
-}
-
-/* 摘要文字 3 行截断 */
-#recent-posts .recent-post-item .content {
-  color: #666;
-  font-size: 0.9rem;
-  line-height: 1.7;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* 标签胶囊 hover */
-#recent-posts .recent-post-item .article-meta__tags {
-  border-radius: 20px;
-  transition: background 0.2s, color 0.2s;
-}
-#recent-posts .recent-post-item .article-meta__tags:hover {
-  background: #2d5a3b;
-  color: #fff;
+/* 保留 .recent-posts 样式（部分主题兼容） */
+.recent-posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 0 60px;
 }
