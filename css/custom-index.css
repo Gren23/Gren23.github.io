@@ -55,3 +55,8 @@
   margin: 0 auto;
   padding: 0 0 60px;
 }
+
+/* 分页按钮不参与 grid 布局，强制占满宽度 */
+#pagination {
+  grid-column: 1 / -1;
+}
