@@ -7,11 +7,9 @@
   if(t === 'dark' || (!t && prefersDark)){
     document.documentElement.setAttribute('data-theme','dark');
   }
-  // 加载完毕后恢复之前记录的滚动位置
-  window.addEventListener('load', function(){
-    var y = sessionStorage.getItem('scrollY');
-    if (y) window.scrollTo(0, parseInt(y));
-  }, {once: true});
+  // 立即恢复滚动位置（在渲染之前，避免先闪到顶部再跳回来）
+  var savedY = sessionStorage.getItem('scrollY');
+  if (savedY !== null) window.scrollTo(0, parseInt(savedY));
   // 离开前保存滚动位置
   window.addEventListener('beforeunload', function(){
     sessionStorage.setItem('scrollY', window.scrollY);
