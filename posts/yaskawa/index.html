@@ -1,9 +1,21 @@
 <!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><script>(function(){
+  // 禁止浏览器自动滚动恢复，自己控制滚动位置
+  if (history.scrollRestoration !== 'manual') history.scrollRestoration = 'manual';
+  // 深色模式内联初始化：防止闪白屏
   var t = localStorage.getItem('theme');
   var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   if(t === 'dark' || (!t && prefersDark)){
     document.documentElement.setAttribute('data-theme','dark');
   }
+  // 加载完毕后恢复之前记录的滚动位置
+  window.addEventListener('load', function(){
+    var y = sessionStorage.getItem('scrollY');
+    if (y) window.scrollTo(0, parseInt(y));
+  }, {once: true});
+  // 离开前保存滚动位置
+  window.addEventListener('beforeunload', function(){
+    sessionStorage.setItem('scrollY', window.scrollY);
+  });
 })();</script><style>[data-theme="dark"] { --bg-color: #1a2a3a; --text-color: #c9d1d9; --border-color: #30363d; --header-bg: rgba(26,37,51,0.95); --card-bg: #243447; }</style><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><meta name="baidu-site-verification" content="codeva-hfv5Au82rN"><title>YASKAWA + 梅卡曼德通信教程 | G/ren的小破站</title><meta name="author" content="G/ren"><meta name="copyright" content="G/ren"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="YASKAWA + 梅卡曼德视觉系统完整操作流程 适用机器人型号：YRC1000、DX200、YRC1000micro 适用Mech-Vision版本：V2.1.2及以上 文档来源：飞书文档 TOGEdDNlBoj8lSxRFDHcxMpsnpc 学习时间：2026-04-07   一、烧录程序到机器人1.1 准备工作   项目 要求    U盘 FAT32格式，提前备份重要数据   网线 标准以">
 <meta property="og:type" content="article">
 <meta property="og:title" content="YASKAWA + 梅卡曼德通信教程">
