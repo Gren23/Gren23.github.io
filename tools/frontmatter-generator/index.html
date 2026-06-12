@@ -6,8 +6,8 @@
 <meta property="og:description" content="博客生产力助手 - HeHeHey.top                                            tailwind.config = {             darkMode: 'class',             theme: {                 extend: {">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.hehehey.top/img/%E5%A4%B4%E5%83%8F.JPG">
-<meta property="article:published_time" content="2026-06-12T17:27:38.657Z">
-<meta property="article:modified_time" content="2026-06-12T17:27:38.657Z">
+<meta property="article:published_time" content="2026-06-12T17:36:48.609Z">
+<meta property="article:modified_time" content="2026-06-12T17:36:48.581Z">
 <meta property="article:author" content="G/ren">
 <meta property="article:tag" content="机器视觉,Vision Master,Mech-Vision,视觉定位,海康,Hexo博客,技术分享,编程">
 <meta name="twitter:card" content="summary">
@@ -157,7 +157,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Noto+Sans+SC:wght@300;400;500;700;900&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -514,6 +514,7 @@
             .wrapper { padding: 80px 16px 32px; }
         }
     </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7Gt9v7r6Yf6bqSE9YPqNcyuPN0VuqJqtklfyK41YT/MT7H9Tc1Jw==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
 
 
@@ -532,10 +533,10 @@
         <!-- Tab Switcher -->
         <div class="tab-bar">
             <div class="tab-item active" id="tab-cover-btn" onclick="switchTab('cover')">
-                <i data-lucide="image" style="width:15px;height:15px;"></i> 封面生成器
+                <i class="fa-solid fa-image style=" width:15px;height:15px;"=""></i> 封面生成器
             </div>
             <div class="tab-item" id="tab-fm-btn" onclick="switchTab('fm')">
-                <i data-lucide="file-code" style="width:15px;height:15px;"></i> Front Matter 生成器
+                <i class="fa-solid fa-file-code style=" width:15px;height:15px;"=""></i> Front Matter 生成器
             </div>
         </div>
 
@@ -613,7 +614,7 @@
                 </div>
 
                 <button class="btn btn-primary btn-block" onclick="downloadCover()">
-                    <i data-lucide="download" style="width:14px;height:14px;"></i> 下载超清 PNG 封面
+                    <i class="fa-solid fa-download style=" width:14px;height:14px;"=""></i> 下载超清 PNG 封面
                 </button>
             </div>
 
@@ -693,7 +694,7 @@
                 </div>
 
                 <button class="sync-btn" onclick="syncToCover()">
-                    <i data-lucide="refresh-cw" style="width:13px;height:13px;"></i>
+                    <i class="fa-solid fa-rotate style=" width:13px;height:13px;"=""></i>
                     同步至封面生成器
                 </button>
             </div>
@@ -722,10 +723,10 @@
                     <div class="code-body" id="fm-code-block"></div>
                     <div class="code-actions" style="padding:0 16px 16px;">
                         <button class="btn btn-outline" onclick="copyFmCode('only-fm')">
-                            <i data-lucide="copy" style="width:12px;height:12px;"></i> 复制标头
+                            <i class="fa-solid fa-copy style=" width:12px;height:12px;"=""></i> 复制标头
                         </button>
                         <button class="btn btn-primary" onclick="copyFmCode('full')">
-                            <i data-lucide="file-text" style="width:12px;height:12px;"></i> 复制完整模板
+                            <i class="fa-solid fa-file-lines style=" width:12px;height:12px;"=""></i> 复制完整模板
                         </button>
                     </div>
                 </div>
@@ -747,7 +748,7 @@
 
     <!-- Toast -->
     <div class="toast" id="toast">
-        <i data-lucide="check-circle" class="toast-icon" style="color:var(--h-theme);"></i>
+        <i class="fa-solid fa-circle-check class=" toast-icon"="" style="color:var(--h-theme);"></i>
         <span id="toast-msg">操作成功</span>
     </div>
 
@@ -765,7 +766,6 @@
 
         // ── Init ───────────────────────────────────
         window.onload = function() {
-            lucide.createIcons();
 
             // Date init
             const now = new Date();
@@ -799,7 +799,6 @@
                 coverPanel.classList.add('hidden-section');
                 updateFrontMatter();
             }
-            lucide.createIcons();
         }
 
         // ── Toast ──────────────────────────────────
@@ -808,7 +807,6 @@
             const msgEl = document.getElementById('toast-msg');
             msgEl.textContent = msg;
             toast.className = 'toast' + (isError ? ' error' : '');
-            lucide.createIcons();
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
