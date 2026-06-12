@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><meta name="baidu-site-verification" content="codeva-hfv5Au82rN"><title>G/ren的小破站 | G/ren的小破站</title><meta name="author" content="G/ren"><meta name="copyright" content="G/ren"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="博客生产力助手 - HeHeHey.top                                            tailwind.config = {             darkMode: 'class',             theme: {                 extend: {">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" class="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><meta name="baidu-site-verification" content="codeva-hfv5Au82rN"><title>G/ren的小破站 | G/ren的小破站</title><meta name="author" content="G/ren"><meta name="copyright" content="G/ren"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="博客封面 &amp; Front Matter 生成器 | HeHeHey.top                                  :root {             --bg: #0b0f19;             --surface: rgba(15,23,42,0.80);             --border: rgba(25">
 <meta property="og:type" content="website">
 <meta property="og:title" content="G/ren的小破站">
 <meta property="og:url" content="https://www.hehehey.top/tools/frontmatter-generator/index.html">
 <meta property="og:site_name" content="G/ren的小破站">
-<meta property="og:description" content="博客生产力助手 - HeHeHey.top                                            tailwind.config = {             darkMode: 'class',             theme: {                 extend: {">
+<meta property="og:description" content="博客封面 &amp; Front Matter 生成器 | HeHeHey.top                                  :root {             --bg: #0b0f19;             --surface: rgba(15,23,42,0.80);             --border: rgba(25">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.hehehey.top/img/%E5%A4%B4%E5%83%8F.JPG">
-<meta property="article:published_time" content="2026-06-12T17:36:48.609Z">
-<meta property="article:modified_time" content="2026-06-12T17:36:48.581Z">
+<meta property="article:published_time" content="2026-06-12T17:53:38.308Z">
+<meta property="article:modified_time" content="2026-06-12T17:53:38.308Z">
 <meta property="article:author" content="G/ren">
 <meta property="article:tag" content="机器视觉,Vision Master,Mech-Vision,视觉定位,海康,Hexo博客,技术分享,编程">
 <meta name="twitter:card" content="summary">
@@ -151,921 +151,500 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>博客生产力助手 - HeHeHey.top</title>
-    <!-- HeHeHey Blog CSS Variables -->
+    <title>博客封面 &amp; Front Matter 生成器 | HeHeHey.top</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Noto+Sans+SC:wght@300;400;500;700;900&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
-    
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'Noto Sans SC', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                }
-            }
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&amp;family=Inter:wght@300;400;500;600;700;800&amp;family=Noto+Sans+SC:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7Gt9v7r+6Yf6bqSE9YPqNcyuPN0VuqJqtklfyK41YT/MT7H9Tc1Jw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <style>
         :root {
-            --h-bg: #fafaf8;
-            --h-surface: rgba(255,255,255,0.72);
-            --h-border: rgba(0,0,0,0.08);
-            --h-text: #222222;
-            --h-muted: #999999;
-            --h-accent: #5a7a6a;
-            --h-theme: #1677B3;
-            --h-highlight: #FF7242;
-            --h-main: #5C5C5C;
-            --h-card-gap: 24px;
+            --bg: #0b0f19;
+            --surface: rgba(15,23,42,0.80);
+            --border: rgba(255,255,255,0.06);
+            --text: #f3f4f6;
+            --muted: #6b7280;
+            --brand-50: #f5f3ff;
+            --brand-400: #a78bfa;
+            --brand-500: #8b5cf6;
+            --brand-600: #7c3aed;
         }
-        [data-theme="dark"] {
-            --h-bg: #1a1a1a;
-            --h-surface: rgba(30,30,30,0.80);
-            --h-border: rgba(255,255,255,0.08);
-            --h-text: #e8e8e8;
-            --h-muted: #888888;
-            --h-accent: #8faea0;
-            --h-highlight: #FFB449;
-        }
-
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
-            background-color: var(--h-bg);
-            color: var(--h-text);
-            min-height: 100vh;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
+        body { font-family: 'Inter', 'Noto Sans SC', sans-serif; background-color: var(--bg); color: var(--text); min-height: 100vh; }
         ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--h-border); border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--h-muted); }
-
-        /* Page Header */
-        .page-header {
-            position: fixed; top: 0; left: 0; right: 0;
-            background: var(--h-surface);
-            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--h-border);
-            padding: 0 40px; height: 60px;
-            display: flex; align-items: center; justify-content: space-between;
-            z-index: 100;
-        }
-        .page-header .logo { font-size: 15px; font-weight: 600; color: var(--h-accent); }
-        .page-header .back-link { font-size: 13px; color: var(--h-muted); text-decoration: none; }
-        .page-header .back-link:hover { color: var(--h-accent); }
-        .page-header .tool-link { font-size: 13px; color: var(--h-accent); text-decoration: none; font-weight: 500; }
-        .page-header .tool-link:hover { text-decoration: underline; }
-
-        /* Wrapper */
-        .wrapper { width: 100%; max-width: 1280px; margin: 0 auto; padding: 80px 24px 48px; }
-
-        /* Page Title */
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
+        .page-header { position: sticky; top: 0; z-index: 50; background: rgba(2,4,12,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 16px 24px; }
+        .header-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+        .logo-area { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--brand-600), #4f46e5); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; text-decoration: none; flex-shrink: 0; }
+        .logo-title { font-size: 15px; font-weight: 700; color: white; }
+        .logo-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
+        .tab-bar { display: flex; background: #111827; border: 1px solid var(--border); border-radius: 12px; padding: 4px; gap: 4px; }
+        .tab-btn { display: flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; color: #6b7280; cursor: pointer; border: none; background: transparent; transition: all 0.2s; font-family: inherit; }
+        .tab-btn.active { background: var(--brand-600); color: white; }
+        .tab-btn:not(.active):hover { color: white; }
+        .main { max-width: 1280px; margin: 0 auto; padding: 32px 24px 64px; }
         .page-title { text-align: center; margin-bottom: 32px; }
-        .page-title h1 { font-size: 24px; font-weight: 700; color: var(--h-accent); margin-bottom: 6px; }
-        .page-title p { font-size: 14px; color: var(--h-muted); }
-
-        /* Grid Layout */
-        .container { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
-
-        /* Panel */
-        .panel {
-            background: var(--h-surface);
-            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--h-border);
-            border-radius: 20px;
-            padding: 24px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.05);
-        }
-        .panel-title { font-size: 15px; font-weight: 600; color: var(--h-text); margin-bottom: 4px; }
-        .panel-sub { font-size: 12px; color: var(--h-muted); margin-bottom: 20px; }
-
-        /* Inputs */
-        .field { margin-bottom: 14px; }
-        .field label { display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--h-muted); margin-bottom: 6px; }
-        .field input[type="text"],
-        .field input[type="number"],
-        .field textarea,
-        .field select {
-            width: 100%;
-            background: var(--h-bg);
-            border: 1px solid var(--h-border);
-            border-radius: 10px;
-            padding: 9px 12px;
-            font-size: 13px;
-            color: var(--h-text);
-            font-family: inherit;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        .field input:focus, .field textarea:focus, .field select:focus {
-            border-color: var(--h-theme);
-        }
-        .field textarea { resize: vertical; min-height: 64px; }
-        .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
-        /* Buttons */
-        .btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-            padding: 9px 16px;
-            border-radius: 10px;
-            font-size: 13px; font-weight: 600;
-            cursor: pointer;
-            border: none;
-            transition: all 0.2s;
-            font-family: inherit;
-        }
-        .btn-primary {
-            background: var(--h-theme);
-            color: #fff;
-        }
-        .btn-primary:hover { opacity: 0.85; }
-        .btn-outline {
-            background: transparent;
-            color: var(--h-accent);
-            border: 1px solid var(--h-border);
-        }
-        .btn-outline:hover { border-color: var(--h-accent); }
-        .btn-block { width: 100%; margin-top: 8px; }
-
-        /* Template Grid */
-        .template-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
-        .tpl-btn {
-            padding: 8px 6px;
-            border-radius: 10px;
-            font-size: 11px; font-weight: 600;
-            text-align: center;
-            cursor: pointer;
-            border: 1px solid var(--h-border);
-            background: var(--h-bg);
-            color: var(--h-muted);
-            transition: all 0.2s;
-        }
-        .tpl-btn.active {
-            background: rgba(22,119,179,0.10);
-            color: var(--h-theme);
-            border-color: var(--h-theme);
-        }
-        .tpl-btn:hover:not(.active) { border-color: var(--h-accent); color: var(--h-accent); }
-
-        /* Gradient Picker */
-        .gradient-row { display: flex; gap: 6px; flex-wrap: wrap; }
-        .gradient-btn {
-            width: 36px; height: 36px;
-            border-radius: 8px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: border-color 0.2s;
-        }
-        .gradient-btn:hover, .gradient-btn.active { border-color: var(--h-accent); }
-
-        /* Chip Input */
-        .chip-box {
-            display: flex; flex-wrap: wrap; gap: 6px;
-            background: var(--h-bg);
-            border: 1px solid var(--h-border);
-            border-radius: 10px;
-            padding: 8px;
-            min-height: 44px;
-            align-items: center;
-        }
-        .chip {
-            display: inline-flex; align-items: center; gap: 4px;
-            background: rgba(22,119,179,0.10);
-            color: var(--h-theme);
-            border: 1px solid rgba(22,119,179,0.20);
-            border-radius: 6px;
-            padding: 3px 8px;
-            font-size: 11px;
-        }
-        .chip .remove { cursor: pointer; opacity: 0.6; font-size: 14px; line-height: 1; }
+        .page-title h2 { font-size: 22px; font-weight: 700; color: white; margin-bottom: 4px; }
+        .page-title p { font-size: 13px; color: var(--muted); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+        .panel { background: rgba(15,23,42,0.70); border: 1px solid var(--border); border-radius: 20px; padding: 24px; }
+        .panel-title { font-size: 14px; font-weight: 700; color: white; margin-bottom: 3px; display: flex; align-items: center; gap: 8px; }
+        .panel-title i { color: var(--brand-400); font-size: 16px; }
+        .panel-sub { font-size: 11px; color: var(--muted); margin-bottom: 20px; }
+        .panel-divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+        .form-group { margin-bottom: 14px; }
+        .form-label { display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 6px; }
+        .form-input, .form-textarea, .form-select { width: 100%; background: rgba(2,4,12,0.70); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 10px 12px; font-size: 13px; color: var(--text); font-family: inherit; outline: none; transition: border-color 0.2s; }
+        .form-input:focus, .form-textarea:focus, .form-select:focus { border-color: var(--brand-500); }
+        .form-textarea { resize: vertical; min-height: 64px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 16px; border-radius: 10px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; transition: all 0.2s; font-family: inherit; }
+        .btn-primary { background: linear-gradient(135deg, var(--brand-500), #4f46e5); color: white; width: 100%; margin-top: 6px; }
+        .btn-primary:hover { opacity: 0.88; }
+        .btn-outline { background: rgba(2,4,12,0.80); color: var(--brand-400); border: 1px solid rgba(139,92,246,0.25); }
+        .btn-outline:hover { border-color: var(--brand-500); }
+        .tpl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        .tpl-btn { padding: 8px 6px; border-radius: 10px; font-size: 11px; font-weight: 600; text-align: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.07); background: rgba(2,4,12,0.80); color: #6b7280; transition: all 0.2s; }
+        .tpl-btn.active { background: rgba(139,92,246,0.15); color: var(--brand-400); border-color: rgba(139,92,246,0.35); }
+        .tpl-btn:hover:not(.active) { border-color: var(--brand-500); color: var(--brand-400); }
+        .emoji-row { display: flex; gap: 8px; align-items: center; }
+        .emoji-btn { font-size: 16px; cursor: pointer; transition: transform 0.15s; background: transparent; border: none; }
+        .emoji-btn:hover { transform: scale(1.3); }
+        .gradient-row { display: flex; gap: 8px; flex-wrap: wrap; }
+        .gradient-btn { width: 40px; height: 32px; border-radius: 8px; cursor: pointer; border: 2px solid transparent; transition: border-color 0.2s; }
+        .gradient-btn:hover, .gradient-btn.active { border-color: white; }
+        .chip-box { display: flex; flex-wrap: wrap; gap: 6px; background: rgba(2,4,12,0.80); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 8px; min-height: 44px; align-items: center; }
+        .chip { display: inline-flex; align-items: center; gap: 5px; background: rgba(139,92,246,0.10); color: var(--brand-400); border: 1px solid rgba(139,92,246,0.20); border-radius: 6px; padding: 3px 8px; font-size: 11px; }
+        .chip .remove { cursor: pointer; opacity: 0.6; }
         .chip .remove:hover { opacity: 1; }
-        .chip-input {
-            flex: 1; min-width: 80px;
-            background: transparent;
-            border: none; outline: none;
-            font-size: 12px;
-            color: var(--h-text);
-            padding: 2px 4px;
-        }
-
-        /* Toggle */
+        .chip-input { flex: 1; min-width: 80px; background: transparent; border: none; outline: none; font-size: 12px; color: var(--text); padding: 2px 4px; font-family: inherit; }
         .toggle-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .toggle-label {
-            display: flex; align-items: center; gap: 8px;
-            background: var(--h-bg);
-            border: 1px solid var(--h-border);
-            border-radius: 10px;
-            padding: 10px 12px;
-            cursor: pointer;
-            font-size: 12px; color: var(--h-text);
-            transition: border-color 0.2s;
-        }
-        .toggle-label:hover { border-color: var(--h-muted); }
-        .toggle-label input[type="checkbox"] { accent-color: var(--h-theme); width: 14px; height: 14px; }
-
-        /* Format Tabs */
-        .fmt-tabs { display: flex; background: var(--h-bg); border-radius: 10px; padding: 3px; gap: 3px; }
-        .fmt-tab {
-            flex: 1; text-align: center;
-            padding: 6px 10px;
-            border-radius: 7px;
-            font-size: 11px; font-weight: 600;
-            cursor: pointer;
-            color: var(--h-muted);
-            transition: all 0.2s;
-        }
-        .fmt-tab.active { background: var(--h-surface); color: var(--h-text); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
-
-        /* Code Block */
-        .code-window {
-            background: var(--h-bg);
-            border: 1px solid var(--h-border);
-            border-radius: 16px;
-            overflow: hidden;
-        }
-        .code-titlebar {
-            display: flex; align-items: center; justify-content: space-between;
-            background: var(--h-surface);
-            border-bottom: 1px solid var(--h-border);
-            padding: 10px 16px;
-        }
+        .toggle-label { display: flex; align-items: center; gap: 8px; background: rgba(2,4,12,0.80); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; cursor: pointer; font-size: 12px; color: #d1d5db; transition: border-color 0.2s; }
+        .toggle-label:hover { border-color: #374151; }
+        .toggle-label input[type="checkbox"] { accent-color: var(--brand-500); width: 13px; height: 13px; }
+        .code-window { background: rgba(2,4,12,0.90); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+        .code-titlebar { display: flex; align-items: center; justify-content: space-between; background: rgba(15,23,42,0.90); border-bottom: 1px solid var(--border); padding: 10px 16px; }
         .dots { display: flex; gap: 6px; }
         .dot { width: 10px; height: 10px; border-radius: 50%; }
         .dot-r { background: #FF5F57; }
         .dot-y { background: #FEBC2E; }
         .dot-g { background: #28C840; }
-        .code-lang { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--h-theme); font-family: 'JetBrains Mono', monospace; }
-        .code-body {
-            padding: 16px 20px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12.5px;
-            line-height: 1.7;
-            color: var(--h-text);
-            white-space: pre-wrap;
-            word-break: break-all;
-            max-height: 320px;
-            overflow-y: auto;
-        }
-        .code-actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
-
-        /* Canvas */
-        .canvas-wrap {
-            display: flex; align-items: center; justify-content: center;
-            background: var(--h-bg);
-            border: 1px solid var(--h-border);
-            border-radius: 16px;
-            min-height: 300px;
-            position: relative;
-            overflow: hidden;
-        }
+        .code-lang { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--brand-400); font-family: 'Fira Code', monospace; }
+        .code-body { padding: 16px 20px; font-family: 'Fira Code', monospace; font-size: 12px; line-height: 1.8; color: #c4b5fd; white-space: pre-wrap; word-break: break-all; max-height: 320px; overflow-y: auto; }
+        .fmt-tabs { display: flex; background: rgba(2,4,12,0.80); border-radius: 8px; padding: 3px; gap: 3px; }
+        .fmt-tab { padding: 5px 12px; border-radius: 6px; font-size: 11px; font-weight: 600; cursor: pointer; color: #6b7280; transition: all 0.2s; }
+        .fmt-tab.active { background: #1f2937; color: white; }
+        .fmt-tab:hover:not(.active) { color: white; }
+        .canvas-wrap { display: flex; align-items: center; justify-content: center; background: rgba(2,4,12,0.90); border: 1px solid var(--border); border-radius: 16px; min-height: 360px; position: relative; overflow: hidden; padding: 24px; }
         .canvas-wrap canvas { max-width: 100%; height: auto; border-radius: 12px; }
-
-        /* Toast */
-        .toast {
-            position: fixed; bottom: 24px; right: 24px; z-index: 999;
-            display: flex; align-items: center; gap: 10px;
-            background: var(--h-surface);
-            border: 1px solid var(--h-border);
-            color: var(--h-text);
-            padding: 12px 18px;
-            border-radius: 12px;
-            font-size: 13px; font-weight: 600;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-            opacity: 0; transform: translateY(12px);
-            transition: all 0.3s;
-            pointer-events: none;
-        }
+        .toast { position: fixed; bottom: 24px; right: 24px; z-index: 999; display: flex; align-items: center; gap: 10px; background: rgba(15,23,42,0.95); border: 1px solid var(--border); color: var(--text); padding: 12px 18px; border-radius: 12px; font-size: 13px; font-weight: 600; box-shadow: 0 8px 32px rgba(0,0,0,0.30); opacity: 0; transform: translateY(12px); transition: all 0.3s; pointer-events: none; }
         .toast.show { opacity: 1; transform: translateY(0); }
-        .toast.error { border-color: #FF7242; }
-        .toast-icon { width: 18px; height: 18px; }
-
-        /* Tab Switcher (Cover vs FM) */
-        .tab-bar {
-            display: flex;
-            background: var(--h-bg);
-            border: 1px solid var(--h-border);
-            border-radius: 12px;
-            padding: 3px;
-            gap: 3px;
-            margin-bottom: 24px;
-        }
-        .tab-item {
-            flex: 1; text-align: center;
-            padding: 10px 16px;
-            border-radius: 9px;
-            font-size: 13px; font-weight: 600;
-            cursor: pointer;
-            color: var(--h-muted);
-            transition: all 0.2s;
-            display: flex; align-items: center; justify-content: center; gap: 6px;
-        }
-        .tab-item.active { background: var(--h-surface); color: var(--h-text); box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
-        .tab-item:hover:not(.active) { color: var(--h-accent); }
-
-        /* Info Cards */
-        .info-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .info-card {
-            background: var(--h-bg);
-            border: 1px solid var(--h-border);
-            border-radius: 12px;
-            padding: 12px 14px;
-        }
-        .info-card h5 { font-size: 12px; font-weight: 600; color: var(--h-text); margin-bottom: 4px; }
-        .info-card p { font-size: 11px; color: var(--h-muted); line-height: 1.5; }
-
-        /* Sync Button */
-        .sync-btn {
-            width: 100%;
-            background: var(--h-bg);
-            border: 1px solid rgba(22,119,179,0.25);
-            color: var(--h-theme);
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 12px; font-weight: 600;
-            cursor: pointer;
-            display: flex; align-items: center; justify-content: center; gap: 6px;
-            transition: all 0.2s;
-            font-family: inherit;
-        }
-        .sync-btn:hover { border-color: var(--h-theme); background: rgba(22,119,179,0.05); }
-
-        /* Section visibility */
-        #panel-cover { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-        #panel-fm { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-        .hidden-section { display: none !important; }
-
-        /* Aspect select */
-        select option { background: var(--h-bg); }
-
-        @media (max-width: 768px) {
-            .container { grid-template-columns: 1fr; }
-            #panel-cover, #panel-fm { grid-template-columns: 1fr; }
-            .field-row, .info-row, .toggle-row { grid-template-columns: 1fr; }
-            .page-header { padding: 0 20px; }
-            .wrapper { padding: 80px 16px 32px; }
-        }
+        .toast i { color: var(--brand-400); }
+        .sync-btn { width: 100%; background: rgba(2,4,12,0.80); border: 1px solid rgba(139,92,246,0.25); color: var(--brand-400); padding: 10px; border-radius: 10px; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.2s; font-family: inherit; margin-top: 14px; }
+        .sync-btn:hover { border-color: var(--brand-500); color: white; }
+        .page-footer { text-align: center; padding: 24px; border-top: 1px solid var(--border); color: #6b7280; font-size: 12px; }
+        .hidden { display: none !important; }
+        @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } .form-row, .toggle-row { grid-template-columns: 1fr; } .page-header { padding: 12px 16px; } .main { padding: 20px 16px 48px; } }
     </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7Gt9v7r6Yf6bqSE9YPqNcyuPN0VuqJqtklfyK41YT/MT7H9Tc1Jw==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
 
-
-    <!-- Header -->
     <header class="page-header">
-        <span class="logo">HeHeHey.top</span>
-        <nav style="display:flex;gap:20px;align-items:center;">
-            <a href="https://www.hehehey.top/" class="back-link">← 返回博客</a>
-            <a href="https://www.hehehey.top/tools/" class="tool-link">工具箱</a>
-        </nav>
+        <div class="header-inner">
+            <div class="logo-area">
+                <a href="https://www.hehehey.top/" class="logo-icon"><i class="fa-solid fa-arrow-left"></i></a>
+                <div>
+                    <div class="logo-title">HeHeHey's Blog <span style="font-size:10px;background:rgba(139,92,246,0.15);color:var(--brand-400);border:1px solid rgba(139,92,246,0.25);padding:1px 7px;border-radius:20px;font-weight:600;">创作助手</span></div>
+                    <div class="logo-sub">输入想法，一键产出精美封面与规范 Front Matter 标头</div>
+                </div>
+            </div>
+            <div class="tab-bar">
+                <button class="tab-btn active" id="tab-cover-btn" onclick="switchTab('cover')"><i class="fa-solid fa-image"></i> 封面生成器</button>
+                <button class="tab-btn" id="tab-fm-btn" onclick="switchTab('fm')"><i class="fa-solid fa-file-code"></i> Front Matter 生成</button>
+            </div>
+        </div>
     </header>
-
-    <!-- Main -->
-    <main class="wrapper">
-
-        <!-- Tab Switcher -->
-        <div class="tab-bar">
-            <div class="tab-item active" id="tab-cover-btn" onclick="switchTab('cover')">
-                <i class="fa-solid fa-image style=" width:15px;height:15px;"=""></i> 封面生成器
-            </div>
-            <div class="tab-item" id="tab-fm-btn" onclick="switchTab('fm')">
-                <i class="fa-solid fa-file-code style=" width:15px;height:15px;"=""></i> Front Matter 生成器
-            </div>
-        </div>
-
-        <!-- Page Title -->
+    <main class="main">
         <div class="page-title">
-            <h1>博客生产力助手</h1>
-            <p>封面设计 &amp; Front Matter 元数据，一站式生成</p>
+            <h2>博客封面 &amp; Front Matter 生成器</h2>
+            <p>封面设计 + 元数据配置，全在一个页面</p>
         </div>
-
-
-        <!-- ===== COVER PANEL ===== -->
-        <div id="panel-cover">
-
-            <!-- Left Controls -->
+        <!-- COVER PANEL -->
+        <div id="panel-cover" class="grid-2">
             <div class="panel">
-                <div class="panel-title">封面配置面板</div>
-                <div class="panel-sub">实时调整参数，完美契合博文调性</div>
-
-                <div class="field">
-                    <label>主标题 (Title)</label>
-                    <input type="text" id="cover-title" value="10分钟精通 Tailwind CSS 高级布局技巧" oninput="drawCover()">
+                <div class="panel-title"><i class="fa-solid fa-sliders"></i> 封面视觉设计</div>
+                <div class="panel-sub">简单调整配置，让社交分享大图更吸睛</div>
+                <hr class="panel-divider">
+                <div class="form-group">
+                    <label class="form-label">博文大标题</label>
+                    <input type="text" id="cover-title" class="form-input" value="如何为你的独立博客设计一套高颜值的组件" oninput="drawCover()">
                 </div>
-                <div class="field">
-                    <label>副标题 / 描述 (Subtitle)</label>
-                    <textarea id="cover-subtitle" rows="2" oninput="drawCover()">探索现代前端最高效的实用原子化样式方案，从零构建响应式高阶暗黑模式组件。</textarea>
+                <div class="form-group">
+                    <label class="form-label">核心简介 / 导读摘要</label>
+                    <textarea id="cover-subtitle" class="form-textarea" rows="2" oninput="drawCover()">极简科技风、悬浮卡片感，多套排版一键搞定博客社交分享卡片。</textarea>
                 </div>
-                <div class="field-row">
-                    <div class="field">
-                        <label>分类标签</label>
-                        <input type="text" id="cover-tag" value="CSS &amp; Tailwind" oninput="drawCover()">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">主徽章 / 分类</label>
+                        <input type="text" id="cover-tag" class="form-input" value="DESIGN" oninput="drawCover()">
                     </div>
-                    <div class="field">
-                        <label>作者</label>
-                        <input type="text" id="cover-author" value="HeHeHey @ Studio" oninput="drawCover()">
+                    <div class="form-group">
+                        <label class="form-label">作者署名</label>
+                        <input type="text" id="cover-author" class="form-input" value="hehehey.top" oninput="drawCover()">
                     </div>
                 </div>
-
-                <div class="field">
-                    <label>设计模板</label>
-                    <div class="template-grid">
+                <hr class="panel-divider">
+                <div class="form-group">
+                    <label class="form-label">设计风格模板</label>
+                    <div class="tpl-grid">
                         <div class="tpl-btn active" id="tpl-tech" onclick="setTemplate('tech')">现代科技</div>
                         <div class="tpl-btn" id="tpl-card" onclick="setTemplate('card')">悬浮卡片</div>
-                        <div class="tpl-btn" id="tpl-minimalist" onclick="setTemplate('minimalist')">极简主义</div>
+                        <div class="tpl-btn" id="tpl-minimalist" onclick="setTemplate('minimalist')">极简大白</div>
                     </div>
                 </div>
-
-                <div class="field-row">
-                    <div class="field">
-                        <label>Emoji</label>
-                        <div style="display:flex;gap:8px;align-items:center;">
-                            <input type="text" id="cover-emoji" value="🚀" oninput="drawCover()" style="width:52px;text-align:center;">
-                            <span style="font-size:11px;color:var(--h-muted);">💻🚀🎨⚡📦</span>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">核心 Emoji</label>
+                        <div class="emoji-row">
+                            <input type="text" id="cover-emoji" class="form-input" value="🎨" oninput="drawCover()" style="width:52px;text-align:center;">
+                            <button class="emoji-btn" onclick="quickEmoji('🎨')">🎨</button>
+                            <button class="emoji-btn" onclick="quickEmoji('⚡')">⚡</button>
+                            <button class="emoji-btn" onclick="quickEmoji('💻')">💻</button>
+                            <button class="emoji-btn" onclick="quickEmoji('💡')">💡</button>
                         </div>
                     </div>
-                    <div class="field">
-                        <label>输出比例</label>
-                        <select id="cover-aspect" onchange="drawCover()">
-                            <option value="16-9">16:9 宽屏</option>
-                            <option value="2-1" selected="">2:1 掘金</option>
-                            <option value="4-3">4:3 标准</option>
-                            <option value="1-1">1:1 正方形</option>
+                    <div class="form-group">
+                        <label class="form-label">比例尺寸</label>
+                        <select id="cover-aspect" class="form-select" onchange="drawCover()">
+                            <option value="2-1" selected="">2:1 (1200×600)</option>
+                            <option value="16-9">16:9 (1280×720)</option>
+                            <option value="1-1">1:1 (800×800)</option>
                         </select>
                     </div>
                 </div>
-
-                <div class="field">
-                    <label>渐变色调</label>
+                <div class="form-group">
+                    <label class="form-label">底色渐变配色</label>
                     <div class="gradient-row">
-                        <div class="gradient-btn active" style="background:linear-gradient(135deg,#312e81,#1e1b4b,#4f46e5);" onclick="setGradient('#312e81','#1e1b4b','#4f46e5',this)" title="靛蓝"></div>
-                        <div class="gradient-btn" style="background:linear-gradient(135deg,#0f172a,#020617,#3b82f6);" onclick="setGradient('#0f172a','#020617','#3b82f6',this)" title="深蓝"></div>
-                        <div class="gradient-btn" style="background:linear-gradient(135deg,#581c87,#1e1b4b,#db2777);" onclick="setGradient('#581c87','#1e1b4b','#db2777',this)" title="紫红"></div>
-                        <div class="gradient-btn" style="background:linear-gradient(135deg,#14532d,#022c22,#10b981);" onclick="setGradient('#14532d','#022c22','#10b981',this)" title="翠绿"></div>
-                        <div class="gradient-btn" style="background:linear-gradient(135deg,#7c2d12,#451a03,#f97316);" onclick="setGradient('#7c2d12','#451a03','#f97316',this)" title="赤橙"></div>
+                        <div class="gradient-btn active" style="background:linear-gradient(135deg,#2e1065,#0f172a,#7c3aed);" onclick="setGradient('#2e1065','#0f172a','#7c3aed',this)" title="高贵紫罗兰"></div>
+                        <div class="gradient-btn" style="background:linear-gradient(135deg,#0c4a6e,#020617,#0284c7);" onclick="setGradient('#0c4a6e','#020617','#0284c7',this)" title="深邃海蓝"></div>
+                        <div class="gradient-btn" style="background:linear-gradient(135deg,#065f46,#022c22,#10b981);" onclick="setGradient('#065f46','#022c22','#10b981',this)" title="极客翡翠"></div>
+                        <div class="gradient-btn" style="background:linear-gradient(135deg,#7c2d12,#1c1917,#ea580c);" onclick="setGradient('#7c2d12','#1c1917','#ea580c',this)" title="落日余晖"></div>
+                        <div class="gradient-btn" style="background:linear-gradient(135deg,#18181b,#09090b,#27272a);" onclick="setGradient('#18181b','#09090b','#27272a',this)" title="纯黑黑客"></div>
                     </div>
                 </div>
-
-                <button class="btn btn-primary btn-block" onclick="downloadCover()">
-                    <i class="fa-solid fa-download style=" width:14px;height:14px;"=""></i> 下载超清 PNG 封面
-                </button>
+                <button class="btn btn-primary" onclick="downloadCover()"><i class="fa-solid fa-download"></i> 下载超清封面 PNG</button>
+                <p style="font-size:10px;color:#6b7280;text-align:center;margin-top:8px;">100% 浏览器客户端本地渲染，对隐私完全保密</p>
             </div>
-
-            <!-- Right Preview -->
             <div style="display:flex;flex-direction:column;gap:16px;">
-                <div class="panel" style="padding:16px;">
-                    <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--h-muted);margin-bottom:4px;">实时预览</div>
-                    <div class="canvas-wrap" style="min-height:260px;">
-                        <canvas id="coverCanvas"></canvas>
+                <div style="display:flex;align-items:center;justify-content:space-between;">
+                    <div>
+                        <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:#6b7280;">实时渲染预览</div>
+                        <div style="font-size:10px;color:#4b5563;margin-top:2px;">可在画布上右键直接复制或另存为高清大图</div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--brand-400);background:rgba(139,92,246,0.08);border:1px solid rgba(139,92,246,0.18);padding:4px 10px;border-radius:20px;">
+                        <span style="width:7px;height:7px;border-radius:50%;background:var(--brand-400);display:inline-block;"></span>GPU 加速已就绪
                     </div>
                 </div>
-
-                <div class="info-card" style="background:var(--h-surface);border:1px solid var(--h-border);border-radius:12px;padding:14px 16px;">
-                    <div style="font-size:11px;font-weight:600;color:var(--h-muted);margin-bottom:6px;">💡 排版建议</div>
-                    <div style="font-size:11px;color:var(--h-muted);line-height:1.7;">
-                        1. 主标题建议 15-25 字符<br>
-                        2. 右键预览图可保存 2x 超清图<br>
-                        3. 推荐 2:1 输出比例适配多平台
+                <div class="canvas-wrap"><canvas id="coverCanvas"></canvas></div>
+                <div style="background:rgba(15,23,42,0.40);border:1px solid var(--border);padding:14px 16px;border-radius:14px;display:flex;align-items:flex-start;gap:10px;">
+                    <i class="fa-solid fa-circle-info" style="color:var(--brand-400);font-size:15px;margin-top:1px;"></i>
+                    <div style="font-size:11px;color:#6b7280;line-height:1.7;">
+                        <strong style="color:#d1d5db;">💡 完美排版速成：</strong><br>
+                        1. 主标题字数约 10 ~ 20 字视觉冲击力最强<br>
+                        2. 点击"同步"可和 Front Matter 秒级联动，拒绝二次输入
                     </div>
                 </div>
             </div>
         </div>
-
-
-        <!-- ===== FRONT MATTER PANEL ===== -->
-        <div id="panel-fm" class="hidden-section">
-
-            <!-- Left Inputs -->
+        <!-- FRONT MATTER PANEL -->
+        <div id="panel-fm" class="grid-2 hidden">
             <div class="panel">
-                <div class="panel-title">元数据表单配置</div>
-                <div class="panel-sub">生成符合 Hexo / Hugo 规范的 Markdown 标头</div>
-
-                <div class="field">
-                    <label>文章标题</label>
-                    <input type="text" id="fm-title" value="使用 Tailwind CSS 构建惊艳的独立博客设计" oninput="updateFrontMatter()">
+                <div class="panel-title"><i class="fa-solid fa-file-lines"></i> Front Matter 信息配置</div>
+                <div class="panel-sub">配置标准的 YAML / TOML Meta 信息块</div>
+                <hr class="panel-divider">
+                <div class="form-group">
+                    <label class="form-label">文章主标题</label>
+                    <input type="text" id="fm-title" class="form-input" value="使用 Tailwind CSS 构建惊艳的独立博客设计" oninput="updateFrontMatter()">
                 </div>
-                <div class="field">
-                    <label>Slug / 永久链接路径</label>
-                    <input type="text" id="fm-slug" value="tailwind-css-stunning-blog-design" oninput="updateFrontMatter()">
+                <div class="form-group">
+                    <label class="form-label">链接别名 (Slug)</label>
+                    <input type="text" id="fm-slug" class="form-input" value="tailwind-css-stunning-blog-design" oninput="updateFrontMatter()">
                 </div>
-                <div class="field-row">
-                    <div class="field">
-                        <label>发布时间</label>
-                        <input type="text" id="fm-date" oninput="updateFrontMatter()">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">创建时间</label>
+                        <input type="text" id="fm-date" class="form-input" oninput="updateFrontMatter()">
                     </div>
-                    <div class="field">
-                        <label>作者</label>
-                        <input type="text" id="fm-author" value="HeHeHey" oninput="updateFrontMatter()">
+                    <div class="form-group">
+                        <label class="form-label">作者 (Author)</label>
+                        <input type="text" id="fm-author" class="form-input" value="HeHeHey" oninput="updateFrontMatter()">
                     </div>
                 </div>
-
-                <div class="field">
-                    <label>多分类 (Categories)</label>
+                <div class="form-group">
+                    <label class="form-label">所属分类 (Categories)</label>
                     <div class="chip-box">
                         <div id="fm-categories-chips" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
                         <input type="text" id="fm-category-input" class="chip-input" placeholder="回车添加..." onkeydown="handleChipInput(event,'category')">
                     </div>
                 </div>
-
-                <div class="field">
-                    <label>标签 (Tags)</label>
+                <div class="form-group">
+                    <label class="form-label">博文标签 (Tags)</label>
                     <div class="chip-box">
                         <div id="fm-tags-chips" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
                         <input type="text" id="fm-tag-input" class="chip-input" placeholder="回车添加..." onkeydown="handleChipInput(event,'tag')">
                     </div>
                 </div>
-
                 <div class="toggle-row">
-                    <label class="toggle-label">
-                        <input type="checkbox" id="fm-draft" onchange="updateFrontMatter()">
-                        标记为草稿
-                    </label>
-                    <label class="toggle-label">
-                        <input type="checkbox" id="fm-comment" checked="" onchange="updateFrontMatter()">
-                        开启评论
-                    </label>
+                    <label class="toggle-label"><input type="checkbox" id="fm-draft" onchange="updateFrontMatter()"> 设为草稿</label>
+                    <label class="toggle-label"><input type="checkbox" id="fm-comment" checked="" onchange="updateFrontMatter()"> 开启评论</label>
                 </div>
-
-                <button class="sync-btn" onclick="syncToCover()">
-                    <i class="fa-solid fa-rotate style=" width:13px;height:13px;"=""></i>
-                    同步至封面生成器
-                </button>
+                <button class="sync-btn" onclick="syncToCover()"><i class="fa-solid fa-rotate"></i> 一键同步文字至封面画板</button>
             </div>
-
-            <!-- Right Code Block -->
             <div style="display:flex;flex-direction:column;gap:16px;">
-                <div class="panel" style="padding:0;overflow:hidden;">
+                <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+                    <div class="fmt-tabs">
+                        <div class="fmt-tab active" id="fmt-yaml" onclick="changeFmFormat('yaml')">YAML (Hexo/Astro)</div>
+                        <div class="fmt-tab" id="fmt-toml" onclick="changeFmFormat('toml')">TOML (Hugo)</div>
+                        <div class="fmt-tab" id="fmt-json" onclick="changeFmFormat('json')">JSON</div>
+                    </div>
+                    <div style="display:flex;gap:8px;">
+                        <button class="btn btn-outline" onclick="copyFmCode('only-fm')" style="padding:7px 12px;font-size:11px;"><i class="fa-solid fa-copy"></i> 仅复制标头</button>
+                        <button class="btn btn-primary" onclick="copyFmCode('full')" style="padding:7px 14px;font-size:11px;width:auto;"><i class="fa-solid fa-file-lines"></i> 复制完整文章模板</button>
+                    </div>
+                </div>
+                <div class="code-window">
                     <div class="code-titlebar">
                         <div style="display:flex;align-items:center;gap:8px;">
-                            <div class="dots">
-                                <div class="dot dot-r"></div>
-                                <div class="dot dot-y"></div>
-                                <div class="dot dot-g"></div>
-                            </div>
-                            <span id="fm-file-indicator" style="font-size:11px;color:var(--h-muted);font-family:monospace;">index.md</span>
+                            <div class="dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+                            <span id="fm-file-indicator" style="font-size:11px;color:#6b7280;font-family:monospace;">index.md</span>
                         </div>
-                        <div style="display:flex;align-items:center;gap:8px;">
-                            <div class="fmt-tabs">
-                                <div class="fmt-tab active" id="fmt-yaml" onclick="changeFmFormat('yaml')">YAML</div>
-                                <div class="fmt-tab" id="fmt-json" onclick="changeFmFormat('json')">JSON</div>
-                                <div class="fmt-tab" id="fmt-toml" onclick="changeFmFormat('toml')">TOML</div>
-                            </div>
-                            <span class="code-lang" id="fm-lang-tag">yaml</span>
-                        </div>
+                        <span class="code-lang" id="fm-lang-tag">yaml</span>
                     </div>
                     <div class="code-body" id="fm-code-block"></div>
-                    <div class="code-actions" style="padding:0 16px 16px;">
-                        <button class="btn btn-outline" onclick="copyFmCode('only-fm')">
-                            <i class="fa-solid fa-copy style=" width:12px;height:12px;"=""></i> 复制标头
-                        </button>
-                        <button class="btn btn-primary" onclick="copyFmCode('full')">
-                            <i class="fa-solid fa-file-lines style=" width:12px;height:12px;"=""></i> 复制完整模板
-                        </button>
-                    </div>
                 </div>
-
-                <div class="info-row">
-                    <div class="info-card">
-                        <h5>什么是 Front Matter ?</h5>
-                        <p>放置在文章最前方的 YAML / TOML 配置块，用于告诉静态博客引擎该文的关键元数据。</p>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                    <div style="background:rgba(15,23,42,0.40);border:1px solid var(--border);padding:12px 14px;border-radius:12px;">
+                        <div style="font-size:11px;font-weight:600;color:#d1d5db;margin-bottom:4px;">📋 什么是 Front Matter ?</div>
+                        <div style="font-size:10px;color:#6b7280;line-height:1.6;">放置在文章最前方的 YAML/TOML 配置块，告诉静态博客引擎该文的关键元数据。</div>
                     </div>
-                    <div class="info-card">
-                        <h5>Slug 自动生成</h5>
-                        <p>输入标题时，系统自动将中文转换为拼音连字符格式，保持 SEO 友好的 URL 路径。</p>
+                    <div style="background:rgba(15,23,42,0.40);border:1px solid var(--border);padding:12px 14px;border-radius:12px;">
+                        <div style="font-size:11px;font-weight:600;color:#d1d5db;margin-bottom:4px;">🔗 Slug 链接别名</div>
+                        <div style="font-size:10px;color:#6b7280;line-height:1.6;">输入标题后自动转换为连字符格式，保持 SEO 友好的 URL 路径。</div>
                     </div>
                 </div>
             </div>
         </div>
-
     </main>
-
-    <!-- Toast -->
-    <div class="toast" id="toast">
-        <i class="fa-solid fa-circle-check class=" toast-icon"="" style="color:var(--h-theme);"></i>
-        <span id="toast-msg">操作成功</span>
-    </div>
-
-    <!-- Download helper -->
+    <div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i><span id="toast-msg">操作成功</span></div>
     <a id="download-helper" class="hidden" download=""></a>
-
-    <script>
-        // ── State ──────────────────────────────────
-        let currentTab = 'cover';
-        let currentFmFormat = 'yaml';
-        let coverTemplate = 'tech';
-        let bgGradient = { start: '#312e81', mid: '#1e1b4b', end: '#4f46e5' };
-        let categories = ['前端技术', '工程化'];
-        let tags = ['CSS', 'Tailwind', '博客设计'];
-
-        // ── Init ───────────────────────────────────
-        window.onload = function() {
-
-            // Date init
-            const now = new Date();
-            const pad = n => String(n).padStart(2,'0');
-            document.getElementById('fm-date').value =
-                `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
-
-            renderChips();
-            updateFrontMatter();
-            drawCover();
+    <footer class="page-footer">© 2026 hehehey.top | 博客全自动创作工作台</footer>    <script>
+        var currentTab='cover', currentFmFormat='yaml', coverTemplate='tech';
+        var bgGradient={start:'#2e1065',mid:'#0f172a',end:'#7c3aed'};
+        var categories=['技术分享']; var tags=['前端','TailwindCSS'];
+        window.onload=function(){
+            var now=new Date(), pad=function(n){return String(n).padStart(2,'0');};
+            document.getElementById('fm-date').value=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate())+' '+pad(now.getHours())+':'+pad(now.getMinutes())+':'+pad(now.getSeconds());
+            renderChips(); updateFrontMatter(); drawCover();
         };
-
-        // ── Tab Switch ──────────────────────────────
-        function switchTab(tab) {
-            currentTab = tab;
-            const coverBtn = document.getElementById('tab-cover-btn');
-            const fmBtn = document.getElementById('tab-fm-btn');
-            const coverPanel = document.getElementById('panel-cover');
-            const fmPanel = document.getElementById('panel-fm');
-
-            if (tab === 'cover') {
-                coverBtn.className = 'tab-item active';
-                fmBtn.className = 'tab-item';
-                coverPanel.classList.remove('hidden-section');
-                fmPanel.classList.add('hidden-section');
-                setTimeout(drawCover, 50);
+        function switchTab(tab){
+            currentTab=tab;
+            var coverBtn=document.getElementById('tab-cover-btn');
+            var fmBtn=document.getElementById('tab-fm-btn');
+            var coverPanel=document.getElementById('panel-cover');
+            var fmPanel=document.getElementById('panel-fm');
+            if(tab==='cover'){
+                coverBtn.className='tab-btn active'; fmBtn.className='tab-btn';
+                coverPanel.classList.remove('hidden'); fmPanel.classList.add('hidden');
+                setTimeout(drawCover,50);
             } else {
-                fmBtn.className = 'tab-item active';
-                coverBtn.className = 'tab-item';
-                fmPanel.classList.remove('hidden-section');
-                coverPanel.classList.add('hidden-section');
+                fmBtn.className='tab-btn active'; coverBtn.className='tab-btn';
+                fmPanel.classList.remove('hidden'); coverPanel.classList.add('hidden');
                 updateFrontMatter();
             }
         }
-
-        // ── Toast ──────────────────────────────────
-        function showToast(msg, isError) {
-            const toast = document.getElementById('toast');
-            const msgEl = document.getElementById('toast-msg');
-            msgEl.textContent = msg;
-            toast.className = 'toast' + (isError ? ' error' : '');
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
+        function showToast(msg){var t=document.getElementById('toast');document.getElementById('toast-msg').textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},3000);}
+        function setTemplate(tpl){coverTemplate=tpl;['tech','card','minimalist'].forEach(function(item){document.getElementById('tpl-'+item).className='tpl-btn'+(item===tpl?' active':'');});drawCover();}
+        function quickEmoji(e){document.getElementById('cover-emoji').value=e;drawCover();}
+        function setGradient(start,mid,end,el){bgGradient={start:start,mid:mid,end:end};document.querySelectorAll('.gradient-btn').forEach(function(b){b.classList.remove('active');});if(el)el.classList.add('active');drawCover();}
+        function getCanvasSize(){var v=document.getElementById('cover-aspect').value;var map={'16-9':[1280,720],'2-1':[1200,600],'1-1':[800,800]};return{width:map[v][0],height:map[v][1]};}
+        function drawCover(){
+            var canvas=document.getElementById('coverCanvas');
+            var ctx=canvas.getContext('2d');
+            var size=getCanvasSize();
+            canvas.width=size.width; canvas.height=size.height;
+            var title=document.getElementById('cover-title').value||'';
+            var subtitle=document.getElementById('cover-subtitle').value||'';
+            var tag=document.getElementById('cover-tag').value||'';
+            var author=document.getElementById('cover-author').value||'';
+            var emoji=document.getElementById('cover-emoji').value||'';
+            var grad=ctx.createLinearGradient(0,0,canvas.width,canvas.height);
+            grad.addColorStop(0,bgGradient.start);grad.addColorStop(0.5,bgGradient.mid);grad.addColorStop(1,bgGradient.end);
+            ctx.fillStyle=grad;ctx.fillRect(0,0,canvas.width,canvas.height);
+            ctx.fillStyle='rgba(255,255,255,0.03)';
+            ctx.beginPath();ctx.arc(canvas.width*0.8,canvas.height*0.25,canvas.width*0.35,0,Math.PI*2);ctx.fill();
+            if(coverTemplate==='tech')drawTech(ctx,canvas,title,subtitle,tag,author,emoji);
+            else if(coverTemplate==='card')drawCard(ctx,canvas,title,subtitle,tag,author,emoji);
+            else drawMinimalist(ctx,canvas,title,subtitle,tag,author,emoji);
         }
-
-        // ── Cover: Template ─────────────────────────
-        function setTemplate(tpl) {
-            coverTemplate = tpl;
-            ['tech','card','minimalist'].forEach(t => {
-                const btn = document.getElementById('tpl-' + t);
-                btn.className = 'tpl-btn' + (t === tpl ? ' active' : '');
-            });
-            drawCover();
-        }
-
-        function setGradient(start, mid, end, el) {
-            bgGradient = { start, mid, end };
-            document.querySelectorAll('.gradient-btn').forEach(b => b.classList.remove('active'));
-            if (el) el.classList.add('active');
-            drawCover();
-            function getCanvasSize() {
-            const map = { '16-9':[1280,720], '4-3':[1024,768], '1-1':[800,800], '2-1':[1200,600] };
-            const v = document.getElementById('cover-aspect').value;
-            return { width: map[v][0], height: map[v][1] };
-        }
-
-        // ── Cover: Canvas Draw ─────────────────────
-        function drawCover() {
-            const canvas = document.getElementById('coverCanvas');
-            const ctx = canvas.getContext('2d');
-            const size = getCanvasSize();
-            canvas.width = size.width;
-            canvas.height = size.height;
-
-            const title = document.getElementById('cover-title').value || '点击输入文章标题';
-            const subtitle = document.getElementById('cover-subtitle').value || '';
-            const tag = document.getElementById('cover-tag').value || 'BLOG POST';
-            const author = document.getElementById('cover-author').value || 'HeHeHey';
-            const emoji = document.getElementById('cover-emoji').value || '📝';
-
-            // Background gradient
-            const grad = ctx.createLinearGradient(0,0,canvas.width,canvas.height);
-            grad.addColorStop(0, bgGradient.start);
-            grad.addColorStop(0.5, bgGradient.mid);
-            grad.addColorStop(1, bgGradient.end);
-            ctx.fillStyle = grad;
-            ctx.fillRect(0,0,canvas.width,canvas.height);
-
-            // Decorative lights
-            ctx.fillStyle = 'rgba(255,255,255,0.03)';
-            ctx.beginPath(); ctx.arc(canvas.width*0.8,canvas.height*0.2,canvas.width*0.3,0,Math.PI*2); ctx.fill();
-            ctx.fillStyle = 'rgba(255,255,255,0.015)';
-            ctx.beginPath(); ctx.arc(canvas.width*0.1,canvas.height*0.9,canvas.width*0.2,0,Math.PI*2); ctx.fill();
-
-            if (coverTemplate === 'tech') drawTechTemplate(ctx,canvas,title,subtitle,tag,author,emoji);
-            else if (coverTemplate === 'card') drawCardTemplate(ctx,canvas,title,subtitle,tag,author,emoji);
-            else drawMinimalistTemplate(ctx,canvas,title,subtitle,tag,author,emoji);
-        }
-
-        function wrapText(ctx,text,x,y,maxW,lineH) {
-            let line='', lines=[];
-            for(let n=0;n<text.length;n++){
-                let test=line+text[n];
-                if(ctx.measureText(test).width>maxW&&n>0){ lines.push(line); line=text[n]; }
-                else line=test;
+        function wrapText(ctx,text,x,y,maxW,lineH){
+            var line='',lines=[];
+            for(var n=0;n<text.length;n++){
+                var test=line+text[n];
+                if(ctx.measureText(test).width>maxW&&n>0){lines.push(line);line=text[n];} else line=test;
             }
             lines.push(line);
-            for(let i=0;i<lines.length;i++) ctx.fillText(lines[i],x,y+i*lineH);
+            for(var i=0;i<lines.length;i++)ctx.fillText(lines[i],x,y+i*lineH);
             return lines.length;
         }
-
-        function roundRect(ctx,x,y,w,h,r,fill,stroke) {
-            if(typeof r==='number') r={tl:r,tr:r,br:r,bl:r};
+        function roundRect(ctx,x,y,w,h,r,fill,stroke){
+            if(typeof r==='number')r={tl:r,tr:r,br:r,bl:r};
             ctx.beginPath();
             ctx.moveTo(x+r.tl,y);
-            ctx.lineTo(x+w-r.tr,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r.tr);
-            ctx.lineTo(x+w,y+h-r.br); ctx.quadraticCurveTo(x+w,y+h,x+w-r.br,y+h);
-            ctx.lineTo(x+r.bl,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r.bl);
-            ctx.lineTo(x,y+r.tl); ctx.quadraticCurveTo(x,y,x+r.tl,y);
+            ctx.lineTo(x+w-r.tr,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r.tr);
+            ctx.lineTo(x+w,y+h-r.br);ctx.quadraticCurveTo(x+w,y+h,x+w-r.br,y+h);
+            ctx.lineTo(x+r.bl,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r.bl);
+            ctx.lineTo(x,y+r.tl);ctx.quadraticCurveTo(x,y,x+r.tl,y);
             ctx.closePath();
-            if(fill) ctx.fill();
-            if(stroke) ctx.stroke();
+            if(fill)ctx.fill();if(stroke)ctx.stroke();
         }
-
-        function drawTechTemplate(ctx,canvas,title,subtitle,tag,author,emoji) {
-            ctx.strokeStyle='rgba(255,255,255,0.06)'; ctx.lineWidth=1;
-            for(let i=0;i<canvas.width;i+=40){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,canvas.height);ctx.stroke();}
-            for(let j=0;j<canvas.height;j+=40){ctx.beginPath();ctx.moveTo(0,j);ctx.lineTo(canvas.width,j);ctx.stroke();}
-            const pad=60;
-
-            ctx.fillStyle='rgba(255,255,255,0.08)'; ctx.strokeStyle='rgba(255,255,255,0.15)'; ctx.lineWidth=2;
-            roundRect(ctx,pad,pad,90,90,20,true,true);
-            ctx.font='54px sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
-            ctx.fillText(emoji,pad+45,pad+45);
-
-            ctx.fillStyle='#a5b4fc'; ctx.font='bold 16px Inter,sans-serif'; ctx.textAlign='left'; ctx.textBaseline='top';
-            ctx.fillText(tag.toUpperCase(),pad,pad+120);
-
-            ctx.fillStyle='rgba(255,255,255,0.5)'; ctx.font='500 16px Inter,sans-serif';
-            ctx.fillText(author,pad,canvas.height-pad-15);
-
-            ctx.strokeStyle='rgba(99,102,241,0.4)'; ctx.lineWidth=4; ctx.beginPath();
-            ctx.moveTo(pad,canvas.height-pad-45); ctx.lineTo(pad+160,canvas.height-pad-45); ctx.stroke();
-
-            ctx.fillStyle='#ffffff'; ctx.font='bold 48px Inter,sans-serif'; ctx.textBaseline='top';
-            const totalLines=wrapText(ctx,title,pad,pad+160,canvas.width-pad*2-80,62);
-            ctx.fillStyle='rgba(255,255,255,0.7)'; ctx.font='400 20px Inter,sans-serif';
-            wrapText(ctx,subtitle,pad,pad+160+totalLines*62+15,canvas.width-pad*2-80,32);
+        function drawTech(ctx,canvas,title,subtitle,tag,author,emoji){
+            ctx.strokeStyle='rgba(255,255,255,0.04)';ctx.lineWidth=1;
+            for(var i=0;i<canvas.width;i+=40){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,canvas.height);ctx.stroke();}
+            for(var j=0;j<canvas.height;j+=40){ctx.beginPath();ctx.moveTo(0,j);ctx.lineTo(canvas.width,j);ctx.stroke();}
+            var p=60;
+            ctx.fillStyle='rgba(255,255,255,0.07)';ctx.strokeStyle='rgba(255,255,255,0.15)';ctx.lineWidth=2;
+            roundRect(ctx,p,p,80,80,16,true,true);
+            ctx.font='44px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
+            ctx.fillText(emoji,p+40,p+40);
+            ctx.fillStyle='#a78bfa';ctx.font='bold 15px Inter,sans-serif';ctx.textAlign='left';ctx.textBaseline='top';
+            ctx.fillText(tag.toUpperCase(),p,p+110);
+            ctx.fillStyle='rgba(255,255,255,0.5)';ctx.fillText(author,p,canvas.height-p-10);
+            ctx.strokeStyle='rgba(139,92,246,0.4)';ctx.lineWidth=3;ctx.beginPath();
+            ctx.moveTo(p,canvas.height-p-30);ctx.lineTo(p+120,canvas.height-p-30);ctx.stroke();
+            ctx.fillStyle='#ffffff';ctx.font='bold 44px Inter,sans-serif';ctx.textBaseline='top';
+            var totalLines=wrapText(ctx,title,p,p+150,canvas.width-p*2-40,58);
+            ctx.fillStyle='rgba(255,255,255,0.7)';ctx.font='400 18px Inter,sans-serif';
+            wrapText(ctx,subtitle,p,p+150+totalLines*58+15,canvas.width-p*2-40,28);
         }
-
-        function drawCardTemplate(ctx,canvas,title,subtitle,tag,author,emoji) {
-            const cx=80,cy=80,cw=canvas.width-160,ch=canvas.height-160;
-            ctx.fillStyle='rgba(255,255,255,0.04)'; ctx.strokeStyle='rgba(255,255,255,0.12)'; ctx.lineWidth=1;
-            roundRect(ctx,cx,cy,cw,ch,24,true,true);
-
-            const bx=cx+40,by=cy+40,bw=120,bh=34;
-            ctx.fillStyle='rgba(255,255,255,0.1)';
-            roundRect(ctx,bx,by,bw,bh,17,true,false);
-            ctx.fillStyle='#a5b4fc'; ctx.font='bold 12px Inter,sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
-            ctx.fillText(tag.toUpperCase(),bx+bw/2,by+bh/2);
-
-            ctx.font='36px sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
-            ctx.fillText(emoji,cx+cw-60,by+bh/2);
-
-            ctx.fillStyle='#ffffff'; ctx.font='bold 44px Inter,sans-serif'; ctx.textAlign='left'; ctx.textBaseline='top';
-            const lines=wrapText(ctx,title,cx+40,by+bh+30,cw-80,58);
-            ctx.fillStyle='rgba(255,255,255,0.65)'; ctx.font='400 18px Inter,sans-serif';
-            wrapText(ctx,subtitle,cx+40,by+bh+30+lines*58+15,cw-80,28);
-
-            ctx.fillStyle='rgba(255,255,255,0.4)'; ctx.font='600 14px Inter';
-            ctx.fillText('WRITTEN BY '+author.toUpperCase(),cx+40,cy+ch-45);
+        function drawCard(ctx,canvas,title,subtitle,tag,author,emoji){
+            var x=70,y=70,w=canvas.width-x*2,h=canvas.height-y*2;
+            ctx.fillStyle='rgba(255,255,255,0.03)';ctx.strokeStyle='rgba(255,255,255,0.10)';ctx.lineWidth=1;
+            roundRect(ctx,x,y,w,h,20,true,true);
+            ctx.fillStyle='rgba(255,255,255,0.08)';roundRect(ctx,x+40,y+40,110,32,16,true,false);
+            ctx.fillStyle='#c4b5fd';ctx.font='bold 12px Inter';ctx.textAlign='center';ctx.textBaseline='middle';
+            ctx.fillText(tag.toUpperCase(),x+95,y+56);
+            ctx.font='36px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
+            ctx.fillText(emoji,x+w-60,y+56);
+            ctx.fillStyle='#ffffff';ctx.font='bold 42px Inter,sans-serif';ctx.textAlign='left';ctx.textBaseline='top';
+            var lines=wrapText(ctx,title,x+40,y+100,w-80,56);
+            ctx.fillStyle='rgba(255,255,255,0.65)';ctx.font='400 17px Inter,sans-serif';
+            wrapText(ctx,subtitle,x+40,y+100+lines*56+15,w-80,26);
+            ctx.fillStyle='rgba(255,255,255,0.4)';ctx.font='600 13px Inter';
+            ctx.fillText('PUBLISHED BY '+author.toUpperCase(),x+40,y+h-40);
         }
-
-        function drawMinimalistTemplate(ctx,canvas,title,subtitle,tag,author,emoji) {
-            ctx.strokeStyle='rgba(255,255,255,0.08)'; ctx.lineWidth=1;
-            ctx.strokeRect(40,40,canvas.width-80,canvas.height-80);
-
-            ctx.font='80px sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+        function drawMinimalist(ctx,canvas,title,subtitle,tag,author,emoji){
+            ctx.strokeStyle='rgba(255,255,255,0.06)';ctx.lineWidth=1;
+            ctx.strokeRect(30,30,canvas.width-60,canvas.height-60);
+            ctx.font='72px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
             ctx.fillText(emoji,canvas.width/2,110);
-
-            ctx.fillStyle='#ffffff'; ctx.font='bold 42px Inter,sans-serif'; ctx.textAlign='center'; ctx.textBaseline='top';
-            const wrapW=canvas.width-200;
-            let line='',lines=[];
-            for(let n=0;n<title.length;n++){
-                let test=line+title[n];
-                if(ctx.measureText(test).width>wrapW&&n>0){lines.push(line);line=title[n];} else line=test;
+            ctx.fillStyle='#ffffff';ctx.font='bold 40px Inter,sans-serif';ctx.textAlign='center';ctx.textBaseline='top';
+            var words=title.split(''),line='',lines=[];
+            for(var n=0;n<words.length;n++){
+                var test=line+words[n];
+                if(ctx.measureText(test).width>canvas.width-240&&n>0){lines.push(line);line=words[n];} else line=test;
             }
             lines.push(line);
-            for(let i=0;i<lines.length;i++) ctx.fillText(lines[i],canvas.width/2,180+i*56);
-
-            ctx.fillStyle='rgba(255,255,255,0.6)'; ctx.font='400 17px Inter,sans-serif';
-            let sLine='',sLines=[];
-            for(let s=0;s<subtitle.length;s++){
-                let test=sLine+subtitle[s];
-                if(ctx.measureText(test).width>wrapW&&s>0){sLines.push(sLine);sLine=subtitle[s];} else sLine=test;
+            for(var i=0;i<lines.length;i++)ctx.fillText(lines[i],canvas.width/2,170+i*54);
+            ctx.fillStyle='rgba(255,255,255,0.6)';ctx.font='400 17px Inter,sans-serif';
+            var subY=170+lines.length*54+15;
+            var sWords=subtitle.split(''),sLine='',sLines=[];
+            for(var s=0;s<sWords.length;s++){
+                var testS=sLine+sWords[s];
+                if(ctx.measureText(testS).width>canvas.width-240&&s>0){sLines.push(sLine);sLine=sWords[s];} else sLine=testS;
             }
             sLines.push(sLine);
-            const subY=180+lines.length*56+15;
-            for(let j=0;j<sLines.length;j++) ctx.fillText(sLines[j],canvas.width/2,subY+j*28);
-
-            ctx.fillStyle='#cbd5e1'; ctx.font='bold 13px Inter';
-            ctx.fillText(tag.toUpperCase()+' • '+author.toUpperCase(),canvas.width/2,canvas.height-70);
+            for(var j=0;j<sLines.length;j++)ctx.fillText(sLines[j],canvas.width/2,subY+j*26);
+            ctx.fillStyle='#e4e4e7';ctx.font='bold 12px Inter';
+            ctx.fillText(tag.toUpperCase()+' \u2022 '+author.toUpperCase(),canvas.width/2,canvas.height-60);
         }
-
-        function downloadCover() {
+        function downloadCover(){
             try {
-                const canvas = document.getElementById('coverCanvas');
-                const slug = document.getElementById('cover-title').value.trim().toLowerCase().replace(/[^a-z0-9\u4e00-\u9fa5]+/gi,'-');
-                const helper = document.getElementById('download-helper');
-                helper.download = 'cover-'+(slug||'untitled')+'.png';
-                helper.href = canvas.toDataURL('image/png');
+                var canvas=document.getElementById('coverCanvas');
+                var slug=document.getElementById('cover-title').value.trim().toLowerCase().replace(/[^a-z0-9]+/g,'-');
+                var helper=document.getElementById('download-helper');
+                helper.download='cover-'+(slug||'untitled')+'.png';
+                helper.href=canvas.toDataURL('image/png');
                 helper.click();
-                showToast('封面下载成功!');
-            } catch(e) { showToast('保存失败，请重试',true); }
+                showToast('\u7f51\u9875\u5c01\u9762\u5df2\u4fdd\u5b58\u5230\u60a8\u7684\u8bbe\u5907\u4e2d\uff01');
+            } catch(e){ showToast('\u4fdd\u5b58\u5931\u8d25\uff0c\u8bf7\u91cd\u8bd5'); }
         }
-
-        /* ── FRONT MATTER ─────────────────────────── */
-        function changeFmFormat(fmt) {
-            currentFmFormat = fmt;
-            ['yaml','json','toml'].forEach(f => {
-                document.getElementById('fmt-'+f).className = 'fmt-tab' + (f===fmt ? ' active' : '');
+        function changeFmFormat(fmt){
+            currentFmFormat=fmt;
+            ['yaml','toml','json'].forEach(function(f){
+                document.getElementById('fmt-'+f).className='fmt-tab'+(f===fmt?' active':'');
             });
-            const fi = document.getElementById('fm-file-indicator');
-            const lt = document.getElementById('fm-lang-tag');
-            fi.textContent = fmt==='yaml'?'index.md':fmt==='json'?'meta.json':'hugo_meta.toml';
-            lt.textContent = fmt;
+            document.getElementById('fm-file-indicator').textContent=fmt==='yaml'?'index.md':fmt==='toml'?'config.toml':'meta.json';
+            document.getElementById('fm-lang-tag').textContent=fmt;
             updateFrontMatter();
         }
-
-        function handleChipInput(e,type) {
-            const input = document.getElementById('fm-'+type+'-input');
+        function handleChipInput(e,type){
+            var input=document.getElementById('fm-'+type+'-input');
             if((e.key==='Enter'||e.key===',')&&input.value.trim()){
-                const v = input.value.trim();
-                const list = type==='category'?categories:tags;
-                if(!list.includes(v)){ list.push(v); renderChips(); updateFrontMatter(); }
+                var v=input.value.trim();
+                var list=type==='category'?categories:tags;
+                if(list.indexOf(v)===-1){list.push(v);renderChips();updateFrontMatter();}
                 input.value='';
             }
         }
-
-        function removeChip(idx,type) {
-            (type==='category'?categories:tags).splice(idx,1);
-            renderChips(); updateFrontMatter();
+        function removeChip(idx,type){(type==='category'?categories:tags).splice(idx,1);renderChips();updateFrontMatter();}
+        function renderChips(){
+            document.getElementById('fm-categories-chips').innerHTML=categories.map(function(c,i){
+                return'<span class="chip">'+c+'<span class="remove" onclick="removeChip('+i+',\'category\')">&times;</span></span>';
+            }).join('');
+            document.getElementById('fm-tags-chips').innerHTML=tags.map(function(t,i){
+                return'<span class="chip"># '+t+'<span class="remove" onclick="removeChip('+i+',\'tag\')">&times;</span></span>';
+            }).join('');
         }
-
-        function renderChips() {
-            const catEl = document.getElementById('fm-categories-chips');
-            const tagEl = document.getElementById('fm-tags-chips');
-            catEl.innerHTML = categories.map((c,i)=>
-                `<span class="chip">${c}<span class="remove" onclick="removeChip(${i},'category')">&times;</span></span>`
-            ).join('');
-            tagEl.innerHTML = tags.map((t,i)=>
-                `<span class="chip"># ${t}<span class="remove" onclick="removeChip(${i},'tag')">&times;</span></span>`
-            ).join('');
-        }
-
-        function syncToCover() {
-            document.getElementById('cover-title').value = document.getElementById('fm-title').value;
-            document.getElementById('cover-author').value = document.getElementById('fm-author').value+' @ Studio';
-            document.getElementById('cover-tag').value = categories[0]||'Web Design';
+        function syncToCover(){
+            document.getElementById('cover-title').value=document.getElementById('fm-title').value;
+            document.getElementById('cover-author').value=document.getElementById('fm-author').value;
+            document.getElementById('cover-tag').value=categories[0]||'POST';
             switchTab('cover');
-            setTimeout(drawCover, 50);
-            showToast('已同步至封面生成器!');
+            setTimeout(drawCover,50);
+            showToast('\u535a\u6587\u4e3b\u8981\u5185\u5bb9\u5df2\u5237\u65b0\u81f3\u753b\u5e03\uff01');
         }
-
-        function updateFrontMatter() {
-            const title = document.getElementById('fm-title').value||'未命名博文';
-            const slug = document.getElementById('fm-slug').value||'untitled-post';
-            const date = document.getElementById('fm-date').value||new Date().toISOString();
-            const author = document.getElementById('fm-author').value||'Anonymous';
-            const draft = document.getElementById('fm-draft').checked;
-            const comment = document.getElementById('fm-comment').checked;
-            let out='';
-
+        function updateFrontMatter(){
+            var title=document.getElementById('fm-title').value||'';
+            var slug=document.getElementById('fm-slug').value||'';
+            var date=document.getElementById('fm-date').value||'';
+            var author=document.getElementById('fm-author').value||'';
+            var isDraft=document.getElementById('fm-draft').checked;
+            var isComment=document.getElementById('fm-comment').checked;
+            var out='';
             if(currentFmFormat==='yaml'){
-                out+=`---\ntitle: "${title.replace(/"/g,'\\"')}"\nslug: ${slug}\ndate: ${date}\nauthor: ${author}\ndraft: ${draft}\ncomments: ${comment}\n`;
-                if(categories.length){ out+=`categories:\n`; categories.forEach(c=>out+=`  - ${c}\n`; }
-                if(tags.length){ out+=`tags:\n`; tags.forEach(t=>out+=`  - ${t}\n`; }
+                out+='---\ntitle: "'+title.replace(/"/g,'\\"')+'"\nslug: '+slug+'\ndate: '+date+'\nauthor: '+author+'\ndraft: '+isDraft+'\ncomments: '+isComment+'\n';
+                if(categories.length){out+='categories:\n';categories.forEach(function(c){out+='  - '+c+'\n';});}
+                if(tags.length){out+='tags:\n';tags.forEach(function(t){out+='  - '+t+'\n';});}
                 out+='---';
-            } else if(currentFmFormat==='json'){
-                out=JSON.stringify({title,slug,date,author,draft,comments:comment,categories,tags},null,2);
+            } else if(currentFmFormat==='toml'){
+                out+='title = "'+title.replace(/"/g,'\\"')+'"\nslug = "'+slug+'"\ndate = '+date.replace(' ','T')+'Z\nauthor = "'+author+'"\ndraft = '+isDraft+'\ncomments = '+isComment+'\n';
+                out+='categories = '+JSON.stringify(categories)+'\ntags = '+JSON.stringify(tags)+'\n';
             } else {
-                out+=`title = "${title.replace(/"/g,'\\"')}"\nslug = "${slug}"\ndate = "${date.replace(' ','T')}Z"\nauthor = "${author}"\ndraft = ${draft}\ncomments = ${comment}\ncategories = ${JSON.stringify(categories)}\ntags = ${JSON.stringify(tags)}\n`;
+                out=JSON.stringify({title:title,slug:slug,date:date,author:author,draft:isDraft,comments:isComment,categories:categories,tags:tags},null,2);
             }
-            document.getElementById('fm-code-block').textContent = out;
+            document.getElementById('fm-code-block').textContent=out;
         }
-
-        function copyFmCode(type) {
-            const fm = document.getElementById('fm-code-block').textContent;
-            let text = fm;
+        function copyFmCode(type){
+            var fm=document.getElementById('fm-code-block').textContent;
+            var text=fm;
             if(type==='full'){
-                text = fm+'\n\n# '+document.getElementById('fm-title').value+'\n\n> 本文基于 HeHeHey 博客助手初始化。\n\n---\n\n在这里撰写你的文章内容...';
+                text=fm+'\n\n# '+document.getElementById('fm-title').value+'\n\n\u5728\u8fd9\u91cc\u5f00\u59cb\u64b0\u5199\u60a8\u7684\u7cbe\u5f69\u6b63\u6587...\n';
             }
-            const ta = document.createElement('textarea');
-            ta.value = text;
-            ta.style.cssText = 'position:fixed;opacity:0;';
-            document.body.appendChild(ta);
-            ta.select();
-            try {
-                document.execCommand('copy') ? showToast('已复制到剪贴板!') : showToast('复制失败',true);
-            } catch(e) { showToast('复制失败',true); }
+            var ta=document.createElement('textarea');
+            ta.value=text;ta.style.cssText='position:fixed;opacity:0;';
+            document.body.appendChild(ta);ta.select();
+            try{document.execCommand('copy')?showToast('\u5df2\u62f7\u5230\u526a\u8d34\u677f\uff01'):showToast('\u590d\u5236\u5931\u8d25');}catch(e){showToast('\u590d\u5236\u5931\u8d25');}
             document.body.removeChild(ta);
         }
     </script>
