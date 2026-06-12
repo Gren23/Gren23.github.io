@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light" class="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><meta name="baidu-site-verification" content="codeva-hfv5Au82rN"><title>G/ren的小破站 | G/ren的小破站</title><meta name="author" content="G/ren"><meta name="copyright" content="G/ren"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="博客封面 &amp; Front Matter 生成器 | HeHeHey.top                                  :root {             --bg: #0b0f19;             --surface: rgba(15,23,42,0.80);             --border: rgba(25">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" class="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><meta name="baidu-site-verification" content="codeva-hfv5Au82rN"><title>G/ren的小破站 | G/ren的小破站</title><meta name="author" content="G/ren"><meta name="copyright" content="G/ren"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Front Matter 生成器 | HeHeHey.top                   * { box-sizing: border-box; margin: 0; padding: 0; }         body { font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif; b">
 <meta property="og:type" content="website">
 <meta property="og:title" content="G/ren的小破站">
 <meta property="og:url" content="https://www.hehehey.top/tools/frontmatter-generator/index.html">
 <meta property="og:site_name" content="G/ren的小破站">
-<meta property="og:description" content="博客封面 &amp; Front Matter 生成器 | HeHeHey.top                                  :root {             --bg: #0b0f19;             --surface: rgba(15,23,42,0.80);             --border: rgba(25">
+<meta property="og:description" content="Front Matter 生成器 | HeHeHey.top                   * { box-sizing: border-box; margin: 0; padding: 0; }         body { font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif; b">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.hehehey.top/img/%E5%A4%B4%E5%83%8F.JPG">
-<meta property="article:published_time" content="2026-06-12T17:53:38.308Z">
-<meta property="article:modified_time" content="2026-06-12T17:53:38.308Z">
+<meta property="article:published_time" content="2026-06-12T18:02:43.844Z">
+<meta property="article:modified_time" content="2026-06-12T18:02:43.844Z">
 <meta property="article:author" content="G/ren">
 <meta property="article:tag" content="机器视觉,Vision Master,Mech-Vision,视觉定位,海康,Hexo博客,技术分享,编程">
 <meta name="twitter:card" content="summary">
@@ -151,500 +151,242 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>博客封面 &amp; Front Matter 生成器 | HeHeHey.top</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&amp;family=Inter:wght@300;400;500;600;700;800&amp;family=Noto+Sans+SC:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet">
+    <title>Front Matter 生成器 | HeHeHey.top</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7Gt9v7r+6Yf6bqSE9YPqNcyuPN0VuqJqtklfyK41YT/MT7H9Tc1Jw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <style>
-        :root {
-            --bg: #0b0f19;
-            --surface: rgba(15,23,42,0.80);
-            --border: rgba(255,255,255,0.06);
-            --text: #f3f4f6;
-            --muted: #6b7280;
-            --brand-50: #f5f3ff;
-            --brand-400: #a78bfa;
-            --brand-500: #8b5cf6;
-            --brand-600: #7c3aed;
-        }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', 'Noto Sans SC', sans-serif; background-color: var(--bg); color: var(--text); min-height: 100vh; }
+        body { font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif; background: #0b0f19; color: #f3f4f6; min-height: 100vh; }
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #0f172a; }
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #334155; }
-        .page-header { position: sticky; top: 0; z-index: 50; background: rgba(2,4,12,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 16px 24px; }
-        .header-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-        .logo-area { display: flex; align-items: center; gap: 12px; }
-        .logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--brand-600), #4f46e5); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; text-decoration: none; flex-shrink: 0; }
-        .logo-title { font-size: 15px; font-weight: 700; color: white; }
-        .logo-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
-        .tab-bar { display: flex; background: #111827; border: 1px solid var(--border); border-radius: 12px; padding: 4px; gap: 4px; }
-        .tab-btn { display: flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; color: #6b7280; cursor: pointer; border: none; background: transparent; transition: all 0.2s; font-family: inherit; }
-        .tab-btn.active { background: var(--brand-600); color: white; }
-        .tab-btn:not(.active):hover { color: white; }
-        .main { max-width: 1280px; margin: 0 auto; padding: 32px 24px 64px; }
-        .page-title { text-align: center; margin-bottom: 32px; }
-        .page-title h2 { font-size: 22px; font-weight: 700; color: white; margin-bottom: 4px; }
-        .page-title p { font-size: 13px; color: var(--muted); }
+        .page-header { position: sticky; top: 0; z-index: 50; background: rgba(2,4,12,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 14px 24px; }
+        .header-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 34px; height: 34px; background: linear-gradient(135deg, #7c3aed, #4f46e5); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; text-decoration: none; flex-shrink: 0; }
+        .logo-title { font-size: 14px; font-weight: 700; color: white; }
+        .logo-sub { font-size: 11px; color: #6b7280; margin-top: 1px; }
+        .main { max-width: 1100px; margin: 0 auto; padding: 32px 24px 64px; }
+        .page-title { text-align: center; margin-bottom: 28px; }
+        .page-title h2 { font-size: 20px; font-weight: 700; color: white; margin-bottom: 4px; }
+        .page-title p { font-size: 13px; color: #6b7280; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
-        .panel { background: rgba(15,23,42,0.70); border: 1px solid var(--border); border-radius: 20px; padding: 24px; }
+        .panel { background: rgba(15,23,42,0.70); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; padding: 24px; }
         .panel-title { font-size: 14px; font-weight: 700; color: white; margin-bottom: 3px; display: flex; align-items: center; gap: 8px; }
-        .panel-title i { color: var(--brand-400); font-size: 16px; }
-        .panel-sub { font-size: 11px; color: var(--muted); margin-bottom: 20px; }
-        .panel-divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
-        .form-group { margin-bottom: 14px; }
-        .form-label { display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 6px; }
-        .form-input, .form-textarea, .form-select { width: 100%; background: rgba(2,4,12,0.70); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 10px 12px; font-size: 13px; color: var(--text); font-family: inherit; outline: none; transition: border-color 0.2s; }
-        .form-input:focus, .form-textarea:focus, .form-select:focus { border-color: var(--brand-500); }
-        .form-textarea { resize: vertical; min-height: 64px; }
+        .panel-title i { color: #a78bfa; font-size: 15px; }
+        .panel-sub { font-size: 11px; color: #6b7280; margin-bottom: 18px; }
+        .divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 16px 0; }
+        .form-group { margin-bottom: 13px; }
+        .form-label { display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #6b7280; margin-bottom: 6px; }
+        .form-input, .form-textarea, .form-select { width: 100%; background: rgba(2,4,12,0.75); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 10px 12px; font-size: 13px; color: #f3f4f6; font-family: inherit; outline: none; transition: border-color 0.2s; }
+        .form-input:focus, .form-textarea:focus, .form-select:focus { border-color: #8b5cf6; }
+        .form-textarea { resize: vertical; min-height: 60px; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 16px; border-radius: 10px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; transition: all 0.2s; font-family: inherit; }
-        .btn-primary { background: linear-gradient(135deg, var(--brand-500), #4f46e5); color: white; width: 100%; margin-top: 6px; }
-        .btn-primary:hover { opacity: 0.88; }
-        .btn-outline { background: rgba(2,4,12,0.80); color: var(--brand-400); border: 1px solid rgba(139,92,246,0.25); }
-        .btn-outline:hover { border-color: var(--brand-500); }
-        .tpl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-        .tpl-btn { padding: 8px 6px; border-radius: 10px; font-size: 11px; font-weight: 600; text-align: center; cursor: pointer; border: 1px solid rgba(255,255,255,0.07); background: rgba(2,4,12,0.80); color: #6b7280; transition: all 0.2s; }
-        .tpl-btn.active { background: rgba(139,92,246,0.15); color: var(--brand-400); border-color: rgba(139,92,246,0.35); }
-        .tpl-btn:hover:not(.active) { border-color: var(--brand-500); color: var(--brand-400); }
-        .emoji-row { display: flex; gap: 8px; align-items: center; }
-        .emoji-btn { font-size: 16px; cursor: pointer; transition: transform 0.15s; background: transparent; border: none; }
-        .emoji-btn:hover { transform: scale(1.3); }
-        .gradient-row { display: flex; gap: 8px; flex-wrap: wrap; }
-        .gradient-btn { width: 40px; height: 32px; border-radius: 8px; cursor: pointer; border: 2px solid transparent; transition: border-color 0.2s; }
-        .gradient-btn:hover, .gradient-btn.active { border-color: white; }
-        .chip-box { display: flex; flex-wrap: wrap; gap: 6px; background: rgba(2,4,12,0.80); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 8px; min-height: 44px; align-items: center; }
-        .chip { display: inline-flex; align-items: center; gap: 5px; background: rgba(139,92,246,0.10); color: var(--brand-400); border: 1px solid rgba(139,92,246,0.20); border-radius: 6px; padding: 3px 8px; font-size: 11px; }
+        .chip-box { display: flex; flex-wrap: wrap; gap: 6px; background: rgba(2,4,12,0.75); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 8px; min-height: 44px; align-items: center; }
+        .chip { display: inline-flex; align-items: center; gap: 5px; background: rgba(139,92,246,0.10); color: #a78bfa; border: 1px solid rgba(139,92,246,0.20); border-radius: 6px; padding: 3px 8px; font-size: 11px; }
         .chip .remove { cursor: pointer; opacity: 0.6; }
         .chip .remove:hover { opacity: 1; }
-        .chip-input { flex: 1; min-width: 80px; background: transparent; border: none; outline: none; font-size: 12px; color: var(--text); padding: 2px 4px; font-family: inherit; }
+        .chip-input { flex: 1; min-width: 80px; background: transparent; border: none; outline: none; font-size: 12px; color: #f3f4f6; padding: 2px 4px; font-family: inherit; }
         .toggle-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .toggle-label { display: flex; align-items: center; gap: 8px; background: rgba(2,4,12,0.80); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; cursor: pointer; font-size: 12px; color: #d1d5db; transition: border-color 0.2s; }
+        .toggle-label { display: flex; align-items: center; gap: 8px; background: rgba(2,4,12,0.75); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 10px 12px; cursor: pointer; font-size: 12px; color: #d1d5db; transition: border-color 0.2s; }
         .toggle-label:hover { border-color: #374151; }
-        .toggle-label input[type="checkbox"] { accent-color: var(--brand-500); width: 13px; height: 13px; }
-        .code-window { background: rgba(2,4,12,0.90); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
-        .code-titlebar { display: flex; align-items: center; justify-content: space-between; background: rgba(15,23,42,0.90); border-bottom: 1px solid var(--border); padding: 10px 16px; }
+        .toggle-label input[type="checkbox"] { accent-color: #8b5cf6; width: 13px; height: 13px; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 16px; border-radius: 10px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; transition: all 0.2s; font-family: inherit; }
+        .btn-primary { background: linear-gradient(135deg, #8b5cf6, #4f46e5); color: white; width: 100%; margin-top: 14px; }
+        .btn-primary:hover { opacity: 0.85; }
+        .btn-outline { background: rgba(2,4,12,0.80); color: #a78bfa; border: 1px solid rgba(139,92,246,0.25); }
+        .btn-outline:hover { border-color: #8b5cf6; }
+        .btn-ghost { background: transparent; color: #6b7280; border: 1px solid rgba(255,255,255,0.06); padding: 6px 12px; font-size: 11px; border-radius: 8px; }
+        .btn-ghost:hover { color: white; border-color: #374151; }
+        .code-window { background: rgba(2,4,12,0.90); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; overflow: hidden; }
+        .code-titlebar { display: flex; align-items: center; justify-content: space-between; background: rgba(15,23,42,0.90); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 10px 16px; }
         .dots { display: flex; gap: 6px; }
         .dot { width: 10px; height: 10px; border-radius: 50%; }
         .dot-r { background: #FF5F57; }
         .dot-y { background: #FEBC2E; }
         .dot-g { background: #28C840; }
-        .code-lang { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--brand-400); font-family: 'Fira Code', monospace; }
-        .code-body { padding: 16px 20px; font-family: 'Fira Code', monospace; font-size: 12px; line-height: 1.8; color: #c4b5fd; white-space: pre-wrap; word-break: break-all; max-height: 320px; overflow-y: auto; }
+        .code-lang { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #a78bfa; font-family: 'Fira Code', 'Courier New', monospace; }
+        .code-body { padding: 16px 20px; font-family: 'Fira Code', 'Courier New', monospace; font-size: 12px; line-height: 1.8; color: #c4b5fd; white-space: pre-wrap; word-break: break-all; max-height: 380px; overflow-y: auto; }
         .fmt-tabs { display: flex; background: rgba(2,4,12,0.80); border-radius: 8px; padding: 3px; gap: 3px; }
         .fmt-tab { padding: 5px 12px; border-radius: 6px; font-size: 11px; font-weight: 600; cursor: pointer; color: #6b7280; transition: all 0.2s; }
         .fmt-tab.active { background: #1f2937; color: white; }
         .fmt-tab:hover:not(.active) { color: white; }
-        .canvas-wrap { display: flex; align-items: center; justify-content: center; background: rgba(2,4,12,0.90); border: 1px solid var(--border); border-radius: 16px; min-height: 360px; position: relative; overflow: hidden; padding: 24px; }
-        .canvas-wrap canvas { max-width: 100%; height: auto; border-radius: 12px; }
-        .toast { position: fixed; bottom: 24px; right: 24px; z-index: 999; display: flex; align-items: center; gap: 10px; background: rgba(15,23,42,0.95); border: 1px solid var(--border); color: var(--text); padding: 12px 18px; border-radius: 12px; font-size: 13px; font-weight: 600; box-shadow: 0 8px 32px rgba(0,0,0,0.30); opacity: 0; transform: translateY(12px); transition: all 0.3s; pointer-events: none; }
+        .toast { position: fixed; bottom: 24px; right: 24px; z-index: 999; display: flex; align-items: center; gap: 10px; background: rgba(15,23,42,0.95); border: 1px solid rgba(255,255,255,0.06); color: #f3f4f6; padding: 12px 18px; border-radius: 12px; font-size: 13px; font-weight: 600; box-shadow: 0 8px 32px rgba(0,0,0,0.30); opacity: 0; transform: translateY(12px); transition: all 0.3s; pointer-events: none; }
         .toast.show { opacity: 1; transform: translateY(0); }
-        .toast i { color: var(--brand-400); }
-        .sync-btn { width: 100%; background: rgba(2,4,12,0.80); border: 1px solid rgba(139,92,246,0.25); color: var(--brand-400); padding: 10px; border-radius: 10px; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.2s; font-family: inherit; margin-top: 14px; }
-        .sync-btn:hover { border-color: var(--brand-500); color: white; }
-        .page-footer { text-align: center; padding: 24px; border-top: 1px solid var(--border); color: #6b7280; font-size: 12px; }
-        .hidden { display: none !important; }
-        @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } .form-row, .toggle-row { grid-template-columns: 1fr; } .page-header { padding: 12px 16px; } .main { padding: 20px 16px 48px; } }
+        .toast i { color: #a78bfa; }
+        .info-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .info-card { background: rgba(15,23,42,0.40); border: 1px solid rgba(255,255,255,0.06); padding: 12px 14px; border-radius: 12px; }
+        .info-card-title { font-size: 11px; font-weight: 600; color: #d1d5db; margin-bottom: 4px; }
+        .info-card-body { font-size: 10px; color: #6b7280; line-height: 1.6; }
+        .page-footer { text-align: center; padding: 24px; border-top: 1px solid rgba(255,255,255,0.06); color: #6b7280; font-size: 12px; }
+        @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } .form-row, .toggle-row, .info-row { grid-template-columns: 1fr; } .page-header { padding: 12px 16px; } .main { padding: 20px 16px 48px; } }
     </style>
 
 
     <header class="page-header">
         <div class="header-inner">
-            <div class="logo-area">
-                <a href="https://www.hehehey.top/" class="logo-icon"><i class="fa-solid fa-arrow-left"></i></a>
-                <div>
-                    <div class="logo-title">HeHeHey's Blog <span style="font-size:10px;background:rgba(139,92,246,0.15);color:var(--brand-400);border:1px solid rgba(139,92,246,0.25);padding:1px 7px;border-radius:20px;font-weight:600;">创作助手</span></div>
-                    <div class="logo-sub">输入想法，一键产出精美封面与规范 Front Matter 标头</div>
-                </div>
-            </div>
-            <div class="tab-bar">
-                <button class="tab-btn active" id="tab-cover-btn" onclick="switchTab('cover')"><i class="fa-solid fa-image"></i> 封面生成器</button>
-                <button class="tab-btn" id="tab-fm-btn" onclick="switchTab('fm')"><i class="fa-solid fa-file-code"></i> Front Matter 生成</button>
+            <a href="https://www.hehehey.top/" class="logo-icon"><i class="fa-solid fa-arrow-left"></i></a>
+            <div>
+                <div class="logo-title">HeHeHey's Blog <span style="font-size:10px;background:rgba(139,92,246,0.15);color:#a78bfa;border:1px solid rgba(139,92,246,0.25);padding:1px 7px;border-radius:20px;font-weight:600;">Front Matter</span></div>
+                <div class="logo-sub">生成标准 YAML / TOML / JSON 元数据标头</div>
             </div>
         </div>
     </header>
     <main class="main">
         <div class="page-title">
-            <h2>博客封面 &amp; Front Matter 生成器</h2>
-            <p>封面设计 + 元数据配置，全在一个页面</p>
+            <h2>Front Matter 生成器</h2>
+            <p>填写表单，一键生成符合 Hexo / Hugo 标准的文章标头</p>
         </div>
-        <!-- COVER PANEL -->
-        <div id="panel-cover" class="grid-2">
+        <div class="grid-2">
+            <!-- Left: Form -->
             <div class="panel">
-                <div class="panel-title"><i class="fa-solid fa-sliders"></i> 封面视觉设计</div>
-                <div class="panel-sub">简单调整配置，让社交分享大图更吸睛</div>
-                <hr class="panel-divider">
+                <div class="panel-title"><i class="fa-solid fa-sliders"></i> 文章元数据</div>
+                <div class="panel-sub">配置 Front Matter 所需的标准字段</div>
+                <hr class="divider">
                 <div class="form-group">
-                    <label class="form-label">博文大标题</label>
-                    <input type="text" id="cover-title" class="form-input" value="如何为你的独立博客设计一套高颜值的组件" oninput="drawCover()">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">核心简介 / 导读摘要</label>
-                    <textarea id="cover-subtitle" class="form-textarea" rows="2" oninput="drawCover()">极简科技风、悬浮卡片感，多套排版一键搞定博客社交分享卡片。</textarea>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">主徽章 / 分类</label>
-                        <input type="text" id="cover-tag" class="form-input" value="DESIGN" oninput="drawCover()">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">作者署名</label>
-                        <input type="text" id="cover-author" class="form-input" value="hehehey.top" oninput="drawCover()">
-                    </div>
-                </div>
-                <hr class="panel-divider">
-                <div class="form-group">
-                    <label class="form-label">设计风格模板</label>
-                    <div class="tpl-grid">
-                        <div class="tpl-btn active" id="tpl-tech" onclick="setTemplate('tech')">现代科技</div>
-                        <div class="tpl-btn" id="tpl-card" onclick="setTemplate('card')">悬浮卡片</div>
-                        <div class="tpl-btn" id="tpl-minimalist" onclick="setTemplate('minimalist')">极简大白</div>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">核心 Emoji</label>
-                        <div class="emoji-row">
-                            <input type="text" id="cover-emoji" class="form-input" value="🎨" oninput="drawCover()" style="width:52px;text-align:center;">
-                            <button class="emoji-btn" onclick="quickEmoji('🎨')">🎨</button>
-                            <button class="emoji-btn" onclick="quickEmoji('⚡')">⚡</button>
-                            <button class="emoji-btn" onclick="quickEmoji('💻')">💻</button>
-                            <button class="emoji-btn" onclick="quickEmoji('💡')">💡</button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">比例尺寸</label>
-                        <select id="cover-aspect" class="form-select" onchange="drawCover()">
-                            <option value="2-1" selected="">2:1 (1200×600)</option>
-                            <option value="16-9">16:9 (1280×720)</option>
-                            <option value="1-1">1:1 (800×800)</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">底色渐变配色</label>
-                    <div class="gradient-row">
-                        <div class="gradient-btn active" style="background:linear-gradient(135deg,#2e1065,#0f172a,#7c3aed);" onclick="setGradient('#2e1065','#0f172a','#7c3aed',this)" title="高贵紫罗兰"></div>
-                        <div class="gradient-btn" style="background:linear-gradient(135deg,#0c4a6e,#020617,#0284c7);" onclick="setGradient('#0c4a6e','#020617','#0284c7',this)" title="深邃海蓝"></div>
-                        <div class="gradient-btn" style="background:linear-gradient(135deg,#065f46,#022c22,#10b981);" onclick="setGradient('#065f46','#022c22','#10b981',this)" title="极客翡翠"></div>
-                        <div class="gradient-btn" style="background:linear-gradient(135deg,#7c2d12,#1c1917,#ea580c);" onclick="setGradient('#7c2d12','#1c1917','#ea580c',this)" title="落日余晖"></div>
-                        <div class="gradient-btn" style="background:linear-gradient(135deg,#18181b,#09090b,#27272a);" onclick="setGradient('#18181b','#09090b','#27272a',this)" title="纯黑黑客"></div>
-                    </div>
-                </div>
-                <button class="btn btn-primary" onclick="downloadCover()"><i class="fa-solid fa-download"></i> 下载超清封面 PNG</button>
-                <p style="font-size:10px;color:#6b7280;text-align:center;margin-top:8px;">100% 浏览器客户端本地渲染，对隐私完全保密</p>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:16px;">
-                <div style="display:flex;align-items:center;justify-content:space-between;">
-                    <div>
-                        <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:#6b7280;">实时渲染预览</div>
-                        <div style="font-size:10px;color:#4b5563;margin-top:2px;">可在画布上右键直接复制或另存为高清大图</div>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--brand-400);background:rgba(139,92,246,0.08);border:1px solid rgba(139,92,246,0.18);padding:4px 10px;border-radius:20px;">
-                        <span style="width:7px;height:7px;border-radius:50%;background:var(--brand-400);display:inline-block;"></span>GPU 加速已就绪
-                    </div>
-                </div>
-                <div class="canvas-wrap"><canvas id="coverCanvas"></canvas></div>
-                <div style="background:rgba(15,23,42,0.40);border:1px solid var(--border);padding:14px 16px;border-radius:14px;display:flex;align-items:flex-start;gap:10px;">
-                    <i class="fa-solid fa-circle-info" style="color:var(--brand-400);font-size:15px;margin-top:1px;"></i>
-                    <div style="font-size:11px;color:#6b7280;line-height:1.7;">
-                        <strong style="color:#d1d5db;">💡 完美排版速成：</strong><br>
-                        1. 主标题字数约 10 ~ 20 字视觉冲击力最强<br>
-                        2. 点击"同步"可和 Front Matter 秒级联动，拒绝二次输入
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- FRONT MATTER PANEL -->
-        <div id="panel-fm" class="grid-2 hidden">
-            <div class="panel">
-                <div class="panel-title"><i class="fa-solid fa-file-lines"></i> Front Matter 信息配置</div>
-                <div class="panel-sub">配置标准的 YAML / TOML Meta 信息块</div>
-                <hr class="panel-divider">
-                <div class="form-group">
-                    <label class="form-label">文章主标题</label>
-                    <input type="text" id="fm-title" class="form-input" value="使用 Tailwind CSS 构建惊艳的独立博客设计" oninput="updateFrontMatter()">
+                    <label class="form-label">文章标题</label>
+                    <input type="text" id="fm-title" class="form-input" value="使用 Tailwind CSS 构建惊艳的独立博客设计" oninput="update()">
                 </div>
                 <div class="form-group">
                     <label class="form-label">链接别名 (Slug)</label>
-                    <input type="text" id="fm-slug" class="form-input" value="tailwind-css-stunning-blog-design" oninput="updateFrontMatter()">
+                    <input type="text" id="fm-slug" class="form-input" value="tailwind-css-stunning-blog-design" oninput="update()">
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label">创建时间</label>
-                        <input type="text" id="fm-date" class="form-input" oninput="updateFrontMatter()">
+                        <input type="text" id="fm-date" class="form-input" oninput="update()">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">作者 (Author)</label>
-                        <input type="text" id="fm-author" class="form-input" value="HeHeHey" oninput="updateFrontMatter()">
+                        <label class="form-label">作者</label>
+                        <input type="text" id="fm-author" class="form-input" value="HeHeHey" oninput="update()">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">所属分类 (Categories)</label>
+                    <label class="form-label">分类 (Categories)</label>
                     <div class="chip-box">
-                        <div id="fm-categories-chips" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
-                        <input type="text" id="fm-category-input" class="chip-input" placeholder="回车添加..." onkeydown="handleChipInput(event,'category')">
+                        <div id="cats"></div>
+                        <input type="text" id="cat-input" class="chip-input" placeholder="回车添加..." onkeydown="chip(event,'cat')">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">博文标签 (Tags)</label>
+                    <label class="form-label">标签 (Tags)</label>
                     <div class="chip-box">
-                        <div id="fm-tags-chips" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
-                        <input type="text" id="fm-tag-input" class="chip-input" placeholder="回车添加..." onkeydown="handleChipInput(event,'tag')">
+                        <div id="tags"></div>
+                        <input type="text" id="tag-input" class="chip-input" placeholder="回车添加..." onkeydown="chip(event,'tag')">
                     </div>
                 </div>
                 <div class="toggle-row">
-                    <label class="toggle-label"><input type="checkbox" id="fm-draft" onchange="updateFrontMatter()"> 设为草稿</label>
-                    <label class="toggle-label"><input type="checkbox" id="fm-comment" checked="" onchange="updateFrontMatter()"> 开启评论</label>
+                    <label class="toggle-label"><input type="checkbox" id="fm-draft" onchange="update()"> 设为草稿</label>
+                    <label class="toggle-label"><input type="checkbox" id="fm-comment" checked="" onchange="update()"> 开启评论</label>
                 </div>
-                <button class="sync-btn" onclick="syncToCover()"><i class="fa-solid fa-rotate"></i> 一键同步文字至封面画板</button>
             </div>
+            <!-- Right: Code -->
             <div style="display:flex;flex-direction:column;gap:16px;">
                 <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
                     <div class="fmt-tabs">
-                        <div class="fmt-tab active" id="fmt-yaml" onclick="changeFmFormat('yaml')">YAML (Hexo/Astro)</div>
-                        <div class="fmt-tab" id="fmt-toml" onclick="changeFmFormat('toml')">TOML (Hugo)</div>
-                        <div class="fmt-tab" id="fmt-json" onclick="changeFmFormat('json')">JSON</div>
+                        <div class="fmt-tab active" id="tab-yaml" onclick="setfmt('yaml')">YAML (Hexo)</div>
+                        <div class="fmt-tab" id="tab-toml" onclick="setfmt('toml')">TOML (Hugo)</div>
+                        <div class="fmt-tab" id="tab-json" onclick="setfmt('json')">JSON</div>
                     </div>
                     <div style="display:flex;gap:8px;">
-                        <button class="btn btn-outline" onclick="copyFmCode('only-fm')" style="padding:7px 12px;font-size:11px;"><i class="fa-solid fa-copy"></i> 仅复制标头</button>
-                        <button class="btn btn-primary" onclick="copyFmCode('full')" style="padding:7px 14px;font-size:11px;width:auto;"><i class="fa-solid fa-file-lines"></i> 复制完整文章模板</button>
+                        <button class="btn btn-outline" onclick="copy('fm')" style="padding:7px 12px;font-size:11px;width:auto;"><i class="fa-solid fa-copy"></i> 复制标头</button>
+                        <button class="btn btn-primary" onclick="copy('full')" style="padding:7px 14px;font-size:11px;width:auto;"><i class="fa-solid fa-file-lines"></i> 复制文章模板</button>
                     </div>
                 </div>
                 <div class="code-window">
                     <div class="code-titlebar">
                         <div style="display:flex;align-items:center;gap:8px;">
                             <div class="dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
-                            <span id="fm-file-indicator" style="font-size:11px;color:#6b7280;font-family:monospace;">index.md</span>
+                            <span id="file-name" style="font-size:11px;color:#6b7280;font-family:monospace;">index.md</span>
                         </div>
-                        <span class="code-lang" id="fm-lang-tag">yaml</span>
+                        <span class="code-lang" id="lang-tag">yaml</span>
                     </div>
-                    <div class="code-body" id="fm-code-block"></div>
+                    <div class="code-body" id="out"></div>
                 </div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-                    <div style="background:rgba(15,23,42,0.40);border:1px solid var(--border);padding:12px 14px;border-radius:12px;">
-                        <div style="font-size:11px;font-weight:600;color:#d1d5db;margin-bottom:4px;">📋 什么是 Front Matter ?</div>
-                        <div style="font-size:10px;color:#6b7280;line-height:1.6;">放置在文章最前方的 YAML/TOML 配置块，告诉静态博客引擎该文的关键元数据。</div>
+                <div class="info-row">
+                    <div class="info-card">
+                        <div class="info-card-title">📋 什么是 Front Matter ?</div>
+                        <div class="info-card-body">放置在文章最前方的 YAML/TOML 配置块，告诉静态博客引擎该文的标题、时间、分类等元数据。</div>
                     </div>
-                    <div style="background:rgba(15,23,42,0.40);border:1px solid var(--border);padding:12px 14px;border-radius:12px;">
-                        <div style="font-size:11px;font-weight:600;color:#d1d5db;margin-bottom:4px;">🔗 Slug 链接别名</div>
-                        <div style="font-size:10px;color:#6b7280;line-height:1.6;">输入标题后自动转换为连字符格式，保持 SEO 友好的 URL 路径。</div>
+                    <div class="info-card">
+                        <div class="info-card-title">🔗 Slug 链接别名</div>
+                        <div class="info-card-body">输入标题后自动填入连字符格式，保持 SEO 友好的 URL 路径。</div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-    <div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i><span id="toast-msg">操作成功</span></div>
-    <a id="download-helper" class="hidden" download=""></a>
-    <footer class="page-footer">© 2026 hehehey.top | 博客全自动创作工作台</footer>    <script>
-        var currentTab='cover', currentFmFormat='yaml', coverTemplate='tech';
-        var bgGradient={start:'#2e1065',mid:'#0f172a',end:'#7c3aed'};
-        var categories=['技术分享']; var tags=['前端','TailwindCSS'];
+    <div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i><span id="msg">操作成功</span></div>
+    <footer class="page-footer">© 2026 hehehey.top | 博客全自动创作工作台</footer>
+    <script>
+        var cats=['技术分享'], tags=['前端','TailwindCSS'], fmt='yaml';
         window.onload=function(){
-            var now=new Date(), pad=function(n){return String(n).padStart(2,'0');};
-            document.getElementById('fm-date').value=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate())+' '+pad(now.getHours())+':'+pad(now.getMinutes())+':'+pad(now.getSeconds());
-            renderChips(); updateFrontMatter(); drawCover();
+            var now=new Date(),p=function(n){return String(n).padStart(2,'0');};
+            document.getElementById('fm-date').value=now.getFullYear()+'-'+p(now.getMonth()+1)+'-'+p(now.getDate())+' '+p(now.getHours())+':'+p(now.getMinutes())+':'+p(now.getSeconds());
+            render(); update();
         };
-        function switchTab(tab){
-            currentTab=tab;
-            var coverBtn=document.getElementById('tab-cover-btn');
-            var fmBtn=document.getElementById('tab-fm-btn');
-            var coverPanel=document.getElementById('panel-cover');
-            var fmPanel=document.getElementById('panel-fm');
-            if(tab==='cover'){
-                coverBtn.className='tab-btn active'; fmBtn.className='tab-btn';
-                coverPanel.classList.remove('hidden'); fmPanel.classList.add('hidden');
-                setTimeout(drawCover,50);
-            } else {
-                fmBtn.className='tab-btn active'; coverBtn.className='tab-btn';
-                fmPanel.classList.remove('hidden'); coverPanel.classList.add('hidden');
-                updateFrontMatter();
-            }
+        function toast(m){
+            var t=document.getElementById('toast');
+            document.getElementById('msg').textContent=m;
+            t.classList.add('show');
+            setTimeout(function(){t.classList.remove('show');},3000);
         }
-        function showToast(msg){var t=document.getElementById('toast');document.getElementById('toast-msg').textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},3000);}
-        function setTemplate(tpl){coverTemplate=tpl;['tech','card','minimalist'].forEach(function(item){document.getElementById('tpl-'+item).className='tpl-btn'+(item===tpl?' active':'');});drawCover();}
-        function quickEmoji(e){document.getElementById('cover-emoji').value=e;drawCover();}
-        function setGradient(start,mid,end,el){bgGradient={start:start,mid:mid,end:end};document.querySelectorAll('.gradient-btn').forEach(function(b){b.classList.remove('active');});if(el)el.classList.add('active');drawCover();}
-        function getCanvasSize(){var v=document.getElementById('cover-aspect').value;var map={'16-9':[1280,720],'2-1':[1200,600],'1-1':[800,800]};return{width:map[v][0],height:map[v][1]};}
-        function drawCover(){
-            var canvas=document.getElementById('coverCanvas');
-            var ctx=canvas.getContext('2d');
-            var size=getCanvasSize();
-            canvas.width=size.width; canvas.height=size.height;
-            var title=document.getElementById('cover-title').value||'';
-            var subtitle=document.getElementById('cover-subtitle').value||'';
-            var tag=document.getElementById('cover-tag').value||'';
-            var author=document.getElementById('cover-author').value||'';
-            var emoji=document.getElementById('cover-emoji').value||'';
-            var grad=ctx.createLinearGradient(0,0,canvas.width,canvas.height);
-            grad.addColorStop(0,bgGradient.start);grad.addColorStop(0.5,bgGradient.mid);grad.addColorStop(1,bgGradient.end);
-            ctx.fillStyle=grad;ctx.fillRect(0,0,canvas.width,canvas.height);
-            ctx.fillStyle='rgba(255,255,255,0.03)';
-            ctx.beginPath();ctx.arc(canvas.width*0.8,canvas.height*0.25,canvas.width*0.35,0,Math.PI*2);ctx.fill();
-            if(coverTemplate==='tech')drawTech(ctx,canvas,title,subtitle,tag,author,emoji);
-            else if(coverTemplate==='card')drawCard(ctx,canvas,title,subtitle,tag,author,emoji);
-            else drawMinimalist(ctx,canvas,title,subtitle,tag,author,emoji);
-        }
-        function wrapText(ctx,text,x,y,maxW,lineH){
-            var line='',lines=[];
-            for(var n=0;n<text.length;n++){
-                var test=line+text[n];
-                if(ctx.measureText(test).width>maxW&&n>0){lines.push(line);line=text[n];} else line=test;
-            }
-            lines.push(line);
-            for(var i=0;i<lines.length;i++)ctx.fillText(lines[i],x,y+i*lineH);
-            return lines.length;
-        }
-        function roundRect(ctx,x,y,w,h,r,fill,stroke){
-            if(typeof r==='number')r={tl:r,tr:r,br:r,bl:r};
-            ctx.beginPath();
-            ctx.moveTo(x+r.tl,y);
-            ctx.lineTo(x+w-r.tr,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r.tr);
-            ctx.lineTo(x+w,y+h-r.br);ctx.quadraticCurveTo(x+w,y+h,x+w-r.br,y+h);
-            ctx.lineTo(x+r.bl,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r.bl);
-            ctx.lineTo(x,y+r.tl);ctx.quadraticCurveTo(x,y,x+r.tl,y);
-            ctx.closePath();
-            if(fill)ctx.fill();if(stroke)ctx.stroke();
-        }
-        function drawTech(ctx,canvas,title,subtitle,tag,author,emoji){
-            ctx.strokeStyle='rgba(255,255,255,0.04)';ctx.lineWidth=1;
-            for(var i=0;i<canvas.width;i+=40){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,canvas.height);ctx.stroke();}
-            for(var j=0;j<canvas.height;j+=40){ctx.beginPath();ctx.moveTo(0,j);ctx.lineTo(canvas.width,j);ctx.stroke();}
-            var p=60;
-            ctx.fillStyle='rgba(255,255,255,0.07)';ctx.strokeStyle='rgba(255,255,255,0.15)';ctx.lineWidth=2;
-            roundRect(ctx,p,p,80,80,16,true,true);
-            ctx.font='44px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
-            ctx.fillText(emoji,p+40,p+40);
-            ctx.fillStyle='#a78bfa';ctx.font='bold 15px Inter,sans-serif';ctx.textAlign='left';ctx.textBaseline='top';
-            ctx.fillText(tag.toUpperCase(),p,p+110);
-            ctx.fillStyle='rgba(255,255,255,0.5)';ctx.fillText(author,p,canvas.height-p-10);
-            ctx.strokeStyle='rgba(139,92,246,0.4)';ctx.lineWidth=3;ctx.beginPath();
-            ctx.moveTo(p,canvas.height-p-30);ctx.lineTo(p+120,canvas.height-p-30);ctx.stroke();
-            ctx.fillStyle='#ffffff';ctx.font='bold 44px Inter,sans-serif';ctx.textBaseline='top';
-            var totalLines=wrapText(ctx,title,p,p+150,canvas.width-p*2-40,58);
-            ctx.fillStyle='rgba(255,255,255,0.7)';ctx.font='400 18px Inter,sans-serif';
-            wrapText(ctx,subtitle,p,p+150+totalLines*58+15,canvas.width-p*2-40,28);
-        }
-        function drawCard(ctx,canvas,title,subtitle,tag,author,emoji){
-            var x=70,y=70,w=canvas.width-x*2,h=canvas.height-y*2;
-            ctx.fillStyle='rgba(255,255,255,0.03)';ctx.strokeStyle='rgba(255,255,255,0.10)';ctx.lineWidth=1;
-            roundRect(ctx,x,y,w,h,20,true,true);
-            ctx.fillStyle='rgba(255,255,255,0.08)';roundRect(ctx,x+40,y+40,110,32,16,true,false);
-            ctx.fillStyle='#c4b5fd';ctx.font='bold 12px Inter';ctx.textAlign='center';ctx.textBaseline='middle';
-            ctx.fillText(tag.toUpperCase(),x+95,y+56);
-            ctx.font='36px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
-            ctx.fillText(emoji,x+w-60,y+56);
-            ctx.fillStyle='#ffffff';ctx.font='bold 42px Inter,sans-serif';ctx.textAlign='left';ctx.textBaseline='top';
-            var lines=wrapText(ctx,title,x+40,y+100,w-80,56);
-            ctx.fillStyle='rgba(255,255,255,0.65)';ctx.font='400 17px Inter,sans-serif';
-            wrapText(ctx,subtitle,x+40,y+100+lines*56+15,w-80,26);
-            ctx.fillStyle='rgba(255,255,255,0.4)';ctx.font='600 13px Inter';
-            ctx.fillText('PUBLISHED BY '+author.toUpperCase(),x+40,y+h-40);
-        }
-        function drawMinimalist(ctx,canvas,title,subtitle,tag,author,emoji){
-            ctx.strokeStyle='rgba(255,255,255,0.06)';ctx.lineWidth=1;
-            ctx.strokeRect(30,30,canvas.width-60,canvas.height-60);
-            ctx.font='72px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
-            ctx.fillText(emoji,canvas.width/2,110);
-            ctx.fillStyle='#ffffff';ctx.font='bold 40px Inter,sans-serif';ctx.textAlign='center';ctx.textBaseline='top';
-            var words=title.split(''),line='',lines=[];
-            for(var n=0;n<words.length;n++){
-                var test=line+words[n];
-                if(ctx.measureText(test).width>canvas.width-240&&n>0){lines.push(line);line=words[n];} else line=test;
-            }
-            lines.push(line);
-            for(var i=0;i<lines.length;i++)ctx.fillText(lines[i],canvas.width/2,170+i*54);
-            ctx.fillStyle='rgba(255,255,255,0.6)';ctx.font='400 17px Inter,sans-serif';
-            var subY=170+lines.length*54+15;
-            var sWords=subtitle.split(''),sLine='',sLines=[];
-            for(var s=0;s<sWords.length;s++){
-                var testS=sLine+sWords[s];
-                if(ctx.measureText(testS).width>canvas.width-240&&s>0){sLines.push(sLine);sLine=sWords[s];} else sLine=testS;
-            }
-            sLines.push(sLine);
-            for(var j=0;j<sLines.length;j++)ctx.fillText(sLines[j],canvas.width/2,subY+j*26);
-            ctx.fillStyle='#e4e4e7';ctx.font='bold 12px Inter';
-            ctx.fillText(tag.toUpperCase()+' \u2022 '+author.toUpperCase(),canvas.width/2,canvas.height-60);
-        }
-        function downloadCover(){
-            try {
-                var canvas=document.getElementById('coverCanvas');
-                var slug=document.getElementById('cover-title').value.trim().toLowerCase().replace(/[^a-z0-9]+/g,'-');
-                var helper=document.getElementById('download-helper');
-                helper.download='cover-'+(slug||'untitled')+'.png';
-                helper.href=canvas.toDataURL('image/png');
-                helper.click();
-                showToast('\u7f51\u9875\u5c01\u9762\u5df2\u4fdd\u5b58\u5230\u60a8\u7684\u8bbe\u5907\u4e2d\uff01');
-            } catch(e){ showToast('\u4fdd\u5b58\u5931\u8d25\uff0c\u8bf7\u91cd\u8bd5'); }
-        }
-        function changeFmFormat(fmt){
-            currentFmFormat=fmt;
-            ['yaml','toml','json'].forEach(function(f){
-                document.getElementById('fmt-'+f).className='fmt-tab'+(f===fmt?' active':'');
-            });
-            document.getElementById('fm-file-indicator').textContent=fmt==='yaml'?'index.md':fmt==='toml'?'config.toml':'meta.json';
-            document.getElementById('fm-lang-tag').textContent=fmt;
-            updateFrontMatter();
-        }
-        function handleChipInput(e,type){
-            var input=document.getElementById('fm-'+type+'-input');
+        function chip(e,type){
+            var input=document.getElementById(type==='cat'?'cat-input':'tag-input');
             if((e.key==='Enter'||e.key===',')&&input.value.trim()){
                 var v=input.value.trim();
-                var list=type==='category'?categories:tags;
-                if(list.indexOf(v)===-1){list.push(v);renderChips();updateFrontMatter();}
+                var list=type==='cat'?cats:tags;
+                if(list.indexOf(v)===-1){list.push(v);render();update();}
                 input.value='';
             }
         }
-        function removeChip(idx,type){(type==='category'?categories:tags).splice(idx,1);renderChips();updateFrontMatter();}
-        function renderChips(){
-            document.getElementById('fm-categories-chips').innerHTML=categories.map(function(c,i){
-                return'<span class="chip">'+c+'<span class="remove" onclick="removeChip('+i+',\'category\')">&times;</span></span>';
+        function rm(idx,type){
+            (type==='cat'?cats:tags).splice(idx,1);
+            render(); update();
+        }
+        function render(){
+            document.getElementById('cats').innerHTML=cats.map(function(c,i){
+                return'<span class="chip">'+c+'<span class="remove" onclick="rm('+i+',\'cat\')">×</span></span>';
             }).join('');
-            document.getElementById('fm-tags-chips').innerHTML=tags.map(function(t,i){
-                return'<span class="chip"># '+t+'<span class="remove" onclick="removeChip('+i+',\'tag\')">&times;</span></span>';
+            document.getElementById('tags').innerHTML=tags.map(function(t,i){
+                return'<span class="chip"># '+t+'<span class="remove" onclick="rm('+i+',\'tag\')">×</span></span>';
             }).join('');
         }
-        function syncToCover(){
-            document.getElementById('cover-title').value=document.getElementById('fm-title').value;
-            document.getElementById('cover-author').value=document.getElementById('fm-author').value;
-            document.getElementById('cover-tag').value=categories[0]||'POST';
-            switchTab('cover');
-            setTimeout(drawCover,50);
-            showToast('\u535a\u6587\u4e3b\u8981\u5185\u5bb9\u5df2\u5237\u65b0\u81f3\u753b\u5e03\uff01');
+        function setfmt(f){
+            fmt=f;
+            ['yaml','toml','json'].forEach(function(x){
+                document.getElementById('tab-'+x).className='fmt-tab'+(x===f?' active':'');
+            });
+            document.getElementById('file-name').textContent=f==='yaml'?'index.md':f==='toml'?'config.toml':'meta.json';
+            document.getElementById('lang-tag').textContent=f;
+            update();
         }
-        function updateFrontMatter(){
+        function update(){
             var title=document.getElementById('fm-title').value||'';
             var slug=document.getElementById('fm-slug').value||'';
             var date=document.getElementById('fm-date').value||'';
             var author=document.getElementById('fm-author').value||'';
-            var isDraft=document.getElementById('fm-draft').checked;
-            var isComment=document.getElementById('fm-comment').checked;
+            var draft=document.getElementById('fm-draft').checked;
+            var comment=document.getElementById('fm-comment').checked;
             var out='';
-            if(currentFmFormat==='yaml'){
-                out+='---\ntitle: "'+title.replace(/"/g,'\\"')+'"\nslug: '+slug+'\ndate: '+date+'\nauthor: '+author+'\ndraft: '+isDraft+'\ncomments: '+isComment+'\n';
-                if(categories.length){out+='categories:\n';categories.forEach(function(c){out+='  - '+c+'\n';});}
+            if(fmt==='yaml'){
+                out+='---\ntitle: "'+title.replace(/"/g,'\\"')+'"\nslug: '+slug+'\ndate: '+date+'\nauthor: '+author+'\ndraft: '+draft+'\ncomments: '+comment+'\n';
+                if(cats.length){out+='categories:\n';cats.forEach(function(c){out+='  - '+c+'\n';});}
                 if(tags.length){out+='tags:\n';tags.forEach(function(t){out+='  - '+t+'\n';});}
                 out+='---';
-            } else if(currentFmFormat==='toml'){
-                out+='title = "'+title.replace(/"/g,'\\"')+'"\nslug = "'+slug+'"\ndate = '+date.replace(' ','T')+'Z\nauthor = "'+author+'"\ndraft = '+isDraft+'\ncomments = '+isComment+'\n';
-                out+='categories = '+JSON.stringify(categories)+'\ntags = '+JSON.stringify(tags)+'\n';
+            } else if(fmt==='toml'){
+                out+='title = "'+title.replace(/"/g,'\\"')+'"\nslug = "'+slug+'"\ndate = '+date.replace(' ','T')+'Z\nauthor = "'+author+'"\ndraft = '+draft+'\ncomments = '+comment+'\n';
+                out+='categories = '+JSON.stringify(cats)+'\ntags = '+JSON.stringify(tags)+'\n';
             } else {
-                out=JSON.stringify({title:title,slug:slug,date:date,author:author,draft:isDraft,comments:isComment,categories:categories,tags:tags},null,2);
+                out=JSON.stringify({title:title,slug:slug,date:date,author:author,draft:draft,comments:comment,categories:cats,tags:tags},null,2);
             }
-            document.getElementById('fm-code-block').textContent=out;
+            document.getElementById('out').textContent=out;
         }
-        function copyFmCode(type){
-            var fm=document.getElementById('fm-code-block').textContent;
-            var text=fm;
-            if(type==='full'){
-                text=fm+'\n\n# '+document.getElementById('fm-title').value+'\n\n\u5728\u8fd9\u91cc\u5f00\u59cb\u64b0\u5199\u60a8\u7684\u7cbe\u5f69\u6b63\u6587...\n';
-            }
+        function copy(type){
+            var fm=document.getElementById('out').textContent;
+            var text=type==='full'?fm+'\n\n# '+document.getElementById('fm-title').value+'\n\n在这里开始撰写正文...\n':fm;
             var ta=document.createElement('textarea');
             ta.value=text;ta.style.cssText='position:fixed;opacity:0;';
             document.body.appendChild(ta);ta.select();
-            try{document.execCommand('copy')?showToast('\u5df2\u62f7\u5230\u526a\u8d34\u677f\uff01'):showToast('\u590d\u5236\u5931\u8d25');}catch(e){showToast('\u590d\u5236\u5931\u8d25');}
+            try{document.execCommand('copy')?toast('已拷贝至剪贴板！'):toast('复制失败');}catch(e){toast('复制失败');}
             document.body.removeChild(ta);
         }
     </script>
