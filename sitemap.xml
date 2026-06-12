@@ -236,24 +236,6 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/tools/frontmatter-generator/index.html</loc>
-    
-    <lastmod>2026-06-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hehehey.top/social/link/index.html</loc>
-    
-    <lastmod>2026-06-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.hehehey.top/moments/index.html</loc>
     
     <lastmod>2026-06-09</lastmod>
@@ -300,24 +282,6 @@
   
   <url>
     <loc>https://www.hehehey.top/message/index.html</loc>
-    
-    <lastmod>2026-06-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hehehey.top/protocol/comment/index.html</loc>
-    
-    <lastmod>2026-06-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hehehey.top/protocol/copyright/index.html</loc>
     
     <lastmod>2026-06-05</lastmod>
     
@@ -383,69 +347,6 @@
     <loc>https://www.hehehey.top/categories/waterfall/index.html</loc>
     
     <lastmod>2026-06-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hehehey.top/life/movies/index.html</loc>
-    
-    <lastmod>2026-05-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hehehey.top/life/music/index.html</loc>
-    
-    <lastmod>2026-05-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hehehey.top/life/photos/index.html</loc>
-    
-    <lastmod>2026-05-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hehehey.top/personal/about/index.html</loc>
-    
-    <lastmod>2026-05-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hehehey.top/personal/bb/index.html</loc>
-    
-    <lastmod>2026-05-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hehehey.top/site/echarts/index.html</loc>
-    
-    <lastmod>2026-05-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hehehey.top/site/time/index.html</loc>
-    
-    <lastmod>2026-05-23</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
