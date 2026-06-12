@@ -1,0 +1,1208 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><meta name="baidu-site-verification" content="codeva-hfv5Au82rN"><title>G/ren的小破站 | G/ren的小破站</title><meta name="author" content="G/ren"><meta name="copyright" content="G/ren"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="博客生产力助手 - HeHeHey.top                                            tailwind.config = {             darkMode: 'class',             theme: {                 extend: {">
+<meta property="og:type" content="website">
+<meta property="og:title" content="G/ren的小破站">
+<meta property="og:url" content="https://www.hehehey.top/tools/frontmatter-generator/index.html">
+<meta property="og:site_name" content="G/ren的小破站">
+<meta property="og:description" content="博客生产力助手 - HeHeHey.top                                            tailwind.config = {             darkMode: 'class',             theme: {                 extend: {">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.hehehey.top/img/%E5%A4%B4%E5%83%8F.JPG">
+<meta property="article:published_time" content="2026-06-12T17:27:38.657Z">
+<meta property="article:modified_time" content="2026-06-12T17:27:38.657Z">
+<meta property="article:author" content="G/ren">
+<meta property="article:tag" content="机器视觉,Vision Master,Mech-Vision,视觉定位,海康,Hexo博客,技术分享,编程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.hehehey.top/img/%E5%A4%B4%E5%83%8F.JPG"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.hehehey.top/tools/frontmatter-generator/index.html"><link rel="preconnect" href="//unpkg.com"><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://img.hehey.top/js/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'G/ren的小破站',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'page'
+}</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><style>[data-theme="light"] body{background:linear-gradient(180deg,#f0f9ff 0%,#e8f6fc 30%,#ffffff 100%) !important;}html{scroll-behavior:auto;}#footer-wrap{background-color:#ffffff!important;background-image:none!important;border-top:1px solid #e5e9ef !important;padding:10px 0 !important;min-height:unset !important;height:auto !important;line-height:1.6 !important;box-shadow:none !important;text-align:center;}#footer-wrap .copyright{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;}#footer-wrap .framework-info{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:8px;font-size:13px !important;color:#888 !important;flex-wrap:wrap;}#footer-wrap #ghbdages{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:5px;flex-wrap:wrap;}#footer-wrap a{color:#49b1f5!important;text-decoration:none;}#footer-wrap a:hover{text-decoration:underline;}</style>
+<style>[data-theme="dark"] body{background:linear-gradient(180deg,#1a2a3a 0%,#243447 50%,#1a2533 100%) !important;}#footer-wrap{background:#1a2533!important;border-top:1px solid #374151 !important;padding:10px 0 !important;min-height:unset !important;height:auto !important;line-height:1.6 !important;box-shadow:none !important;text-align:center;}#footer-wrap .copyright{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;}#footer-wrap .framework-info{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:8px;font-size:13px !important;color:#9ca3af !important;flex-wrap:wrap;}#footer-wrap #ghbdages{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:5px;flex-wrap:wrap;}#footer-wrap a{color:#93c5fd!important;text-decoration:none;}#footer-wrap a:hover{text-decoration:underline;}</style>
+<script src="https://img.hehey.top/js/echarts.min.js"></script><script defer="" src="https://hm.baidu.com/hm.js?187613fe21d57ca4e614119d64623d28"></script><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/%E5%A4%B4%E5%83%8F.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><span class="site-page group hide"><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/cover-generator/"><i class="fa-fw fas fa-image"></i><span> 封面生成</span></a></li><li><a class="site-page child" href="/tools/frontmatter-generator/"><i class="fa-fw fas fa-file-code"></i><span> Front Matter</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><span class="site-page group hide"><span> 统计</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/charts/"><i class="fa-fw fas fa-chart-bar"></i><span> 文章统计</span></a></li><li><a class="site-page child" href="/census/"><i class="fa-fw fas fa-chart-line"></i><span> 博客统计</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 博客</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-sync"></i><span> 更新</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fas fa-bullhorn"></i><span> 公告</span></a></li><li><a class="site-page child" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 信箱</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/moments/"><i class="fa-fw fas fa-comment-dots"></i><span> 动态</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">G/ren的小破站</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><span class="site-page group hide"><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/cover-generator/"><i class="fa-fw fas fa-image"></i><span> 封面生成</span></a></li><li><a class="site-page child" href="/tools/frontmatter-generator/"><i class="fa-fw fas fa-file-code"></i><span> Front Matter</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><span class="site-page group hide"><span> 统计</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/charts/"><i class="fa-fw fas fa-chart-bar"></i><span> 文章统计</span></a></li><li><a class="site-page child" href="/census/"><i class="fa-fw fas fa-chart-line"></i><span> 博客统计</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 博客</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-sync"></i><span> 更新</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fas fa-bullhorn"></i><span> 公告</span></a></li><li><a class="site-page child" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 信箱</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/moments/"><i class="fa-fw fas fa-comment-dots"></i><span> 动态</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><h1 class="title-seo">G/ren的小破站</h1></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container">
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客生产力助手 - HeHeHey.top</title>
+    <!-- HeHeHey Blog CSS Variables -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Noto+Sans+SC:wght@300;400;500;700;900&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans SC', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --h-bg: #fafaf8;
+            --h-surface: rgba(255,255,255,0.72);
+            --h-border: rgba(0,0,0,0.08);
+            --h-text: #222222;
+            --h-muted: #999999;
+            --h-accent: #5a7a6a;
+            --h-theme: #1677B3;
+            --h-highlight: #FF7242;
+            --h-main: #5C5C5C;
+            --h-card-gap: 24px;
+        }
+        [data-theme="dark"] {
+            --h-bg: #1a1a1a;
+            --h-surface: rgba(30,30,30,0.80);
+            --h-border: rgba(255,255,255,0.08);
+            --h-text: #e8e8e8;
+            --h-muted: #888888;
+            --h-accent: #8faea0;
+            --h-highlight: #FFB449;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background-color: var(--h-bg);
+            color: var(--h-text);
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--h-border); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--h-muted); }
+
+        /* Page Header */
+        .page-header {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: var(--h-surface);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--h-border);
+            padding: 0 40px; height: 60px;
+            display: flex; align-items: center; justify-content: space-between;
+            z-index: 100;
+        }
+        .page-header .logo { font-size: 15px; font-weight: 600; color: var(--h-accent); }
+        .page-header .back-link { font-size: 13px; color: var(--h-muted); text-decoration: none; }
+        .page-header .back-link:hover { color: var(--h-accent); }
+        .page-header .tool-link { font-size: 13px; color: var(--h-accent); text-decoration: none; font-weight: 500; }
+        .page-header .tool-link:hover { text-decoration: underline; }
+
+        /* Wrapper */
+        .wrapper { width: 100%; max-width: 1280px; margin: 0 auto; padding: 80px 24px 48px; }
+
+        /* Page Title */
+        .page-title { text-align: center; margin-bottom: 32px; }
+        .page-title h1 { font-size: 24px; font-weight: 700; color: var(--h-accent); margin-bottom: 6px; }
+        .page-title p { font-size: 14px; color: var(--h-muted); }
+
+        /* Grid Layout */
+        .container { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+
+        /* Panel */
+        .panel {
+            background: var(--h-surface);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--h-border);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+        }
+        .panel-title { font-size: 15px; font-weight: 600; color: var(--h-text); margin-bottom: 4px; }
+        .panel-sub { font-size: 12px; color: var(--h-muted); margin-bottom: 20px; }
+
+        /* Inputs */
+        .field { margin-bottom: 14px; }
+        .field label { display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--h-muted); margin-bottom: 6px; }
+        .field input[type="text"],
+        .field input[type="number"],
+        .field textarea,
+        .field select {
+            width: 100%;
+            background: var(--h-bg);
+            border: 1px solid var(--h-border);
+            border-radius: 10px;
+            padding: 9px 12px;
+            font-size: 13px;
+            color: var(--h-text);
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .field input:focus, .field textarea:focus, .field select:focus {
+            border-color: var(--h-theme);
+        }
+        .field textarea { resize: vertical; min-height: 64px; }
+        .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+            padding: 9px 16px;
+            border-radius: 10px;
+            font-size: 13px; font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .btn-primary {
+            background: var(--h-theme);
+            color: #fff;
+        }
+        .btn-primary:hover { opacity: 0.85; }
+        .btn-outline {
+            background: transparent;
+            color: var(--h-accent);
+            border: 1px solid var(--h-border);
+        }
+        .btn-outline:hover { border-color: var(--h-accent); }
+        .btn-block { width: 100%; margin-top: 8px; }
+
+        /* Template Grid */
+        .template-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+        .tpl-btn {
+            padding: 8px 6px;
+            border-radius: 10px;
+            font-size: 11px; font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid var(--h-border);
+            background: var(--h-bg);
+            color: var(--h-muted);
+            transition: all 0.2s;
+        }
+        .tpl-btn.active {
+            background: rgba(22,119,179,0.10);
+            color: var(--h-theme);
+            border-color: var(--h-theme);
+        }
+        .tpl-btn:hover:not(.active) { border-color: var(--h-accent); color: var(--h-accent); }
+
+        /* Gradient Picker */
+        .gradient-row { display: flex; gap: 6px; flex-wrap: wrap; }
+        .gradient-btn {
+            width: 36px; height: 36px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+        .gradient-btn:hover, .gradient-btn.active { border-color: var(--h-accent); }
+
+        /* Chip Input */
+        .chip-box {
+            display: flex; flex-wrap: wrap; gap: 6px;
+            background: var(--h-bg);
+            border: 1px solid var(--h-border);
+            border-radius: 10px;
+            padding: 8px;
+            min-height: 44px;
+            align-items: center;
+        }
+        .chip {
+            display: inline-flex; align-items: center; gap: 4px;
+            background: rgba(22,119,179,0.10);
+            color: var(--h-theme);
+            border: 1px solid rgba(22,119,179,0.20);
+            border-radius: 6px;
+            padding: 3px 8px;
+            font-size: 11px;
+        }
+        .chip .remove { cursor: pointer; opacity: 0.6; font-size: 14px; line-height: 1; }
+        .chip .remove:hover { opacity: 1; }
+        .chip-input {
+            flex: 1; min-width: 80px;
+            background: transparent;
+            border: none; outline: none;
+            font-size: 12px;
+            color: var(--h-text);
+            padding: 2px 4px;
+        }
+
+        /* Toggle */
+        .toggle-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .toggle-label {
+            display: flex; align-items: center; gap: 8px;
+            background: var(--h-bg);
+            border: 1px solid var(--h-border);
+            border-radius: 10px;
+            padding: 10px 12px;
+            cursor: pointer;
+            font-size: 12px; color: var(--h-text);
+            transition: border-color 0.2s;
+        }
+        .toggle-label:hover { border-color: var(--h-muted); }
+        .toggle-label input[type="checkbox"] { accent-color: var(--h-theme); width: 14px; height: 14px; }
+
+        /* Format Tabs */
+        .fmt-tabs { display: flex; background: var(--h-bg); border-radius: 10px; padding: 3px; gap: 3px; }
+        .fmt-tab {
+            flex: 1; text-align: center;
+            padding: 6px 10px;
+            border-radius: 7px;
+            font-size: 11px; font-weight: 600;
+            cursor: pointer;
+            color: var(--h-muted);
+            transition: all 0.2s;
+        }
+        .fmt-tab.active { background: var(--h-surface); color: var(--h-text); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+
+        /* Code Block */
+        .code-window {
+            background: var(--h-bg);
+            border: 1px solid var(--h-border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .code-titlebar {
+            display: flex; align-items: center; justify-content: space-between;
+            background: var(--h-surface);
+            border-bottom: 1px solid var(--h-border);
+            padding: 10px 16px;
+        }
+        .dots { display: flex; gap: 6px; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .dot-r { background: #FF5F57; }
+        .dot-y { background: #FEBC2E; }
+        .dot-g { background: #28C840; }
+        .code-lang { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--h-theme); font-family: 'JetBrains Mono', monospace; }
+        .code-body {
+            padding: 16px 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            line-height: 1.7;
+            color: var(--h-text);
+            white-space: pre-wrap;
+            word-break: break-all;
+            max-height: 320px;
+            overflow-y: auto;
+        }
+        .code-actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+
+        /* Canvas */
+        .canvas-wrap {
+            display: flex; align-items: center; justify-content: center;
+            background: var(--h-bg);
+            border: 1px solid var(--h-border);
+            border-radius: 16px;
+            min-height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+        .canvas-wrap canvas { max-width: 100%; height: auto; border-radius: 12px; }
+
+        /* Toast */
+        .toast {
+            position: fixed; bottom: 24px; right: 24px; z-index: 999;
+            display: flex; align-items: center; gap: 10px;
+            background: var(--h-surface);
+            border: 1px solid var(--h-border);
+            color: var(--h-text);
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-size: 13px; font-weight: 600;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+            opacity: 0; transform: translateY(12px);
+            transition: all 0.3s;
+            pointer-events: none;
+        }
+        .toast.show { opacity: 1; transform: translateY(0); }
+        .toast.error { border-color: #FF7242; }
+        .toast-icon { width: 18px; height: 18px; }
+
+        /* Tab Switcher (Cover vs FM) */
+        .tab-bar {
+            display: flex;
+            background: var(--h-bg);
+            border: 1px solid var(--h-border);
+            border-radius: 12px;
+            padding: 3px;
+            gap: 3px;
+            margin-bottom: 24px;
+        }
+        .tab-item {
+            flex: 1; text-align: center;
+            padding: 10px 16px;
+            border-radius: 9px;
+            font-size: 13px; font-weight: 600;
+            cursor: pointer;
+            color: var(--h-muted);
+            transition: all 0.2s;
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+        }
+        .tab-item.active { background: var(--h-surface); color: var(--h-text); box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+        .tab-item:hover:not(.active) { color: var(--h-accent); }
+
+        /* Info Cards */
+        .info-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .info-card {
+            background: var(--h-bg);
+            border: 1px solid var(--h-border);
+            border-radius: 12px;
+            padding: 12px 14px;
+        }
+        .info-card h5 { font-size: 12px; font-weight: 600; color: var(--h-text); margin-bottom: 4px; }
+        .info-card p { font-size: 11px; color: var(--h-muted); line-height: 1.5; }
+
+        /* Sync Button */
+        .sync-btn {
+            width: 100%;
+            background: var(--h-bg);
+            border: 1px solid rgba(22,119,179,0.25);
+            color: var(--h-theme);
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 12px; font-weight: 600;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .sync-btn:hover { border-color: var(--h-theme); background: rgba(22,119,179,0.05); }
+
+        /* Section visibility */
+        #panel-cover { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        #panel-fm { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .hidden-section { display: none !important; }
+
+        /* Aspect select */
+        select option { background: var(--h-bg); }
+
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+            #panel-cover, #panel-fm { grid-template-columns: 1fr; }
+            .field-row, .info-row, .toggle-row { grid-template-columns: 1fr; }
+            .page-header { padding: 0 20px; }
+            .wrapper { padding: 80px 16px 32px; }
+        }
+    </style>
+
+
+
+    <!-- Header -->
+    <header class="page-header">
+        <span class="logo">HeHeHey.top</span>
+        <nav style="display:flex;gap:20px;align-items:center;">
+            <a href="https://www.hehehey.top/" class="back-link">← 返回博客</a>
+            <a href="https://www.hehehey.top/tools/" class="tool-link">工具箱</a>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <main class="wrapper">
+
+        <!-- Tab Switcher -->
+        <div class="tab-bar">
+            <div class="tab-item active" id="tab-cover-btn" onclick="switchTab('cover')">
+                <i data-lucide="image" style="width:15px;height:15px;"></i> 封面生成器
+            </div>
+            <div class="tab-item" id="tab-fm-btn" onclick="switchTab('fm')">
+                <i data-lucide="file-code" style="width:15px;height:15px;"></i> Front Matter 生成器
+            </div>
+        </div>
+
+        <!-- Page Title -->
+        <div class="page-title">
+            <h1>博客生产力助手</h1>
+            <p>封面设计 &amp; Front Matter 元数据，一站式生成</p>
+        </div>
+
+
+        <!-- ===== COVER PANEL ===== -->
+        <div id="panel-cover">
+
+            <!-- Left Controls -->
+            <div class="panel">
+                <div class="panel-title">封面配置面板</div>
+                <div class="panel-sub">实时调整参数，完美契合博文调性</div>
+
+                <div class="field">
+                    <label>主标题 (Title)</label>
+                    <input type="text" id="cover-title" value="10分钟精通 Tailwind CSS 高级布局技巧" oninput="drawCover()">
+                </div>
+                <div class="field">
+                    <label>副标题 / 描述 (Subtitle)</label>
+                    <textarea id="cover-subtitle" rows="2" oninput="drawCover()">探索现代前端最高效的实用原子化样式方案，从零构建响应式高阶暗黑模式组件。</textarea>
+                </div>
+                <div class="field-row">
+                    <div class="field">
+                        <label>分类标签</label>
+                        <input type="text" id="cover-tag" value="CSS &amp; Tailwind" oninput="drawCover()">
+                    </div>
+                    <div class="field">
+                        <label>作者</label>
+                        <input type="text" id="cover-author" value="HeHeHey @ Studio" oninput="drawCover()">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>设计模板</label>
+                    <div class="template-grid">
+                        <div class="tpl-btn active" id="tpl-tech" onclick="setTemplate('tech')">现代科技</div>
+                        <div class="tpl-btn" id="tpl-card" onclick="setTemplate('card')">悬浮卡片</div>
+                        <div class="tpl-btn" id="tpl-minimalist" onclick="setTemplate('minimalist')">极简主义</div>
+                    </div>
+                </div>
+
+                <div class="field-row">
+                    <div class="field">
+                        <label>Emoji</label>
+                        <div style="display:flex;gap:8px;align-items:center;">
+                            <input type="text" id="cover-emoji" value="🚀" oninput="drawCover()" style="width:52px;text-align:center;">
+                            <span style="font-size:11px;color:var(--h-muted);">💻🚀🎨⚡📦</span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>输出比例</label>
+                        <select id="cover-aspect" onchange="drawCover()">
+                            <option value="16-9">16:9 宽屏</option>
+                            <option value="2-1" selected="">2:1 掘金</option>
+                            <option value="4-3">4:3 标准</option>
+                            <option value="1-1">1:1 正方形</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>渐变色调</label>
+                    <div class="gradient-row">
+                        <div class="gradient-btn active" style="background:linear-gradient(135deg,#312e81,#1e1b4b,#4f46e5);" onclick="setGradient('#312e81','#1e1b4b','#4f46e5',this)" title="靛蓝"></div>
+                        <div class="gradient-btn" style="background:linear-gradient(135deg,#0f172a,#020617,#3b82f6);" onclick="setGradient('#0f172a','#020617','#3b82f6',this)" title="深蓝"></div>
+                        <div class="gradient-btn" style="background:linear-gradient(135deg,#581c87,#1e1b4b,#db2777);" onclick="setGradient('#581c87','#1e1b4b','#db2777',this)" title="紫红"></div>
+                        <div class="gradient-btn" style="background:linear-gradient(135deg,#14532d,#022c22,#10b981);" onclick="setGradient('#14532d','#022c22','#10b981',this)" title="翠绿"></div>
+                        <div class="gradient-btn" style="background:linear-gradient(135deg,#7c2d12,#451a03,#f97316);" onclick="setGradient('#7c2d12','#451a03','#f97316',this)" title="赤橙"></div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-block" onclick="downloadCover()">
+                    <i data-lucide="download" style="width:14px;height:14px;"></i> 下载超清 PNG 封面
+                </button>
+            </div>
+
+            <!-- Right Preview -->
+            <div style="display:flex;flex-direction:column;gap:16px;">
+                <div class="panel" style="padding:16px;">
+                    <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--h-muted);margin-bottom:4px;">实时预览</div>
+                    <div class="canvas-wrap" style="min-height:260px;">
+                        <canvas id="coverCanvas"></canvas>
+                    </div>
+                </div>
+
+                <div class="info-card" style="background:var(--h-surface);border:1px solid var(--h-border);border-radius:12px;padding:14px 16px;">
+                    <div style="font-size:11px;font-weight:600;color:var(--h-muted);margin-bottom:6px;">💡 排版建议</div>
+                    <div style="font-size:11px;color:var(--h-muted);line-height:1.7;">
+                        1. 主标题建议 15-25 字符<br>
+                        2. 右键预览图可保存 2x 超清图<br>
+                        3. 推荐 2:1 输出比例适配多平台
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ===== FRONT MATTER PANEL ===== -->
+        <div id="panel-fm" class="hidden-section">
+
+            <!-- Left Inputs -->
+            <div class="panel">
+                <div class="panel-title">元数据表单配置</div>
+                <div class="panel-sub">生成符合 Hexo / Hugo 规范的 Markdown 标头</div>
+
+                <div class="field">
+                    <label>文章标题</label>
+                    <input type="text" id="fm-title" value="使用 Tailwind CSS 构建惊艳的独立博客设计" oninput="updateFrontMatter()">
+                </div>
+                <div class="field">
+                    <label>Slug / 永久链接路径</label>
+                    <input type="text" id="fm-slug" value="tailwind-css-stunning-blog-design" oninput="updateFrontMatter()">
+                </div>
+                <div class="field-row">
+                    <div class="field">
+                        <label>发布时间</label>
+                        <input type="text" id="fm-date" oninput="updateFrontMatter()">
+                    </div>
+                    <div class="field">
+                        <label>作者</label>
+                        <input type="text" id="fm-author" value="HeHeHey" oninput="updateFrontMatter()">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>多分类 (Categories)</label>
+                    <div class="chip-box">
+                        <div id="fm-categories-chips" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
+                        <input type="text" id="fm-category-input" class="chip-input" placeholder="回车添加..." onkeydown="handleChipInput(event,'category')">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>标签 (Tags)</label>
+                    <div class="chip-box">
+                        <div id="fm-tags-chips" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
+                        <input type="text" id="fm-tag-input" class="chip-input" placeholder="回车添加..." onkeydown="handleChipInput(event,'tag')">
+                    </div>
+                </div>
+
+                <div class="toggle-row">
+                    <label class="toggle-label">
+                        <input type="checkbox" id="fm-draft" onchange="updateFrontMatter()">
+                        标记为草稿
+                    </label>
+                    <label class="toggle-label">
+                        <input type="checkbox" id="fm-comment" checked="" onchange="updateFrontMatter()">
+                        开启评论
+                    </label>
+                </div>
+
+                <button class="sync-btn" onclick="syncToCover()">
+                    <i data-lucide="refresh-cw" style="width:13px;height:13px;"></i>
+                    同步至封面生成器
+                </button>
+            </div>
+
+            <!-- Right Code Block -->
+            <div style="display:flex;flex-direction:column;gap:16px;">
+                <div class="panel" style="padding:0;overflow:hidden;">
+                    <div class="code-titlebar">
+                        <div style="display:flex;align-items:center;gap:8px;">
+                            <div class="dots">
+                                <div class="dot dot-r"></div>
+                                <div class="dot dot-y"></div>
+                                <div class="dot dot-g"></div>
+                            </div>
+                            <span id="fm-file-indicator" style="font-size:11px;color:var(--h-muted);font-family:monospace;">index.md</span>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:8px;">
+                            <div class="fmt-tabs">
+                                <div class="fmt-tab active" id="fmt-yaml" onclick="changeFmFormat('yaml')">YAML</div>
+                                <div class="fmt-tab" id="fmt-json" onclick="changeFmFormat('json')">JSON</div>
+                                <div class="fmt-tab" id="fmt-toml" onclick="changeFmFormat('toml')">TOML</div>
+                            </div>
+                            <span class="code-lang" id="fm-lang-tag">yaml</span>
+                        </div>
+                    </div>
+                    <div class="code-body" id="fm-code-block"></div>
+                    <div class="code-actions" style="padding:0 16px 16px;">
+                        <button class="btn btn-outline" onclick="copyFmCode('only-fm')">
+                            <i data-lucide="copy" style="width:12px;height:12px;"></i> 复制标头
+                        </button>
+                        <button class="btn btn-primary" onclick="copyFmCode('full')">
+                            <i data-lucide="file-text" style="width:12px;height:12px;"></i> 复制完整模板
+                        </button>
+                    </div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-card">
+                        <h5>什么是 Front Matter ?</h5>
+                        <p>放置在文章最前方的 YAML / TOML 配置块，用于告诉静态博客引擎该文的关键元数据。</p>
+                    </div>
+                    <div class="info-card">
+                        <h5>Slug 自动生成</h5>
+                        <p>输入标题时，系统自动将中文转换为拼音连字符格式，保持 SEO 友好的 URL 路径。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i data-lucide="check-circle" class="toast-icon" style="color:var(--h-theme);"></i>
+        <span id="toast-msg">操作成功</span>
+    </div>
+
+    <!-- Download helper -->
+    <a id="download-helper" class="hidden" download=""></a>
+
+    <script>
+        // ── State ──────────────────────────────────
+        let currentTab = 'cover';
+        let currentFmFormat = 'yaml';
+        let coverTemplate = 'tech';
+        let bgGradient = { start: '#312e81', mid: '#1e1b4b', end: '#4f46e5' };
+        let categories = ['前端技术', '工程化'];
+        let tags = ['CSS', 'Tailwind', '博客设计'];
+
+        // ── Init ───────────────────────────────────
+        window.onload = function() {
+            lucide.createIcons();
+
+            // Date init
+            const now = new Date();
+            const pad = n => String(n).padStart(2,'0');
+            document.getElementById('fm-date').value =
+                `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+
+            renderChips();
+            updateFrontMatter();
+            drawCover();
+        };
+
+        // ── Tab Switch ──────────────────────────────
+        function switchTab(tab) {
+            currentTab = tab;
+            const coverBtn = document.getElementById('tab-cover-btn');
+            const fmBtn = document.getElementById('tab-fm-btn');
+            const coverPanel = document.getElementById('panel-cover');
+            const fmPanel = document.getElementById('panel-fm');
+
+            if (tab === 'cover') {
+                coverBtn.className = 'tab-item active';
+                fmBtn.className = 'tab-item';
+                coverPanel.classList.remove('hidden-section');
+                fmPanel.classList.add('hidden-section');
+                setTimeout(drawCover, 50);
+            } else {
+                fmBtn.className = 'tab-item active';
+                coverBtn.className = 'tab-item';
+                fmPanel.classList.remove('hidden-section');
+                coverPanel.classList.add('hidden-section');
+                updateFrontMatter();
+            }
+            lucide.createIcons();
+        }
+
+        // ── Toast ──────────────────────────────────
+        function showToast(msg, isError) {
+            const toast = document.getElementById('toast');
+            const msgEl = document.getElementById('toast-msg');
+            msgEl.textContent = msg;
+            toast.className = 'toast' + (isError ? ' error' : '');
+            lucide.createIcons();
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // ── Cover: Template ─────────────────────────
+        function setTemplate(tpl) {
+            coverTemplate = tpl;
+            ['tech','card','minimalist'].forEach(t => {
+                const btn = document.getElementById('tpl-' + t);
+                btn.className = 'tpl-btn' + (t === tpl ? ' active' : '');
+            });
+            drawCover();
+        }
+
+        function setGradient(start, mid, end, el) {
+            bgGradient = { start, mid, end };
+            document.querySelectorAll('.gradient-btn').forEach(b => b.classList.remove('active'));
+            if (el) el.classList.add('active');
+            drawCover();
+            function getCanvasSize() {
+            const map = { '16-9':[1280,720], '4-3':[1024,768], '1-1':[800,800], '2-1':[1200,600] };
+            const v = document.getElementById('cover-aspect').value;
+            return { width: map[v][0], height: map[v][1] };
+        }
+
+        // ── Cover: Canvas Draw ─────────────────────
+        function drawCover() {
+            const canvas = document.getElementById('coverCanvas');
+            const ctx = canvas.getContext('2d');
+            const size = getCanvasSize();
+            canvas.width = size.width;
+            canvas.height = size.height;
+
+            const title = document.getElementById('cover-title').value || '点击输入文章标题';
+            const subtitle = document.getElementById('cover-subtitle').value || '';
+            const tag = document.getElementById('cover-tag').value || 'BLOG POST';
+            const author = document.getElementById('cover-author').value || 'HeHeHey';
+            const emoji = document.getElementById('cover-emoji').value || '📝';
+
+            // Background gradient
+            const grad = ctx.createLinearGradient(0,0,canvas.width,canvas.height);
+            grad.addColorStop(0, bgGradient.start);
+            grad.addColorStop(0.5, bgGradient.mid);
+            grad.addColorStop(1, bgGradient.end);
+            ctx.fillStyle = grad;
+            ctx.fillRect(0,0,canvas.width,canvas.height);
+
+            // Decorative lights
+            ctx.fillStyle = 'rgba(255,255,255,0.03)';
+            ctx.beginPath(); ctx.arc(canvas.width*0.8,canvas.height*0.2,canvas.width*0.3,0,Math.PI*2); ctx.fill();
+            ctx.fillStyle = 'rgba(255,255,255,0.015)';
+            ctx.beginPath(); ctx.arc(canvas.width*0.1,canvas.height*0.9,canvas.width*0.2,0,Math.PI*2); ctx.fill();
+
+            if (coverTemplate === 'tech') drawTechTemplate(ctx,canvas,title,subtitle,tag,author,emoji);
+            else if (coverTemplate === 'card') drawCardTemplate(ctx,canvas,title,subtitle,tag,author,emoji);
+            else drawMinimalistTemplate(ctx,canvas,title,subtitle,tag,author,emoji);
+        }
+
+        function wrapText(ctx,text,x,y,maxW,lineH) {
+            let line='', lines=[];
+            for(let n=0;n<text.length;n++){
+                let test=line+text[n];
+                if(ctx.measureText(test).width>maxW&&n>0){ lines.push(line); line=text[n]; }
+                else line=test;
+            }
+            lines.push(line);
+            for(let i=0;i<lines.length;i++) ctx.fillText(lines[i],x,y+i*lineH);
+            return lines.length;
+        }
+
+        function roundRect(ctx,x,y,w,h,r,fill,stroke) {
+            if(typeof r==='number') r={tl:r,tr:r,br:r,bl:r};
+            ctx.beginPath();
+            ctx.moveTo(x+r.tl,y);
+            ctx.lineTo(x+w-r.tr,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r.tr);
+            ctx.lineTo(x+w,y+h-r.br); ctx.quadraticCurveTo(x+w,y+h,x+w-r.br,y+h);
+            ctx.lineTo(x+r.bl,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r.bl);
+            ctx.lineTo(x,y+r.tl); ctx.quadraticCurveTo(x,y,x+r.tl,y);
+            ctx.closePath();
+            if(fill) ctx.fill();
+            if(stroke) ctx.stroke();
+        }
+
+        function drawTechTemplate(ctx,canvas,title,subtitle,tag,author,emoji) {
+            ctx.strokeStyle='rgba(255,255,255,0.06)'; ctx.lineWidth=1;
+            for(let i=0;i<canvas.width;i+=40){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,canvas.height);ctx.stroke();}
+            for(let j=0;j<canvas.height;j+=40){ctx.beginPath();ctx.moveTo(0,j);ctx.lineTo(canvas.width,j);ctx.stroke();}
+            const pad=60;
+
+            ctx.fillStyle='rgba(255,255,255,0.08)'; ctx.strokeStyle='rgba(255,255,255,0.15)'; ctx.lineWidth=2;
+            roundRect(ctx,pad,pad,90,90,20,true,true);
+            ctx.font='54px sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+            ctx.fillText(emoji,pad+45,pad+45);
+
+            ctx.fillStyle='#a5b4fc'; ctx.font='bold 16px Inter,sans-serif'; ctx.textAlign='left'; ctx.textBaseline='top';
+            ctx.fillText(tag.toUpperCase(),pad,pad+120);
+
+            ctx.fillStyle='rgba(255,255,255,0.5)'; ctx.font='500 16px Inter,sans-serif';
+            ctx.fillText(author,pad,canvas.height-pad-15);
+
+            ctx.strokeStyle='rgba(99,102,241,0.4)'; ctx.lineWidth=4; ctx.beginPath();
+            ctx.moveTo(pad,canvas.height-pad-45); ctx.lineTo(pad+160,canvas.height-pad-45); ctx.stroke();
+
+            ctx.fillStyle='#ffffff'; ctx.font='bold 48px Inter,sans-serif'; ctx.textBaseline='top';
+            const totalLines=wrapText(ctx,title,pad,pad+160,canvas.width-pad*2-80,62);
+            ctx.fillStyle='rgba(255,255,255,0.7)'; ctx.font='400 20px Inter,sans-serif';
+            wrapText(ctx,subtitle,pad,pad+160+totalLines*62+15,canvas.width-pad*2-80,32);
+        }
+
+        function drawCardTemplate(ctx,canvas,title,subtitle,tag,author,emoji) {
+            const cx=80,cy=80,cw=canvas.width-160,ch=canvas.height-160;
+            ctx.fillStyle='rgba(255,255,255,0.04)'; ctx.strokeStyle='rgba(255,255,255,0.12)'; ctx.lineWidth=1;
+            roundRect(ctx,cx,cy,cw,ch,24,true,true);
+
+            const bx=cx+40,by=cy+40,bw=120,bh=34;
+            ctx.fillStyle='rgba(255,255,255,0.1)';
+            roundRect(ctx,bx,by,bw,bh,17,true,false);
+            ctx.fillStyle='#a5b4fc'; ctx.font='bold 12px Inter,sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+            ctx.fillText(tag.toUpperCase(),bx+bw/2,by+bh/2);
+
+            ctx.font='36px sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+            ctx.fillText(emoji,cx+cw-60,by+bh/2);
+
+            ctx.fillStyle='#ffffff'; ctx.font='bold 44px Inter,sans-serif'; ctx.textAlign='left'; ctx.textBaseline='top';
+            const lines=wrapText(ctx,title,cx+40,by+bh+30,cw-80,58);
+            ctx.fillStyle='rgba(255,255,255,0.65)'; ctx.font='400 18px Inter,sans-serif';
+            wrapText(ctx,subtitle,cx+40,by+bh+30+lines*58+15,cw-80,28);
+
+            ctx.fillStyle='rgba(255,255,255,0.4)'; ctx.font='600 14px Inter';
+            ctx.fillText('WRITTEN BY '+author.toUpperCase(),cx+40,cy+ch-45);
+        }
+
+        function drawMinimalistTemplate(ctx,canvas,title,subtitle,tag,author,emoji) {
+            ctx.strokeStyle='rgba(255,255,255,0.08)'; ctx.lineWidth=1;
+            ctx.strokeRect(40,40,canvas.width-80,canvas.height-80);
+
+            ctx.font='80px sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+            ctx.fillText(emoji,canvas.width/2,110);
+
+            ctx.fillStyle='#ffffff'; ctx.font='bold 42px Inter,sans-serif'; ctx.textAlign='center'; ctx.textBaseline='top';
+            const wrapW=canvas.width-200;
+            let line='',lines=[];
+            for(let n=0;n<title.length;n++){
+                let test=line+title[n];
+                if(ctx.measureText(test).width>wrapW&&n>0){lines.push(line);line=title[n];} else line=test;
+            }
+            lines.push(line);
+            for(let i=0;i<lines.length;i++) ctx.fillText(lines[i],canvas.width/2,180+i*56);
+
+            ctx.fillStyle='rgba(255,255,255,0.6)'; ctx.font='400 17px Inter,sans-serif';
+            let sLine='',sLines=[];
+            for(let s=0;s<subtitle.length;s++){
+                let test=sLine+subtitle[s];
+                if(ctx.measureText(test).width>wrapW&&s>0){sLines.push(sLine);sLine=subtitle[s];} else sLine=test;
+            }
+            sLines.push(sLine);
+            const subY=180+lines.length*56+15;
+            for(let j=0;j<sLines.length;j++) ctx.fillText(sLines[j],canvas.width/2,subY+j*28);
+
+            ctx.fillStyle='#cbd5e1'; ctx.font='bold 13px Inter';
+            ctx.fillText(tag.toUpperCase()+' • '+author.toUpperCase(),canvas.width/2,canvas.height-70);
+        }
+
+        function downloadCover() {
+            try {
+                const canvas = document.getElementById('coverCanvas');
+                const slug = document.getElementById('cover-title').value.trim().toLowerCase().replace(/[^a-z0-9\u4e00-\u9fa5]+/gi,'-');
+                const helper = document.getElementById('download-helper');
+                helper.download = 'cover-'+(slug||'untitled')+'.png';
+                helper.href = canvas.toDataURL('image/png');
+                helper.click();
+                showToast('封面下载成功!');
+            } catch(e) { showToast('保存失败，请重试',true); }
+        }
+
+        /* ── FRONT MATTER ─────────────────────────── */
+        function changeFmFormat(fmt) {
+            currentFmFormat = fmt;
+            ['yaml','json','toml'].forEach(f => {
+                document.getElementById('fmt-'+f).className = 'fmt-tab' + (f===fmt ? ' active' : '');
+            });
+            const fi = document.getElementById('fm-file-indicator');
+            const lt = document.getElementById('fm-lang-tag');
+            fi.textContent = fmt==='yaml'?'index.md':fmt==='json'?'meta.json':'hugo_meta.toml';
+            lt.textContent = fmt;
+            updateFrontMatter();
+        }
+
+        function handleChipInput(e,type) {
+            const input = document.getElementById('fm-'+type+'-input');
+            if((e.key==='Enter'||e.key===',')&&input.value.trim()){
+                const v = input.value.trim();
+                const list = type==='category'?categories:tags;
+                if(!list.includes(v)){ list.push(v); renderChips(); updateFrontMatter(); }
+                input.value='';
+            }
+        }
+
+        function removeChip(idx,type) {
+            (type==='category'?categories:tags).splice(idx,1);
+            renderChips(); updateFrontMatter();
+        }
+
+        function renderChips() {
+            const catEl = document.getElementById('fm-categories-chips');
+            const tagEl = document.getElementById('fm-tags-chips');
+            catEl.innerHTML = categories.map((c,i)=>
+                `<span class="chip">${c}<span class="remove" onclick="removeChip(${i},'category')">&times;</span></span>`
+            ).join('');
+            tagEl.innerHTML = tags.map((t,i)=>
+                `<span class="chip"># ${t}<span class="remove" onclick="removeChip(${i},'tag')">&times;</span></span>`
+            ).join('');
+        }
+
+        function syncToCover() {
+            document.getElementById('cover-title').value = document.getElementById('fm-title').value;
+            document.getElementById('cover-author').value = document.getElementById('fm-author').value+' @ Studio';
+            document.getElementById('cover-tag').value = categories[0]||'Web Design';
+            switchTab('cover');
+            setTimeout(drawCover, 50);
+            showToast('已同步至封面生成器!');
+        }
+
+        function updateFrontMatter() {
+            const title = document.getElementById('fm-title').value||'未命名博文';
+            const slug = document.getElementById('fm-slug').value||'untitled-post';
+            const date = document.getElementById('fm-date').value||new Date().toISOString();
+            const author = document.getElementById('fm-author').value||'Anonymous';
+            const draft = document.getElementById('fm-draft').checked;
+            const comment = document.getElementById('fm-comment').checked;
+            let out='';
+
+            if(currentFmFormat==='yaml'){
+                out+=`---\ntitle: "${title.replace(/"/g,'\\"')}"\nslug: ${slug}\ndate: ${date}\nauthor: ${author}\ndraft: ${draft}\ncomments: ${comment}\n`;
+                if(categories.length){ out+=`categories:\n`; categories.forEach(c=>out+=`  - ${c}\n`; }
+                if(tags.length){ out+=`tags:\n`; tags.forEach(t=>out+=`  - ${t}\n`; }
+                out+='---';
+            } else if(currentFmFormat==='json'){
+                out=JSON.stringify({title,slug,date,author,draft,comments:comment,categories,tags},null,2);
+            } else {
+                out+=`title = "${title.replace(/"/g,'\\"')}"\nslug = "${slug}"\ndate = "${date.replace(' ','T')}Z"\nauthor = "${author}"\ndraft = ${draft}\ncomments = ${comment}\ncategories = ${JSON.stringify(categories)}\ntags = ${JSON.stringify(tags)}\n`;
+            }
+            document.getElementById('fm-code-block').textContent = out;
+        }
+
+        function copyFmCode(type) {
+            const fm = document.getElementById('fm-code-block').textContent;
+            let text = fm;
+            if(type==='full'){
+                text = fm+'\n\n# '+document.getElementById('fm-title').value+'\n\n> 本文基于 HeHeHey 博客助手初始化。\n\n---\n\n在这里撰写你的文章内容...';
+            }
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.cssText = 'position:fixed;opacity:0;';
+            document.body.appendChild(ta);
+            ta.select();
+            try {
+                document.execCommand('copy') ? showToast('已复制到剪贴板!') : showToast('复制失败',true);
+            } catch(e) { showToast('复制失败',true); }
+            document.body.removeChild(ta);
+        }
+    </script>
+
+</div><hr class="custom-hr"><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/%E5%A4%B4%E5%83%8F.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info-name">G/ren</div><div class="author-info-description">机器视觉调试工程师 | 技术分享</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Gren23" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/img/wechat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #07c160;"></i></a><a class="social-icon" href="tencent://message/?uin=1955561070" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #1296db;"></i></a><a class="social-icon" href="mailto:i@hehehey.top" target="_blank" title="邮箱"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的小破站！</div></div><div class="sticky_layout"></div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"></div><div class="copyright"><span><b>©2025-2026</b></span><span><b>&nbsp;&nbsp;By G/ren</b></span></div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div id="workboard"></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://unpkg.com/mathjax@4.1.0/tex-mml-chtml.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twiikoo.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = (el = document, path = location.pathname) => {
+    twikoo.init({
+      el: el.querySelector('#twikoo-wrap'),
+      envId: 'https://twiikoo.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      },
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    
+
+    isShuoshuo && (window.shuoshuoComment.destroyTwikoo = () => {
+      if (el.children.length) {
+        el.innerHTML = ''
+        el.classList.add('no-comment')
+      }
+    })
+  }
+
+  const loadTwikoo = (el, path) => {
+    if (typeof twikoo === 'object') setTimeout(() => init(el, path), 0)
+    else btf.getScript('https://cdn.jsdelivr.net/npm/twikoo@1.7.9/dist/twikoo.all.min.js').then(() => init(el, path))
+  }
+
+  if (isShuoshuo) {
+    'Twikoo' === 'Twikoo'
+      ? window.shuoshuoComment = { loadComment: loadTwikoo }
+      : window.loadOtherComment = loadTwikoo
+    return
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script>window.HYVOR_TALK_WEBSITE = "15451";</script><script async="" src="https://talk.hyvor.com/embed/embed.js" type="module"></script><link rel="stylesheet" href="/css/custom-index.css"><link rel="stylesheet" href="/css/font-local.css"><script src="/js/view-counter.js" defer=""></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="输入关键词搜索..." type="text"></div><hr><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.4"></script></div></div><script>var posts=[{"title":"梅卡曼德 3D 视觉引导系统 通用 SOP","path":"/posts/3d-sop/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"SOP","path":"/tags/SOP/"},{"name":"拆垛","path":"/tags/拆垛/"},{"name":"3D视觉","path":"/tags/3D视觉/"},{"name":"手眼标定","path":"/tags/手眼标定/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2026-02-14T01:37:16.000Z","updated":"2026-06-09T04:09:09.062Z"},{"title":"ABB RobotWare + 梅卡曼德视觉系统完整操作流程","path":"/posts/abb-robotware/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"ABB","path":"/tags/ABB/"},{"name":"RobotWare","path":"/tags/RobotWare/"},{"name":"梅卡曼德","path":"/tags/梅卡曼德/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-03-28T08:46:17.000Z","updated":"2026-06-09T04:09:09.098Z"},{"title":"CGXi（希克斯）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/cgxi/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"CGXi","path":"/tags/CGXi/"},{"name":"希克斯","path":"/tags/希克斯/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-10-09T08:44:07.000Z","updated":"2026-06-09T04:09:09.098Z"},{"title":"DENSO（电装）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/denso/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"DENSO","path":"/tags/DENSO/"},{"name":"电装","path":"/tags/电装/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-01-20T15:37:33.000Z","updated":"2026-06-09T04:09:09.098Z"},{"title":"DOBOT（越疆）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/dobot/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"DOBOT","path":"/tags/DOBOT/"},{"name":"越疆","path":"/tags/越疆/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2026-02-25T18:20:51.000Z","updated":"2026-06-09T04:09:09.102Z"},{"title":"ELITE（艾利特）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/elite/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"ELITE","path":"/tags/ELITE/"},{"name":"艾利特","path":"/tags/艾利特/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-09-25T21:30:32.000Z","updated":"2026-06-09T04:09:09.102Z"},{"title":"ESTUN（埃斯顿）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/estun/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"ESTUN","path":"/tags/ESTUN/"},{"name":"埃斯顿","path":"/tags/埃斯顿/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-09-02T23:24:22.000Z","updated":"2026-06-09T04:09:09.102Z"},{"title":"JAKA（节卡）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/jaka/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"JAKA","path":"/tags/JAKA/"},{"name":"节卡","path":"/tags/节卡/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-09-30T02:09:15.000Z","updated":"2026-06-09T04:09:09.106Z"},{"title":"FANUC（发那科）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/fanuc/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"FANUC","path":"/tags/FANUC/"},{"name":"发那科","path":"/tags/发那科/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-01-03T06:02:34.000Z","updated":"2026-06-09T04:09:09.102Z"},{"title":"KUKA（库卡）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/kuka/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"KUKA","path":"/tags/KUKA/"},{"name":"库卡","path":"/tags/库卡/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-11-06T01:12:19.000Z","updated":"2026-06-09T04:09:09.106Z"},{"title":"Mech-Vision 方案构建思路","path":"/posts/mech-vision-1/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"Mech-Vision","path":"/tags/Mech-Vision/"},{"name":"方案构建","path":"/tags/方案构建/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-03-03T04:14:39.000Z","updated":"2026-06-09T04:09:09.106Z"},{"title":"Markdown语法与外挂标签写法汇总","path":"/posts/markdown/","categories":[{"name":"文章","path":"/categories/文章/"}],"tags":[{"name":"Markdown","path":"/tags/Markdown/"},{"name":"外挂标签","path":"/tags/外挂标签/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-08-27T09:36:17.000Z","updated":"2022-10-23T14:00:00.000Z"},{"title":"Mech-Vision 步骤参考指南","path":"/posts/mech-vision-2/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"Mech-Vision","path":"/tags/Mech-Vision/"},{"name":"步骤参考","path":"/tags/步骤参考/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-05-17T23:59:08.000Z","updated":"2026-06-09T04:09:09.110Z"},{"title":"Mech-Vision 安装指南","path":"/posts/mech-vision/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"Mech-Vision","path":"/tags/Mech-Vision/"},{"name":"安装","path":"/tags/安装/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2026-02-13T17:42:31.000Z","updated":"2026-06-09T04:09:09.110Z"},{"title":"兰空图床图片审核-nsfwjs配置","path":"/posts/nsfwjs/","categories":[{"name":"文章","path":"/categories/文章/"}],"tags":[{"name":"图床","path":"/tags/图床/"},{"name":"nsfw","path":"/tags/nsfw/"},{"name":"辅助工具","path":"/tags/辅助工具/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-02-23T01:51:10.000Z","updated":"2026-06-09T04:09:09.110Z"},{"title":"西门子PLC Modbus TCP通讯教程","path":"/posts/plc-modbus-tcp/","categories":[{"name":"PLC通讯","path":"/categories/PLC通讯/"}],"tags":[{"name":"ModbusTCP","path":"/tags/ModbusTCP/"},{"name":"西门子","path":"/tags/西门子/"},{"name":"PLC","path":"/tags/PLC/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-04-28T11:29:24.000Z","updated":"2026-06-09T04:09:09.110Z"},{"title":"拆垛工程项目 SOP 模板","path":"/posts/sop/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"SOP","path":"/tags/SOP/"},{"name":"拆垛","path":"/tags/拆垛/"},{"name":"模板","path":"/tags/模板/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-03-05T18:05:18.000Z","updated":"2026-06-09T04:09:09.118Z"},{"title":"TM（创孔）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/tm/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"TM","path":"/tags/TM/"},{"name":"创孔","path":"/tags/创孔/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-09-27T16:38:26.000Z","updated":"2026-06-09T04:09:09.110Z"},{"title":"UR（优傲）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/ur/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"UR","path":"/tags/UR/"},{"name":"优傲","path":"/tags/优傲/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-07-30T23:06:09.000Z","updated":"2026-06-09T04:09:09.114Z"},{"title":"YASKAWA（安川）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/yaskawa-1/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"YASKAWA","path":"/tags/YASKAWA/"},{"name":"安川","path":"/tags/安川/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2026-02-27T02:17:12.000Z","updated":"2026-06-09T04:09:09.114Z"},{"title":"YASKAWA + 梅卡曼德通信教程","path":"/posts/yaskawa/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"YASKAWA","path":"/tags/YASKAWA/"},{"name":"安川","path":"/tags/安川/"},{"name":"通信基础","path":"/tags/通信基础/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2026-01-24T04:32:12.000Z","updated":"2026-06-09T04:09:09.114Z"},{"title":"Vision Master 通讯配置","path":"/posts/visionmaster-1/","categories":[{"name":"视觉","path":"/categories/视觉/"}],"tags":[{"name":"VisionMaster","path":"/tags/VisionMaster/"},{"name":"通讯","path":"/tags/通讯/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-09-01T20:27:12.000Z","updated":"2026-06-09T05:09:37.544Z"},{"title":"Vision Master 入门指南","path":"/posts/visionmaster/","categories":[{"name":"视觉","path":"/categories/视觉/"}],"tags":[{"name":"VisionMaster","path":"/tags/VisionMaster/"},{"name":"入门","path":"/tags/入门/"}],"cover":"https://picsum.photos/800/600?random=1","date":"2025-10-21T01:52:26.000Z","updated":"2026-06-09T05:09:37.544Z"}];function toRandomPost(){ window.pjax ? pjax.loadUrl(posts[Math.floor(Math.random()*posts.length)].path) : window.open(posts[Math.floor(Math.random()*posts.length)].path, "_self"); };</script></body></html>
