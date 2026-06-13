@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://www.hehehey.top/sitemap.xml
