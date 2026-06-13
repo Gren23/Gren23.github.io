@@ -25,17 +25,17 @@
                     },
                     colors: {
                         brand: {
-                            50: '#f5f3ff',
-                            100: '#ede9fe',
-                            200: '#ddd6fe',
-                            300: '#c4b5fd',
-                            400: '#a78bfa',
-                            500: '#8b5cf6',
-                            600: '#7c3aed',
-                            700: '#6d28d9',
-                            800: '#5b21b6',
-                            900: '#4c1d95',
-                            950: '#1e1b4b',
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            950: '#082f49',
                         }
                     }
                 }
@@ -72,7 +72,7 @@
         <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-3">
                 <a href="/">
-                    <div class="p-2.5 bg-gradient-to-tr from-brand-600 to-indigo-600 rounded-xl text-gray-900 shadow-lg shadow-brand-500/20">
+                    <div class="p-2.5 bg-gradient-to-tr from-blue-500 to-indigo-600 rounded-xl text-gray-900 shadow-lg shadow-brand-500/20">
                     <i data-lucide="layout-grid" class="w-6 h-6"></i>
                     </div>
                 </a>
@@ -150,8 +150,8 @@
                         <label class="block text-xs font-semibold text-gray-600 mb-1.5">风格样式排版模板</label>
                         <div class="grid grid-cols-3 gap-2">
                             <button onclick="setTemplate('tech')" id="tpl-tech" class="px-3 py-2 bg-brand-600/20 text-brand-400 border border-brand-500/30 rounded-lg text-xs font-medium transition text-center">现代科技</button>
-                            <button onclick="setTemplate('card')" id="tpl-card" class="px-3 py-2 bg-white text-gray-600 border border-gray-200 rounded-lg text-xs font-medium hover:bg-gray-800 transition text-center">卡片悬浮</button>
-                            <button onclick="setTemplate('minimalist')" id="tpl-minimalist" class="px-3 py-2 bg-white text-gray-600 border border-gray-200 rounded-lg text-xs font-medium hover:bg-gray-800 transition text-center">高亮留白</button>
+                            <button onclick="setTemplate('card')" id="tpl-card" class="px-3 py-2 bg-white text-gray-600 border border-gray-200 rounded-lg text-xs font-medium hover:bg-gray-100 transition text-center">卡片悬浮</button>
+                            <button onclick="setTemplate('minimalist')" id="tpl-minimalist" class="px-3 py-2 bg-white text-gray-600 border border-gray-200 rounded-lg text-xs font-medium hover:bg-gray-100 transition text-center">高亮留白</button>
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
@@ -179,7 +179,7 @@
                     <div>
                         <label class="block text-xs font-semibold text-gray-600 mb-1.5">高端渐变配色背景</label>
                         <div class="grid grid-cols-5 gap-2">
-                            <button onclick="setGradient('#f5f3ff', '#ede9fe', '#a78bfa')" class="h-8 rounded-lg bg-gradient-to-br from-purple-950 via-slate-900 to-purple-600 border border-gray-300 hover:border-white transition" title="霓虹紫"></button>
+                            <button onclick="setGradient('#f0f9ff', '#e0f2fe', '#0ea5e9')" class="h-8 rounded-lg bg-gradient-to-br from-purple-950 via-sky-100 to-blue-400 border border-gray-300 hover:border-white transition" title="霓虹紫"></button>
                             <button onclick="setGradient('#e0f2fe', '#bae6fd', '#38bdf8')" class="h-8 rounded-lg bg-gradient-to-br from-sky-950 via-gray-950 to-sky-600 border border-gray-300 hover:border-white transition" title="宇宙蓝"></button>
                             <button onclick="setGradient('#d1fae5', '#a7f3d0', '#34d399')" class="h-8 rounded-lg bg-gradient-to-br from-emerald-900 via-teal-950 to-emerald-500 border border-gray-300 hover:border-white transition" title="翡翠绿"></button>
                             <button onclick="setGradient('#ffedd5', '#fed7aa', '#fb923c')" class="h-8 rounded-lg bg-gradient-to-br from-orange-950 via-stone-900 to-orange-600 border border-gray-300 hover:border-white transition" title="火山落日"></button>
@@ -188,7 +188,7 @@
                     </div>
                 </div>
                 <div class="pt-2">
-                    <button onclick="downloadCover()" class="w-full bg-gradient-to-r from-brand-500 to-indigo-600 hover:from-brand-600 hover:to-indigo-700 text-gray-900 py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-brand-500/20 active:scale-95 transition">
+                    <button onclick="downloadCover()" class="w-full bg-gradient-to-r from-blue-500 to-sky-600 hover:from-blue-500 hover:to-indigo-700 text-gray-900 py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-brand-500/20 active:scale-95 transition">
                         <i data-lucide="download" class="w-4 h-4"></i>
                         下载无损超清 PNG 封面
                     </button>
@@ -281,7 +281,7 @@
             <div class="lg:col-span-7 flex flex-col gap-6">
                 <div class="flex items-center justify-between flex-wrap gap-2">
                     <div class="flex bg-white p-1 rounded-lg border border-gray-200">
-                        <button onclick="changeFmFormat('yaml')" id="fmt-yaml" class="px-3 py-1.5 rounded-md text-xs font-medium bg-gray-800 text-gray-900 transition">YAML (Hugo/Astro)</button>
+                        <button onclick="changeFmFormat('yaml')" id="fmt-yaml" class="px-3 py-1.5 rounded-md text-xs font-medium bg-blue-500 text-white transition">YAML (Hugo/Astro)</button>
                         <button onclick="changeFmFormat('toml')" id="fmt-toml" class="px-3 py-1.5 rounded-md text-xs font-medium text-gray-600 hover:text-gray-900 transition">TOML (Hugo)</button>
                     </div>
                     <div class="flex items-center gap-2">
@@ -458,8 +458,8 @@
         #wechat-preview h1 {
             font-size: 1.45em !important;
             font-weight: bold !important;
-            color: #7c3aed !important;
-            border-bottom: 2px solid #ddd6fe !important;
+            color: #0284c7 !important;
+            border-bottom: 2px solid #bae6fd !important;
             padding-bottom: 6px !important;
             margin-top: 1.5em !important;
             margin-bottom: 0.8em !important;
@@ -467,7 +467,7 @@
         #wechat-preview h2 {
             font-size: 1.25em !important;
             font-weight: bold !important;
-            color: #4c1d95 !important;
+            color: #0c4a6e !important;
             margin-top: 1.3em !important;
             margin-bottom: 0.6em !important;
             display: flex !important;
@@ -475,7 +475,7 @@
         }
         #wechat-preview h2::before {
             content: "◆";
-            color: #8b5cf6;
+            color: #0ea5e9;
             margin-right: 6px;
             font-size: 0.8em;
         }
@@ -500,24 +500,24 @@
             color: #f1f5f9 !important;
         }
         #wechat-preview p code {
-            background-color: #f5f3ff !important;
-            color: #7c3aed !important;
+            background-color: #f0f9ff !important;
+            color: #0284c7 !important;
             padding: 2px 6px !important;
             border-radius: 4px !important;
             font-size: 13px !important;
-            border: 1px solid #ddd6fe !important;
+            border: 1px solid #bae6fd !important;
         }
         #wechat-preview blockquote {
-            border-left: 4px solid #7c3aed !important;
-            background-color: #f5f3ff !important;
+            border-left: 4px solid #0284c7 !important;
+            background-color: #f0f9ff !important;
             padding: 12px 16px !important;
             margin-bottom: 1.2em !important;
             border-radius: 0 8px 8px 0 !important;
-            color: #5b21b6 !important;
+            color: #075985 !important;
         }
         #wechat-preview blockquote p {
             margin-bottom: 0 !important;
-            color: #5b21b6 !important;
+            color: #075985 !important;
         }
         #wechat-preview ul, #wechat-preview ol {
             margin-bottom: 1.2em !important;
@@ -539,8 +539,8 @@
         let coverTemplate = 'tech';
         let bgGradient = {
             start: '#2e1065',
-            mid: '#0f172a',
-            end: '#7c3aed'
+            mid: '#e0f2fe',
+            end: '#0284c7'
         };
 
         let categories = ['技术分享'];
@@ -638,7 +638,7 @@
                 if (item === tpl) {
                     btn.className = "px-3 py-2 bg-brand-600/20 text-brand-400 border border-brand-500/30 rounded-lg text-xs font-medium transition text-center";
                 } else {
-                    btn.className = "px-3 py-2 bg-white text-gray-600 border border-gray-200 rounded-lg text-xs font-medium hover:bg-gray-800 transition text-center";
+                    btn.className = "px-3 py-2 bg-white text-gray-600 border border-gray-200 rounded-lg text-xs font-medium hover:bg-gray-100 transition text-center";
                 }
             });
             drawCover();
@@ -734,7 +734,7 @@
             ctx.fillText(emoji, p + 40, p + 40);
 
             // 类别徽标
-            ctx.fillStyle = '#c4b5fd';
+            ctx.fillStyle = '#7dd3fc';
             ctx.font = 'bold 15px "Inter", "Noto Sans SC"';
             ctx.textAlign = 'left';
             ctx.textBaseline = 'top';
@@ -773,7 +773,7 @@
             // 徽章卡片
             ctx.fillStyle = 'rgba(255,255,255,0.08)';
             roundRect(ctx, x+40, y+40, 110, 32, 16, true, false);
-            ctx.fillStyle = '#c4b5fd';
+            ctx.fillStyle = '#7dd3fc';
             ctx.font = 'bold 12px "Inter"';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
@@ -910,7 +910,7 @@
             });
             tWrap.innerHTML = '';
             tags.forEach((tag, index) => {
-                tWrap.innerHTML += `<span class="inline-flex items-center gap-1 bg-gray-800 text-gray-500 border border-gray-300 px-2 py-0.5 rounded text-xs"># ${tag}<button onclick="removeChip(${index}, 'tag')" class="hover:text-red-400">&times;</button></span>`;
+                tWrap.innerHTML += `<span class="inline-flex items-center gap-1 bg-blue-100 text-blue-700 border border-gray-300 px-2 py-0.5 rounded text-xs"># ${tag}<button onclick="removeChip(${index}, 'tag')" class="hover:text-red-400">&times;</button></span>`;
             });
         }
 
@@ -926,7 +926,7 @@
             currentFmFormat = fmt;
             ['yaml', 'toml'].forEach(item => {
                 const btn = document.getElementById(`fmt-${item}`);
-                btn.className = item === fmt ? "px-3 py-1.5 rounded-md text-xs font-medium bg-gray-800 text-gray-900 transition" : "px-3 py-1.5 rounded-md text-xs font-medium text-gray-600 hover:text-gray-900 transition";
+                btn.className = item === fmt ? "px-3 py-1.5 rounded-md text-xs font-medium bg-blue-500 text-white transition" : "px-3 py-1.5 rounded-md text-xs font-medium text-gray-600 hover:text-gray-900 transition";
             });
             document.getElementById('fm-file-indicator').textContent = fmt === 'yaml' ? "index.md" : "config.toml";
             document.getElementById('fm-lang-tag').textContent = fmt;
