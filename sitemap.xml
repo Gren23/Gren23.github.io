@@ -56,7 +56,7 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/charts/index.html</loc>
+    <loc>https://www.hehehey.top/census/index.html</loc>
     
     <lastmod>2026-06-12</lastmod>
     
@@ -65,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/census/index.html</loc>
+    <loc>https://www.hehehey.top/charts/index.html</loc>
     
     <lastmod>2026-06-12</lastmod>
     
@@ -182,7 +182,7 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/posts/cgxi/</loc>
+    <loc>https://www.hehehey.top/posts/abb-robotware/</loc>
     
     <lastmod>2026-06-12</lastmod>
     
@@ -191,7 +191,7 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/posts/abb-robotware/</loc>
+    <loc>https://www.hehehey.top/posts/cgxi/</loc>
     
     <lastmod>2026-06-12</lastmod>
     
@@ -227,7 +227,7 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/posts/fanuc/</loc>
+    <loc>https://www.hehehey.top/posts/estun/</loc>
     
     <lastmod>2026-06-12</lastmod>
     
@@ -236,7 +236,7 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/posts/estun/</loc>
+    <loc>https://www.hehehey.top/posts/fanuc/</loc>
     
     <lastmod>2026-06-12</lastmod>
     
@@ -489,14 +489,14 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/tags/CGXi/</loc>
+    <loc>https://www.hehehey.top/tags/ABB/</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/tags/%E5%B8%8C%E5%85%8B%E6%96%AF/</loc>
+    <loc>https://www.hehehey.top/tags/RobotWare/</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -510,14 +510,14 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/tags/ABB/</loc>
+    <loc>https://www.hehehey.top/tags/CGXi/</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/tags/RobotWare/</loc>
+    <loc>https://www.hehehey.top/tags/%E5%B8%8C%E5%85%8B%E6%96%AF/</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -566,20 +566,6 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/tags/FANUC/</loc>
-    <lastmod>2026-06-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hehehey.top/tags/%E5%8F%91%E9%82%A3%E7%A7%91/</loc>
-    <lastmod>2026-06-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.hehehey.top/tags/ESTUN/</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -588,6 +574,20 @@
   
   <url>
     <loc>https://www.hehehey.top/tags/%E5%9F%83%E6%96%AF%E9%A1%BF/</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hehehey.top/tags/FANUC/</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hehehey.top/tags/%E5%8F%91%E9%82%A3%E7%A7%91/</loc>
     <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
