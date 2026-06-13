@@ -360,15 +360,15 @@
                 <hr class="border-gray-200" />
                 
                 <!-- 拖拽上传区域 -->
-                <div id="drop-zone" class="border-2 border-dashed border-gray-200 hover:border-brand-500/50 rounded-2xl p-8 flex flex-col items-center justify-center gap-3 cursor-pointer transition bg-white/50">
-                    <div class="p-3 bg-brand-500/10 text-brand-400 rounded-full" id="upload-icon-wrapper">
+                <div id="drop-zone" class="border-2 border-dashed border-gray-200 hover:border-blue-500/50 rounded-2xl p-8 flex flex-col items-center justify-center gap-3 cursor-pointer transition bg-white/50 relative">
+                    <input type="file" id="image-file-input" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/*" onchange="handleImageUpload(this)">
+                    <div class="p-3 bg-blue-500/10 text-blue-500 rounded-full" id="upload-icon-wrapper">
                         <i data-lucide="image" class="w-6 h-6"></i>
                     </div>
                     <div class="text-center">
                         <p class="text-xs font-bold text-gray-900">点击上传图片 或 拖拽图片至此处</p>
                         <p class="text-[10px] text-gray-500 mt-1">支持 PNG, JPG, WEBP 拖入格式</p>
                     </div>
-                    <input type="file" id="image-file-input" class="hidden" accept="image/*" onchange="handleImageUpload(this)">
                 </div>
 
                 <!-- 压缩比率设置 -->
@@ -1075,9 +1075,7 @@
                 }
             });
 
-            dropZone.addEventListener('click', () => {
-                document.getElementById('image-file-input').click();
-            });
+            // input is now directly visible and covers the drop zone
         }
 
         function updateQualityText(slider) {
