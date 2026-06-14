@@ -1,0 +1,285 @@
+/* ================== 公告页：浅色极简数控工作台样式 ================== */
+
+#vision-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.85;
+}
+
+/* 博客流光字 */
+.nav-site-title, #site-title {
+  background: linear-gradient(90deg, #1e40af, #3b82f6, #0284c7, #1e40af);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shineText 6s linear infinite;
+  font-weight: 700;
+}
+@keyframes shineText {
+  to { background-position: 200% center; }
+}
+
+/* 顶栏 OSD 系统数值指示 */
+#page-site-info {
+  position: relative;
+  display: inline-block;
+}
+#page-site-info #site-title {
+  font-family: 'Courier New', Courier, monospace !important;
+  letter-spacing: 2px;
+  font-size: 2.2rem;
+  text-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+}
+#page-site-info::after {
+  content: '[ BOARD: SYS_NOTICE ]  [ REFRESH: OK ]  [ SYS_VER: 5.5.4 ]';
+  display: block;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+
+/* 公告双栏控制台排版 */
+.notice-layout {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+/* 左侧主要内容 */
+.notice-main {
+  flex: 1;
+}
+
+/* 右侧监视挂件 */
+.notice-monitor-widget {
+  width: 260px;
+  position: sticky;
+  top: 80px;
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 4px;
+  padding: 18px !important;
+  font-family: 'Courier New', Courier, monospace;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.02);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.widget-title {
+  font-size: 12px;
+  font-weight: bold;
+  color: #3b82f6;
+  border-bottom: 1px dashed rgba(59, 130, 246, 0.15);
+  padding-bottom: 8px;
+  margin-bottom: 14px;
+  letter-spacing: 1px;
+}
+
+.monitor-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #475569;
+  margin-bottom: 10px;
+}
+.monitor-item .status-tag {
+  color: #10b981; /* 精致绿 */
+  font-weight: bold;
+}
+
+/* 公告卡片 (Diagnostic Notice Box) */
+.notice-item {
+  position: relative;
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid rgba(226, 232, 240, 0.8) !important;
+  border-radius: 4px !important; /* 精致微直角 */
+  padding: 24px !important;
+  margin-bottom: 20px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease,
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* 机械对焦框限饰线 */
+.notice-item::before, .notice-item::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 2px solid transparent;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  pointer-events: none;
+}
+.notice-item::before {
+  top: 14px;
+  left: 14px;
+  border-top-color: #3b82f6;
+  border-left-color: #3b82f6;
+}
+.notice-item::after {
+  bottom: 14px;
+  right: 14px;
+  border-bottom-color: #3b82f6;
+  border-right-color: #3b82f6;
+}
+
+/* 悬停对焦动效 */
+.notice-item:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.06) !important;
+}
+.notice-item:hover::before {
+  top: 8px;
+  left: 8px;
+  opacity: 1;
+}
+.notice-item:hover::after {
+  bottom: 8px;
+  right: 8px;
+  opacity: 1;
+}
+
+/* 公告头部元数据标签 (Log-Style Metadata) */
+.notice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed rgba(226, 232, 240, 0.8);
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+}
+.notice-tag {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+  font-weight: bold;
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.05);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  padding: 2px 6px;
+  border-radius: 2px;
+  letter-spacing: 0.5px;
+}
+.notice-date {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* 公告文本 */
+.notice-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 10px;
+}
+.notice-content {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #475569;
+}
+.notice-content p {
+  margin: 0 0 10px 0;
+}
+.notice-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* 侧边栏头像冷蓝色扫描线 */
+.card-info .avatar-img {
+  position: relative !important;
+  display: inline-block !important;
+  overflow: hidden !important;
+  border-radius: 50% !important;
+  border: 3px solid rgba(59, 130, 246, 0.25);
+  transition: border-color 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-info .avatar-img:hover {
+  transform: scale(1.05);
+  border-color: #3b82f6;
+}
+.card-info .avatar-img::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 45%,
+    rgba(59, 130, 246, 0.8) 50%, 
+    rgba(59, 130, 246, 0.2) 53%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+.card-info .avatar-img:hover::after {
+  animation: scanning 1.5s infinite linear;
+}
+@keyframes scanning {
+  0% { top: -100%; }
+  100% { top: 100%; }
+}
+
+.card-info-social-icons a.social-icon {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: inline-block;
+}
+.card-info-social-icons a.social-icon:hover {
+  transform: translateY(-3px) scale(1.15) !important;
+}
+
+/* 响应式排版 */
+@media screen and (max-width: 850px) {
+  .notice-layout {
+    flex-direction: column;
+  }
+  .notice-monitor-widget {
+    width: 100%;
+    position: static;
+    margin-bottom: 20px;
+  }
+}
+
+/* 暗黑模式自适应 */
+[data-theme="dark"] .notice-item, [data-theme="dark"] .notice-monitor-widget {
+  background: rgba(15, 23, 42, 0.5) !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+[data-theme="dark"] .notice-item:hover {
+  border-color: rgba(96, 165, 250, 0.35) !important;
+  box-shadow: 0 8px 24px rgba(96, 165, 250, 0.1) !important;
+}
+[data-theme="dark"] .notice-item::before {
+  border-top-color: #60a5fa;
+  border-left-color: #60a5fa;
+}
+[data-theme="dark"] .notice-item::after {
+  border-bottom-color: #60a5fa;
+  border-right-color: #60a5fa;
+}
+[data-theme="dark"] .notice-title {
+  color: #f1f5f9;
+}
+[data-theme="dark"] .notice-content {
+  color: #94a3b8;
+}
+[data-theme="dark"] .notice-header {
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+
+
+[data-theme="light"] body{background:linear-gradient(180deg,#f0f9ff 0%,#e8f6fc 30%,#ffffff 100%) !important;}html{scroll-behavior:auto;}#footer-wrap{background-color:#ffffff!important;background-image:none!important;border-top:1px solid #e5e9ef !important;padding:10px 0 !important;min-height:unset !important;height:auto !important;line-height:1.6 !important;box-shadow:none !important;text-align:center;}#footer-wrap .copyright{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;}#footer-wrap .framework-info{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:8px;font-size:13px !important;color:#888 !important;flex-wrap:wrap;}#footer-wrap #ghbdages{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:5px;flex-wrap:wrap;}#footer-wrap a{color:#49b1f5!important;text-decoration:none;}#footer-wrap a:hover{text-decoration:underline;}
