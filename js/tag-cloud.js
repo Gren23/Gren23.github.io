@@ -1,8 +1,8 @@
-// 动态生成标签云
+// 动态生成标签云 - 等 DOM 完全就绪后再执行
 (function() {
   function waitForPosts() {
     if (typeof posts === 'undefined') {
-      setTimeout(waitForPosts, 50);
+      setTimeout(waitForPosts, 100);
       return;
     }
     run();
@@ -75,5 +75,9 @@
     new MutationObserver(applyTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
   }
 
-  waitForPosts();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', waitForPosts);
+  } else {
+    waitForPosts();
+  }
 })();
