@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><meta name="baidu-site-verification" content="codeva-hfv5Au82rN"><title>G/ren的小破站 | G/ren的小破站</title><meta name="author" content="G/ren"><meta name="copyright" content="G/ren"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Front Matter 生成器 · hehehey.top              :root {       --primary: #2d5a3b;       --primary-light: #4a7c59;       --accent: #e07a5f;       --bg: #f0ede8;       --card-bg: rgba(255,255,255">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light" class="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><meta name="baidu-site-verification" content="codeva-hfv5Au82rN"><title>G/ren的小破站 | G/ren的小破站</title><meta name="author" content="G/ren"><meta name="copyright" content="G/ren"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="独立博主超级工具台 | Blog Studio Pro                                                                tailwind.config = {             darkMode: 'class',             theme: {                 exte">
 <meta property="og:type" content="website">
 <meta property="og:title" content="G/ren的小破站">
 <meta property="og:url" content="https://www.hehehey.top/tools/frontmatter-generator/index.html">
 <meta property="og:site_name" content="G/ren的小破站">
-<meta property="og:description" content="Front Matter 生成器 · hehehey.top              :root {       --primary: #2d5a3b;       --primary-light: #4a7c59;       --accent: #e07a5f;       --bg: #f0ede8;       --card-bg: rgba(255,255,255">
+<meta property="og:description" content="独立博主超级工具台 | Blog Studio Pro                                                                tailwind.config = {             darkMode: 'class',             theme: {                 exte">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.hehehey.top/img/%E5%A4%B4%E5%83%8F.JPG">
-<meta property="article:published_time" content="2026-06-14T19:01:31.453Z">
-<meta property="article:modified_time" content="2026-06-14T19:01:31.453Z">
+<meta property="article:published_time" content="2026-06-15T02:13:30.485Z">
+<meta property="article:modified_time" content="2026-06-13T13:01:26.000Z">
 <meta property="article:author" content="G/ren">
 <meta property="article:tag" content="机器视觉,Vision Master,Mech-Vision,视觉定位,海康,Hexo博客,技术分享,编程">
 <meta name="twitter:card" content="summary">
@@ -146,416 +146,1167 @@
   pageType: 'page'
 }</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><style>[data-theme="light"] body{background:linear-gradient(180deg,#f0f9ff 0%,#e8f6fc 30%,#ffffff 100%) !important;}html{scroll-behavior:auto;}#footer-wrap{background-color:#ffffff!important;background-image:none!important;border-top:1px solid #e5e9ef !important;padding:10px 0 !important;min-height:unset !important;height:auto !important;line-height:1.6 !important;box-shadow:none !important;text-align:center;}#footer-wrap .copyright{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;}#footer-wrap .framework-info{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:8px;font-size:13px !important;color:#888 !important;flex-wrap:wrap;}#footer-wrap #ghbdages{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:5px;flex-wrap:wrap;}#footer-wrap a{color:#49b1f5!important;text-decoration:none;}#footer-wrap a:hover{text-decoration:underline;}</style>
 <style>[data-theme="dark"] body{background:linear-gradient(180deg,#1a2a3a 0%,#243447 50%,#1a2533 100%) !important;}#footer-wrap{background:#1a2533!important;border-top:1px solid #374151 !important;padding:10px 0 !important;min-height:unset !important;height:auto !important;line-height:1.6 !important;box-shadow:none !important;text-align:center;}#footer-wrap .copyright{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;}#footer-wrap .framework-info{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:8px;font-size:13px !important;color:#9ca3af !important;flex-wrap:wrap;}#footer-wrap #ghbdages{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:5px;flex-wrap:wrap;}#footer-wrap a{color:#93c5fd!important;text-decoration:none;}#footer-wrap a:hover{text-decoration:underline;}</style>
-<script src="https://img.hehey.top/js/echarts.min.js"></script><script defer="" src="https://hm.baidu.com/hm.js?187613fe21d57ca4e614119d64623d28"></script><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/%E5%A4%B4%E5%83%8F.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><span class="site-page group hide"><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/cover-generator/"><i class="fa-fw fas fa-image"></i><span> 封面生成</span></a></li><li><a class="site-page child" href="/tools/frontmatter-generator/"><i class="fa-fw fas fa-file-code"></i><span> Front Matter</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><span class="site-page group hide"><span> 统计</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/charts/"><i class="fa-fw fas fa-chart-bar"></i><span> 文章统计</span></a></li><li><a class="site-page child" href="/census/"><i class="fa-fw fas fa-chart-line"></i><span> 博客统计</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 博客</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-sync"></i><span> 更新</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fas fa-bullhorn"></i><span> 公告</span></a></li><li><a class="site-page child" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 信箱</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/moments/"><i class="fa-fw fas fa-comment-dots"></i><span> 动态</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">G/ren的小破站</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><span class="site-page group hide"><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/cover-generator/"><i class="fa-fw fas fa-image"></i><span> 封面生成</span></a></li><li><a class="site-page child" href="/tools/frontmatter-generator/"><i class="fa-fw fas fa-file-code"></i><span> Front Matter</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><span class="site-page group hide"><span> 统计</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/charts/"><i class="fa-fw fas fa-chart-bar"></i><span> 文章统计</span></a></li><li><a class="site-page child" href="/census/"><i class="fa-fw fas fa-chart-line"></i><span> 博客统计</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 博客</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-sync"></i><span> 更新</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fas fa-bullhorn"></i><span> 公告</span></a></li><li><a class="site-page child" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 信箱</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/moments/"><i class="fa-fw fas fa-comment-dots"></i><span> 动态</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><h1 class="title-seo">G/ren的小破站</h1></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container">
+<script src="https://img.hehey.top/js/echarts.min.js"></script><script defer="" src="https://hm.baidu.com/hm.js?187613fe21d57ca4e614119d64623d28"></script><meta name="generator" content="Hexo 8.1.1"></head><body class="min-h-screen flex flex-col antialiased selection:bg-brand-500/30 selection:text-brand-900"><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/%E5%A4%B4%E5%83%8F.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><span class="site-page group hide"><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/cover-generator/"><i class="fa-fw fas fa-image"></i><span> 封面生成</span></a></li><li><a class="site-page child" href="/tools/frontmatter-generator/"><i class="fa-fw fas fa-file-code"></i><span> Front Matter</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><span class="site-page group hide"><span> 统计</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/charts/"><i class="fa-fw fas fa-chart-bar"></i><span> 文章统计</span></a></li><li><a class="site-page child" href="/census/"><i class="fa-fw fas fa-chart-line"></i><span> 博客统计</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 博客</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-sync"></i><span> 更新</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fas fa-bullhorn"></i><span> 公告</span></a></li><li><a class="site-page child" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 信箱</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/moments/"><i class="fa-fw fas fa-comment-dots"></i><span> 动态</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">G/ren的小破站</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><span class="site-page group hide"><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/cover-generator/"><i class="fa-fw fas fa-image"></i><span> 封面生成</span></a></li><li><a class="site-page child" href="/tools/frontmatter-generator/"><i class="fa-fw fas fa-file-code"></i><span> Front Matter</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><span class="site-page group hide"><span> 统计</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/charts/"><i class="fa-fw fas fa-chart-bar"></i><span> 文章统计</span></a></li><li><a class="site-page child" href="/census/"><i class="fa-fw fas fa-chart-line"></i><span> 博客统计</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 博客</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-sync"></i><span> 更新</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fas fa-bullhorn"></i><span> 公告</span></a></li><li><a class="site-page child" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 信箱</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/moments/"><i class="fa-fw fas fa-comment-dots"></i><span> 动态</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><h1 class="title-seo">G/ren的小破站</h1></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container">
 
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Front Matter 生成器 · hehehey.top</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #2d5a3b;
-      --primary-light: #4a7c59;
-      --accent: #e07a5f;
-      --bg: #f0ede8;
-      --card-bg: rgba(255,255,255,0.72);
-      --text: #333;
-      --text-muted: #666;
-      --border: rgba(0,0,0,0.08);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Noto Sans SC', -apple-system, sans-serif;
-      background: var(--bg);
-      min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      padding: 40px 20px;
-      color: var(--text);
-    }
-    .page-header {
-      position: fixed; top: 0; left: 0; right: 0;
-      background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255,255,255,0.5);
-      padding: 0 40px; height: 60px;
-      display: flex; align-items: center; justify-content: space-between;
-      z-index: 100;
-    }
-    .page-header .logo { font-size: 15px; font-weight: 600; color: var(--primary); }
-    .page-header .back-link { font-size: 13px; color: var(--text-muted); text-decoration: none; }
-    .page-header .back-link:hover { color: var(--primary); }
-    .page-header .tool-link { font-size: 13px; color: var(--primary); text-decoration: none; font-weight: 500; }
-    .page-header .tool-link:hover { text-decoration: underline; }
-    .wrapper { width: 100%; max-width: 1100px; padding-top: 20px; }
-    .page-title { text-align: center; margin-bottom: 32px; }
-    .page-title h1 { font-size: 24px; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
-    .page-title p { font-size: 14px; color: var(--text-muted); }
-    .container { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
-    .panel {
-      background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255,255,255,0.5); border-radius: 20px; padding: 24px;
-      box-shadow: 0 4px 24px rgba(45,90,59,0.07);
-    }
-    .panel-title { font-size: 11px; letter-spacing: 1.5px; color: var(--text-muted); text-transform: uppercase; font-weight: 500; margin-bottom: 18px; }
-    .field { margin-bottom: 14px; }
-    .field label { display: block; font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; }
-    .field label .hint { font-weight: 400; font-size: 11px; opacity: 0.7; margin-left: 4px; }
-    .field input, .field textarea, .field select {
-      width: 100%; padding: 10px 13px; border: 1.5px solid rgba(0,0,0,0.1); border-radius: 12px;
-      font-size: 14px; font-family: inherit; background: rgba(255,255,255,0.65);
-      transition: border-color 0.2s, box-shadow 0.2s; color: var(--text);
-    }
-    .field input:focus, .field textarea:focus, .field select:focus {
-      outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(45,90,59,0.12);
-    }
-    .field textarea { resize: vertical; min-height: 60px; }
-    .field-tags .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-    .tag-chip { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; background: var(--primary); color: white; border-radius: 20px; font-size: 12px; font-weight: 500; }
-    .tag-chip .remove { cursor: pointer; opacity: 0.8; font-size: 13px; }
-    .tag-chip .remove:hover { opacity: 1; }
-    .tag-input-row { display: flex; gap: 8px; }
-    .tag-input-row input { flex: 1; }
-    .tag-input-row button { padding: 10px 14px; background: var(--primary); color: white; border: none; border-radius: 12px; font-size: 14px; cursor: pointer; font-family: inherit; white-space: nowrap; }
-    .tag-input-row button:hover { background: var(--primary-light); }
-    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .code-output { position: relative; }
-    .code-block {
-      background: rgba(45,90,59,0.05); border: 1.5px solid rgba(45,90,59,0.12); border-radius: 14px;
-      padding: 16px; font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; font-size: 13px;
-      line-height: 1.7; color: var(--text); white-space: pre-wrap; word-break: break-all;
-      max-height: 420px; overflow-y: auto; min-height: 200px; user-select: all;
-    }
-    .code-block::-webkit-scrollbar { width: 6px; }
-    .code-block::-webkit-scrollbar-track { background: transparent; }
-    .code-block::-webkit-scrollbar-thumb { background: rgba(45,90,59,0.2); border-radius: 3px; }
-    .btn-row { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
-    .btn-copy {
-      flex: 1; padding: 12px; background: var(--primary); color: white; border: none;
-      border-radius: 14px; font-size: 14px; font-weight: 600; cursor: pointer;
-      font-family: inherit; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px;
-    }
-    .btn-copy:hover { background: var(--primary-light); transform: translateY(-1px); }
-    .btn-copy:active { transform: translateY(0); }
-    .btn-copy.copied { background: #4a7c59; }
-    .btn-reset {
-      flex: 1; padding: 12px; background: rgba(255,255,255,0.65); color: var(--text-muted);
-      border: 1.5px solid var(--border); border-radius: 14px; font-size: 14px; font-weight: 600;
-      cursor: pointer; font-family: inherit; transition: all 0.2s;
-    }
-    .btn-reset:hover { border-color: var(--accent); color: var(--accent); }
-    .tip { font-size: 11px; color: var(--text-muted); margin-top: 10px; text-align: center; opacity: 0.7; }
-    .url-param-tip { font-size: 11px; color: var(--text-muted); opacity: 0.7; margin-bottom: 16px; }
-    .section-label { font-size: 11px; letter-spacing: 1.5px; color: var(--text-muted); text-transform: uppercase; font-weight: 500; margin: 16px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
-    .section-label:first-child { margin-top: 0; }
-    .brand-footer { text-align: center; margin-top: 24px; }
-    .brand-footer span { font-size: 11px; color: var(--text-muted); opacity: 0.5; }
-    .copied-msg { position: fixed; top: 80px; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; padding: 10px 24px; border-radius: 30px; font-size: 14px; font-weight: 600; z-index: 9999; box-shadow: 0 4px 20px rgba(45,90,59,0.25); opacity: 0; transition: opacity 0.3s; pointer-events: none; }
-    .copied-msg.show { opacity: 1; }
-    @media (max-width: 800px) {
-      body { padding: 20px 16px; align-items: flex-start; }
-      .page-header { padding: 0 20px; }
-      .wrapper { padding-top: 60px; }
-      .container { grid-template-columns: 1fr; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>独立博主超级工具台 | Blog Studio Pro</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入谷歌高质感字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&amp;family=Inter:wght@300;400;500;600;700;800&amp;family=Noto+Sans+SC:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet">
+    <!-- Lucide 图标 -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- 引入轻量级 Markdown 编译器 marked 用于微信排版工具 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans SC', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            950: '#082f49',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans SC', 'sans-serif';
+            background-color: #f8fafc;
+            color: #334155; /* 修复1: 整体文字颜色改为深灰色，确保亮色下清晰可读 */
+        }
+        /* 自定义美化滚动条 */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
 
 
 
-  <div class="page-header">
-    <span class="logo">G/ren</span>
-    <a href="/cover-generator/" class="tool-link">封面生成器 →</a>
-    <a href="/" class="back-link">← 返回博客</a>
-  </div>
+    <!-- 顶部导航栏 -->
+    <header class="border-b border-slate-200/80 bg-white/80 backdrop-blur-md sticky top-0 z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <a href="/">
+                    <div class="p-2.5 bg-gradient-to-tr from-blue-500 to-indigo-600 rounded-xl text-white shadow-lg shadow-brand-500/20 hover:scale-105 transition-transform">
+                        <i data-lucide="layout-grid" class="w-6 h-6"></i>
+                    </div>
+                </a>
+                <div>
+                    <h1 class="text-lg font-bold tracking-tight text-slate-800 flex items-center gap-2">
+                        G/ren's Blog <span class="text-xs bg-brand-500/10 text-brand-600 border border-brand-500/30 px-2.5 py-0.5 rounded-full">超级工具台 Pro</span>
+                    </h1>
+                    <p class="text-xs text-slate-500">一站式解决博主：设计封面、配置前缀、全网排版与图片极速压缩</p>
+                </div>
+            </div>
+            
+            <!-- 四大工具切卡 -->
+            <div class="flex flex-wrap justify-center bg-slate-100 p-1 rounded-xl border border-slate-200 gap-1">
+                <button onclick="switchTab('cover')" id="tab-cover" class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all duration-200 bg-brand-600 text-white shadow-sm">
+                    <i data-lucide="image" class="w-3.5 h-3.5"></i>
+                    封面生成
+                </button>
+                <button onclick="switchTab('fm')" id="tab-fm" class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all duration-200 text-slate-600 hover:text-slate-900">
+                    <i data-lucide="file-code" class="w-3.5 h-3.5"></i>
+                    Front Matter
+                </button>
+                <button onclick="switchTab('markdown')" id="tab-markdown" class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all duration-200 text-slate-600 hover:text-slate-900">
+                    <i data-lucide="languages" class="w-3.5 h-3.5"></i>
+                    微信/自媒体排版
+                </button>
+                <button onclick="switchTab('compress')" id="tab-compress" class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all duration-200 text-slate-600 hover:text-slate-900">
+                    <i data-lucide="shrink" class="w-3.5 h-3.5"></i>
+                    图片极速 WebP 压缩
+                </button>
+            </div>
+        </div>
+    </header>
 
-  <div class="wrapper">
-    <div class="page-title">
-      <h1>Front Matter 生成器</h1>
-      <p>填表单，生成 Hexo 文章头部 YAML，一键复制</p>
+    <!-- 工作区主体 -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6 lg:p-8">
+        
+        <!-- ==================== 1. 封面生成器 ==================== -->
+        <div id="panel-cover" class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- 配置面板 -->
+            <div class="lg:col-span-5 flex flex-col gap-6 bg-white border border-slate-200 p-6 rounded-2xl shadow-sm backdrop-blur-sm">
+                <div>
+                    <h3 class="text-sm font-bold text-slate-800 flex items-center gap-1.5">
+                        <i data-lucide="settings" class="w-4 h-4 text-brand-600"></i>
+                        封面视觉设计
+                    </h3>
+                    <p class="text-xs text-slate-500 mt-0.5">简单的配置项，生成极高视觉水准的封面</p>
+                </div>
+                <hr class="border-slate-200">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1.5">大标题 (Title)</label>
+                        <input type="text" id="cover-title" value="如何使用 Tailwind CSS 极速设计现代个人网站" oninput="drawCover()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1.5">核心导读摘要 (Subtitle)</label>
+                        <textarea id="cover-subtitle" rows="2" oninput="drawCover()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">探索现代前端最高效的实用原子化样式方案，从零构建响应式高阶暗黑模式组件。</textarea>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1.5">主分类标签</label>
+                            <input type="text" id="cover-tag" value="DESIGN" oninput="drawCover()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1.5">作者署名</label>
+                            <input type="text" id="cover-author" value="hehehey.top" oninput="drawCover()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1.5">风格样式排版模板</label>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button onclick="setTemplate('tech')" id="tpl-tech" class="px-3 py-2 bg-brand-100 text-brand-700 border border-brand-200 rounded-lg text-xs font-medium transition text-center">现代科技</button>
+                            <button onclick="setTemplate('card')" id="tpl-card" class="px-3 py-2 bg-slate-50 text-slate-600 border border-slate-200 rounded-lg text-xs font-medium hover:bg-slate-100 transition text-center">卡片悬浮</button>
+                            <button onclick="setTemplate('minimalist')" id="tpl-minimalist" class="px-3 py-2 bg-slate-50 text-slate-600 border border-slate-200 rounded-lg text-xs font-medium hover:bg-slate-100 transition text-center">高亮留白</button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1.5">精选 Emoji</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="cover-emoji" value="💻" oninput="drawCover()" class="w-12 text-center bg-slate-50 border border-slate-200 rounded-lg py-2 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
+                                <div class="flex gap-1.5 overflow-x-auto py-1 items-center">
+                                    <button onclick="quickEmoji('💻')" class="hover:scale-125 transition text-base">💻</button>
+                                    <button onclick="quickEmoji('⚡')" class="hover:scale-125 transition text-base">⚡</button>
+                                    <button onclick="quickEmoji('🎨')" class="hover:scale-125 transition text-base">🎨</button>
+                                    <button onclick="quickEmoji('📦')" class="hover:scale-125 transition text-base">📦</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1.5">尺寸比例</label>
+                            <select id="cover-aspect" onchange="changeAspect()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
+                                <option value="2-1" selected="">2:1 (1200x600) 自适应</option>
+                                <option value="16-9">16:9 (1280x720) 社交卡片</option>
+                                <option value="1-1">1:1 (800x800) 正方形</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1.5">高端渐变配色背景（高饱和度以保证字迹可读）</label>
+                        <div class="grid grid-cols-5 gap-2">
+                            <!-- 修复背景：为渐变层赋予较高的对比度和色彩深度，确保白色和淡蓝色文字在封面画布中完全清晰 -->
+                            <button onclick="setGradient('#3b0764', '#0f172a', '#7c3aed')" class="h-8 rounded-lg bg-gradient-to-br from-purple-950 via-slate-900 to-purple-600 border border-slate-200 hover:border-slate-400 transition" title="霓虹紫"></button>
+                            <button onclick="setGradient('#0369a1', '#0f172a', '#0284c7')" class="h-8 rounded-lg bg-gradient-to-br from-sky-900 via-slate-900 to-sky-600 border border-slate-200 hover:border-slate-400 transition" title="宇宙蓝"></button>
+                            <button onclick="setGradient('#065f46', '#022c22', '#10b981')" class="h-8 rounded-lg bg-gradient-to-br from-emerald-900 via-teal-950 to-emerald-500 border border-slate-200 hover:border-slate-400 transition" title="翡翠绿"></button>
+                            <button onclick="setGradient('#7c2d12', '#1c1917', '#ea580c')" class="h-8 rounded-lg bg-gradient-to-br from-orange-950 via-stone-900 to-orange-600 border border-slate-200 hover:border-slate-400 transition" title="火山落日"></button>
+                            <button onclick="setGradient('#18181b', '#09090b', '#27272a')" class="h-8 rounded-lg bg-gradient-to-br from-zinc-900 via-zinc-950 to-zinc-700 border border-slate-200 hover:border-slate-400 transition" title="极客黑白"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-2">
+                    <button onclick="downloadCover()" class="w-full bg-gradient-to-r from-blue-500 to-sky-600 hover:from-blue-600 hover:to-indigo-700 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-brand-500/20 active:scale-95 transition">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        下载无损超清 PNG 封面
+                    </button>
+                </div>
+            </div>
+
+            <!-- Canvas 渲染结果 -->
+            <div class="lg:col-span-7 flex flex-col gap-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-500">实时渲染画布 (2x 超清)</h4>
+                        <p class="text-xs text-slate-500">双击或通过下载按键可无损保存为 2x 采样高清图</p>
+                    </div>
+                    <div class="flex items-center gap-1.5 text-xs text-green-600 bg-green-500/10 border border-green-500/20 px-2.5 py-1 rounded-full">
+                        <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                        GPU 渲染流畅
+                    </div>
+                </div>
+                <div class="flex items-center justify-center bg-white border border-slate-200 rounded-2xl p-6 min-h-[350px] md:min-h-[460px] shadow-sm relative overflow-hidden">
+                    <div class="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:16px_16px] opacity-30"></div>
+                    <div class="relative max-w-full overflow-hidden rounded-xl border border-slate-200 shadow-xl transition-all duration-300">
+                        <canvas id="coverCanvas" class="max-w-full h-auto rounded-xl object-contain bg-slate-50"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 2. FRONT MATTER ==================== -->
+        <div id="panel-fm" class="grid grid-cols-1 lg:grid-cols-12 gap-8 hidden">
+            <!-- 配置表单 -->
+            <div class="lg:col-span-5 flex flex-col gap-6 bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
+                <div>
+                    <h3 class="text-sm font-bold text-slate-800 flex items-center gap-1.5">
+                        <i data-lucide="file-text" class="w-4 h-4 text-brand-600"></i>
+                        Front Matter 变量元配置
+                    </h3>
+                    <p class="text-xs text-slate-500 mt-0.5">控制静态渲染引擎识别的标题、分类与自定义变量</p>
+                </div>
+                <hr class="border-slate-200">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1.5">文章主标题 (Title)</label>
+                        <input type="text" id="fm-title" value="使用 Tailwind CSS 零代码搭建极致审美页面" oninput="updateFrontMatter()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1.5">自定义访问别名 (Slug)</label>
+                        <input type="text" id="fm-slug" value="tailwind-css-best-practices" oninput="updateFrontMatter()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1.5">发布时间 (Date)</label>
+                            <input type="text" id="fm-date" oninput="updateFrontMatter()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1.5">作者署名 (Author)</label>
+                            <input type="text" id="fm-author" value="HeHeHey" oninput="updateFrontMatter()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
+                        </div>
+                    </div>
+                    <!-- 动态列表组件 -->
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">多级分类 (Categories)</label>
+                        <p class="text-[10px] text-slate-400 mb-1.5">回车或逗号分隔快速添加</p>
+                        <div class="flex flex-wrap gap-1.5 p-2 bg-slate-50 border border-slate-200 rounded-lg min-h-[42px]">
+                            <div id="fm-categories-chips" class="flex flex-wrap gap-1.5"></div>
+                            <input type="text" id="fm-category-input" placeholder="按回车添加..." onkeydown="handleChipInput(event, 'category')" class="flex-1 min-w-[80px] bg-transparent text-sm text-slate-800 outline-none">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">标签矩阵 (Tags)</label>
+                        <p class="text-[10px] text-slate-400 mb-1.5">回车或逗号分隔快速添加</p>
+                        <div class="flex flex-wrap gap-1.5 p-2 bg-slate-50 border border-slate-200 rounded-lg min-h-[42px]">
+                            <div id="fm-tags-chips" class="flex flex-wrap gap-1.5"></div>
+                            <input type="text" id="fm-tag-input" placeholder="按回车添加..." onkeydown="handleChipInput(event, 'tag')" class="flex-1 min-w-[80px] bg-transparent text-sm text-slate-800 outline-none">
+                        </div>
+                    </div>
+                </div>
+                <button onclick="syncToCover()" class="w-full bg-white border border-brand-500/30 hover:border-brand-500 text-brand-600 hover:text-white py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition duration-200">
+                    <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+                    一键同步博文要素到封面画板
+                </button>
+            </div>
+
+            <!-- 代码预览与渲染 -->
+            <div class="lg:col-span-7 flex flex-col gap-6">
+                <div class="flex items-center justify-between flex-wrap gap-2">
+                    <div class="flex bg-slate-100 p-1 rounded-lg border border-slate-200">
+                        <button onclick="changeFmFormat('yaml')" id="fmt-yaml" class="px-3 py-1.5 rounded-md text-xs font-medium bg-blue-600 text-white transition">YAML (Hugo/Astro)</button>
+                        <button onclick="changeFmFormat('toml')" id="fmt-toml" class="px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition">TOML (Hugo)</button>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="copyFmCode('only-fm')" class="bg-white border border-slate-200 hover:border-slate-300 text-slate-700 hover:text-slate-900 px-3.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i> 仅复制标头
+                        </button>
+                        <button onclick="copyFmCode('full')" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-md shadow-brand-500/15 transition">
+                            <i data-lucide="file-text" class="w-3.5 h-3.5"></i> 复制完整模板
+                        </button>
+                    </div>
+                </div>
+                <div class="relative bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden flex flex-col flex-grow min-h-[350px] shadow-xl">
+                    <div class="flex items-center justify-between px-4 py-3 bg-slate-950 border-b border-slate-800">
+                        <span id="fm-file-indicator" class="text-xs text-slate-400 font-mono">index.md</span>
+                        <span class="text-xs text-brand-400 uppercase font-mono font-bold" id="fm-lang-tag">yaml</span>
+                    </div>
+                    <div class="flex-grow p-4 md:p-6 font-mono text-xs leading-relaxed overflow-auto">
+                        <!-- 修复3: 代码颜色改为高对比度的亮蓝色，确保在深色背景下字迹绝佳 -->
+                        <pre class="text-brand-300" id="fm-code-block"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 3. 微信/自媒体多端一键排版 ==================== -->
+        <div id="panel-markdown" class="grid grid-cols-1 lg:grid-cols-12 gap-8 hidden">
+            <!-- 输入 Markdown -->
+            <div class="lg:col-span-6 flex flex-col gap-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="text-sm font-bold text-slate-800 flex items-center gap-1.5">
+                            <i data-lucide="keyboard" class="w-4 h-4 text-brand-600"></i>
+                            Markdown 文章输入
+                        </h3>
+                        <p class="text-xs text-slate-500">将你在博客写好的 Markdown 直接粘贴在这里</p>
+                    </div>
+                    <button onclick="loadSampleMarkdown()" class="text-xs text-brand-600 hover:text-brand-700 font-semibold">载入排版演示样例</button>
+                </div>
+                <textarea id="md-input" class="w-full h-[500px] bg-white border border-slate-200 rounded-2xl p-4 text-xs font-mono text-slate-800 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition resize-none" oninput="renderWeChatPreview()" placeholder="在此处输入或粘贴你的 Markdown 原文..."></textarea>
+            </div>
+
+            <!-- 自媒体富文本预览与复制 -->
+            <div class="lg:col-span-6 flex flex-col gap-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="text-sm font-bold text-slate-800 flex items-center gap-1.5">
+                            <i data-lucide="eye" class="w-4 h-4 text-brand-600"></i>
+                            微信排版渲染预览
+                        </h3>
+                        <p class="text-xs text-slate-500">使用专为开发者优化的排版主题样式</p>
+                    </div>
+                    <button onclick="copyRichText()" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-md shadow-brand-500/15 transition">
+                        <i data-lucide="copy" class="w-3.5 h-3.5"></i> 一键“带格式”拷贝
+                    </button>
+                </div>
+
+                <!-- 仿真微信公众号内容画布 -->
+                <div class="w-full h-[500px] bg-white border border-slate-200 rounded-2xl p-6 overflow-auto" id="wechat-scroll-container">
+                    <div id="wechat-preview" class="prose prose-sm max-w-none text-slate-800">
+                        <!-- 动态生成富文本 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 4. 图片极速 WebP 压制与自适应缩放 ==================== -->
+        <div id="panel-compress" class="grid grid-cols-1 lg:grid-cols-12 gap-8 hidden">
+            <!-- 拖拽上传与压缩控制 -->
+            <div class="lg:col-span-5 flex flex-col gap-6 bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
+                <div>
+                    <h3 class="text-sm font-bold text-slate-800 flex items-center gap-1.5">
+                        <i data-lucide="shrink" class="w-4 h-4 text-brand-600"></i>
+                        图片 WebP 极速压缩
+                    </h3>
+                    <p class="text-xs text-slate-500 mt-0.5">大幅缩减博文配图体积，纯前端秒级处理</p>
+                </div>
+                <hr class="border-slate-200">
+                
+                <!-- 拖拽上传区域 -->
+                <div id="drop-zone" class="border-2 border-dashed border-slate-200 hover:border-brand-500 rounded-2xl p-8 flex flex-col items-center justify-center gap-3 cursor-pointer transition bg-slate-50/50 relative">
+                    <input type="file" id="image-file-input" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/*" onchange="handleImageUpload(this)">
+                    <div class="p-3 bg-brand-500/10 text-brand-600 rounded-full" id="upload-icon-wrapper">
+                        <i data-lucide="image" class="w-6 h-6"></i>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-xs font-bold text-slate-800">点击上传图片 或 拖拽图片至此处</p>
+                        <p class="text-[10px] text-slate-400 mt-1">支持 PNG, JPG, WEBP 拖入格式</p>
+                    </div>
+                </div>
+
+                <!-- 压缩比率设置 -->
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <label class="text-xs font-semibold text-slate-600 uppercase">压缩质量 Quality</label>
+                            <span class="text-xs font-bold text-brand-600" id="quality-val">80%</span>
+                        </div>
+                        <input type="range" id="compress-quality" min="10" max="100" value="80" oninput="updateQualityText(this)" class="w-full accent-brand-600 bg-slate-200 rounded-lg appearance-none h-1.5">
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <label class="text-xs font-semibold text-slate-600 uppercase">最大宽度限制 (选填)</label>
+                            <span class="text-xs text-slate-400">保留空则不缩放</span>
+                        </div>
+                        <input type="number" id="compress-max-width" placeholder="例如: 1200" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-800 focus:outline-none focus:border-brand-500 transition">
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button id="compress-btn" disabled="" onclick="executeCompress()" class="w-full bg-brand-600 disabled:opacity-40 disabled:pointer-events-none hover:bg-brand-700 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition active:scale-95 shadow-md">
+                        <i data-lucide="file-image" class="w-4 h-4"></i>
+                        极速生成 WebP 图像
+                    </button>
+                </div>
+            </div>
+
+            <!-- 处理前后对比及下载 -->
+            <div class="lg:col-span-7 flex flex-col gap-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h4 class="text-xs font-semibold text-slate-500 uppercase">压缩数据对比分析</h4>
+                        <p class="text-[11px] text-slate-400">展示前后大小及最终节省的空间率</p>
+                    </div>
+                    <button id="download-compressed-btn" disabled="" onclick="downloadCompressedImage()" class="bg-emerald-600 hover:bg-emerald-700 text-white disabled:opacity-40 px-3.5 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition">
+                        <i data-lucide="download" class="w-3.5 h-3.5"></i> 一键下载 WebP
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <!-- 原始 -->
+                    <div class="bg-white border border-slate-200 rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[220px] shadow-sm">
+                        <span class="absolute top-3 left-3 text-[10px] bg-slate-100 text-slate-500 border border-slate-200 px-2 py-0.5 rounded">原始图</span>
+                        <div class="w-full h-32 flex items-center justify-center overflow-hidden mb-3">
+                            <img id="compress-original-preview" class="max-w-full max-h-full object-contain rounded opacity-40" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23e2e8f0'/></svg>">
+                        </div>
+                        <span class="text-xs text-slate-500 font-mono" id="original-info">-</span>
+                    </div>
+
+                    <!-- 压缩后 -->
+                    <div class="bg-white border border-slate-200 rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[220px] shadow-sm">
+                        <span class="absolute top-3 left-3 text-[10px] bg-brand-500/10 text-brand-600 border border-brand-500/20 px-2 py-0.5 rounded">压缩后 WebP</span>
+                        <div class="w-full h-32 flex items-center justify-center overflow-hidden mb-3">
+                            <img id="compress-target-preview" class="max-w-full max-h-full object-contain rounded" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23e2e8f0'/></svg>">
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-xs text-brand-600 font-bold" id="target-info">-</span>
+                            <span class="text-[10px] text-green-600 mt-0.5 font-semibold" id="saved-percent"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- 弹窗提示通知 -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-2 px-4 py-3 bg-white border border-slate-200 text-slate-800 rounded-xl shadow-xl">
+        <div class="p-1 rounded bg-brand-500/10 text-brand-600" id="toast-icon-box">
+            <i data-lucide="check" class="w-4 h-4"></i>
+        </div>
+        <p class="text-xs font-semibold text-slate-700" id="toast-message">操作已成功</p>
     </div>
 
-    <div class="container">
+    <!-- 隐藏的下载引擎 -->
+    <a id="download-helper" class="hidden"></a>
 
-      <!-- 左侧：表单 -->
-      <div class="panel">
-        <div class="panel-title">文章信息</div>
+    <footer class="mt-auto py-6 border-t border-slate-200 bg-white text-center">
+        <p class="text-xs text-slate-400">
+            © 2026 hehehey.top | 独立博客超级排版与性能工作台
+        </p>
+    </footer>
 
-        <div class="section-label">基本信息</div>
-        <div class="field">
-          <label>标题 <span class="hint">title</span></label>
-          <input type="text" id="fTitle" placeholder="文章标题">
-        </div>
-        <div class="row-2">
-          <div class="field">
-            <label>日期 <span class="hint">date</span></label>
-            <input type="date" id="fDate">
-          </div>
-          <div class="field">
-            <label>更新日期 <span class="hint">updated</span></label>
-            <input type="date" id="fUpdated">
-          </div>
-        </div>
-        <div class="field">
-          <label>作者 <span class="hint">author</span></label>
-          <input type="text" id="fAuthor" placeholder="G/ren" value="G/ren">
-        </div>
-        <div class="field">
-          <label>永久链接标识 <span class="hint">abbrlink（留空则自动生成）</span></label>
-          <input type="text" id="fAbbrlink" placeholder="留空自动生成">
-        </div>
+    <!-- 排版微样式库内置（微信公众号自适应） -->
+    <style>
+        #wechat-preview h1 {
+            font-size: 1.45em !important;
+            font-weight: bold !important;
+            color: #0284c7 !important;
+            border-bottom: 2px solid #bae6fd !important;
+            padding-bottom: 6px !important;
+            margin-top: 1.5em !important;
+            margin-bottom: 0.8em !important;
+        }
+        #wechat-preview h2 {
+            font-size: 1.25em !important;
+            font-weight: bold !important;
+            color: #0c4a6e !important;
+            margin-top: 1.3em !important;
+            margin-bottom: 0.6em !important;
+            display: flex !important;
+            align-items: center !important;
+        }
+        #wechat-preview h2::before {
+            content: "◆";
+            color: #0ea5e9;
+            margin-right: 6px;
+            font-size: 0.8em;
+        }
+        #wechat-preview p {
+            line-height: 1.75 !important;
+            color: #374151 !important;
+            margin-bottom: 1.2em !important;
+            text-align: justify !important;
+            font-size: 14px !important;
+        }
+        #wechat-preview pre {
+            background-color: #f1f5f9 !important;
+            border-radius: 12px !important;
+            padding: 14px !important;
+            overflow-x: auto !important;
+            border: 1px solid #cbd5e1 !important;
+            margin-bottom: 1.2em !important;
+        }
+        #wechat-preview code {
+            font-family: 'Fira Code', 'JetBrains Mono', monospace !important;
+            font-size: 12px !important;
+            color: #334155 !important; /* 修复4: 微信排版中的代码块字体前景色设为深灰色，保障对比度 */
+        }
+        #wechat-preview p code {
+            background-color: #f0f9ff !important;
+            color: #0284c7 !important;
+            padding: 2px 6px !important;
+            border-radius: 4px !important;
+            font-size: 13px !important;
+            border: 1px solid #bae6fd !important;
+        }
+        #wechat-preview blockquote {
+            border-left: 4px solid #0284c7 !important;
+            background-color: #f0f9ff !important;
+            padding: 12px 16px !important;
+            margin-bottom: 1.2em !important;
+            border-radius: 0 8px 8px 0 !important;
+            color: #075985 !important;
+        }
+        #wechat-preview blockquote p {
+            margin-bottom: 0 !important;
+            color: #075985 !important;
+        }
+        #wechat-preview ul, #wechat-preview ol {
+            margin-bottom: 1.2em !important;
+            padding-left: 20px !important;
+            font-size: 14px !important;
+            color: #374151 !important;
+        }
+        #wechat-preview li {
+            margin-bottom: 0.4em !important;
+            line-height: 1.6 !important;
+        }
+    </style>
 
-        <div class="section-label">分类与标签</div>
-        <div class="field">
-          <label>分类 <span class="hint">categories</span></label>
-          <input type="text" id="fCategories" placeholder="机器视觉">
-        </div>
-        <div class="field">
-          <label>标签 <span class="hint">tags（回车添加）</span></label>
-          <div class="tag-list" id="tagList"></div>
-          <div class="tag-input-row" style="margin-top:8px;">
-            <input type="text" id="tagInput" placeholder="输入标签后回车">
-            <button type="button" onclick="addTag()">+</button>
-          </div>
-        </div>
+    <!-- 工作台系统主控制 JS 逻辑 -->
+    <script>
+        // 1. 全局配置切换状态机
+        let currentTab = 'cover';
+        let currentFmFormat = 'yaml';
+        let coverTemplate = 'tech';
+        let bgGradient = {
+            start: '#1e1b4b', // 深蓝底
+            mid: '#0f172a',   // 极客黑
+            end: '#0284c7'    // 天蓝色
+        };
 
-        <div class="section-label">SEO 与展示</div>
-        <div class="field">
-          <label>描述 <span class="hint">description</span></label>
-          <textarea id="fDescription" placeholder="文章简介，用于 SEO 和摘要显示" rows="2"></textarea>
-        </div>
-        <div class="field">
-          <label>关键词 <span class="hint">keywords</span></label>
-          <input type="text" id="fKeywords" placeholder="用逗号分隔，如：机器视觉,机器人,梅卡曼德">
-        </div>
-        <div class="field">
-          <label>封面图片 <span class="hint">cover_image</span></label>
-          <input type="text" id="fCover" placeholder="图片 URL，留空则无封面">
-        </div>
-        <div class="row-2">
-          <div class="field">
-            <label>置顶封面 <span class="hint">top_img</span></label>
-            <input type="text" id="fTopImg" placeholder="留空同 cover">
-          </div>
-          <div class="field">
-            <label>MathJax <span class="hint">mathjax</span></label>
-            <select id="fMathjax">
-              <option value="">否</option>
-              <option value="true">是</option>
-            </select>
-          </div>
-        </div>
+        let categories = ['技术分享'];
+        let tags = ['前端开发', '自媒体排版'];
+        let uploadedImageObj = null;
 
-        <div class="section-label">布局选项</div>
-        <div class="row-2">
-          <div class="field">
-            <label>显示标题 <span class="hint">show_title</span></label>
-            <select id="fShowTitle">
-              <option value="">默认</option>
-              <option value="true">显示</option>
-              <option value="false">隐藏</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>侧边栏 <span class="hint">aside</span></label>
-            <select id="fAside">
-              <option value="">显示</option>
-              <option value="false">隐藏</option>
-            </select>
-          </div>
-        </div>
-      </div>
+        window.onload = function() {
+            lucide.createIcons();
 
-      <!-- 右侧：输出 -->
-      <div class="panel">
-        <div class="panel-title">生成的 Front Matter</div>
-        <div class="code-output">
-          <div class="code-block" id="codeOutput">---</div>
-        </div>
-        <div class="btn-row">
-          <button class="btn-copy" id="btnCopy" onclick="copyCode()">
-            <span id="btnCopyText">📋 复制 YAML</span>
-          </button>
-          <button class="btn-reset" onclick="resetForm()">↺ 重置</button>
-        </div>
-        <p class="tip">复制后直接粘贴到 Markdown 文件顶部</p>
-        <div class="url-param-tip">支持 URL 参数：?title=xxx&amp;categories=机器视觉&amp;tags=a,b,c</div>
-        <div class="brand-footer"><span>Powered by hehehey.top</span></div>
-      </div>
+            // 修复5: 成功配置并声明时间所需的 date 对象实例化逻辑
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('fm-date').value = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
-    </div>
-  </div>
+            // 初次装填渲染
+            drawCover();
+            updateFrontMatter();
+            renderChips();
+            loadSampleMarkdown();
+            initDragAndDrop();
+        };
 
-  <div class="copied-msg" id="copiedMsg">✅ 已复制到剪贴板</div>
+        // 视图导航切换器
+        function switchTab(tabId) {
+            currentTab = tabId;
+            ['cover', 'fm', 'markdown', 'compress'].forEach(t => {
+                const btn = document.getElementById(`tab-${t}`);
+                const panel = document.getElementById(`panel-${t}`);
+                if (t === tabId) {
+                    btn.className = "flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all duration-200 bg-brand-600 text-white shadow-sm";
+                    panel.classList.remove('hidden');
+                } else {
+                    btn.className = "flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all duration-200 text-slate-600 hover:text-slate-900";
+                    panel.classList.add('hidden');
+                }
+            });
 
-  <script>
-    var currentTags = [];
-    var HISTORY_KEY = 'fm_generator_history';
-    var MAX_HISTORY = 10;
+            if (tabId === 'cover') {
+                setTimeout(drawCover, 50);
+            }
+        }
 
-    // URL 参数填充
-    (function() {
-      var params = new URLSearchParams(window.location.search);
-      if (params.has('title'))     document.getElementById('fTitle').value = decodeURIComponent(params.get('title'));
-      if (params.has('author'))    document.getElementById('fAuthor').value = decodeURIComponent(params.get('author'));
-      if (params.has('categories')) document.getElementById('fCategories').value = decodeURIComponent(params.get('categories'));
-      if (params.has('date'))      document.getElementById('fDate').value = params.get('date');
-      if (params.has('description')) document.getElementById('fDescription').value = decodeURIComponent(params.get('description'));
-      if (params.has('cover'))     document.getElementById('fCover').value = decodeURIComponent(params.get('cover'));
-      if (params.has('keywords'))  document.getElementById('fKeywords').value = decodeURIComponent(params.get('keywords'));
-      if (params.has('mathjax'))    document.getElementById('fMathjax').value = params.get('mathjax');
-      if (params.has('tags')) {
-        params.get('tags').split(',').forEach(function(t) { t = t.trim(); if (t) addTagSilent(t); });
-      }
-      if (params.has('abbrlink'))  document.getElementById('fAbbrlink').value = params.get('abbrlink');
-    })();
+        // 弹出通知栏
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            const msgEl = document.getElementById('toast-message');
+            const iconBox = document.getElementById('toast-icon-box');
 
-    // 填充默认值日期
-    var today = new Date().toISOString().slice(0, 10);
-    if (!document.getElementById('fDate').value) document.getElementById('fDate').value = today;
+            msgEl.textContent = message;
+            if (isError) {
+                iconBox.className = "p-1 rounded bg-red-500/20 text-red-400";
+                iconBox.innerHTML = '<i data-lucide="alert-circle" class="w-4 h-4"></i>';
+            } else {
+                iconBox.className = "p-1 rounded bg-brand-500/20 text-brand-600";
+                iconBox.innerHTML = '<i data-lucide="check" class="w-4 h-4"></i>';
+            }
+            lucide.createIcons();
 
-    function addTagSilent(name) {
-      name = name.trim();
-      if (!name || currentTags.indexOf(name) !== -1) return;
-      currentTags.push(name);
-      renderTags();
-    }
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
 
-    function addTag() {
-      var input = document.getElementById('tagInput');
-      var name = input.value.trim();
-      if (!name) return;
-      if (currentTags.indexOf(name) !== -1) { input.value = ''; return; }
-      currentTags.push(name);
-      input.value = '';
-      renderTags();
-      syncOutput();
-    }
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
 
-    function removeTag(name) {
-      currentTags = currentTags.filter(function(t) { return t !== name; });
-      renderTags();
-      syncOutput();
-    }
+        /* ---------------------------------
+           【核心 1】封面图像渲染内核
+           --------------------------------- */
+        function getCanvasSize() {
+            const aspect = document.getElementById('cover-aspect').value;
+            switch(aspect) {
+                case '16-9': return { width: 1280, height: 720 };
+                case '1-1': return { width: 800, height: 800 };
+                case '2-1':
+                default:
+                    return { width: 1200, height: 600 };
+            }
+        }
 
-    function renderTags() {
-      var el = document.getElementById('tagList');
-      el.innerHTML = currentTags.map(function(t) {
-        return '<span class="tag-chip">' + escHtml(t) + ' <span class="remove" onclick="removeTag(\'' + escAttr(t) + '\')">×</span></span>';
-      }).join('');
-    }
+        function changeAspect() {
+            drawCover();
+        }
 
-    function escHtml(str) {
-      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    }
-    function escAttr(str) {
-      return str.replace(/'/g, '&#39;').replace(/"/g, '&#34;');
-    }
+        function setTemplate(tpl) {
+            coverTemplate = tpl;
+            ['tech', 'card', 'minimalist'].forEach(item => {
+                const btn = document.getElementById(`tpl-${item}`);
+                if (item === tpl) {
+                    btn.className = "px-3 py-2 bg-brand-100 text-brand-700 border border-brand-200 rounded-lg text-xs font-medium transition text-center";
+                } else {
+                    btn.className = "px-3 py-2 bg-slate-50 text-slate-600 border border-slate-200 rounded-lg text-xs font-medium hover:bg-slate-100 transition text-center";
+                }
+            });
+            drawCover();
+        }
 
-    // 回车添加标签
-    document.getElementById('tagInput').addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') { e.preventDefault(); addTag(); }
-    });
+        function quickEmoji(emoji) {
+            document.getElementById('cover-emoji').value = emoji;
+            drawCover();
+        }
 
-    function generateAbbrlink() {
-      return Math.random().toString(36).slice(2, 8);
-    }
+        function setGradient(start, mid, end) {
+            bgGradient = { start, mid, end };
+            drawCover();
+        }
 
-    function formatDate(d) {
-      if (!d) return '';
-      // 确保格式为 YYYY-MM-DD HH:MM:SS
-      return d + ' ' + new Date().toTimeString().slice(0,8);
-    }
+        function drawCover() {
+            const canvas = document.getElementById('coverCanvas');
+            const ctx = canvas.getContext('2d');
+            const size = getCanvasSize();
+            canvas.width = size.width;
+            canvas.height = size.height;
 
-    function escYaml(str) {
-      if (!str) return '';
-      // 如果包含冒号、换行、引号，需要加引号
-      if (/[:\n\"\'#|>]/.test(str)) {
-        return '"' + str.replace(/"/g, '\\"') + '"';
-      }
-      return str;
-    }
+            const title = document.getElementById('cover-title').value || '';
+            const subtitle = document.getElementById('cover-subtitle').value || '';
+            const tag = document.getElementById('cover-tag').value || '';
+            const author = document.getElementById('cover-author').value || '';
+            const emoji = document.getElementById('cover-emoji').value || '';
 
-    function syncOutput() {
-      var lines = [];
-      lines.push('---');
-      if (document.getElementById('fTitle').value) lines.push('title: ' + escYaml(document.getElementById('fTitle').value));
-      if (document.getElementById('fDate').value) lines.push('date: ' + formatDate(document.getElementById('fDate').value));
-      if (document.getElementById('fUpdated').value) lines.push('updated: ' + formatDate(document.getElementById('fUpdated').value));
-      if (document.getElementById('fAuthor').value) lines.push('author: ' + escYaml(document.getElementById('fAuthor').value));
-      if (document.getElementById('fCategories').value) lines.push('categories:');
-      document.getElementById('fCategories').value.split(',').map(function(c) { return c.trim(); }).filter(Boolean).forEach(function(c) {
-        lines.push('  - ' + c);
-      });
-      if (currentTags.length) {
-        lines.push('tags:');
-        currentTags.forEach(function(t) { lines.push('  - ' + t); });
-      }
-      if (document.getElementById('fKeywords').value) lines.push('keywords: ' + escYaml(document.getElementById('fKeywords').value));
-      if (document.getElementById('fDescription').value) lines.push('description: ' + escYaml(document.getElementById('fDescription').value));
-      if (document.getElementById('fCover').value) lines.push('cover: ' + document.getElementById('fCover').value);
-      if (document.getElementById('fTopImg').value) lines.push('top_img: ' + document.getElementById('fTopImg').value);
-      var abbrlink = document.getElementById('fAbbrlink').value.trim();
-      if (!abbrlink) abbrlink = generateAbbrlink();
-      lines.push('abbrlink: ' + abbrlink);
-      if (document.getElementById('fMathjax').value) lines.push('mathjax: ' + document.getElementById('fMathjax').value);
-      if (document.getElementById('fShowTitle').value) lines.push('show_title: ' + document.getElementById('fShowTitle').value);
-      if (document.getElementById('fAside').value) lines.push('aside: ' + document.getElementById('fAside').value);
-      lines.push('---');
-      document.getElementById('codeOutput').textContent = lines.join('\n');
-    }
+            // 绘制渐变底层
+            const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            grad.addColorStop(0, bgGradient.start);
+            grad.addColorStop(0.5, bgGradient.mid);
+            grad.addColorStop(1, bgGradient.end);
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    var inputs = document.querySelectorAll('input, textarea, select');
-    inputs.forEach(function(el) {
-      el.addEventListener('input', syncOutput);
-      el.addEventListener('change', syncOutput);
-    });
+            // 虚拟星云光效
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.035)';
+            ctx.beginPath();
+            ctx.arc(canvas.width * 0.8, canvas.height * 0.25, canvas.width * 0.35, 0, Math.PI*2);
+            ctx.fill();
 
-    function copyCode() {
-      var code = document.getElementById('codeOutput').textContent;
-      if (!code || code === '---') return;
-      var btn = document.getElementById('btnCopy');
-      var btnText = document.getElementById('btnCopyText');
-      navigator.clipboard.writeText(code).then(function() {
-        btn.classList.add('copied');
-        btnText.textContent = '✅ 已复制';
-        showCopiedMsg();
-        setTimeout(function() {
-          btn.classList.remove('copied');
-          btnText.textContent = '📋 复制 YAML';
-        }, 2000);
-      }).catch(function() {
-        // fallback
-        var ta = document.createElement('textarea');
-        ta.value = code;
-        ta.style.position = 'fixed'; ta.style.opacity = '0';
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-        showCopiedMsg();
-        btnText.textContent = '✅ 已复制';
-        setTimeout(function() { btnText.textContent = '📋 复制 YAML'; }, 2000);
-      });
-    }
+            if (coverTemplate === 'tech') {
+                drawTech(ctx, canvas, title, subtitle, tag, author, emoji);
+            } else if (coverTemplate === 'card') {
+                drawCard(ctx, canvas, title, subtitle, tag, author, emoji);
+            } else {
+                drawMinimalist(ctx, canvas, title, subtitle, tag, author, emoji);
+            }
+        }
 
-    function showCopiedMsg() {
-      var msg = document.getElementById('copiedMsg');
-      msg.classList.add('show');
-      setTimeout(function() { msg.classList.remove('show'); }, 1800);
-    }
+        function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+            const chars = text.split('');
+            let line = '';
+            let lines = [];
+            for (let n = 0; n < chars.length; n++) {
+                let testLine = line + chars[n];
+                let metrics = ctx.measureText(testLine);
+                if (metrics.width > maxWidth && n > 0) {
+                    lines.push(line);
+                    line = chars[n];
+                } else {
+                    line = testLine;
+                }
+            }
+            lines.push(line);
+            for (let i = 0; i < lines.length; i++) {
+                ctx.fillText(lines[i], x, y + (i * lineHeight));
+            }
+            return lines.length;
+        }
 
-    function resetForm() {
-      document.querySelectorAll('input:not([type="date"]), textarea').forEach(function(el) { el.value = ''; });
-      document.querySelectorAll('select').forEach(function(el) { el.selectedIndex = 0; });
-      currentTags = [];
-      renderTags();
-      document.getElementById('fAuthor').value = 'G/ren';
-      document.getElementById('fDate').value = today;
-      syncOutput();
-    }
+        function drawTech(ctx, canvas, title, subtitle, tag, author, emoji) {
+            // 背景点阵
+            ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+            ctx.lineWidth = 1;
+            for (let i = 0; i < canvas.width; i += 40) {
+                ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke();
+            }
+            for (let j = 0; j < canvas.height; j += 40) {
+                ctx.beginPath(); ctx.moveTo(0, j); ctx.lineTo(canvas.width, j); ctx.stroke();
+            }
 
-    syncOutput();
-  </script>
+            const p = 60;
+            // 绘制中心 Emoji Box
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.07)';
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+            ctx.lineWidth = 2;
+            roundRect(ctx, p, p, 80, 80, 16, true, true);
+            ctx.font = '44px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(emoji, p + 40, p + 40);
+
+            // 类别徽标
+            ctx.fillStyle = '#7dd3fc';
+            ctx.font = 'bold 15px "Inter", "Noto Sans SC"';
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'top';
+            ctx.fillText(tag.toUpperCase(), p, p + 110);
+
+            // 作者与装饰线
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+            ctx.fillText(author, p, canvas.height - p - 10);
+            ctx.strokeStyle = 'rgba(139, 92, 246, 0.4)';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(p, canvas.height - p - 30);
+            ctx.lineTo(p + 120, canvas.height - p - 30);
+            ctx.stroke();
+
+            // 文章主标题
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 44px "Inter", "Noto Sans SC"';
+            const lines = wrapText(ctx, title, p, p + 150, canvas.width - p*2 - 40, 58);
+
+            // 博文副标题
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+            ctx.font = '400 18px "Inter", "Noto Sans SC"';
+            wrapText(ctx, subtitle, p, p + 150 + lines*58 + 15, canvas.width - p*2 - 40, 28);
+        }
+
+        function drawCard(ctx, canvas, title, subtitle, tag, author, emoji) {
+            const x = 70, y = 70;
+            const w = canvas.width - x*2, h = canvas.height - y*2;
+
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.lineWidth = 1;
+            roundRect(ctx, x, y, w, h, 20, true, true);
+
+            // 徽章卡片
+            ctx.fillStyle = 'rgba(255,255,255,0.08)';
+            roundRect(ctx, x+40, y+40, 110, 32, 16, true, false);
+            ctx.fillStyle = '#7dd3fc';
+            ctx.font = 'bold 12px "Inter"';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(tag.toUpperCase(), x+95, y+56);
+
+            ctx.font = '36px sans-serif';
+            ctx.fillText(emoji, x + w - 60, y + 56);
+
+            // 主标题
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 42px "Inter", "Noto Sans SC"';
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'top';
+            const lines = wrapText(ctx, title, x+40, y+100, w-80, 56);
+
+            // 辅助简述
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.65)';
+            ctx.font = '400 17px "Inter", "Noto Sans SC"';
+            wrapText(ctx, subtitle, x+40, y+100 + lines*56 + 15, w-80, 26);
+
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+            ctx.font = '600 13px "Inter"';
+            ctx.fillText(`PUBLISHED BY ${author.toUpperCase()}`, x+40, y + h - 40);
+        }
+
+        function drawMinimalist(ctx, canvas, title, subtitle, tag, author, emoji) {
+            ctx.strokeStyle = 'rgba(255,255,255,0.07)';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(30, 30, canvas.width - 60, canvas.height - 60);
+
+            ctx.font = '72px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(emoji, canvas.width/2, 110);
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 40px "Inter", "Noto Sans SC"';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'top';
+
+            const words = title.split('');
+            let line = ''; let lines = [];
+            for (let n = 0; n < words.length; n++) {
+                let testLine = line + words[n];
+                if (ctx.measureText(testLine).width > canvas.width - 240 && n > 0) {
+                    lines.push(line); line = words[n];
+                } else { line = testLine; }
+            }
+            lines.push(line);
+
+            for (let i = 0; i < lines.length; i++) {
+                ctx.fillText(lines[i], canvas.width/2, 170 + i*54);
+            }
+
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+            ctx.font = '400 17px "Inter", "Noto Sans SC"';
+            const subY = 170 + lines.length*54 + 15;
+            
+            const subWords = subtitle.split('');
+            let sLine = ''; let sLines = [];
+            for (let s = 0; s < subWords.length; s++) {
+                let testS = sLine + subWords[s];
+                if (ctx.measureText(testS).width > canvas.width - 240 && s > 0) {
+                    sLines.push(sLine); sLine = subWords[s];
+                } else { sLine = testS; }
+            }
+            sLines.push(sLine);
+
+            for (let j = 0; j < sLines.length; j++) {
+                ctx.fillText(sLines[j], canvas.width/2, subY + j*26);
+            }
+
+            ctx.fillStyle = '#e4e4e7';
+            ctx.font = 'bold 12px "Inter"';
+            ctx.fillText(`${tag.toUpperCase()} • ${author.toUpperCase()}`, canvas.width/2, canvas.height - 60);
+        }
+
+        function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + width - radius, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+            ctx.lineTo(x + width, y + height - radius);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+            ctx.lineTo(x + radius, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+            ctx.closePath();
+            if (fill) ctx.fill();
+            if (stroke) ctx.stroke();
+        }
+
+        function downloadCover() {
+            const canvas = document.getElementById('coverCanvas');
+            const helper = document.getElementById('download-helper');
+            const titleSlug = document.getElementById('cover-title').value.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
+            helper.download = `cover-${titleSlug || 'untitled'}.png`;
+            helper.href = canvas.toDataURL("image/png");
+            helper.click();
+            showToast("🚀 2倍抗锯齿超清封面已成功保存至本地！");
+        }
+
+        /* ---------------------------------
+           【核心 2】Front Matter 生成器内核
+           --------------------------------- */
+        function handleChipInput(event, type) {
+            const input = document.getElementById(`fm-${type}-input`);
+            const value = input.value.trim();
+            if (event.key === 'Enter' || event.key === ',') {
+                event.preventDefault();
+                if (value) {
+                    const list = type === 'category' ? categories : tags;
+                    if (!list.includes(value)) {
+                        list.push(value); renderChips(); updateFrontMatter();
+                    }
+                    input.value = '';
+                }
+            }
+        }
+
+        function removeChip(index, type) {
+            const list = type === 'category' ? categories : tags;
+            list.splice(index, 1);
+            renderChips(); updateFrontMatter();
+        }
+
+        function renderChips() {
+            const cWrap = document.getElementById('fm-categories-chips');
+            const tWrap = document.getElementById('fm-tags-chips');
+            cWrap.innerHTML = '';
+            categories.forEach((cat, index) => {
+                cWrap.innerHTML += `<span class="inline-flex items-center gap-1 bg-brand-500/10 text-brand-700 border border-brand-500/20 px-2 py-0.5 rounded text-xs">${cat}<button onclick="removeChip(${index}, 'category')" class="hover:text-red-400">&times;</button></span>`;
+            });
+            tWrap.innerHTML = '';
+            tags.forEach((tag, index) => {
+                tWrap.innerHTML += `<span class="inline-flex items-center gap-1 bg-blue-100 text-blue-700 border border-gray-300 px-2 py-0.5 rounded text-xs"># ${tag}<button onclick="removeChip(${index}, 'tag')" class="hover:text-red-400">&times;</button></span>`;
+            });
+        }
+
+        function syncToCover() {
+            document.getElementById('cover-title').value = document.getElementById('fm-title').value;
+            document.getElementById('cover-author').value = document.getElementById('fm-author').value;
+            document.getElementById('cover-tag').value = categories[0] || 'POST';
+            drawCover();
+            showToast("⚡ 主要内容已秒级传递并刷新封面！");
+        }
+
+        // 格式切换
+        function changeFmFormat(fmt) {
+            currentFmFormat = fmt;
+            ['yaml', 'toml'].forEach(item => {
+                const btn = document.getElementById(`fmt-${item}`);
+                btn.className = item === fmt ? "px-3 py-1.5 rounded-md text-xs font-medium bg-blue-600 text-white transition" : "px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition";
+            });
+            document.getElementById('fm-file-indicator').textContent = fmt === 'yaml' ? "index.md" : "config.toml";
+            document.getElementById('fm-lang-tag').textContent = fmt;
+            updateFrontMatter();
+        }
+
+        function updateFrontMatter() {
+            const title = document.getElementById('fm-title').value || '';
+            const slug = document.getElementById('fm-slug').value || '';
+            const date = document.getElementById('fm-date').value || '';
+            const author = document.getElementById('fm-author').value || '';
+            const isDraft = document.getElementById('fm-draft').checked;
+            const isComment = document.getElementById('fm-comment').checked;
+
+            let output = "";
+            if (currentFmFormat === 'yaml') {
+                output += "---\n";
+                output += `title: "${title.replace(/"/g, '\\"')}"\n`;
+                output += `slug: ${slug}\n`;
+                output += `date: ${date}\n`;
+                output += `author: ${author}\n`;
+                output += `draft: ${isDraft}\n`;
+                output += `comments: ${isComment}\n`;
+                if (categories.length > 0) {
+                    output += "categories:\n"; categories.forEach(c => output += `  - ${c}\n`);
+                }
+                if (tags.length > 0) {
+                    output += "tags:\n"; tags.forEach(t => output += `  - ${t}\n`);
+                }
+                output += "---";
+            } else {
+                output += `title = "${title.replace(/"/g, '\\"')}"\nslug = "${slug}"\ndate = ${date.replace(' ', 'T')}Z\nauthor = "${author}"\ndraft = ${isDraft}\ncomments = ${isComment}\n`;
+                output += `categories = ${JSON.stringify(categories)}\ntags = ${JSON.stringify(tags)}\n`;
+            }
+            document.getElementById('fm-code-block').textContent = output;
+        }
+
+        function copyFmCode(type) {
+            const content = document.getElementById('fm-code-block').textContent;
+            let text = content;
+            if (type === 'full') {
+                text += `\n\n# ${document.getElementById('fm-title').value}\n\n在这里写博客正文...`;
+            }
+            const el = document.createElement('textarea');
+            el.value = text; el.style.position = 'fixed'; el.style.opacity = '0';
+            document.body.appendChild(el); el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            showToast("📋 已将 Front Matter 拷至剪贴板！");
+        }
+
+
+        /* ---------------------------------
+           【核心 3】微信与自媒体多端一键排版
+           --------------------------------- */
+        function loadSampleMarkdown() {
+            const sample = `# 探索 Tailwind CSS 的高阶重构艺术
+
+> 本文向你展示如何使用原子化 CSS 快速搭建高性能的开发者个人站点。
+
+## 为什么要使用原子化？
+传统的 CSS 会随着项目的迭代越来越臃肿，而 **Tailwind** 采用实用工具类优先：
+1. **零多余代码**：未用到的代码会被打包工具完全剔除。
+2. **像素级掌控**：无需离开 HTML，就能设计完美动效与响应。
+
+\`\`\`css
+/* 传统的原子组件写法 */
+.custom-card {
+  background: #111827;
+  border-radius: 12px;
+  padding: 16px;
+}
+\`\`\`
+
+## 推荐的学习线路
+* 掌握盒模型与 Flex/Grid 栅格。
+* 拥抱现代构建工具，快速搭建高颜值页面。
+
+赶快体验全新的排版机制吧！`;
+            document.getElementById('md-input').value = sample;
+            renderWeChatPreview();
+        }
+
+        function renderWeChatPreview() {
+            const mdText = document.getElementById('md-input').value;
+            // 使用 marked 渲染为微信自适应的富文本
+            const rawHtml = marked.parse(mdText);
+            document.getElementById('wechat-preview').innerHTML = rawHtml;
+        }
+
+        // 核心技术：“带格式”复制富文本到剪贴板，支持直接一键粘贴入微信公众号后台
+        function copyRichText() {
+            const range = document.createRange();
+            const referenceNode = document.getElementById('wechat-preview');
+            range.selectNode(referenceNode);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showToast("🎉 已成功拷贝“带样式”富文本！现在去公众号、掘金等编辑器直接 Ctrl+V 粘贴即可！");
+                } else {
+                    showToast("富文本复制失败", true);
+                }
+            } catch (err) {
+                showToast("复制出错，当前浏览器不支持", true);
+            }
+            window.getSelection().removeAllRanges(); // 复制完毕取消高亮选择
+        }
+
+
+        /* ---------------------------------
+           【核心 4】图片 WebP 极速压缩器
+           --------------------------------- */
+        function initDragAndDrop() {
+            const dropZone = document.getElementById('drop-zone');
+            
+            // 阻断默认浏览器拖放默认打开动作
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, e => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }, false);
+            });
+
+            // 高亮
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropZone.addEventListener(eventName, () => {
+                    dropZone.classList.add('border-brand-500', 'bg-brand-500/5');
+                }, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, () => {
+                    dropZone.classList.remove('border-brand-500', 'bg-brand-500/5');
+                }, false);
+            });
+
+            dropZone.addEventListener('drop', e => {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                if (files.length > 0) {
+                    document.getElementById('image-file-input').files = files;
+                    handleImageUpload({ files });
+                }
+            });
+        }
+
+        function updateQualityText(slider) {
+            document.getElementById('quality-val').textContent = `${slider.value}%`;
+        }
+
+        function handleImageUpload(input) {
+            const file = input.files[0];
+            if (!file) return;
+
+            // 显示图片名和尺寸
+            document.getElementById('original-info').textContent = `${file.name} (${formatBytes(file.size)})`;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                uploadedImageObj = new Image();
+                uploadedImageObj.onload = function() {
+                    // 渲染至左侧原图缩略
+                    document.getElementById('compress-original-preview').src = e.target.result;
+                    document.getElementById('compress-original-preview').classList.remove('opacity-40');
+                    document.getElementById('compress-btn').removeAttribute('disabled');
+                    showToast("📸 待压缩图片加载成功，点击开始生成！");
+                };
+                uploadedImageObj.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // WebP 前端纯 Canvas 压缩算法
+        let compressedBlobUrl = null;
+        let compressedBlob = null;
+
+        function executeCompress() {
+            if (!uploadedImageObj) return;
+
+            const quality = parseInt(document.getElementById('compress-quality').value) / 100;
+            const maxWidthInput = document.getElementById('compress-max-width').value;
+            
+            // 计算等比例缩放大小
+            let targetWidth = uploadedImageObj.width;
+            let targetHeight = uploadedImageObj.height;
+
+            if (maxWidthInput && targetWidth > parseInt(maxWidthInput)) {
+                targetWidth = parseInt(maxWidthInput);
+                targetHeight = (uploadedImageObj.height / uploadedImageObj.width) * targetWidth;
+            }
+
+            const canvas = document.createElement('canvas');
+            canvas.width = targetWidth;
+            canvas.height = targetHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(uploadedImageObj, 0, 0, targetWidth, targetHeight);
+
+            // 转换 WebP 格式
+            canvas.toBlob(function(blob) {
+                if (compressedBlobUrl) URL.revokeObjectURL(compressedBlobUrl);
+                compressedBlob = blob;
+                compressedBlobUrl = URL.createObjectURL(blob);
+                
+                // 渲染至目标预览
+                document.getElementById('compress-target-preview').src = compressedBlobUrl;
+                
+                // 数据统计
+                const rawSize = document.getElementById('image-file-input').files[0].size;
+                const ratio = ((1 - (blob.size / rawSize)) * 100).toFixed(1);
+                
+                document.getElementById('target-info').textContent = `最终体积: ${formatBytes(blob.size)}`;
+                document.getElementById('saved-percent').textContent = `比原图缩减了 ${ratio}%`;
+                
+                document.getElementById('download-compressed-btn').removeAttribute('disabled');
+                showToast("🎉 WebP 图像无损压制完毕！");
+            }, "image/webp", quality);
+        }
+
+        function downloadCompressedImage() {
+            if (!compressedBlobUrl) return;
+            const helper = document.getElementById('download-helper');
+            helper.download = `optimized_${Date.now()}.webp`;
+            helper.href = compressedBlobUrl;
+            helper.click();
+        }
+
+        function formatBytes(bytes, decimals = 2) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const dm = decimals < 0 ? 0 : decimals;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+        }
+    </script>
+
 
 
 </div><hr class="custom-hr"><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/%E5%A4%B4%E5%83%8F.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info-name">G/ren</div><div class="author-info-description">机器视觉调试工程师 | 技术分享</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Gren23" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/img/wechat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #07c160;"></i></a><a class="social-icon" href="tencent://message/?uin=1955561070" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #1296db;"></i></a><a class="social-icon" href="mailto:i@hehehey.top" target="_blank" title="邮箱"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的小破站！</div></div><div class="sticky_layout"></div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"></div><div class="copyright"><span><b>©2025-2026</b></span><span><b>&nbsp;&nbsp;By G/ren</b></span></div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div id="workboard"></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"><script>(() => {
