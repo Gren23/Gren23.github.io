@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>独立博主超级工具台 | Blog Studio Pro</title>
     <!-- Tailwind CSS -->
-    <link rel="stylesheet" href="./tailwind.built.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- 引入谷歌高质感字体 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2 family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <!-- Lucide 图标 -->
-    <script src="./lucide.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <!-- 引入轻量级 Markdown 编译器 marked 用于微信排版工具 -->
-    <script src="./marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -46,8 +46,7 @@
         body {
             font-family: 'Inter', 'Noto Sans SC', 'sans-serif';
             background-color: #f8fafc;
-            color: #334155;
-            overflow-x: hidden;
+            color: #334155; /* 修复1: 整体文字颜色改为深灰色，确保亮色下清晰可读 */
         }
         /* 自定义美化滚动条 */
         ::-webkit-scrollbar {
@@ -64,108 +63,44 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
-
-        /* 苹果级物理交互阻尼缓动 */
-        .spring-transition {
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        /* 输入框焦点光圈平滑发散效果 */
-        input, textarea, select {
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        input:focus, textarea:focus, select:focus {
-            box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.12);
-        }
-
-        /* 极速滑槽追踪器（用于选项卡切换横向平滑滚动） */
-        .tab-tracker {
-            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), width 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        /* 卡片上浮悬停拟态特效 */
-        .hover-card-effect {
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .hover-card-effect:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.05), 0 8px 10px -6px rgba(2, 132, 199, 0.05);
-            border-color: rgba(2, 132, 199, 0.3);
-        }
-
-        /* 面板平滑切入动效 */
-        .panel-fade-in {
-            animation: panelFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        @keyframes panelFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(12px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* 同步图标旋转动效 */
-        .spin-once {
-            animation: spinOnceEffect 0.65s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-        }
-        @keyframes spinOnceEffect {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* 自定义滑块轨道美化 */
-        input[type="range"]::-webkit-slider-thumb {
-            transition: transform 0.1s ease;
-        }
-        input[type="range"]::-webkit-slider-thumb:active {
-            transform: scale(1.3);
-        }
     </style>
 </head>
-<script>if(document.documentElement.getAttribute&&document.documentElement.getAttribute("data-theme")==="dark"){document.write("<style>.dark{background:#0f172a!important;color:#f1f5f9!important}</style>")}<\/script>
-<body class="min-h-screen flex flex-col antialiased selection:bg-brand-500/20 selection:text-brand-800">
+<body class="min-h-screen flex flex-col antialiased selection:bg-brand-500/30 selection:text-brand-900">
 
     <!-- 顶部导航栏 -->
     <header class="border-b border-slate-200/80 bg-white/80 backdrop-blur-md sticky top-0 z-50 px-6 py-4">
         <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-3">
                 <a href="/">
-                    <div class="p-2.5 bg-gradient-to-tr from-blue-500 to-indigo-600 rounded-xl text-white shadow-md shadow-brand-500/20 active:scale-95 transition-all">
+                    <div class="p-2.5 bg-gradient-to-tr from-blue-500 to-indigo-600 rounded-xl text-white shadow-lg shadow-brand-500/20 hover:scale-105 transition-transform">
                         <i data-lucide="layout-grid" class="w-6 h-6"></i>
                     </div>
                 </a>
                 <div>
                     <h1 class="text-lg font-bold tracking-tight text-slate-800 flex items-center gap-2">
-                        G/ren's Blog <span class="text-xs bg-brand-500/10 text-brand-600 border border-brand-500/30 px-2.5 py-0.5 rounded-full font-medium">超级工具台 Pro</span>
+                        G/ren's Blog <span class="text-xs bg-brand-500/10 text-brand-600 border border-brand-500/30 px-2.5 py-0.5 rounded-full">超级工具台 Pro</span>
                     </h1>
                     <p class="text-xs text-slate-500">一站式解决博主：设计封面、配置前缀、全网排版与图片极速压缩</p>
                 </div>
             </div>
             
-            <!-- 四大工具切卡（带平滑滑动滑块滑块） -->
-            <div class="relative flex bg-slate-100 p-1.5 rounded-xl border border-slate-200 gap-1 w-full max-w-xl lg:w-auto">
-                <!-- 弹性横向滑动背景块 -->
-                <div id="tab-slider" class="tab-tracker absolute top-1.5 bottom-1.5 left-1.5 rounded-lg bg-brand-600 shadow-sm pointer-events-none" style="width: 0px; transform: translateX(0px);"></div>
-                
-                <button onclick="switchTab('cover', this)" class="relative z-10 flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all duration-300 text-white flex-1 lg:flex-none">
+            <!-- 四大工具切卡 -->
+            <div class="flex flex-wrap justify-center bg-slate-100 p-1 rounded-xl border border-slate-200 gap-1">
+                <button onclick="switchTab('cover')" id="tab-cover" class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all duration-200 bg-brand-600 text-white shadow-sm">
                     <i data-lucide="image" class="w-3.5 h-3.5"></i>
                     封面生成
                 </button>
-                <button onclick="switchTab('fm', this)" class="relative z-10 flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all duration-300 text-slate-600 hover:text-slate-900 flex-1 lg:flex-none">
+                <button onclick="switchTab('fm')" id="tab-fm" class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all duration-200 text-slate-600 hover:text-slate-900">
                     <i data-lucide="file-code" class="w-3.5 h-3.5"></i>
                     Front Matter
                 </button>
-                <button onclick="switchTab('markdown', this)" class="relative z-10 flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all duration-300 text-slate-600 hover:text-slate-900 flex-1 lg:flex-none">
+                <button onclick="switchTab('markdown')" id="tab-markdown" class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all duration-200 text-slate-600 hover:text-slate-900">
                     <i data-lucide="languages" class="w-3.5 h-3.5"></i>
                     微信/自媒体排版
                 </button>
-                <button onclick="switchTab('compress', this)" class="relative z-10 flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all duration-300 text-slate-600 hover:text-slate-900 flex-1 lg:flex-none">
+                <button onclick="switchTab('compress')" id="tab-compress" class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all duration-200 text-slate-600 hover:text-slate-900">
                     <i data-lucide="shrink" class="w-3.5 h-3.5"></i>
-                    图片压缩
+                    图片极速 WebP 压缩
                 </button>
             </div>
         </div>
@@ -175,9 +110,9 @@
     <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6 lg:p-8">
         
         <!-- ==================== 1. 封面生成器 ==================== -->
-        <div id="panel-cover" class="grid grid-cols-1 lg:grid-cols-12 gap-8 panel-fade-in">
+        <div id="panel-cover" class="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <!-- 配置面板 -->
-            <div class="lg:col-span-5 flex flex-col gap-6 bg-white border border-slate-200 p-6 rounded-2xl hover-card-effect shadow-sm">
+            <div class="lg:col-span-5 flex flex-col gap-6 bg-white border border-slate-200 p-6 rounded-2xl shadow-sm backdrop-blur-sm">
                 <div>
                     <h3 class="text-sm font-bold text-slate-800 flex items-center gap-1.5">
                         <i data-lucide="settings" class="w-4 h-4 text-brand-600"></i>
@@ -213,10 +148,10 @@
                 <div class="space-y-4">
                     <div>
                         <label class="block text-xs font-semibold text-slate-600 mb-1.5">风格样式排版模板</label>
-                        <div class="grid grid-cols-3 gap-2 bg-slate-50 p-1 rounded-xl border border-slate-100">
-                            <button onclick="setTemplate('tech', this)" id="tpl-tech" class="px-3 py-2 bg-brand-100 text-brand-700 rounded-lg text-xs font-semibold spring-transition text-center">现代科技</button>
-                            <button onclick="setTemplate('card', this)" id="tpl-card" class="px-3 py-2 text-slate-500 rounded-lg text-xs font-semibold hover:text-slate-800 spring-transition text-center">卡片悬浮</button>
-                            <button onclick="setTemplate('minimalist', this)" id="tpl-minimalist" class="px-3 py-2 text-slate-500 rounded-lg text-xs font-semibold hover:text-slate-800 spring-transition text-center">高亮留白</button>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button onclick="setTemplate('tech')" id="tpl-tech" class="px-3 py-2 bg-brand-100 text-brand-700 border border-brand-200 rounded-lg text-xs font-medium transition text-center">现代科技</button>
+                            <button onclick="setTemplate('card')" id="tpl-card" class="px-3 py-2 bg-slate-50 text-slate-600 border border-slate-200 rounded-lg text-xs font-medium hover:bg-slate-100 transition text-center">卡片悬浮</button>
+                            <button onclick="setTemplate('minimalist')" id="tpl-minimalist" class="px-3 py-2 bg-slate-50 text-slate-600 border border-slate-200 rounded-lg text-xs font-medium hover:bg-slate-100 transition text-center">高亮留白</button>
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
@@ -224,17 +159,17 @@
                             <label class="block text-xs font-semibold text-slate-600 mb-1.5">精选 Emoji</label>
                             <div class="flex gap-2">
                                 <input type="text" id="cover-emoji" value="💻" oninput="drawCover()" class="w-12 text-center bg-slate-50 border border-slate-200 rounded-lg py-2 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
-                                <div class="flex gap-2.5 overflow-x-auto py-1 items-center">
-                                    <button onclick="quickEmoji('💻')" class="hover:scale-125 hover:rotate-6 active:scale-95 transition text-base">💻</button>
-                                    <button onclick="quickEmoji('⚡')" class="hover:scale-125 hover:rotate-6 active:scale-95 transition text-base">⚡</button>
-                                    <button onclick="quickEmoji('🎨')" class="hover:scale-125 hover:rotate-6 active:scale-95 transition text-base">🎨</button>
-                                    <button onclick="quickEmoji('📦')" class="hover:scale-125 hover:rotate-6 active:scale-95 transition text-base">📦</button>
+                                <div class="flex gap-1.5 overflow-x-auto py-1 items-center">
+                                    <button onclick="quickEmoji('💻')" class="hover:scale-125 transition text-base">💻</button>
+                                    <button onclick="quickEmoji('⚡')" class="hover:scale-125 transition text-base">⚡</button>
+                                    <button onclick="quickEmoji('🎨')" class="hover:scale-125 transition text-base">🎨</button>
+                                    <button onclick="quickEmoji('📦')" class="hover:scale-125 transition text-base">📦</button>
                                 </div>
                             </div>
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1.5">尺寸比例</label>
-                            <select id="cover-aspect" onchange="changeAspect()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition cursor-pointer">
+                            <select id="cover-aspect" onchange="changeAspect()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
                                 <option value="2-1" selected>2:1 (1200x600) 自适应</option>
                                 <option value="16-9">16:9 (1280x720) 社交卡片</option>
                                 <option value="1-1">1:1 (800x800) 正方形</option>
@@ -242,39 +177,40 @@
                         </div>
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1.5">高端渐变配色背景（高饱和度）</label>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1.5">高端渐变配色背景（高饱和度以保证字迹可读）</label>
                         <div class="grid grid-cols-5 gap-2">
-                            <button onclick="setGradient('#3b0764', '#0f172a', '#7c3aed')" class="h-8 rounded-lg bg-gradient-to-br from-purple-950 via-slate-900 to-purple-600 border border-slate-200 hover:scale-105 active:scale-95 transition" title="霓虹紫"></button>
-                            <button onclick="setGradient('#0369a1', '#0f172a', '#0284c7')" class="h-8 rounded-lg bg-gradient-to-br from-sky-900 via-slate-900 to-sky-600 border border-slate-200 hover:scale-105 active:scale-95 transition" title="宇宙蓝"></button>
-                            <button onclick="setGradient('#065f46', '#022c22', '#10b981')" class="h-8 rounded-lg bg-gradient-to-br from-emerald-900 via-teal-950 to-emerald-500 border border-slate-200 hover:scale-105 active:scale-95 transition" title="翡翠绿"></button>
-                            <button onclick="setGradient('#7c2d12', '#1c1917', '#ea580c')" class="h-8 rounded-lg bg-gradient-to-br from-orange-950 via-stone-900 to-orange-600 border border-slate-200 hover:scale-105 active:scale-95 transition" title="火山落日"></button>
-                            <button onclick="setGradient('#18181b', '#09090b', '#27272a')" class="h-8 rounded-lg bg-gradient-to-br from-zinc-900 via-zinc-950 to-zinc-700 border border-slate-200 hover:scale-105 active:scale-95 transition" title="极客黑白"></button>
+                            <!-- 修复背景：为渐变层赋予较高的对比度和色彩深度，确保白色和淡蓝色文字在封面画布中完全清晰 -->
+                            <button onclick="setGradient('#3b0764', '#0f172a', '#7c3aed')" class="h-8 rounded-lg bg-gradient-to-br from-purple-950 via-slate-900 to-purple-600 border border-slate-200 hover:border-slate-400 transition" title="霓虹紫"></button>
+                            <button onclick="setGradient('#0369a1', '#0f172a', '#0284c7')" class="h-8 rounded-lg bg-gradient-to-br from-sky-900 via-slate-900 to-sky-600 border border-slate-200 hover:border-slate-400 transition" title="宇宙蓝"></button>
+                            <button onclick="setGradient('#065f46', '#022c22', '#10b981')" class="h-8 rounded-lg bg-gradient-to-br from-emerald-900 via-teal-950 to-emerald-500 border border-slate-200 hover:border-slate-400 transition" title="翡翠绿"></button>
+                            <button onclick="setGradient('#7c2d12', '#1c1917', '#ea580c')" class="h-8 rounded-lg bg-gradient-to-br from-orange-950 via-stone-900 to-orange-600 border border-slate-200 hover:border-slate-400 transition" title="火山落日"></button>
+                            <button onclick="setGradient('#18181b', '#09090b', '#27272a')" class="h-8 rounded-lg bg-gradient-to-br from-zinc-900 via-zinc-950 to-zinc-700 border border-slate-200 hover:border-slate-400 transition" title="极客黑白"></button>
                         </div>
                     </div>
                 </div>
                 <div class="pt-2">
-                    <button onclick="downloadCover()" class="w-full bg-gradient-to-r from-blue-500 to-sky-600 hover:from-blue-600 hover:to-indigo-700 text-white py-3.5 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-brand-500/20 active:scale-95 transition-all spring-transition">
+                    <button onclick="downloadCover()" class="w-full bg-gradient-to-r from-blue-500 to-sky-600 hover:from-blue-600 hover:to-indigo-700 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-brand-500/20 active:scale-95 transition">
                         <i data-lucide="download" class="w-4 h-4"></i>
                         下载无损超清 PNG 封面
                     </button>
                 </div>
             </div>
 
-            <!-- Canvas 实时渲染 -->
+            <!-- Canvas 渲染结果 -->
             <div class="lg:col-span-7 flex flex-col gap-6">
                 <div class="flex items-center justify-between">
                     <div>
                         <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-500">实时渲染画布 (2x 超清)</h4>
-                        <p class="text-xs text-slate-500">自适应视口适配展示，实际输出为无损超采样文件</p>
+                        <p class="text-xs text-slate-500">双击或通过下载按键可无损保存为 2x 采样高清图</p>
                     </div>
                     <div class="flex items-center gap-1.5 text-xs text-green-600 bg-green-500/10 border border-green-500/20 px-2.5 py-1 rounded-full">
                         <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                        GPU 硬件加速就绪
+                        GPU 渲染流畅
                     </div>
                 </div>
                 <div class="flex items-center justify-center bg-white border border-slate-200 rounded-2xl p-6 min-h-[350px] md:min-h-[460px] shadow-sm relative overflow-hidden">
                     <div class="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:16px_16px] opacity-30"></div>
-                    <div class="relative max-w-full overflow-hidden rounded-xl border border-slate-200 shadow-xl spring-transition">
+                    <div class="relative max-w-full overflow-hidden rounded-xl border border-slate-200 shadow-xl transition-all duration-300">
                         <canvas id="coverCanvas" class="max-w-full h-auto rounded-xl object-contain bg-slate-50"></canvas>
                     </div>
                 </div>
@@ -282,9 +218,9 @@
         </div>
 
         <!-- ==================== 2. FRONT MATTER ==================== -->
-        <div id="panel-fm" class="grid grid-cols-1 lg:grid-cols-12 gap-8 hidden panel-fade-in">
+        <div id="panel-fm" class="grid grid-cols-1 lg:grid-cols-12 gap-8 hidden">
             <!-- 配置表单 -->
-            <div class="lg:col-span-5 flex flex-col gap-6 bg-white border border-slate-200 p-6 rounded-2xl shadow-sm hover-card-effect">
+            <div class="lg:col-span-5 flex flex-col gap-6 bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
                 <div>
                     <h3 class="text-sm font-bold text-slate-800 flex items-center gap-1.5">
                         <i data-lucide="file-text" class="w-4 h-4 text-brand-600"></i>
@@ -320,7 +256,7 @@
                     <div>
                         <label class="block text-xs font-semibold text-slate-600 mb-1">多级分类 (Categories)</label>
                         <p class="text-[10px] text-slate-400 mb-1.5">回车或逗号分隔快速添加</p>
-                        <div class="flex flex-wrap gap-1.5 p-2 bg-slate-50 border border-slate-200 rounded-lg min-h-[42px] spring-transition">
+                        <div class="flex flex-wrap gap-1.5 p-2 bg-slate-50 border border-slate-200 rounded-lg min-h-[42px]">
                             <div id="fm-categories-chips" class="flex flex-wrap gap-1.5"></div>
                             <input type="text" id="fm-category-input" placeholder="按回车添加..." onkeydown="handleChipInput(event, 'category')"
                                    class="flex-1 min-w-[80px] bg-transparent text-sm text-slate-800 outline-none">
@@ -329,49 +265,50 @@
                     <div>
                         <label class="block text-xs font-semibold text-slate-600 mb-1">标签矩阵 (Tags)</label>
                         <p class="text-[10px] text-slate-400 mb-1.5">回车或逗号分隔快速添加</p>
-                        <div class="flex flex-wrap gap-1.5 p-2 bg-slate-50 border border-slate-200 rounded-lg min-h-[42px] spring-transition">
+                        <div class="flex flex-wrap gap-1.5 p-2 bg-slate-50 border border-slate-200 rounded-lg min-h-[42px]">
                             <div id="fm-tags-chips" class="flex flex-wrap gap-1.5"></div>
                             <input type="text" id="fm-tag-input" placeholder="按回车添加..." onkeydown="handleChipInput(event, 'tag')"
                                    class="flex-1 min-w-[80px] bg-transparent text-sm text-slate-800 outline-none">
                         </div>
                     </div>
                 </div>
-                <button onclick="syncToCover(this)" class="w-full bg-white border border-brand-500/30 hover:border-brand-500 text-brand-600 hover:text-white py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition duration-200 active:scale-95">
-                    <i data-lucide="refresh-cw" class="w-4 h-4" id="sync-icon"></i>
+                <button onclick="syncToCover()" class="w-full bg-white border border-brand-500/30 hover:border-brand-500 text-brand-600 hover:text-white py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition duration-200">
+                    <i data-lucide="refresh-cw" class="w-4 h-4"></i>
                     一键同步博文要素到封面画板
                 </button>
             </div>
 
-            <!-- 代码渲染 -->
+            <!-- 代码预览与渲染 -->
             <div class="lg:col-span-7 flex flex-col gap-6">
                 <div class="flex items-center justify-between flex-wrap gap-2">
                     <div class="flex bg-slate-100 p-1 rounded-lg border border-slate-200">
-                        <button onclick="changeFmFormat('yaml')" id="fmt-yaml" class="px-3 py-1.5 rounded-md text-xs font-semibold bg-blue-600 text-white transition">YAML (Hugo/Astro)</button>
-                        <button onclick="changeFmFormat('toml')" id="fmt-toml" class="px-3 py-1.5 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition">TOML (Hugo)</button>
+                        <button onclick="changeFmFormat('yaml')" id="fmt-yaml" class="px-3 py-1.5 rounded-md text-xs font-medium bg-blue-600 text-white transition">YAML (Hugo/Astro)</button>
+                        <button onclick="changeFmFormat('toml')" id="fmt-toml" class="px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition">TOML (Hugo)</button>
                     </div>
                     <div class="flex items-center gap-2">
-                        <button onclick="copyFmCode('only-fm')" class="bg-white border border-slate-200 hover:border-slate-300 text-slate-700 hover:text-slate-900 px-3.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 active:scale-95 transition-all">
+                        <button onclick="copyFmCode('only-fm')" class="bg-white border border-slate-200 hover:border-slate-300 text-slate-700 hover:text-slate-900 px-3.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition">
                             <i data-lucide="copy" class="w-3.5 h-3.5"></i> 仅复制标头
                         </button>
-                        <button onclick="copyFmCode('full')" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-md shadow-brand-500/15 active:scale-95 transition-all">
+                        <button onclick="copyFmCode('full')" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-md shadow-brand-500/15 transition">
                             <i data-lucide="file-text" class="w-3.5 h-3.5"></i> 复制完整模板
                         </button>
                     </div>
                 </div>
-                <div class="relative bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden flex flex-col flex-grow min-h-[350px] shadow-xl hover:border-slate-700 spring-transition">
+                <div class="relative bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden flex flex-col flex-grow min-h-[350px] shadow-xl">
                     <div class="flex items-center justify-between px-4 py-3 bg-slate-950 border-b border-slate-800">
                         <span id="fm-file-indicator" class="text-xs text-slate-400 font-mono">index.md</span>
                         <span class="text-xs text-brand-400 uppercase font-mono font-bold" id="fm-lang-tag">yaml</span>
                     </div>
                     <div class="flex-grow p-4 md:p-6 font-mono text-xs leading-relaxed overflow-auto">
-                        <pre class="text-brand-300 spring-transition" id="fm-code-block"></pre>
+                        <!-- 修复3: 代码颜色改为高对比度的亮蓝色，确保在深色背景下字迹绝佳 -->
+                        <pre class="text-brand-300" id="fm-code-block"></pre>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- ==================== 3. 微信/自媒体多端一键排版 ==================== -->
-        <div id="panel-markdown" class="grid grid-cols-1 lg:grid-cols-12 gap-8 hidden panel-fade-in">
+        <div id="panel-markdown" class="grid grid-cols-1 lg:grid-cols-12 gap-8 hidden">
             <!-- 输入 Markdown -->
             <div class="lg:col-span-6 flex flex-col gap-4">
                 <div class="flex items-center justify-between">
@@ -382,9 +319,9 @@
                         </h3>
                         <p class="text-xs text-slate-500">将你在博客写好的 Markdown 直接粘贴在这里</p>
                     </div>
-                    <button onclick="loadSampleMarkdown()" class="text-xs text-brand-600 hover:text-brand-700 font-bold hover:scale-105 active:scale-95 transition-all">载入排版演示样例</button>
+                    <button onclick="loadSampleMarkdown()" class="text-xs text-brand-600 hover:text-brand-700 font-semibold">载入排版演示样例</button>
                 </div>
-                <textarea id="md-input" class="w-full h-[500px] bg-white border border-slate-200 rounded-2xl p-4 text-xs font-mono text-slate-800 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition resize-none hover-card-effect" oninput="renderWeChatPreview()" placeholder="在此处输入或粘贴你的 Markdown 原文..."></textarea>
+                <textarea id="md-input" class="w-full h-[500px] bg-white border border-slate-200 rounded-2xl p-4 text-xs font-mono text-slate-800 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition resize-none" oninput="renderWeChatPreview()" placeholder="在此处输入或粘贴你的 Markdown 原文..."></textarea>
             </div>
 
             <!-- 自媒体富文本预览与复制 -->
@@ -397,14 +334,14 @@
                         </h3>
                         <p class="text-xs text-slate-500">使用专为开发者优化的排版主题样式</p>
                     </div>
-                    <button onclick="copyRichText()" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-md shadow-brand-500/15 active:scale-95 transition-all spring-transition">
+                    <button onclick="copyRichText()" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-md shadow-brand-500/15 transition">
                         <i data-lucide="copy" class="w-3.5 h-3.5"></i> 一键“带格式”拷贝
                     </button>
                 </div>
 
-                <!-- 磨砂质感排版窗口 -->
-                <div class="w-full h-[500px] bg-white border border-slate-200 rounded-2xl p-6 overflow-auto hover-card-effect" id="wechat-scroll-container">
-                    <div id="wechat-preview" class="prose prose-sm max-w-none text-slate-800 spring-transition">
+                <!-- 仿真微信公众号内容画布 -->
+                <div class="w-full h-[500px] bg-white border border-slate-200 rounded-2xl p-6 overflow-auto" id="wechat-scroll-container">
+                    <div id="wechat-preview" class="prose prose-sm max-w-none text-slate-800">
                         <!-- 动态生成富文本 -->
                     </div>
                 </div>
@@ -412,9 +349,9 @@
         </div>
 
         <!-- ==================== 4. 图片极速 WebP 压制与自适应缩放 ==================== -->
-        <div id="panel-compress" class="grid grid-cols-1 lg:grid-cols-12 gap-8 hidden panel-fade-in">
+        <div id="panel-compress" class="grid grid-cols-1 lg:grid-cols-12 gap-8 hidden">
             <!-- 拖拽上传与压缩控制 -->
-            <div class="lg:col-span-5 flex flex-col gap-6 bg-white border border-slate-200 p-6 rounded-2xl shadow-sm hover-card-effect">
+            <div class="lg:col-span-5 flex flex-col gap-6 bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
                 <div>
                     <h3 class="text-sm font-bold text-slate-800 flex items-center gap-1.5">
                         <i data-lucide="shrink" class="w-4 h-4 text-brand-600"></i>
@@ -425,10 +362,10 @@
                 <hr class="border-slate-200" />
                 
                 <!-- 拖拽上传区域 -->
-                <div id="drop-zone" class="border-2 border-dashed border-slate-200 hover:border-brand-500 rounded-2xl p-8 flex flex-col items-center justify-center gap-3 cursor-pointer bg-slate-50/50 relative spring-transition overflow-hidden">
+                <div id="drop-zone" class="border-2 border-dashed border-slate-200 hover:border-brand-500 rounded-2xl p-8 flex flex-col items-center justify-center gap-3 cursor-pointer transition bg-slate-50/50 relative">
                     <input type="file" id="image-file-input" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/*" onchange="handleImageUpload(this)">
-                    <div class="p-3 bg-brand-500/10 text-brand-600 rounded-full spring-transition" id="upload-icon-wrapper">
-                        <i data-lucide="image" class="w-6 h-6 spring-transition" id="upload-icon"></i>
+                    <div class="p-3 bg-brand-500/10 text-brand-600 rounded-full" id="upload-icon-wrapper">
+                        <i data-lucide="image" class="w-6 h-6"></i>
                     </div>
                     <div class="text-center">
                         <p class="text-xs font-bold text-slate-800">点击上传图片 或 拖拽图片至此处</p>
@@ -443,7 +380,7 @@
                             <label class="text-xs font-semibold text-slate-600 uppercase">压缩质量 Quality</label>
                             <span class="text-xs font-bold text-brand-600" id="quality-val">80%</span>
                         </div>
-                        <input type="range" id="compress-quality" min="10" max="100" value="80" oninput="updateQualityText(this)" class="w-full accent-brand-500 bg-slate-200 rounded-lg appearance-none h-1.5 cursor-pointer">
+                        <input type="range" id="compress-quality" min="10" max="100" value="80" oninput="updateQualityText(this)" class="w-full accent-brand-600 bg-slate-200 rounded-lg appearance-none h-1.5">
                     </div>
                     <div>
                         <div class="flex justify-between items-center mb-1">
@@ -455,7 +392,7 @@
                 </div>
 
                 <div class="pt-2">
-                    <button id="compress-btn" disabled onclick="executeCompress()" class="w-full bg-brand-600 disabled:opacity-40 disabled:pointer-events-none hover:bg-brand-700 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition active:scale-95 shadow-md spring-transition">
+                    <button id="compress-btn" disabled onclick="executeCompress()" class="w-full bg-brand-600 disabled:opacity-40 disabled:pointer-events-none hover:bg-brand-700 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition active:scale-95 shadow-md">
                         <i data-lucide="file-image" class="w-4 h-4"></i>
                         极速生成 WebP 图像
                     </button>
@@ -466,32 +403,32 @@
             <div class="lg:col-span-7 flex flex-col gap-6">
                 <div class="flex items-center justify-between">
                     <div>
-                        <h4 class="text-xs font-semibold text-slate-600 uppercase">压缩数据对比分析</h4>
+                        <h4 class="text-xs font-semibold text-slate-500 uppercase">压缩数据对比分析</h4>
                         <p class="text-[11px] text-slate-400">展示前后大小及最终节省的空间率</p>
                     </div>
-                    <button id="download-compressed-btn" disabled onclick="downloadCompressedImage()" class="bg-emerald-600 hover:bg-emerald-700 text-white disabled:opacity-40 px-3.5 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition active:scale-95">
+                    <button id="download-compressed-btn" disabled onclick="downloadCompressedImage()" class="bg-emerald-600 hover:bg-emerald-700 text-white disabled:opacity-40 px-3.5 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition">
                         <i data-lucide="download" class="w-3.5 h-3.5"></i> 一键下载 WebP
                     </button>
                 </div>
 
                 <div class="grid grid-cols-2 gap-4">
                     <!-- 原始 -->
-                    <div class="bg-white border border-slate-200 rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[220px] shadow-sm hover-card-effect">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[220px] shadow-sm">
                         <span class="absolute top-3 left-3 text-[10px] bg-slate-100 text-slate-500 border border-slate-200 px-2 py-0.5 rounded">原始图</span>
                         <div class="w-full h-32 flex items-center justify-center overflow-hidden mb-3">
-                            <img id="compress-original-preview" class="max-w-full max-h-full object-contain rounded opacity-40 spring-transition" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23e2e8f0'/></svg>">
+                            <img id="compress-original-preview" class="max-w-full max-h-full object-contain rounded opacity-40" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23e2e8f0'/></svg>">
                         </div>
                         <span class="text-xs text-slate-500 font-mono" id="original-info">-</span>
                     </div>
 
                     <!-- 压缩后 -->
-                    <div class="bg-white border border-slate-200 rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[220px] shadow-sm hover-card-effect">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[220px] shadow-sm">
                         <span class="absolute top-3 left-3 text-[10px] bg-brand-500/10 text-brand-600 border border-brand-500/20 px-2 py-0.5 rounded">压缩后 WebP</span>
                         <div class="w-full h-32 flex items-center justify-center overflow-hidden mb-3">
-                            <img id="compress-target-preview" class="max-w-full max-h-full object-contain rounded spring-transition" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23e2e8f0'/></svg>">
+                            <img id="compress-target-preview" class="max-w-full max-h-full object-contain rounded" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23e2e8f0'/></svg>">
                         </div>
                         <div class="flex flex-col items-center">
-                            <span class="text-xs text-brand-600 font-bold animate-pulse" id="target-info">-</span>
+                            <span class="text-xs text-brand-600 font-bold" id="target-info">-</span>
                             <span class="text-[10px] text-green-600 mt-0.5 font-semibold" id="saved-percent"></span>
                         </div>
                     </div>
@@ -502,7 +439,7 @@
     </main>
 
     <!-- 弹窗提示通知 -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-2.5 px-4 py-3 bg-white border border-slate-200 text-slate-800 rounded-2xl shadow-xl">
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-2 px-4 py-3 bg-white border border-slate-200 text-slate-800 rounded-xl shadow-xl">
         <div class="p-1 rounded bg-brand-500/10 text-brand-600" id="toast-icon-box">
             <i data-lucide="check" class="w-4 h-4"></i>
         </div>
@@ -562,7 +499,7 @@
         #wechat-preview code {
             font-family: 'Fira Code', 'JetBrains Mono', monospace !important;
             font-size: 12px !important;
-            color: #334155 !important;
+            color: #334155 !important; /* 修复4: 微信排版中的代码块字体前景色设为深灰色，保障对比度 */
         }
         #wechat-preview p code {
             background-color: #f0f9ff !important;
@@ -615,7 +552,7 @@
         window.onload = function() {
             lucide.createIcons();
 
-            // 成功配置并声明时间所需的 date 对象实例化逻辑
+            // 修复5: 成功配置并声明时间所需的 date 对象实例化逻辑
             const now = new Date();
             const year = now.getFullYear();
             const month = String(now.getMonth() + 1).padStart(2, '0');
@@ -625,9 +562,6 @@
             const seconds = String(now.getSeconds()).padStart(2, '0');
             document.getElementById('fm-date').value = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
-            // 初始化移动追踪轨道
-            initActiveTabTracker();
-
             // 初次装填渲染
             drawCover();
             updateFrontMatter();
@@ -636,45 +570,17 @@
             initDragAndDrop();
         };
 
-        // 视图导航切换器（横向弹性滑块位置计算）
-        function initActiveTabTracker() {
-            const activeBtn = document.querySelector(`button[onclick*="switchTab('cover'"]`);
-            if (activeBtn) {
-                updateTrackerPosition(activeBtn);
-            }
-        }
-
-        function updateTrackerPosition(element) {
-            const tracker = document.getElementById('tab-slider');
-            if (tracker && element) {
-                const parent = element.parentElement;
-                const parentRect = parent.getBoundingClientRect();
-                const elementRect = element.getBoundingClientRect();
-                
-                tracker.style.width = `${elementRect.width}px`;
-                tracker.style.transform = `translateX(${elementRect.left - parentRect.left - 6}px)`; // 偏置微调补偿 padding
-            }
-        }
-
-        function switchTab(tabId, element) {
+        // 视图导航切换器
+        function switchTab(tabId) {
             currentTab = tabId;
-
-            // 平滑位移动滑块
-            if (element) {
-                updateTrackerPosition(element);
-            }
-
-            // 更新文本高亮
             ['cover', 'fm', 'markdown', 'compress'].forEach(t => {
                 const btn = document.getElementById(`tab-${t}`);
                 const panel = document.getElementById(`panel-${t}`);
                 if (t === tabId) {
-                    btn.classList.add('text-white');
-                    btn.classList.remove('text-slate-600', 'hover:text-slate-900');
+                    btn.className = "flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all duration-200 bg-brand-600 text-white shadow-sm";
                     panel.classList.remove('hidden');
                 } else {
-                    btn.classList.remove('text-white');
-                    btn.classList.add('text-slate-600', 'hover:text-slate-900');
+                    btn.className = "flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all duration-200 text-slate-600 hover:text-slate-900";
                     panel.classList.add('hidden');
                 }
             });
@@ -684,7 +590,7 @@
             }
         }
 
-        // 弹性果冻 Toast 动画触发
+        // 弹出通知栏
         function showToast(message, isError = false) {
             const toast = document.getElementById('toast');
             const msgEl = document.getElementById('toast-message');
@@ -695,20 +601,17 @@
                 iconBox.className = "p-1 rounded bg-red-500/20 text-red-400";
                 iconBox.innerHTML = '<i data-lucide="alert-circle" class="w-4 h-4"></i>';
             } else {
-                iconBox.className = "p-1 rounded bg-brand-500/10 text-brand-600";
+                iconBox.className = "p-1 rounded bg-brand-500/20 text-brand-600";
                 iconBox.innerHTML = '<i data-lucide="check" class="w-4 h-4"></i>';
             }
             lucide.createIcons();
 
-            // 物理弹性滑动入场
-            toast.style.transition = "transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease";
-            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.remove('translate-y-20', 'opacity-0');
             toast.classList.add('translate-y-0', 'opacity-100');
 
             setTimeout(() => {
-                toast.style.transition = "transform 0.4s cubic-bezier(0.6, -0.28, 0.735, 0.045), opacity 0.3s ease";
-                toast.classList.add('translate-y-24', 'opacity-0');
                 toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
             }, 3000);
         }
 
@@ -730,16 +633,14 @@
             drawCover();
         }
 
-        function setTemplate(tpl, btnElement) {
+        function setTemplate(tpl) {
             coverTemplate = tpl;
-            
-            // 手动滑块式切换按钮状态
             ['tech', 'card', 'minimalist'].forEach(item => {
                 const btn = document.getElementById(`tpl-${item}`);
                 if (item === tpl) {
-                    btn.className = "px-3 py-2 bg-brand-100 text-brand-700 rounded-lg text-xs font-semibold spring-transition text-center";
+                    btn.className = "px-3 py-2 bg-brand-100 text-brand-700 border border-brand-200 rounded-lg text-xs font-medium transition text-center";
                 } else {
-                    btn.className = "px-3 py-2 text-slate-500 rounded-lg text-xs font-semibold hover:text-slate-800 spring-transition text-center";
+                    btn.className = "px-3 py-2 bg-slate-50 text-slate-600 border border-slate-200 rounded-lg text-xs font-medium hover:bg-slate-100 transition text-center";
                 }
             });
             drawCover();
@@ -813,6 +714,7 @@
         }
 
         function drawTech(ctx, canvas, title, subtitle, tag, author, emoji) {
+            // 背景点阵
             ctx.strokeStyle = 'rgba(255,255,255,0.05)';
             ctx.lineWidth = 1;
             for (let i = 0; i < canvas.width; i += 40) {
@@ -823,6 +725,7 @@
             }
 
             const p = 60;
+            // 绘制中心 Emoji Box
             ctx.fillStyle = 'rgba(255, 255, 255, 0.07)';
             ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
             ctx.lineWidth = 2;
@@ -832,12 +735,14 @@
             ctx.textBaseline = 'middle';
             ctx.fillText(emoji, p + 40, p + 40);
 
+            // 类别徽标
             ctx.fillStyle = '#7dd3fc';
             ctx.font = 'bold 15px "Inter", "Noto Sans SC"';
             ctx.textAlign = 'left';
             ctx.textBaseline = 'top';
             ctx.fillText(tag.toUpperCase(), p, p + 110);
 
+            // 作者与装饰线
             ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
             ctx.fillText(author, p, canvas.height - p - 10);
             ctx.strokeStyle = 'rgba(139, 92, 246, 0.4)';
@@ -847,10 +752,12 @@
             ctx.lineTo(p + 120, canvas.height - p - 30);
             ctx.stroke();
 
+            // 文章主标题
             ctx.fillStyle = '#ffffff';
             ctx.font = 'bold 44px "Inter", "Noto Sans SC"';
             const lines = wrapText(ctx, title, p, p + 150, canvas.width - p*2 - 40, 58);
 
+            // 博文副标题
             ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
             ctx.font = '400 18px "Inter", "Noto Sans SC"';
             wrapText(ctx, subtitle, p, p + 150 + lines*58 + 15, canvas.width - p*2 - 40, 28);
@@ -865,6 +772,7 @@
             ctx.lineWidth = 1;
             roundRect(ctx, x, y, w, h, 20, true, true);
 
+            // 徽章卡片
             ctx.fillStyle = 'rgba(255,255,255,0.08)';
             roundRect(ctx, x+40, y+40, 110, 32, 16, true, false);
             ctx.fillStyle = '#7dd3fc';
@@ -876,12 +784,14 @@
             ctx.font = '36px sans-serif';
             ctx.fillText(emoji, x + w - 60, y + 56);
 
+            // 主标题
             ctx.fillStyle = '#ffffff';
             ctx.font = 'bold 42px "Inter", "Noto Sans SC"';
             ctx.textAlign = 'left';
             ctx.textBaseline = 'top';
             const lines = wrapText(ctx, title, x+40, y+100, w-80, 56);
 
+            // 辅助简述
             ctx.fillStyle = 'rgba(255, 255, 255, 0.65)';
             ctx.font = '400 17px "Inter", "Noto Sans SC"';
             wrapText(ctx, subtitle, x+40, y+100 + lines*56 + 15, w-80, 26);
@@ -998,23 +908,15 @@
             const tWrap = document.getElementById('fm-tags-chips');
             cWrap.innerHTML = '';
             categories.forEach((cat, index) => {
-                cWrap.innerHTML += `<span class="inline-flex items-center gap-1 bg-brand-500/10 text-brand-700 border border-brand-500/20 px-2 py-0.5 rounded text-xs hover:scale-105 transition-transform">${cat}<button onclick="removeChip(${index}, 'category')" class="hover:text-red-500 transition-colors">&times;</button></span>`;
+                cWrap.innerHTML += `<span class="inline-flex items-center gap-1 bg-brand-500/10 text-brand-700 border border-brand-500/20 px-2 py-0.5 rounded text-xs">${cat}<button onclick="removeChip(${index}, 'category')" class="hover:text-red-400">&times;</button></span>`;
             });
             tWrap.innerHTML = '';
             tags.forEach((tag, index) => {
-                tWrap.innerHTML += `<span class="inline-flex items-center gap-1 bg-blue-100 text-blue-700 border border-gray-300 px-2 py-0.5 rounded text-xs hover:scale-105 transition-transform"># ${tag}<button onclick="removeChip(${index}, 'tag')" class="hover:text-red-500 transition-colors">&times;</button></span>`;
+                tWrap.innerHTML += `<span class="inline-flex items-center gap-1 bg-blue-100 text-blue-700 border border-gray-300 px-2 py-0.5 rounded text-xs"># ${tag}<button onclick="removeChip(${index}, 'tag')" class="hover:text-red-400">&times;</button></span>`;
             });
         }
 
-        function syncToCover(btnElement) {
-            // 添加图标旋转微动效
-            const syncIcon = document.getElementById('sync-icon');
-            if (syncIcon) {
-                syncIcon.classList.remove('spin-once');
-                void syncIcon.offsetWidth; // 触发 reflow
-                syncIcon.classList.add('spin-once');
-            }
-
+        function syncToCover() {
             document.getElementById('cover-title').value = document.getElementById('fm-title').value;
             document.getElementById('cover-author').value = document.getElementById('fm-author').value;
             document.getElementById('cover-tag').value = categories[0] || 'POST';
@@ -1022,11 +924,12 @@
             showToast("⚡ 主要内容已秒级传递并刷新封面！");
         }
 
+        // 格式切换
         function changeFmFormat(fmt) {
             currentFmFormat = fmt;
             ['yaml', 'toml'].forEach(item => {
                 const btn = document.getElementById(`fmt-${item}`);
-                btn.className = item === fmt ? "px-3 py-1.5 rounded-md text-xs font-semibold bg-blue-600 text-white transition-all duration-300" : "px-3 py-1.5 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition-all duration-300";
+                btn.className = item === fmt ? "px-3 py-1.5 rounded-md text-xs font-medium bg-blue-600 text-white transition" : "px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition";
             });
             document.getElementById('fm-file-indicator').textContent = fmt === 'yaml' ? "index.md" : "config.toml";
             document.getElementById('fm-lang-tag').textContent = fmt;
@@ -1112,10 +1015,12 @@
 
         function renderWeChatPreview() {
             const mdText = document.getElementById('md-input').value;
+            // 使用 marked 渲染为微信自适应的富文本
             const rawHtml = marked.parse(mdText);
             document.getElementById('wechat-preview').innerHTML = rawHtml;
         }
 
+        // 核心技术：“带格式”复制富文本到剪贴板，支持直接一键粘贴入微信公众号后台
         function copyRichText() {
             const range = document.createRange();
             const referenceNode = document.getElementById('wechat-preview');
@@ -1126,14 +1031,14 @@
             try {
                 const successful = document.execCommand('copy');
                 if (successful) {
-                    showToast("🎉 已成功拷贝“带样式”富文本！现在去公众号编辑器直接粘贴即可！");
+                    showToast("🎉 已成功拷贝“带样式”富文本！现在去公众号、掘金等编辑器直接 Ctrl+V 粘贴即可！");
                 } else {
                     showToast("富文本复制失败", true);
                 }
             } catch (err) {
                 showToast("复制出错，当前浏览器不支持", true);
             }
-            window.getSelection().removeAllRanges();
+            window.getSelection().removeAllRanges(); // 复制完毕取消高亮选择
         }
 
 
@@ -1142,9 +1047,8 @@
            --------------------------------- */
         function initDragAndDrop() {
             const dropZone = document.getElementById('drop-zone');
-            const iconWrapper = document.getElementById('upload-icon-wrapper');
-            const icon = document.getElementById('upload-icon');
             
+            // 阻断默认浏览器拖放默认打开动作
             ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
                 dropZone.addEventListener(eventName, e => {
                     e.preventDefault();
@@ -1152,20 +1056,16 @@
                 }, false);
             });
 
-            // 拖拽悬停触发高亮呼吸灯动效
+            // 高亮
             ['dragenter', 'dragover'].forEach(eventName => {
                 dropZone.addEventListener(eventName, () => {
-                    dropZone.classList.add('border-brand-500', 'bg-brand-50/50');
-                    iconWrapper.classList.add('scale-110', 'bg-brand-500/20');
-                    icon.classList.add('rotate-12');
+                    dropZone.classList.add('border-brand-500', 'bg-brand-500/5');
                 }, false);
             });
 
             ['dragleave', 'drop'].forEach(eventName => {
                 dropZone.addEventListener(eventName, () => {
-                    dropZone.classList.remove('border-brand-500', 'bg-brand-50/50');
-                    iconWrapper.classList.remove('scale-110', 'bg-brand-500/20');
-                    icon.classList.remove('rotate-12');
+                    dropZone.classList.remove('border-brand-500', 'bg-brand-500/5');
                 }, false);
             });
 
@@ -1187,12 +1087,14 @@
             const file = input.files[0];
             if (!file) return;
 
+            // 显示图片名和尺寸
             document.getElementById('original-info').textContent = `${file.name} (${formatBytes(file.size)})`;
 
             const reader = new FileReader();
             reader.onload = function(e) {
                 uploadedImageObj = new Image();
                 uploadedImageObj.onload = function() {
+                    // 渲染至左侧原图缩略
                     document.getElementById('compress-original-preview').src = e.target.result;
                     document.getElementById('compress-original-preview').classList.remove('opacity-40');
                     document.getElementById('compress-btn').removeAttribute('disabled');
@@ -1203,6 +1105,7 @@
             reader.readAsDataURL(file);
         }
 
+        // WebP 前端纯 Canvas 压缩算法
         let compressedBlobUrl = null;
         let compressedBlob = null;
 
@@ -1212,6 +1115,7 @@
             const quality = parseInt(document.getElementById('compress-quality').value) / 100;
             const maxWidthInput = document.getElementById('compress-max-width').value;
             
+            // 计算等比例缩放大小
             let targetWidth = uploadedImageObj.width;
             let targetHeight = uploadedImageObj.height;
 
@@ -1226,13 +1130,16 @@
             const ctx = canvas.getContext('2d');
             ctx.drawImage(uploadedImageObj, 0, 0, targetWidth, targetHeight);
 
+            // 转换 WebP 格式
             canvas.toBlob(function(blob) {
                 if (compressedBlobUrl) URL.revokeObjectURL(compressedBlobUrl);
                 compressedBlob = blob;
                 compressedBlobUrl = URL.createObjectURL(blob);
                 
+                // 渲染至目标预览
                 document.getElementById('compress-target-preview').src = compressedBlobUrl;
                 
+                // 数据统计
                 const rawSize = document.getElementById('image-file-input').files[0].size;
                 const ratio = ((1 - (blob.size / rawSize)) * 100).toFixed(1);
                 
@@ -1264,4 +1171,3 @@
 </body>
 </html>
 
-```
