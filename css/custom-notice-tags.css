@@ -452,3 +452,152 @@
 
 /* ================== 分类页样式 ================== */
 /* 1. 分类主标题 OSD 标志与准星叠加 */
+
+/* ================== 标签存档页/分类页样式 ================== */
+/* 1. 分类主标题 OSD 标志与准星叠加 */
+
+
+/* 相机系统参数状态码 */
+
+
+/* 2. 标头卡片：相机十字丝刻度伪元素装饰 */
+
+/* 3. 极简“相机对焦”时间线容器调整 */
+.article-sort {
+  border-left: 2px solid rgba(59, 130, 246, 0.15) !important;
+}
+/* 年份标识小圆点变为对焦特征圆 */
+.article-sort-item.year::before {
+  border: 2px solid #3b82f6 !important;
+  background: var(--card-bg) !important;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+}
+
+/* 4. 目标框卡片 (Target Bounding Box Item) */
+.article-sort-item:not(.year) {
+  position: relative;
+  border: 1px solid rgba(226, 232, 240, 0.8) !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: none !important;
+  border-radius: 4px !important; /* 精致锐角 */
+  padding: 16px 20px !important;
+  margin-bottom: 14px !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease,
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* 机械对焦坐标框线 */
+.article-sort-item:not(.year)::before, .article-sort-item:not(.year)::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 2px solid transparent;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+.article-sort-item:not(.year)::before {
+  top: 12px;
+  left: 12px;
+  border-top-color: #3b82f6;
+  border-left-color: #3b82f6;
+}
+.article-sort-item:not(.year)::after {
+  bottom: 12px;
+  right: 12px;
+  border-bottom-color: #3b82f6;
+  border-right-color: #3b82f6;
+}
+
+/* 悬停对焦行为 */
+.article-sort-item:not(.year):hover {
+  transform: translateX(6px) !important; /* 优雅的右移，保持工业流程感 */
+  border-color: rgba(59, 130, 246, 0.4) !important;
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.05) !important;
+}
+.article-sort-item:not(.year):hover::before {
+  top: 6px;
+  left: 6px;
+  opacity: 1;
+}
+.article-sort-item:not(.year):hover::after {
+  bottom: 6px;
+  right: 6px;
+  opacity: 1;
+}
+
+/* 5. 仿真相机 PASS 标定状态（取代多余的圆圈或花哨色彩） */
+.article-sort-item:not(.year)::before {
+  /* 解决伪元素冲突：用一个专门的覆盖层处理 status */
+}
+.article-sort-item-info {
+  position: relative;
+  width: 100%;
+}
+.article-sort-item-info::after {
+  content: 'PASS';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  font-size: 10px;
+  color: #10b981; /* 极简通过绿 */
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  padding: 1px 4px;
+  border-radius: 2px;
+  opacity: 0.2;
+  transition: all 0.4s ease;
+}
+.article-sort-item:not(.year):hover .article-sort-item-info::after {
+  opacity: 1;
+  background: rgba(16, 185, 129, 0.05);
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.2);
+}
+
+/* 6. 脱焦 → 自动聚焦动效（针对封面图） */
+.article-sort-item-img img {
+  filter: blur(1.5px) grayscale(0.25);
+  transition: filter 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.article-sort-item:not(.year):hover .article-sort-item-img img {
+  filter: blur(0px) grayscale(0);
+}
+
+/* 7. 等宽字体细节读数，模拟控制端日志 */
+.article-sort-item-time time,
+.article-sort-item-title {
+  font-family: 'Courier New', Courier, monospace !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.5px;
+}
+.article-sort-item-title {
+  transition: color 0.3s ease;
+}
+.article-sort-item:not(.year):hover .article-sort-item-title {
+  color: #3b82f6 !important;
+}
+
+/* ================== 暗黑模式适配自适应 ================== */
+[data-theme="dark"] .article-sort-item:not(.year) {
+  background: rgba(15, 23, 42, 0.5) !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+[data-theme="dark"] .article-sort-item:not(.year):hover {
+  border-color: rgba(96, 165, 250, 0.35) !important;
+  box-shadow: 0 6px 20px rgba(96, 165, 250, 0.08) !important;
+}
+[data-theme="dark"] .article-sort-item:not(.year)::before {
+  border-top-color: #60a5fa;
+  border-left-color: #60a5fa;
+}
+[data-theme="dark"] .article-sort-item:not(.year)::after {
+  border-bottom-color: #60a5fa;
+  border-right-color: #60a5fa;
+}
