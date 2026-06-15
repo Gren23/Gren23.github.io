@@ -456,51 +456,54 @@
 /* ================== 标签存档页/分类页样式 ================== */
 
 /* 1. 圆润温润主面板 */
-.type-custom-tags #page,
-#tag #page {
+#tag {
   background: rgba(255, 255, 255, 0.75) !important;
-  border-radius: 20px !important;
-  border: 1px solid rgba(226, 232, 240, 0.85) !important;
-  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.03) !important;
-  padding: 30px !important;
+  border-radius: 20px;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  padding: 30px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.03);
 }
-[data-theme="dark"] .type-custom-tags #page,
-[data-theme="dark"] #tag #page {
+[data-theme="dark"] #tag {
   background: rgba(15, 23, 42, 0.55) !important;
-  border-color: rgba(255, 255, 255, 0.05) !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+  border-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* 2. 温润的时间轴主线 */
+/* 2. 标题变成小标牌 */
+.article-sort-title {
+  font-weight: 700;
+  margin-bottom: 24px;
+  padding: 8px 16px;
+  background: rgba(59, 130, 246, 0.06);
+  border-left: 3px solid #3b82f6;
+  border-radius: 0 8px 8px 0;
+  display: inline-block;
+}
+
+/* 3. 温润的时间轴主线 */
 .article-sort {
   border-left: 2px solid rgba(59, 130, 246, 0.12) !important;
   padding-left: 20px !important;
   margin-left: 10px !important;
 }
 
-/* 年份节点：胶囊圆角小标签 */
+/* 4. 年份胶囊圆角小标签 */
 .article-sort-item.year {
   font-family: 'Courier New', monospace;
-  font-size: 20px !important;
+  font-size: 18px !important;
   font-weight: 700;
   color: #3b82f6 !important;
-  padding: 4px 14px;
-  background: rgba(59, 130, 246, 0.05);
+  background: rgba(59, 130, 246, 0.06);
   border: 1px solid rgba(59, 130, 246, 0.15);
   border-radius: 20px;
   display: inline-block;
   margin-bottom: 20px !important;
-}
-.article-sort-item.year::before {
-  border: 2px solid #3b82f6 !important;
-  background: var(--card-bg) !important;
-  box-shadow: 0 0 8px rgba(59, 130, 246, 0.25);
-  top: 18px !important;
+  padding: 4px 14px;
 }
 
-/* 3. 圆润胶囊文章卡片 (Pill-Shaped List Item) */
+/* 5. 圆润胶囊文章卡片 */
 .article-sort-item:not(.year) {
   position: relative;
   background: rgba(255, 255, 255, 0.8) !important;
@@ -513,18 +516,14 @@
               box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-/* 悬停微动：轻度上浮与浅冰蓝微弱发光阴影 */
+/* 悬停微动：轻度上浮 */
 .article-sort-item:not(.year):hover {
   transform: translateY(-3px) translateX(3px) !important;
   border-color: rgba(59, 130, 246, 0.3) !important;
-  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.05) !important;
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.06) !important;
 }
 
-/* 4. 等宽文本，保证文章信息排版井然有条 */
-.article-sort-item-time time,
-.article-sort-item-title {
-  font-family: 'Noto Sans SC', sans-serif !important;
-}
+/* 6. 文章标题颜色 */
 .article-sort-item-time {
   font-family: 'Courier New', monospace !important;
   font-size: 13px;
@@ -541,12 +540,7 @@
   color: #3b82f6 !important;
 }
 
-/* 5. 头像和评论框容器调整 */
-.aside-content {
-  opacity: 0.95;
-}
-
-/* 6. 暗黑模式自适应 */
+/* 7. 暗黑模式 */
 [data-theme="dark"] .article-sort-item:not(.year) {
   background: rgba(15, 23, 42, 0.5) !important;
   border-color: rgba(255, 255, 255, 0.04) !important;
@@ -557,10 +551,5 @@
 }
 [data-theme="dark"] .article-sort-item-title {
   color: #f1f5f9;
-}
-[data-theme="dark"] .article-sort-item.year {
-  background: rgba(96, 165, 250, 0.05);
-  border-color: rgba(96, 165, 250, 0.15);
-  color: #60a5fa !important;
 }
 
