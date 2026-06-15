@@ -1,15 +1,14 @@
-// 动态生成标签云 - 等待所有脚本加载完成后再执行
-window.addEventListener('load', function() {
-  // 等待 posts 变量就绪
-  function waitForPosts(resolve) {
+// 动态生成标签云
+(function() {
+  function waitForPosts() {
     if (typeof posts === 'undefined') {
-      setTimeout(() => waitForPosts(resolve), 50);
+      setTimeout(waitForPosts, 50);
       return;
     }
-    resolve();
+    run();
   }
 
-  waitForPosts(function() {
+  function run() {
     var tagCount = {};
     posts.forEach(function(post) {
       (post.tags || []).forEach(function(t) {
@@ -59,20 +58,22 @@ window.addEventListener('load', function() {
     function applyTheme() {
       var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
       var items = document.querySelectorAll('#tag-cloud a');
-      items.forEach(function(a) {
+      items.forEach(function(el) {
         if (isDark) {
-          a.style.setProperty('box-shadow', 'inset 0 0 0 100px rgba(15,23,42,0.85)');
-          a.style.setProperty('border-color', 'rgba(255,255,255,0.08)');
-          a.style.setProperty('color', '#94a3b8');
+          el.style.setProperty('box-shadow', 'inset 0 0 0 100px rgba(15,23,42,0.85)');
+          el.style.setProperty('border-color', 'rgba(255,255,255,0.08)');
+          el.style.setProperty('color', '#94a3b8');
         } else {
-          a.style.setProperty('box-shadow', 'inset 0 0 0 100px rgba(255,255,255,0.86)');
-          a.style.setProperty('border-color', 'rgba(219,234,254,0.7)');
-          a.style.setProperty('color', '#475569');
+          el.style.setProperty('box-shadow', 'inset 0 0 0 100px rgba(255,255,255,0.86)');
+          el.style.setProperty('border-color', 'rgba(219,234,254,0.7)');
+          el.style.setProperty('color', '#475569');
         }
       });
     }
 
     applyTheme();
     new MutationObserver(applyTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-  });
-});
+  }
+
+  waitForPosts();
+})();
