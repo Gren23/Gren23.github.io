@@ -11,9 +11,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2 family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <!-- Lucide 图标 -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
     <!-- 引入轻量级 Markdown 编译器 marked 用于微信排版工具 -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/1.2.9/marked.min.js"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -126,7 +126,7 @@
         }
     </style>
 </head>
-<script>try{var t=document.documentElement.getAttribute("data-theme");if(t==="dark")document.body.classList.add("dark");}catch(e){}<\/script>
+<script>if(document.documentElement.getAttribute&&document.documentElement.getAttribute("data-theme")==="dark"){document.write("<style>.dark{background:#0f172a!important;color:#f1f5f9!important}</style>")}<\/script>
 <body class="min-h-screen flex flex-col antialiased selection:bg-brand-500/20 selection:text-brand-800">
 
     <!-- 顶部导航栏 -->
