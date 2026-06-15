@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>封面图生成器 · hehehey.top</title>
+  <link rel="canonical" href="https://www.hehehey.top/cover-generator/">
+  <script src="https://cdn1.tianli0.top/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2d5a3b;
+      --primary-light: #4a7c59;
+      --accent: #e07a5f;
+      --bg: #f0ede8;
+      --card-bg: rgba(255,255,255,0.72);
+      --text: #333;
+      --text-muted: #666;
+      --border: rgba(0,0,0,0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans SC', -apple-system, sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      color: var(--text);
+    }
+
+    /* 页面标题条 */
+    .page-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+      padding: 0 40px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+    }
+    .page-header .logo { font-size: 15px; font-weight: 600; color: var(--primary); }
+    .page-header .back-link { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .page-header .back-link:hover { color: var(--primary); }
+
+    /* 主容器 */
+    .generator-wrapper { width: 100%; max-width: 1200px; padding-top: 20px; }
+
+    /* 顶部工具条 */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 16px;
+    }
+    .size-select {
+      padding: 7px 12px;
+      border: 1.5px solid rgba(0,0,0,0.1);
+      border-radius: 10px;
+      font-size: 13px;
+      font-family: inherit;
+      background: rgba(255,255,255,0.7);
+      color: var(--text);
+      cursor: pointer;
+    }
+    .batch-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-muted);
+      cursor: pointer;
+      user-select: none;
+    }
+    .batch-toggle input { cursor: pointer; }
+    .url-param-tip {
+      font-size: 11px;
+      color: var(--text-muted);
+      opacity: 0.6;
+      margin-left: auto;
+    }
+
+    /* 标题区 */
+    .page-title { text-align: center; margin-bottom: 36px; }
+    .page-title h1 { font-size: 24px; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+    .page-title p { font-size: 14px; color: var(--text-muted); }
+
+    /* 左右分栏 */
+    .generator-container {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* 预览区毛玻璃卡片 */
+    .preview-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 4px 24px rgba(45,90,59,0.07);
+    }
+    .preview-label { font-size: 11px; letter-spacing: 1.5px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 16px; }
+
+    /* 封面预览容器（固定尺寸，等比缩放） */
+    .cover-viewport {
+      width: 504px;
+      height: 264px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fcfaf7;
+      position: relative;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .cover-viewport-inner {
+      position: absolute;
+      top: 0; left: 0;
+      width: 1200px; height: 630px;
+      transform: scale(0.42);
+      transform-origin: top left;
+    }
+
+    /* ========== 封面样式 ========== */
+    .cover {
+      width: 1200px;
+      height: 630px;
+      background: #fcfaf7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(45,90,59,0.12), rgba(224,122,95,0.08));
+      top: -200px; right: -100px;
+      pointer-events: none;
+    }
+    .cover::after {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(74,124,89,0.08), rgba(45,90,59,0.06));
+      bottom: -150px; left: -80px;
+      pointer-events: none;
+    }
+    .cover-tag { position: absolute; top: 0; left: 0; right: 0; height: 6px; }
+    .cover-card {
+      position: relative;
+      z-index: 1;
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 20px;
+      padding: 64px 80px;
+      max-width: 860px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 8px 40px rgba(45,90,59,0.08);
+    }
+    .cover-cat {
+      display: inline-block;
+      color: white;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      letter-spacing: 1px;
+    }
+    .cover-title { font-size: 52px; font-weight: 700; line-height: 1.25; color: var(--text); margin-bottom: 20px; letter-spacing: -0.5px; word-break: break-word; }
+    .cover-subtitle { font-size: 20px; color: var(--text-muted); margin-bottom: 36px; line-height: 1.6; }
+    .cover-meta { display: flex; align-items: center; justify-content: center; gap: 24px; font-size: 14px; color: var(--text-muted); }
+    .cover-meta .dot { width: 3px; height: 3px; background: var(--accent); border-radius: 50%; }
+    .cover-footer { position: absolute; bottom: 0; left: 0; right: 0; height: 4px; }
+    .cover-logo { position: absolute; bottom: 20px; right: 32px; font-size: 13px; color: var(--text-muted); font-weight: 500; letter-spacing: 0.5px; opacity: 0.7; }
+
+    /* ========== 设置区 ========== */
+    .settings-panel {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 4px 24px rgba(45,90,59,0.07);
+    }
+    .settings-title { font-size: 13px; font-weight: 600; color: var(--primary); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); letter-spacing: 0.5px; }
+
+    /* 折叠分组 */
+    .field-group { margin-bottom: 16px; }
+    .field-group + .field-group { border-top: 1px solid var(--border); padding-top: 16px; }
+    .field-group-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      padding: 4px 0;
+      margin-bottom: 14px;
+      user-select: none;
+    }
+    .field-group-header .group-title { font-size: 11px; letter-spacing: 1.5px; color: var(--text-muted); text-transform: uppercase; font-weight: 500; }
+    .field-group-header .group-toggle { font-size: 12px; color: var(--text-muted); transition: transform 0.2s; }
+    .field-group-header .group-toggle.open { transform: rotate(180deg); }
+    .field-group-body {
+      overflow: hidden;
+      transition: max-height 0.3s ease, opacity 0.25s ease;
+      max-height: 600px;
+      opacity: 1;
+    }
+    .field-group-body.collapsed { max-height: 0; opacity: 0; margin-bottom: 0; }
+
+    .field { margin-bottom: 14px; }
+    .field label { display: block; font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 7px; letter-spacing: 0.3px; }
+    .field input, .field textarea, .field select {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid rgba(0,0,0,0.1);
+      border-radius: 14px;
+      font-size: 14px;
+      font-family: inherit;
+      background: rgba(255,255,255,0.65);
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      color: var(--text);
+    }
+    .field input:focus, .field textarea:focus, .field select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(45,90,59,0.12);
+      background: rgba(255,255,255,0.92);
+    }
+    .field textarea { resize: vertical; min-height: 64px; }
+
+    .color-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* 预设模板 */
+    .preset-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 4px; }
+    .preset-btn {
+      flex: 1;
+      min-width: 60px;
+      padding: 7px 6px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 11px;
+      font-family: inherit;
+      font-weight: 500;
+      cursor: pointer;
+      background: rgba(255,255,255,0.5);
+      color: var(--text-muted);
+      transition: all 0.18s;
+      text-align: center;
+    }
+    .preset-btn:hover { border-color: var(--primary); color: var(--primary); background: rgba(45,90,59,0.06); }
+    .preset-btn.active { border-color: var(--primary); background: var(--primary); color: white; }
+
+    .btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+
+    .btn-export {
+      padding: 14px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 16px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .btn-export:hover:not(:disabled) {
+      background: var(--primary-light);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(45,90,59,0.22);
+    }
+    .btn-export:active:not(:disabled) { transform: translateY(0); }
+    .btn-export:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .btn-reset {
+      padding: 14px;
+      background: rgba(255,255,255,0.65);
+      color: var(--text-muted);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .btn-reset:hover { border-color: var(--accent); color: var(--accent); background: rgba(224,122,95,0.06); }
+
+    /* 提示文字 */
+    .tip { font-size: 11px; color: var(--text-muted); margin-top: 10px; text-align: center; opacity: 0.7; }
+
+    /* 品牌标识 */
+    .brand-footer { text-align: center; margin-top: 24px; }
+    .brand-footer span { font-size: 11px; color: var(--text-muted); opacity: 0.5; }
+
+    /* 响应式 */
+    @media (max-width: 900px) {
+      body { padding: 20px 16px; align-items: flex-start; }
+      .page-header { padding: 0 20px; }
+      .generator-wrapper { padding-top: 60px; }
+      .generator-container { grid-template-columns: 1fr; gap: 20px; }
+      .cover-viewport { width: 336px; height: 176px; }
+      .cover-viewport-inner { transform: scale(0.28); }
+      .top-bar { gap: 8px; }
+      .url-param-tip { display: none; }
+    }
+    @media (max-width: 480px) {
+      .cover-viewport { width: 280px; height: 146px; }
+      .cover-viewport-inner { transform: scale(0.233); }
+      /* 移动端预览区最大高度限制 */
+      .preview-card { max-height: 70vh; overflow-y: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 顶部标题条 -->
+  <div class="page-header">
+    <span class="logo">G/ren</span>
+    <a href="/" class="back-link">← 返回博客</a>
+  </div>
+
+  <div class="generator-wrapper">
+    <div class="page-title">
+      <h1>封面图生成器</h1>
+      <p>与博客风格统一 · 导出 1200×630 PNG · 用于文章 cover_image</p>
+    </div>
+
+    <div class="top-bar">
+      <select class="size-select" id="sizeSelect">
+        <option value="1200,630">博客封面 1200×630</option>
+        <option value="900,383">公众号封面 900×383</option>
+        <option value="1200,675">Twitter 卡片 1200×675</option>
+        <option value="1080,1080">方形社交图 1080×1080</option>
+      </select>
+      <label class="batch-toggle">
+        <input type="checkbox" id="batchMode">
+        📦 批量模式
+      </label>
+      <span class="url-param-tip">支持 URL 参数：?title=xxx&amp;accent=#2d5a3b</span>
+    </div>
+
+    <div class="generator-container">
+
+      <!-- 预览区 -->
+      <div class="preview-card">
+        <div class="preview-label">PREVIEW · <span id="sizeLabel">1200×630</span></div>
+        <div class="cover-viewport" id="coverViewport">
+          <div class="cover-viewport-inner" id="viewportInner">
+            <div class="cover" id="cover">
+              <div class="cover-tag" id="coverTag"></div>
+              <div class="cover-card" id="coverCard">
+                <div class="cover-cat" id="previewCat">机器视觉</div>
+                <div class="cover-title" id="previewTitle">Mech-Vision<br>方案构建思路</div>
+                <div class="cover-subtitle" id="previewSub">梅卡曼德视觉系统 · 工业机器人抓取</div>
+                <div class="cover-meta">
+                  <span id="previewDate">2026-06-01</span>
+                  <span class="dot"></span>
+                  <span>G/ren</span>
+                </div>
+              </div>
+              <div class="cover-footer" id="coverFooter"></div>
+              <div class="cover-logo">hehehey.top</div>
+            </div>
+          </div>
+        </div>
+        <p class="tip">封面比例 1200×630 · 支持 Open Graph 社交分享</p>
+      </div>
+
+      <!-- 设置区 -->
+      <div class="settings-panel">
+        <div class="settings-title">封面内容</div>
+
+        <div class="batch-hint" id="batchHint">📦 批量模式：每行一个标题，将依次生成并打包下载</div>
+
+        <!-- 文章信息分组 -->
+        <div class="field-group">
+          <div class="field-group-header" onclick="toggleGroup(this)">
+            <span class="group-title">文章信息</span>
+            <span class="group-toggle">▾</span>
+          </div>
+          <div class="field-group-body">
+            <div class="field">
+              <label id="titleLabel">文章标题（支持换行）</label>
+              <textarea id="inputTitle" placeholder="输入标题，多行自动换行">Mech-Vision
+方案构建思路</textarea>
+            </div>
+            <div class="field">
+              <label>副标题</label>
+              <input type="text" id="inputSubtitle" placeholder="简短描述，可不填" value="梅卡曼德视觉系统 · 工业机器人抓取">
+            </div>
+            <div class="field">
+              <label>分类标签</label>
+              <input type="text" id="inputCat" placeholder="如：机器视觉" value="机器视觉">
+            </div>
+            <div class="field">
+              <label>日期</label>
+              <input type="text" id="inputDate" placeholder="YYYY-MM-DD" value="2026-06-01">
+            </div>
+          </div>
+        </div>
+
+        <!-- 颜色与样式分组 -->
+        <div class="field-group">
+          <div class="field-group-header" onclick="toggleGroup(this)">
+            <span class="group-title">颜色与样式</span>
+            <span class="group-toggle open">▾</span>
+          </div>
+          <div class="field-group-body">
+            <div class="field">
+              <label>预设模板</label>
+              <div class="preset-row">
+                <button class="preset-btn active" onclick="applyPreset('forest', this)">🌲 森林</button>
+                <button class="preset-btn" onclick="applyPreset('coral', this)">🪸 珊瑚</button>
+                <button class="preset-btn" onclick="applyPreset('mint', this)">🌿 薄荷</button>
+                <button class="preset-btn" onclick="applyPreset('mist', this)">🌫 雾蓝</button>
+              </div>
+            </div>
+            <div class="field color-row">
+              <div>
+                <label>主色调</label>
+                <select id="inputAccent">
+                  <option value="#2d5a3b">🌲 森林绿</option>
+                  <option value="#e07a5f">🪸 珊瑚橙</option>
+                  <option value="#4a7c59">🌿 薄荷绿</option>
+                  <option value="#3d6a8f">🌫 雾霾蓝</option>
+                  <option value="#7c5e9a">💜 薰衣草紫</option>
+                  <option value="#c49a3c">🟡 琥珀金</option>
+                </select>
+              </div>
+              <div>
+                <label>背景色</label>
+                <select id="inputBg">
+                  <option value="#fcfaf7">☁ 暖白</option>
+                  <option value="#f0f4f0">🌿 薄荷白</option>
+                  <option value="#f5f0eb">🥜 杏仁白</option>
+                  <option value="#f0f2f5">🌫 云蓝白</option>
+                  <option value="#f5f0f8">💜 淡紫白</option>
+                  <option value="#1a1a1a">🌑 深夜黑</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 操作按钮 -->
+        <div class="btn-row">
+          <button class="btn-reset" onclick="resetForm()">↺ 恢复默认</button>
+          <button class="btn-export" id="btnExport" onclick="handleExport()">⬇ 下载封面 PNG</button>
+        </div>
+        <p class="tip" id="exportTip">封面尺寸 1200 × 630 px · 可直接用作 cover_image</p>
+
+        <div class="brand-footer"><span>Powered by hehehey.top</span></div>
+
+        <div class="history-section" id="historySection" style="display:none;">
+          <div class="history-title">最近生成</div>
+          <div class="history-list" id="historyList"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // 默认值
+    var DEFAULTS = {
+      title: 'Mech-Vision\n方案构建思路',
+      subtitle: '梅卡曼德视觉系统 · 工业机器人抓取',
+      cat: '机器视觉',
+      date: '2026-06-01',
+      accent: '#2d5a3b',
+      bg: '#fcfaf7'
+    };
+
+    function resetForm() {
+      document.getElementById('inputTitle').value = DEFAULTS.title;
+      document.getElementById('inputSubtitle').value = DEFAULTS.subtitle;
+      document.getElementById('inputCat').value = DEFAULTS.cat;
+      document.getElementById('inputDate').value = DEFAULTS.date;
+      document.getElementById('inputAccent').value = DEFAULTS.accent;
+      document.getElementById('inputBg').value = DEFAULTS.bg;
+      document.getElementById('sizeSelect').value = '1200,630';
+      document.getElementById('batchMode').checked = false;
+      document.getElementById('batchHint').classList.remove('show');
+      document.getElementById('titleLabel').textContent = '文章标题（支持换行）';
+      var ta = document.getElementById('inputTitle');
+      ta.placeholder = '输入标题，多行自动换行'; ta.classList.remove('batch-titles');
+      applySize('1200,630');
+      document.querySelectorAll('.preset-btn').forEach(function(b) { b.classList.remove('active'); });
+      document.querySelector('.preset-btn').classList.add('active');
+      syncLive();
+    }
+
+    // 预设模板
+    var PRESETS = {
+      forest: { accent: '#2d5a3b', bg: '#fcfaf7' },
+      coral:  { accent: '#e07a5f', bg: '#f5f0eb' },
+      mint:   { accent: '#4a7c59', bg: '#f0f4f0' },
+      mist:   { accent: '#3d6a8f', bg: '#f0f2f5' }
+    };
+
+    var SIZES = {
+      '1200,630': { label: '1200×630', w: 1200, h: 630, font: '52px', pad: '64px 80px', maxW: '860px', scale: 0.42 },
+      '900,383':  { label: '900×383',  w: 900,  h: 383,  font: '36px', pad: '40px 56px',  maxW: '640px', scale: 0.42 },
+      '1200,675': { label: '1200×675', w: 1200, h: 675, font: '48px', pad: '56px 72px',  maxW: '800px', scale: 0.38 },
+      '1080,1080':{ label: '1080×1080',w: 1080, h: 1080, font: '44px', pad: '56px 72px',  maxW: '780px', scale: 0.34 }
+    };
+
+    var HISTORY_KEY = 'cover_generator_history';
+    var MAX_HISTORY = 20;
+    var currentSize = '1200,630';
+
+    function applySize(sizeKey) {
+      var s = SIZES[sizeKey]; if (!s) return;
+      currentSize = sizeKey;
+      var cover = document.getElementById('cover');
+      var inner = document.getElementById('viewportInner');
+      var viewport = document.getElementById('coverViewport');
+      var card = document.getElementById('coverCard');
+      cover.style.width = s.w + 'px'; cover.style.height = s.h + 'px';
+      document.getElementById('previewTitle').style.fontSize = s.font;
+      card.style.padding = s.pad; card.style.maxWidth = s.maxW;
+      viewport.style.width = Math.round(s.w * s.scale) + 'px';
+      viewport.style.height = Math.round(s.h * s.scale) + 'px';
+      inner.style.width = s.w + 'px'; inner.style.height = s.h + 'px';
+      inner.style.transform = 'scale(' + s.scale + ')';
+      document.getElementById('sizeLabel').textContent = s.label;
+      document.getElementById('exportTip').textContent = '封面尺寸 ' + s.label + ' px · 可直接用作 cover_image';
+    }
+
+    document.getElementById('sizeSelect').addEventListener('change', function() { applySize(this.value); syncLive(); });
+
+    document.getElementById('batchMode').addEventListener('change', function() {
+      var hint = document.getElementById('batchHint');
+      var titleLabel = document.getElementById('titleLabel');
+      var textarea = document.getElementById('inputTitle');
+      if (this.checked) {
+        hint.classList.add('show'); titleLabel.textContent = '批量标题（每行一个）';
+        textarea.placeholder = 'Mech-Vision 方案构建思路\nUR 优傲机器人通信\nABB RobotWare 配置';
+        textarea.classList.add('batch-titles');
+      } else {
+        hint.classList.remove('show'); titleLabel.textContent = '文章标题（支持换行）';
+        textarea.placeholder = '输入标题，多行自动换行'; textarea.classList.remove('batch-titles');
+      }
+    });
+
+    // URL 参数填充
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      if (params.has('title'))    document.getElementById('inputTitle').value = decodeURIComponent(params.get('title')).replace(/\\n/g, '\n');
+      if (params.has('subtitle')) document.getElementById('inputSubtitle').value = decodeURIComponent(params.get('subtitle'));
+      if (params.has('cat'))      document.getElementById('inputCat').value = decodeURIComponent(params.get('cat'));
+      if (params.has('date'))     document.getElementById('inputDate').value = decodeURIComponent(params.get('date'));
+      if (params.has('accent'))   document.getElementById('inputAccent').value = params.get('accent');
+      if (params.has('bg'))       document.getElementById('inputBg').value = params.get('bg');
+      if (params.has('size')) { var sz = params.get('size'); if (SIZES[sz]) { document.getElementById('sizeSelect').value = sz; currentSize = sz; } }
+    })();
+
+    function applyPreset(name, btn) {
+      var p = PRESETS[name];
+      if (!p) return;
+      document.getElementById('inputAccent').value = p.accent;
+      document.getElementById('inputBg').value = p.bg;
+      document.querySelectorAll('.preset-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      syncLive();
+    }
+
+    // 折叠分组
+    function toggleGroup(header) {
+      var body = header.nextElementSibling;
+      var toggle = header.querySelector('.group-toggle');
+      body.classList.toggle('collapsed');
+      toggle.classList.toggle('open');
+    }
+
+    function syncLive() {
+      var title = document.getElementById('inputTitle').value;
+      var subtitle = document.getElementById('inputSubtitle').value;
+      var cat = document.getElementById('inputCat').value;
+      var date = document.getElementById('inputDate').value;
+      var accent = document.getElementById('inputAccent').value;
+      var bg = document.getElementById('inputBg').value;
+
+      // 标题转<br>
+      var titleHtml = title.split('\n').map(function(l) { return l.trim(); }).filter(Boolean).join('<br>');
+      document.getElementById('previewTitle').innerHTML = titleHtml || '标题';
+      document.getElementById('previewSub').innerHTML = subtitle || '';
+      document.getElementById('previewSub').style.display = subtitle ? 'block' : 'none';
+      document.getElementById('previewCat').innerHTML = cat || '分类';
+      document.getElementById('previewCat').style.background = accent;
+      document.getElementById('previewDate').innerHTML = date || '2026-01-01';
+
+      // 更新封面配色
+      var cover = document.getElementById('cover');
+      cover.style.background = bg;
+      document.getElementById('coverTag').style.background = accent;
+      document.getElementById('coverFooter').style.background = accent;
+    }
+
+    // 防抖
+    var debounceTimer;
+    function debounceSync() {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(syncLive, 150);
+    }
+
+    // 监听所有输入
+    var inputs = document.querySelectorAll('#inputTitle, #inputSubtitle, #inputCat, #inputDate, #inputAccent, #inputBg');
+    inputs.forEach(function(el) {
+      el.addEventListener('input', debounceSync);
+      el.addEventListener('change', debounceSync);
+    });
+
+    // 历史记录
+    function loadHistory() { try { var raw = localStorage.getItem(HISTORY_KEY); return raw ? JSON.parse(raw) : []; } catch(e) { return []; } }
+    function saveHistory(history) { try { localStorage.setItem(HISTORY_KEY, JSON.stringify(history)); } catch(e) {} }
+    function addHistory(opts, thumbDataUrl) {
+      var history = loadHistory();
+      history.unshift({ title: opts.title.split('\n')[0].trim() || '未命名', subtitle: opts.subtitle, cat: opts.cat, date: opts.date, accent: opts.accent, bg: opts.bg, thumb: thumbDataUrl, time: Date.now() });
+      if (history.length > MAX_HISTORY) history = history.slice(0, MAX_HISTORY);
+      saveHistory(history); renderHistory();
+    }
+    function deleteHistory(idx, e) { e.stopPropagation(); var history = loadHistory(); history.splice(idx, 1); saveHistory(history); renderHistory(); }
+    function loadFromHistory(item) {
+      document.getElementById('inputTitle').value = item.title;
+      document.getElementById('inputSubtitle').value = item.subtitle || '';
+      document.getElementById('inputCat').value = item.cat || '';
+      document.getElementById('inputDate').value = item.date || '';
+      document.getElementById('inputAccent').value = item.accent;
+      document.getElementById('inputBg').value = item.bg;
+      syncLive();
+    }
+    function renderHistory() {
+      var history = loadHistory();
+      var section = document.getElementById('historySection');
+      var list = document.getElementById('historyList');
+      if (!history.length) { section.style.display = 'none'; return; }
+      section.style.display = 'block';
+      list.innerHTML = history.map(function(item, i) {
+        return '<div class="history-item" onclick="loadFromHistory(loadHistory()[' + i + '])">' +
+          '<img class="history-thumb" src="' + (item.thumb || '') + '" alt="">' +
+          '<div class="history-info"><div class="history-name">' + item.title + '</div>' +
+          '<div class="history-meta">' + (item.date || '') + ' · ' + (item.cat || '') + '</div></div>' +
+          '<button class="history-del" onclick="deleteHistory(' + i + ', event)">✕</button></div>';
+      }).join('');
+    }
+
+    // ========== 导出核心 ==========
+    function getCurrentOpts() {
+      return {
+        title: document.getElementById('inputTitle').value,
+        subtitle: document.getElementById('inputSubtitle').value,
+        cat: document.getElementById('inputCat').value,
+        date: document.getElementById('inputDate').value,
+        accent: document.getElementById('inputAccent').value,
+        bg: document.getElementById('inputBg').value
+      };
+    }
+
+    function renderSingleCover(opts) {
+      var titleHtml = opts.title.split('\n').map(function(l) { return l.trim(); }).filter(Boolean).join('<br>');
+      document.getElementById('previewTitle').innerHTML = titleHtml || '标题';
+      document.getElementById('previewSub').innerHTML = opts.subtitle || '';
+      document.getElementById('previewSub').style.display = opts.subtitle ? 'block' : 'none';
+      document.getElementById('previewCat').innerHTML = opts.cat || '分类';
+      document.getElementById('previewCat').style.background = opts.accent;
+      document.getElementById('previewDate').innerHTML = opts.date || '2026-01-01';
+      var cover = document.getElementById('cover');
+      cover.style.background = opts.bg;
+      document.getElementById('coverTag').style.background = opts.accent;
+      document.getElementById('coverFooter').style.background = opts.accent;
+    }
+
+    function restoreAfterRender() {
+      var opts = getCurrentOpts();
+      applySize(currentSize);
+      renderSingleCover(opts);
+    }
+
+    function generateCoverDataUrl(opts, s) {
+      return new Promise(function(resolve, reject) {
+        renderSingleCover(opts);
+        var cover = document.getElementById('cover');
+        var viewport = document.getElementById('coverViewport');
+        var inner = document.getElementById('viewportInner');
+        cover.style.width = s.w + 'px'; cover.style.height = s.h + 'px';
+        document.getElementById('previewTitle').style.fontSize = s.font;
+        var card = document.getElementById('coverCard');
+        card.style.padding = s.pad; card.style.maxWidth = s.maxW;
+        viewport.style.width = Math.round(s.w * s.scale) + 'px';
+        viewport.style.height = Math.round(s.h * s.scale) + 'px';
+        inner.style.width = s.w + 'px'; inner.style.height = s.h + 'px';
+        inner.style.transform = 'none';
+        html2canvas(cover, { scale: 1, useCORS: true, backgroundColor: null, width: s.w, height: s.h, logging: false })
+          .then(function(canvas) {
+            inner.style.transform = 'scale(' + s.scale + ')';
+            applySize(currentSize);
+            resolve(canvas.toDataURL('image/png', 1.0));
+          })
+          .catch(function(err) { inner.style.transform = 'scale(' + s.scale + ')'; applySize(currentSize); reject(err); });
+      });
+    }
+
+    function downloadSingle(opts) {
+      var s = SIZES[currentSize];
+      var btn = document.getElementById('btnExport');
+      btn.disabled = true; btn.textContent = '⏳ 生成中…';
+      generateCoverDataUrl(opts, s).then(function(dataUrl) {
+        var title = opts.title.split('\n')[0].trim() || 'cover';
+        var filename = title.substring(0, 30).replace(/[\/\\:*?"<>|]/g, '') + '_' + s.label + '.png';
+        var link = document.createElement('a');
+        link.download = filename;
+        link.href = dataUrl;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        // 保存历史缩略图
+        var tc = document.createElement('canvas'); tc.width = 160; tc.height = 84;
+        var ti = new Image(); ti.onload = function() { tc.getContext('2d').drawImage(ti, 0, 0, 160, 84); addHistory(opts, tc.toDataURL('image/png', 0.6)); }; ti.src = dataUrl;
+        btn.disabled = false; btn.textContent = '⬇ 下载封面 PNG';
+      }).catch(function(err) { btn.disabled = false; btn.textContent = '⬇ 下载封面 PNG'; alert('生成失败: ' + err); });
+    }
+
+    function downloadBatch(titles, sharedOpts) {
+      var s = SIZES[currentSize];
+      var btn = document.getElementById('btnExport');
+      btn.disabled = true; btn.textContent = '⏳ 批量生成中…';
+      var promises = titles.map(function(title) {
+        var opts = { title: title, subtitle: sharedOpts.subtitle, cat: sharedOpts.cat, date: sharedOpts.date, accent: sharedOpts.accent, bg: sharedOpts.bg };
+        return generateCoverDataUrl(opts, s);
+      });
+      Promise.all(promises).then(function(dataUrls) {
+        var isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+        if (isMobile || dataUrls.length === 1) {
+          dataUrls.forEach(function(url) { window.open(url, '_blank'); });
+        } else {
+          dataUrls.forEach(function(url, i) {
+            var t = titles[i].split('\n')[0].trim() || 'cover';
+            var link = document.createElement('a');
+            link.download = t.substring(0, 30).replace(/[\/\\:*?"<>|]/g, '') + '_' + s.label + '.png';
+            link.href = url;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            if (i < dataUrls.length - 1) setTimeout(function() {}, 200);
+          });
+        }
+        btn.disabled = false; btn.textContent = '⬇ 下载封面 PNG';
+      }).catch(function(err) { btn.disabled = false; btn.textContent = '⬇ 下载封面 PNG'; alert('批量生成失败: ' + err); });
+    }
+
+    function handleExport() {
+      var opts = getCurrentOpts();
+      var batchMode = document.getElementById('batchMode').checked;
+      if (!batchMode) { downloadSingle(opts); return; }
+      var lines = opts.title.split('\n').map(function(l) { return l.trim(); }).filter(Boolean);
+      if (lines.length <= 1) { downloadSingle(opts); return; }
+      downloadBatch(lines, opts);
+    }
+
+    syncLive();
+    renderHistory();
+  </script>
+</body>
+</html>
