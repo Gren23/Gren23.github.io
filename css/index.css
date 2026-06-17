@@ -1642,7 +1642,7 @@ canvas:not(#ribbon-canvas),
   --font-color: #4c4948;
   --hr-border: #d2ebfd;
   --hr-before-color: #bfe4fb;
-  --search-bg: #f6f8fa;
+  --search-bg: transparent;
   --search-input-color: #4c4948;
   --search-a-color: #4c4948;
   --preloader-bg: #37474f;
@@ -4202,9 +4202,13 @@ figure.highlight pre .javascript .function {
   padding: 40px 20px;
   width: 100%;
   text-align: center;
+  padding: 10px 8px;
+  background-color: rgba(0,0,0,0.1);
 }
-#footer .footer-other .framework-info {
-  display: block;
+#footer .footer-other .copyright,
+#footer .footer-other .framework-info,
+#footer .footer-other .footer_custom_text {
+  font-size: 0.9em;
 }
 #page-header {
   position: relative;
