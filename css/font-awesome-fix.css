@@ -1,11 +1,11 @@
-/* 强制 Font Awesome 字体使用 swap 模式 + GitHub Pages 本地路径 */
-/* 必须匹配 R2 CSS 里的 font-family 名称才能覆盖 */
+/* 强制 Font Awesome 字体使用 swap 模式 + R2 CDN + 版本参数 */
+/* 解决 Android 缓存旧版本 + FOIT 问题 */
 @font-face {
   font-family: "Font Awesome 7 Free";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/webfonts/fa-regular-400.woff2') format('woff2');
+  src: url('https://img.hehey.top/webfonts/fa-regular-400.woff2?v=20260619') format('woff2');
 }
 
 @font-face {
@@ -13,7 +13,7 @@
   font-style: normal;
   font-weight: 900;
   font-display: swap;
-  src: url('/webfonts/fa-solid-900.woff2') format('woff2');
+  src: url('https://img.hehey.top/webfonts/fa-solid-900.woff2?v=20260619') format('woff2');
 }
 
 @font-face {
@@ -21,32 +21,32 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/webfonts/fa-brands-400.woff2') format('woff2');
+  src: url('https://img.hehey.top/webfonts/fa-brands-400.woff2?v=20260619') format('woff2');
 }
 
 @font-face {
   font-family: "Font Awesome 5 Free";
   font-display: swap;
   font-weight: 900;
-  src: url('/webfonts/fa-solid-900.woff2') format('woff2');
+  src: url('https://img.hehey.top/webfonts/fa-solid-900.woff2?v=20260619') format('woff2');
 }
 
 @font-face {
   font-family: "Font Awesome 5 Free";
   font-display: swap;
   font-weight: 400;
-  src: url('/webfonts/fa-regular-400.woff2') format('woff2');
+  src: url('https://img.hehey.top/webfonts/fa-regular-400.woff2?v=20260619') format('woff2');
 }
 
 @font-face {
   font-family: "Font Awesome 5 Brands";
   font-display: swap;
   font-weight: 400;
-  src: url('/webfonts/fa-brands-400.woff2') format('woff2');
+  src: url('https://img.hehey.top/webfonts/fa-brands-400.woff2?v=20260619') format('woff2');
 }
 
 @font-face {
   font-family: "FontAwesome";
   font-display: swap;
-  src: url('/webfonts/fa-solid-900.woff2') format('woff2');
+  src: url('https://img.hehey.top/webfonts/fa-solid-900.woff2?v=20260619') format('woff2');
 }
