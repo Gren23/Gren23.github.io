@@ -1,5 +1,6 @@
 /* ================== 设计系统变量 ================== */
 :root {
+  /* 色彩 */
   --color-bg: #F8FAFC;
   --color-surface: #FFFFFF;
   --color-primary: #1677B3;
@@ -9,11 +10,40 @@
   --color-text: #374151;
   --color-text-secondary: #6B7280;
   --color-footer-bg: #F0F9FF;
-  /* RGB 分量，用于 rgba() */
+  /* RGB 分量（用于 rgba） */
   --color-primary-rgb: 22, 119, 179;
   --color-primary-dark-rgb: 19, 78, 117;
   --color-text-rgb: 55, 65, 81;
   --color-border-rgb: 229, 231, 235;
+
+  /* 圆角 */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  /* 间距 */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+
+  /* 字号 */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 30px;
+  --text-4xl: 36px;
+  /* 文章正文宽度建议 780px */
+
+  /* 阴影 */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
 }
 
 [data-theme="dark"] {
@@ -30,19 +60,15 @@
   --color-primary-dark-rgb: 58, 74, 90;
   --color-text-rgb: 226, 232, 240;
   --color-border-rgb: 58, 74, 90;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 /* ================== 全局基础样式 ================== */
-[data-theme="light"] body {
-  background: var(--color-bg) !important;
-}
-[data-theme="dark"] body {
-  background: var(--color-bg) !important;
-}
-
-html {
-  scroll-behavior: auto;
-}
+[data-theme="light"] body { background: var(--color-bg) !important; }
+[data-theme="dark"] body { background: var(--color-bg) !important; }
+html { scroll-behavior: auto; }
 
 /* ================== 页脚 ================== */
 #footer-wrap {
@@ -56,7 +82,6 @@ html {
   box-shadow: none !important;
   text-align: center;
 }
-
 #footer-wrap .copyright,
 #footer-wrap .framework-info {
   text-align: center !important;
@@ -68,7 +93,6 @@ html {
   font-size: 13px !important;
   color: var(--color-text-secondary) !important;
 }
-
 #footer-wrap #ghbdages {
   text-align: center !important;
   display: flex;
@@ -77,12 +101,5 @@ html {
   gap: 5px;
   flex-wrap: wrap;
 }
-
-#footer-wrap a {
-  color: var(--color-primary) !important;
-  text-decoration: none;
-}
-
-#footer-wrap a:hover {
-  text-decoration: underline;
-}
+#footer-wrap a { color: var(--color-primary) !important; text-decoration: none; }
+#footer-wrap a:hover { text-decoration: underline; }
