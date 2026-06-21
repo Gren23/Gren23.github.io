@@ -15,10 +15,13 @@
     "@fortawesome/fontawesome-free": "^7.2.0",
     "cheerio": "^1.2.0",
     "echarts": "^6.1.0",
+    "graceful-fs": "^4.2.11",
     "hexo": "^8.0.0",
     "hexo-butterfly-wowjs": "^1.0.5",
+    "hexo-cli": "^4.3.2",
     "hexo-deployer-git": "^4.0.0",
     "hexo-generator-category": "^2.0.0",
+    "hexo-generator-feed": "^4.0.0",
     "hexo-generator-index": "^4.0.0",
     "hexo-generator-robotstxt": "^0.2.0",
     "hexo-generator-searchdb": "^1.5.0",
@@ -38,6 +41,7 @@
     "unorm": "^1.6.0"
   },
   "devDependencies": {
+    "tailwindcss": "^3.4.17",
     "yaml": "^2.9.0"
   }
 }

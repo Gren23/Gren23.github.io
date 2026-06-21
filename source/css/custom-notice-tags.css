@@ -1,0 +1,739 @@
+/* ================== 公告页：浅色极简数控工作台样式 ================== */
+
+#vision-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.85;
+}
+
+/* 博客流光字 */
+.nav-site-title, #site-title {
+  background: linear-gradient(90deg, #1e40af, #3b82f6, #0284c7, #1e40af);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shineText 6s linear infinite;
+  font-weight: 700;
+}
+@keyframes shineText {
+  to { background-position: 200% center; }
+}
+
+/* 顶栏 OSD 系统数值指示 */
+#page-site-info {
+  position: relative;
+  display: inline-block;
+}
+#page-site-info #site-title {
+  font-family: 'Courier New', Courier, monospace !important;
+  letter-spacing: 2px;
+  font-size: 2.2rem;
+  text-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+}
+#page-site-info::after {
+  content: '[ BOARD: SYS_NOTICE ]  [ REFRESH: OK ]  [ SYS_VER: 5.5.4 ]';
+  display: block;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+
+/* 公告双栏控制台排版 */
+.notice-layout {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+/* 左侧主要内容 */
+.notice-main {
+  flex: 1;
+}
+
+/* 右侧监视挂件 */
+.notice-monitor-widget {
+  width: 260px;
+  position: sticky;
+  top: 80px;
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 4px;
+  padding: 18px !important;
+  font-family: 'Courier New', Courier, monospace;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.02);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.widget-title {
+  font-size: 12px;
+  font-weight: bold;
+  color: #3b82f6;
+  border-bottom: 1px dashed rgba(59, 130, 246, 0.15);
+  padding-bottom: 8px;
+  margin-bottom: 14px;
+  letter-spacing: 1px;
+}
+
+.monitor-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #475569;
+  margin-bottom: 10px;
+}
+.monitor-item .status-tag {
+  color: #10b981; /* 精致绿 */
+  font-weight: bold;
+}
+
+/* 公告卡片 (Diagnostic Notice Box) */
+.notice-item {
+  position: relative;
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid rgba(226, 232, 240, 0.8) !important;
+  border-radius: 4px !important; /* 精致微直角 */
+  padding: 24px !important;
+  margin-bottom: 20px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease,
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* 机械对焦框限饰线 */
+.notice-item::before, .notice-item::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 2px solid transparent;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  pointer-events: none;
+}
+.notice-item::before {
+  top: 14px;
+  left: 14px;
+  border-top-color: #3b82f6;
+  border-left-color: #3b82f6;
+}
+.notice-item::after {
+  bottom: 14px;
+  right: 14px;
+  border-bottom-color: #3b82f6;
+  border-right-color: #3b82f6;
+}
+
+/* 悬停对焦动效 */
+.notice-item:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.06) !important;
+}
+.notice-item:hover::before {
+  top: 8px;
+  left: 8px;
+  opacity: 1;
+}
+.notice-item:hover::after {
+  bottom: 8px;
+  right: 8px;
+  opacity: 1;
+}
+
+/* 公告头部元数据标签 (Log-Style Metadata) */
+.notice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed rgba(226, 232, 240, 0.8);
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+}
+.notice-tag {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+  font-weight: bold;
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.05);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  padding: 2px 6px;
+  border-radius: 2px;
+  letter-spacing: 0.5px;
+}
+.notice-date {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* 公告文本 */
+.notice-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 10px;
+}
+.notice-content {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #475569;
+}
+.notice-content p {
+  margin: 0 0 10px 0;
+}
+.notice-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* 侧边栏头像冷蓝色扫描线 */
+.card-info .avatar-img {
+  position: relative !important;
+  display: inline-block !important;
+  overflow: hidden !important;
+  border-radius: 50% !important;
+  border: 3px solid rgba(59, 130, 246, 0.25);
+  transition: border-color 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-info .avatar-img:hover {
+  transform: scale(1.05);
+  border-color: #3b82f6;
+}
+.card-info .avatar-img::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 45%,
+    rgba(59, 130, 246, 0.8) 50%, 
+    rgba(59, 130, 246, 0.2) 53%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+.card-info .avatar-img:hover::after {
+  animation: scanning 1.5s infinite linear;
+}
+@keyframes scanning {
+  0% { top: -100%; }
+  100% { top: 100%; }
+}
+
+.card-info-social-icons a.social-icon {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: inline-block;
+}
+.card-info-social-icons a.social-icon:hover {
+  transform: translateY(-3px) scale(1.15) !important;
+}
+
+/* 响应式排版 */
+@media screen and (max-width: 850px) {
+  .notice-layout {
+    flex-direction: column;
+  }
+  .notice-monitor-widget {
+    width: 100%;
+    position: static;
+    margin-bottom: 20px;
+  }
+}
+
+/* 暗黑模式自适应 */
+[data-theme="dark"] .notice-item, [data-theme="dark"] .notice-monitor-widget {
+  background: rgba(15, 23, 42, 0.5) !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+[data-theme="dark"] .notice-item:hover {
+  border-color: rgba(96, 165, 250, 0.35) !important;
+  box-shadow: 0 8px 24px rgba(96, 165, 250, 0.1) !important;
+}
+[data-theme="dark"] .notice-item::before {
+  border-top-color: #60a5fa;
+  border-left-color: #60a5fa;
+}
+[data-theme="dark"] .notice-item::after {
+  border-bottom-color: #60a5fa;
+  border-right-color: #60a5fa;
+}
+[data-theme="dark"] .notice-title {
+  color: #f1f5f9;
+}
+[data-theme="dark"] .notice-content {
+  color: #94a3b8;
+}
+[data-theme="dark"] .notice-header {
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+
+
+[data-theme="light"] body{background:linear-gradient(180deg,#f0f9ff 0%,#e8f6fc 30%,#ffffff 100%) !important;}html{scroll-behavior:auto;}#footer-wrap{background-color:#2d5a3b !important;background-image:none!important;border-top:1px solid #e5e9ef !important;padding:10px 0 !important;min-height:unset !important;height:auto !important;line-height:1.6 !important;box-shadow:none !important;text-align:center;}#footer-wrap .copyright{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;}#footer-wrap .framework-info{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:8px;font-size:13px !important;color:#888 !important;flex-wrap:wrap;}#footer-wrap #ghbdages{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:5px;flex-wrap:wrap;}#footer-wrap a{color:#49b1f5!important;text-decoration:none;}#footer-wrap a:hover{text-decoration:underline;}
+/* ================== 标签页：微光圆润浅色气泡样式 ================== */
+
+/* 博客流光字 */
+.nav-site-title, #site-title {
+  background: linear-gradient(90deg, #1e40af, #3b82f6, #0284c7, #1e40af);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shineText 6s linear infinite;
+  font-weight: 700;
+}
+@keyframes shineText {
+  to { background-position: 200% center; }
+}
+
+/* 标签主舱：圆润、通透浅色玻璃态 */
+.tag-page,
+.type-custom-tags #page {
+  position: relative;
+  background: rgba(255, 255, 255, 0.78) !important;
+  border: 1px solid rgba(226, 232, 240, 0.7) !important;
+  border-radius: 20px !important;
+  padding: 40px !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.04) !important;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease !important;
+}
+
+.tag-page:hover,
+.type-custom-tags #page:hover {
+  border-color: rgba(59, 130, 246, 0.25) !important;
+  box-shadow: 0 15px 40px rgba(59, 130, 246, 0.07) !important;
+  transform: translateY(-2px);
+}
+
+/* 页面标题 */
+.tag-page .page-title,
+.type-custom-tags #page .page-title {
+  font-family: 'Noto Sans SC', sans-serif !important;
+  font-weight: 700 !important;
+  color: #1e3a8a !important;
+  letter-spacing: 1px !important;
+  margin-bottom: 35px !important;
+  font-size: 1.65rem !important;
+  text-align: center;
+}
+
+/* 标签气泡 */
+.tag-cloud-list a {
+  display: inline-block !important;
+  margin: 8px 12px !important;
+  padding: 6px 16px !important;
+  border-radius: 30px !important;
+  font-family: 'Noto Sans SC', sans-serif !important;
+  font-weight: 500 !important;
+  border: 1px solid rgba(219, 234, 254, 0.7) !important;
+  text-decoration: none !important;
+  box-shadow: inset 0 0 0 100px rgba(255, 255, 255, 0.86) !important;
+  color: #475569 !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.tag-cloud-list a:hover {
+  transform: scale(1.05) translateY(-2px) !important;
+  box-shadow: inset 0 0 0 100px rgba(255, 255, 255, 0.2) !important;
+  border-color: rgba(59, 130, 246, 0.35) !important;
+  color: #1e40af !important;
+}
+
+.tag-cloud-list a sup {
+  font-family: 'Noto Sans SC', sans-serif !important;
+  font-size: 10px !important;
+  color: #3b82f6 !important;
+  margin-left: 4px !important;
+  font-weight: 700 !important;
+}
+
+/* 暗黑模式 */
+[data-theme="dark"] .tag-page,
+[data-theme="dark"] .type-custom-tags #page {
+  background: rgba(15, 23, 42, 0.55) !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25) !important;
+}
+[data-theme="dark"] .tag-cloud-list a {
+  box-shadow: inset 0 0 0 100px rgba(15, 23, 42, 0.85) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #94a3b8 !important;
+}
+[data-theme="dark"] .tag-cloud-list a:hover {
+  box-shadow: inset 0 0 0 100px rgba(15, 23, 42, 0.15) !important;
+  color: #e2e8f0 !important;
+}
+
+/* ================== 通用基调 ================== */
+/* 1. Canvas 静谧背景定位 */
+#vision-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.85;
+}
+
+/* 2. 标题区冷冰蓝微光流线效果 */
+.nav-site-title, #site-title {
+  background: linear-gradient(90deg, #1e40af, #3b82f6, #0284c7, #1e40af);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shineText 6s linear infinite;
+  font-weight: 700;
+}
+@keyframes shineText {
+  to { background-position: 200% center; }
+}
+
+/* 3. 侧边栏头像冷蓝色扫描线 */
+.card-info .avatar-img {
+  position: relative !important;
+  display: inline-block !important;
+  overflow: hidden !important;
+  border-radius: 50% !important;
+  border: 3px solid rgba(59, 130, 246, 0.25);
+  transition: border-color 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-info .avatar-img:hover {
+  transform: scale(1.05);
+  border-color: #3b82f6;
+}
+.card-info .avatar-img::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 45%,
+    rgba(59, 130, 246, 0.8) 50%, /* 冰冷科技蓝扫描线 */
+    rgba(59, 130, 246, 0.2) 53%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+.card-info .avatar-img:hover::after {
+  animation: scanning 1.5s infinite linear;
+}
+@keyframes scanning {
+  0% { top: -100%; }
+  100% { top: 100%; }
+}
+
+/* 4. 社交媒体图标精致微动 */
+.card-info-social-icons a.social-icon {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: inline-block;
+}
+.card-info-social-icons a.social-icon:hover {
+  transform: translateY(-3px) scale(1.15) !important;
+}
+
+/* ================== 分类页样式 ================== */
+/* 1. 分类主标题 OSD 标志与准星叠加 */
+
+/* ================== 标签存档页/分类页样式 ================== */
+
+/* 1. 圆润温润主面板 */
+#tag {
+  background: rgba(255, 255, 255, 0.75) !important;
+  border-radius: 20px;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  padding: 30px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.03);
+}
+[data-theme="dark"] #tag {
+  background: rgba(15, 23, 42, 0.55) !important;
+  border-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* 2. 标题变成小标牌 */
+.article-sort-title {
+  font-weight: 700;
+  margin-bottom: 24px;
+  padding: 8px 16px;
+  background: rgba(59, 130, 246, 0.06);
+  border-left: 3px solid #3b82f6;
+  border-radius: 0 8px 8px 0;
+  display: inline-block;
+}
+
+/* 3. 温润的时间轴主线 */
+.article-sort {
+  border-left: 2px solid rgba(59, 130, 246, 0.12) !important;
+  padding-left: 20px !important;
+  margin-left: 10px !important;
+}
+
+/* 4. 年份胶囊圆角小标签 */
+.article-sort-item.year {
+  font-family: 'Courier New', monospace;
+  font-size: 18px !important;
+  font-weight: 700;
+  color: #3b82f6 !important;
+  background: rgba(59, 130, 246, 0.06);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 20px !important;
+  padding: 4px 14px;
+}
+
+/* 5. 圆润胶囊文章卡片 */
+.article-sort-item:not(.year) {
+  position: relative;
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(226, 232, 240, 0.7) !important;
+  border-radius: 12px !important;
+  padding: 16px 20px !important;
+  margin-bottom: 14px !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease,
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* 悬停微动：轻度上浮 */
+.article-sort-item:not(.year):hover {
+  transform: translateY(-3px) translateX(3px) !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.06) !important;
+}
+
+/* 6. 文章标题颜色 */
+.article-sort-item-time {
+  font-family: 'Courier New', monospace !important;
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+.article-sort-item-title {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: #1e293b;
+  transition: color 0.3s ease;
+}
+.article-sort-item:not(.year):hover .article-sort-item-title {
+  color: #3b82f6 !important;
+}
+
+/* 7. 暗黑模式 */
+[data-theme="dark"] .article-sort-item:not(.year) {
+  background: rgba(15, 23, 42, 0.5) !important;
+  border-color: rgba(255, 255, 255, 0.04) !important;
+}
+[data-theme="dark"] .article-sort-item:not(.year):hover {
+  border-color: rgba(96, 165, 250, 0.3) !important;
+  box-shadow: 0 8px 24px rgba(96, 165, 250, 0.1) !important;
+}
+[data-theme="dark"] .article-sort-item-title {
+  color: #f1f5f9;
+}
+
+
+/* ================== 分类/标签子页 时间轴蓝色风格 ================== */
+#category .article-sort-title,
+#tag .article-sort-title {
+  text-align: left;
+  font-size: 15px;
+  margin-bottom: 30px;
+  color: #64748b;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+}
+
+/* 主容器 */
+.article-sort {
+  position: relative;
+  padding-left: 0;
+}
+
+/* 年份标签 */
+.article-sort-item.year {
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #3b82f6;
+  padding: 16px 0 12px;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+/* 文章卡片 */
+.article-sort-item:not(.year) {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 16px;
+  padding: 18px 20px;
+  margin-bottom: 14px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease,
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: block;
+}
+
+.article-sort-item:not(.year):hover {
+  transform: translateY(-4px) scale(1.01) !important;
+  border-color: rgba(59, 130, 246, 0.45) !important;
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.08) !important;
+}
+
+/* 封面图 */
+.article-sort-item-img {
+  display: none;
+}
+
+/* 文章信息 */
+.article-sort-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.article-sort-item-time {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  color: #3b82f6;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.article-sort-item-time i {
+  color: #3b82f6;
+}
+
+.article-sort-item-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+  text-decoration: none;
+  transition: color 0.2s;
+  display: block;
+  line-height: 1.5;
+}
+
+.article-sort-item-title:hover {
+  color: #3b82f6;
+}
+
+/* 分页 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 32px;
+}
+
+.pagination .page-number,
+.pagination .prev,
+.pagination .next {
+  padding: 8px 16px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  font-size: 13px;
+  color: #64748b;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.pagination .page-number.current,
+.pagination .page-number:hover,
+.pagination .prev:hover,
+.pagination .next:hover {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: #fff;
+}
+
+/* 暗黑模式 */
+[data-theme="dark"] #category .article-sort-title,
+[data-theme="dark"] #tag .article-sort-title {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .article-sort-item.year {
+  color: #60a5fa;
+  border-color: rgba(96, 165, 250, 0.1);
+}
+
+[data-theme="dark"] .article-sort-item:not(.year) {
+  background: rgba(15, 23, 42, 0.55) !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+[data-theme="dark"] .article-sort-item:not(.year):hover {
+  border-color: rgba(96, 165, 250, 0.3) !important;
+  box-shadow: 0 8px 24px rgba(96, 165, 250, 0.12) !important;
+}
+
+[data-theme="dark"] .article-sort-item-title {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .article-sort-item-title:hover {
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .article-sort-item-time {
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .article-sort-item-time i {
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .pagination .page-number,
+[data-theme="dark"] .pagination .prev,
+[data-theme="dark"] .pagination .next {
+  background: rgba(15, 23, 42, 0.55);
+  border-color: rgba(255, 255, 255, 0.05);
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .pagination .page-number.current,
+[data-theme="dark"] .pagination .page-number:hover,
+[data-theme="dark"] .pagination .prev:hover,
+[data-theme="dark"] .pagination .next:hover {
+  background: #60a5fa;
+  border-color: #60a5fa;
+  color: #0f172a;
+}
+
+/* ================== 暗黑模式 footer 修复 ================== */
+[data-theme="dark"] #footer-wrap {
+  background: #1a2533 !important;
+  border-top: 1px solid #374151 !important;
+}
+[data-theme="dark"] #footer-wrap .copyright,
+[data-theme="dark"] #footer-wrap .framework-info {
+  color: #9ca3af !important;
+}
+[data-theme="dark"] #footer-wrap a {
+  color: #93c5fd !important;
+}

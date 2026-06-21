@@ -5,6 +5,8 @@ type: "charts"
 comments: false
 ---
 
+<script src="https://cdn.staticfile.org/echarts/5.4.3/echarts.min.js"></script>
+
 <style>
 .chart-wrapper {
   background: var(--card-bg);

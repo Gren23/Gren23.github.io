@@ -3,4 +3,28 @@ if theme.aside.card_announcement.enable
     .item-headline
       i.fas.fa-bullhorn.fa-shake
       span= _p('aside.card_announcement')
-    .announcement_content!= theme.aside.card_announcement.content
+    .announcement_content
+      #latest-notice-placeholder
+      script.
+        (function() {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', '/data/latest-notice.json', true);
+          xhr.onload = function() {
+            if (xhr.status === 200) {
+              var data = JSON.parse(xhr.responseText);
+              var el = document.getElementById('latest-notice-placeholder');
+              if (el && data.title) {
+                el.outerHTML = '<a href="' + data.url + '" style="color:inherit;text-decoration:none;display:block;">' +
+                  '<span style="font-size:11px;opacity:0.7;margin-right:6px;">' + data.tag + '</span>' +
+                  '<span style="font-size:11px;opacity:0.5;margin-right:6px;">' + data.date + '</span>' +
+                  '<div style="margin-top:4px;font-weight:600;">' + data.title + '</div>' +
+                  '</a>';
+              }
+            }
+          };
+          xhr.onerror = function() {
+            var el = document.getElementById('latest-notice-placeholder');
+            if (el) el.outerHTML = '<span style="opacity:0.5;font-size:13px;">暂无公告</span>';
+          };
+          xhr.send();
+        })();

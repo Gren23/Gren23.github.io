@@ -1,6 +1,7 @@
 ---
 title: 归档
 date: 2026-05-20 09:00:00
+comments: false
 ---
 
 <style>
@@ -8,26 +9,37 @@ date: 2026-05-20 09:00:00
   max-width: 860px;
   margin: 0 auto;
   padding: 0 20px 60px;
-  --brand: #6C5CE7;
-  --brand-light: rgba(108, 92, 231, 0.18);
-  --brand-glow: rgba(108, 92, 231, 0.35);
+  --brand: #3b82f6;
+  --brand-light: rgba(59, 130, 246, 0.18);
+  --brand-glow: rgba(59, 130, 246, 0.35);
+}
+
+/* 页面标题 */
+.archive-header {
+  text-align: left;
+  font-size: 15px;
+  margin-bottom: 30px;
+  color: #64748b;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
 }
 
 /* 统计横幅 */
 .archive-stats {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 16px;
   padding: 14px 24px;
-  background: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.72);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.5);
+  border: 1px solid rgba(226, 232, 240, 0.85);
   border-radius: 18px;
   margin-bottom: 28px;
   font-size: 13px;
-  color: #888;
+  color: #64748b;
+  font-family: 'Courier New', monospace;
 }
 .archive-stats .num {
   font-weight: 700;
@@ -361,23 +373,46 @@ date: 2026-05-20 09:00:00
 }
 
 /* 暗色模式 */
+[data-theme="dark"] .archive-header {
+  color: #94a3b8;
+}
 [data-theme="dark"] .archive-stats,
 [data-theme="dark"] .year-card,
 [data-theme="dark"] .post-item {
-  background: rgba(30,35,55,0.55);
-  border-color: rgba(255,255,255,0.08);
+  background: rgba(15, 23, 42, 0.55);
+  border-color: rgba(255,255,255,0.05);
+}
+[data-theme="dark"] .year-card:hover {
+  border-color: rgba(96, 165, 250, 0.3) !important;
+  box-shadow: 0 8px 24px rgba(96, 165, 250, 0.12) !important;
 }
 [data-theme="dark"] .archive-search input {
-  background: rgba(30,35,55,0.7);
+  background: rgba(15, 23, 42, 0.7);
   color: var(--font-color);
+  border-color: rgba(59, 130, 246, 0.15);
 }
 [data-theme="dark"] .filter-pill {
   background: rgba(255,255,255,0.06);
   border-color: rgba(255,255,255,0.1);
   color: var(--sec-text);
 }
+[data-theme="dark"] .filter-pill:hover {
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+[data-theme="dark"] .filter-pill.active {
+  background: #60a5fa;
+  border-color: #60a5fa;
+  color: #0f172a;
+}
 [data-theme="dark"] .year-card-header:hover {
   background: rgba(255,255,255,0.05);
+}
+[data-theme="dark"] .post-item:hover .post-title {
+  color: #60a5fa;
+}
+[data-theme="dark"] .year-card {
+  border-color: rgba(255,255,255,0.04);
 }
 
 /* 移动端 */
@@ -394,6 +429,7 @@ date: 2026-05-20 09:00:00
 
 <div class="archive-wrap">
   <!-- 统计横幅 -->
+  <div class="archive-header">// TIMELINE_ARCHIVES //</div>
   <div class="archive-stats" id="archive-stats"></div>
 
   <!-- 搜索与过滤 -->

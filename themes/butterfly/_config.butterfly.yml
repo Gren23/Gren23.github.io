@@ -895,7 +895,6 @@ css_prefix: true
 inject:
   head:
     # - <link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"> # 常规css
-    - <link rel="stylesheet" href="https://cdn1.tianli0.top/npm/element-ui@2.15.6/packages/theme-chalk/lib/index.css" media="print" onload="this.media='all'"> # 引入组件库(f12)
     - <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     - <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     - <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
@@ -912,13 +911,12 @@ inject:
     # - <script src="https://npm.elemecdn.com/echarts@4.9.0/dist/echarts.min.js"></script> #文章统计（已改为按需动态加载）
 
   bottom:
-    - <script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script> # jQuery
+    - <script defer src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script> # jQuery
     - <script async src="https://cdn1.tianli0.top/npm/vue@2.6.14/dist/vue.min.js"></script> # VUE
-    - <script async src="https://cdn1.tianli0.top/npm/element-ui@2.15.6/lib/index.js"></script> # ElementUI
     - <script async src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script> # 分享按钮依赖
-    - <script defer type="text/javascript" src="https://cdn1.tianli0.top/npm/sweetalert2@8.19.0/dist/sweetalert2.all.js"></script> # 节日弹窗依赖
-    - <script async src="//npm.elemecdn.com/pace-js@1.2.4/pace.min.js"></script> # 顶部进度条js
-    - <script defer src="https://cdn1.tianli0.top/gh/nextapps-de/winbox/dist/winbox.bundle.min.js"></script> # winbox
+    - <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@8.19.0/dist/sweetalert2.all.min.js"></script> # 节日弹窗依赖
+    - <script async src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script> # 顶部进度条js
+    - <script defer src="https://cdn.jsdelivr.net/npm/winbox@1.3.2/dist/winbox.bundle.min.js"></script> # winbox
     - <script async src="//at.alicdn.com/t/c/font_3586335_hsivh70x0fm.js"></script> # js图标引入1
     - <script async src="//at.alicdn.com/t/c/font_3636804_gr02jmjr3y9.js"></script> # js图标引入2
     - <script async src="//at.alicdn.com/t/c/font_3612150_kfv55xn3u2g.js"></script> # js图标引入3
