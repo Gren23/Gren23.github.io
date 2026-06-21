@@ -54,11 +54,40 @@ body {
 .recent-post-item {
   max-width: 100%;
   margin-bottom: var(--custom-card-gap);
-  background: transparent;
+  background: linear-gradient(
+    180deg,
+    rgba(250, 248, 245, 0) 0%,
+    rgba(250, 248, 245, 0.6) 100%
+  );
   border: none;
   box-shadow: none;
   padding-bottom: var(--custom-card-gap);
   border-bottom: 1px solid var(--custom-separator);
+  transition: background 0.3s ease;
+}
+
+[data-theme="dark"] .recent-post-item {
+  background: linear-gradient(
+    180deg,
+    rgba(30, 30, 30, 0) 0%,
+    rgba(30, 30, 30, 0.5) 100%
+  );
+}
+
+.recent-post-item:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(250, 248, 245, 0) 0%,
+    rgba(250, 248, 245, 0.85) 100%
+  );
+}
+
+[data-theme="dark"] .recent-post-item:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(30, 30, 30, 0) 0%,
+    rgba(45, 55, 50, 0.6) 100%
+  );
 }
 
 .recent-post-item:last-child {
