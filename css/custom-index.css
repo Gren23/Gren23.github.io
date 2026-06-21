@@ -2,29 +2,93 @@
    自定义首页布局：极简留白 · 精选内容感
    ================================================ */
 
-/* 变量定义 */
+/* ================== Hero 区域 ================== */
+
+/* 隐藏滚动箭头（冗余） */
+#scroll-down { display: none !important; }
+
+/* Hero 主容器 */
+#page-header.full_page {
+  background: var(--color-bg) !important;
+  min-height: unset !important;
+  height: auto !important;
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* 移除顶部导航背景影响 */
+#page-header.full_page::before { display: none !important; }
+
+/* Hero 信息区 */
+#site-info {
+  text-align: center;
+  padding: 80px 24px 60px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* 标题 */
+#site-title {
+  font-size: clamp(32px, 6vw, 48px) !important;
+  font-weight: 800 !important;
+  font-family: 'Inter', 'IBM Plex Sans', -apple-system, sans-serif !important;
+  color: var(--color-text) !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.2 !important;
+  margin-bottom: 16px !important;
+  background: none !important;
+  -webkit-text-fill-color: unset !important;
+  text-shadow: none !important;
+}
+
+/* 副标题 */
+#site-subtitle {
+  font-size: 16px !important;
+  color: var(--color-text-secondary) !important;
+  letter-spacing: 0.08em !important;
+  font-weight: 400 !important;
+  margin-bottom: 32px !important;
+}
+
+/* 社交图标容器 */
+#site_social_icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+#site_social_icons a {
+  color: var(--color-text-secondary) !important;
+  transition: color 0.2s, transform 0.2s;
+  font-size: 18px;
+}
+
+#site_social_icons a:hover {
+  color: var(--color-primary) !important;
+  transform: translateY(-2px);
+}
+
+/* Hero 分隔线 */
+#site-info::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: var(--color-primary);
+  border-radius: 2px;
+  margin: 48px auto 0;
+}
+
+/* ================== 变量定义 ================== */
 :root {
-  --custom-bg: #fafaf8;
-  --custom-text: #222222;
-  --custom-meta: #999999;
-  --custom-accent: #5a7a6a;
-  --custom-separator: #e0e0e0;
   --custom-card-gap: 56px;
   --custom-card-max: 700px;
 }
 
-/* 深色模式 */
-[data-theme="dark"] {
-  --custom-bg: #1a1a1a;
-  --custom-text: #e8e8e8;
-  --custom-meta: #888888;
-  --custom-accent: #8faea0;
-  --custom-separator: #333333;
-}
-
 /* 背景色 */
 body {
-  background: var(--custom-bg) !important;
+  background: var(--color-bg) !important;
 }
 
 /* 博客引言（副标题） */
@@ -227,7 +291,7 @@ body {
 }
 
 [data-theme="dark"] .content {
-  color: #777;
+  color: var(--color-text-secondary);
 }
 
 /* 分页器 */
@@ -355,7 +419,7 @@ body {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #2d5a3b, #e07a5f);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -376,7 +440,7 @@ body {
 /* 标题下划线滑入动画 */
 #recent-posts .recent-post-item .article-title {
   position: relative;
-  background: linear-gradient(#2d5a3b, #2d5a3b) no-repeat left bottom;
+  background: linear-gradient(var(--color-primary), var(--color-primary)) no-repeat left bottom;
   background-size: 0 2px;
   transition: background-size 0.3s ease;
 }
@@ -386,7 +450,7 @@ body {
 
 /* 摘要文字 3 行截断 */
 #recent-posts .recent-post-item .content {
-  color: #666;
+  color: var(--color-text-secondary);
   font-size: 0.9rem;
   line-height: 1.7;
   display: -webkit-box;
@@ -401,6 +465,6 @@ body {
   transition: background 0.2s, color 0.2s;
 }
 #recent-posts .recent-post-item .article-meta__tags:hover {
-  background: #2d5a3b;
+  background: var(--color-primary);
   color: #fff;
 }
