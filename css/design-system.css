@@ -9,6 +9,11 @@
   --color-text: #374151;
   --color-text-secondary: #6B7280;
   --color-footer-bg: #F0F9FF;
+  /* RGB 分量，用于 rgba() */
+  --color-primary-rgb: 22, 119, 179;
+  --color-primary-dark-rgb: 19, 78, 117;
+  --color-text-rgb: 55, 65, 81;
+  --color-border-rgb: 229, 231, 235;
 }
 
 [data-theme="dark"] {
@@ -21,6 +26,10 @@
   --color-text: #e2e8f0;
   --color-text-secondary: #94a3b8;
   --color-footer-bg: #1a2533;
+  --color-primary-rgb: 73, 177, 245;
+  --color-primary-dark-rgb: 58, 74, 90;
+  --color-text-rgb: 226, 232, 240;
+  --color-border-rgb: 58, 74, 90;
 }
 
 /* ================== 全局基础样式 ================== */
