@@ -29,3 +29,8 @@ body.type-notice .notice-layout {
   width: 100% !important;
   flex: none !important;
 }
+
+/* 覆盖 custom-notice-tags.css 里的深绿色 footer */
+#footer-wrap {
+  background-color: var(--color-footer-bg) !important;
+}
