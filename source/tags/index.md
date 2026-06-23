@@ -203,22 +203,22 @@ comments: false
   color: #f1f5f9 !important;
 }
 [data-theme="dark"] .tag-card-item:hover {
-  color: #60a5fa !important;
-  box-shadow: 0 8px 24px rgba(96, 165, 250, 0.12) !important;
+  color: #49b1f5 !important;
+  box-shadow: 0 8px 24px rgba(22, 119, 179, 0.12) !important;
 }
 [data-theme="dark"] .tag-card-count {
-  background: rgba(96, 165, 250, 0.08);
-  color: #60a5fa;
-  border-color: rgba(96, 165, 250, 0.15);
+  background: rgba(22, 119, 179, 0.08);
+  color: #49b1f5;
+  border-color: rgba(22, 119, 179, 0.15);
 }
 [data-theme="dark"] .tag-card-count:hover {
-  background: #60a5fa;
+  background: #49b1f5;
   color: #0f172a;
 }
 [data-theme="dark"] .tag-point-telemetry {
   background: rgba(0, 0, 0, 0.4);
-  border-color: rgba(96, 165, 250, 0.2);
-  color: #60a5fa;
+  border-color: rgba(22, 119, 179, 0.2);
+  color: #49b1f5;
 }
 </style>
 

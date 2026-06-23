@@ -98,8 +98,8 @@ comments: false
   color: #f1f5f9;
 }
 [data-theme="dark"] .cat-card:hover {
-  border-color: rgba(96, 165, 250, 0.3) !important;
-  box-shadow: 0 8px 24px rgba(96, 165, 250, 0.12) !important;
+  border-color: rgba(22, 119, 179, 0.3) !important;
+  box-shadow: 0 8px 24px rgba(22, 119, 179, 0.12) !important;
 }
 </style>
 

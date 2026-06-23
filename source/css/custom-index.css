@@ -2,29 +2,15 @@
    自定义首页布局：极简留白 · 精选内容感
    ================================================ */
 
-/* 变量定义 */
+/* ================== 变量定义 ================== */
 :root {
-  --custom-bg: #fafaf8;
-  --custom-text: #222222;
-  --custom-meta: #999999;
-  --custom-accent: #5a7a6a;
-  --custom-separator: #e0e0e0;
   --custom-card-gap: 56px;
   --custom-card-max: 700px;
 }
 
-/* 深色模式 */
-[data-theme="dark"] {
-  --custom-bg: #1a1a1a;
-  --custom-text: #e8e8e8;
-  --custom-meta: #888888;
-  --custom-accent: #8faea0;
-  --custom-separator: #333333;
-}
-
 /* 背景色 */
 body {
-  background: var(--custom-bg) !important;
+  background: var(--color-bg) !important;
 }
 
 /* 博客引言（副标题） */
@@ -227,7 +213,7 @@ body {
 }
 
 [data-theme="dark"] .content {
-  color: #777;
+  color: var(--color-text-secondary);
 }
 
 /* 分页器 */
@@ -355,7 +341,7 @@ body {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #2d5a3b, #e07a5f);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -376,7 +362,7 @@ body {
 /* 标题下划线滑入动画 */
 #recent-posts .recent-post-item .article-title {
   position: relative;
-  background: linear-gradient(#2d5a3b, #2d5a3b) no-repeat left bottom;
+  background: linear-gradient(var(--color-primary), var(--color-primary)) no-repeat left bottom;
   background-size: 0 2px;
   transition: background-size 0.3s ease;
 }
@@ -386,7 +372,7 @@ body {
 
 /* 摘要文字 3 行截断 */
 #recent-posts .recent-post-item .content {
-  color: #666;
+  color: var(--color-text-secondary);
   font-size: 0.9rem;
   line-height: 1.7;
   display: -webkit-box;
@@ -401,6 +387,6 @@ body {
   transition: background 0.2s, color 0.2s;
 }
 #recent-posts .recent-post-item .article-meta__tags:hover {
-  background: #2d5a3b;
+  background: var(--color-primary);
   color: #fff;
 }

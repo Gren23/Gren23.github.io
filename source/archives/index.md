@@ -9,9 +9,9 @@ comments: false
   max-width: 860px;
   margin: 0 auto;
   padding: 0 20px 60px;
-  --brand: #3b82f6;
-  --brand-light: rgba(59, 130, 246, 0.18);
-  --brand-glow: rgba(59, 130, 246, 0.35);
+  --brand: #1677B3;
+  --brand-light: rgba(22, 119, 179, 0.18);
+  --brand-glow: rgba(22, 119, 179, 0.35);
 }
 
 /* 页面标题 */
@@ -383,13 +383,13 @@ comments: false
   border-color: rgba(255,255,255,0.05);
 }
 [data-theme="dark"] .year-card:hover {
-  border-color: rgba(96, 165, 250, 0.3) !important;
-  box-shadow: 0 8px 24px rgba(96, 165, 250, 0.12) !important;
+  border-color: rgba(22, 119, 179, 0.3) !important;
+  box-shadow: 0 8px 24px rgba(22, 119, 179, 0.12) !important;
 }
 [data-theme="dark"] .archive-search input {
   background: rgba(15, 23, 42, 0.7);
   color: var(--font-color);
-  border-color: rgba(59, 130, 246, 0.15);
+  border-color: rgba(22, 119, 179, 0.15);
 }
 [data-theme="dark"] .filter-pill {
   background: rgba(255,255,255,0.06);
@@ -397,19 +397,19 @@ comments: false
   color: var(--sec-text);
 }
 [data-theme="dark"] .filter-pill:hover {
-  background: rgba(59, 130, 246, 0.12);
-  border-color: rgba(59, 130, 246, 0.3);
+  background: rgba(22, 119, 179, 0.12);
+  border-color: rgba(22, 119, 179, 0.3);
 }
 [data-theme="dark"] .filter-pill.active {
-  background: #60a5fa;
-  border-color: #60a5fa;
+  background: #49b1f5;
+  border-color: #49b1f5;
   color: #0f172a;
 }
 [data-theme="dark"] .year-card-header:hover {
   background: rgba(255,255,255,0.05);
 }
 [data-theme="dark"] .post-item:hover .post-title {
-  color: #60a5fa;
+  color: #49b1f5;
 }
 [data-theme="dark"] .year-card {
   border-color: rgba(255,255,255,0.04);

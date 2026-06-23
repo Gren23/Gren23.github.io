@@ -17,19 +17,19 @@ title: 关于
   border-radius: 24px;
   padding: 2.5rem 3rem;
   margin-bottom: 1.5rem;
-  box-shadow: 0 4px 24px rgba(45,90,59,0.08);
+  box-shadow: 0 4px 24px rgba(22, 119, 179,0.08);
   transition: box-shadow 0.3s ease;
 }
 .about-card:hover {
-  box-shadow: 0 8px 36px rgba(45,90,59,0.14);
+  box-shadow: 0 8px 36px rgba(22, 119, 179,0.14);
 }
 .about-card h2 {
   font-size: 1.15rem;
   font-weight: 600;
-  color: var(--primary, #2d5a3b);
+  color: var(--primary, #1677B3);
   margin: 0 0 1.2rem;
   padding-bottom: 0.6rem;
-  border-bottom: 2px solid rgba(45,90,59,0.15);
+  border-bottom: 2px solid rgba(22, 119, 179,0.15);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -39,7 +39,7 @@ title: 关于
   display: inline-block;
   width: 4px;
   height: 1.1em;
-  background: var(--primary, #2d5a3b);
+  background: var(--primary, #1677B3);
   border-radius: 2px;
 }
 .about-card p {
@@ -55,7 +55,7 @@ title: 关于
 .about-welcome h1 {
   font-size: 1.6rem;
   font-weight: 700;
-  color: var(--primary, #2d5a3b);
+  color: var(--primary, #1677B3);
   margin: 0 0 1rem;
 }
 .about-welcome .subtitle {
@@ -78,18 +78,18 @@ title: 关于
   font-size: 0.92rem;
   line-height: 1.7;
   color: var(--font-color, #333);
-  border: 1px solid rgba(45,90,59,0.1);
+  border: 1px solid rgba(22, 119, 179,0.1);
   transition: transform 0.2s ease;
 }
 .about-mini-card:hover { transform: translateY(-2px); }
-.about-mini-card strong { color: var(--primary, #2d5a3b); }
+.about-mini-card strong { color: var(--primary, #1677B3); }
 .about-faq-item {
   margin-bottom: 1.2rem;
 }
 .about-faq-item:last-child { margin-bottom: 0; }
 .about-faq-q {
   font-weight: 600;
-  color: var(--primary, #2d5a3b);
+  color: var(--primary, #1677B3);
   margin-bottom: 0.3rem;
   font-size: 0.95rem;
 }
@@ -97,7 +97,7 @@ title: 关于
   color: #555;
   line-height: 1.75;
   padding-left: 1rem;
-  border-left: 3px solid rgba(45,90,59,0.2);
+  border-left: 3px solid rgba(22, 119, 179,0.2);
 }
 .about-resource-list {
   list-style: none;
@@ -108,11 +108,11 @@ title: 关于
   padding: 0.5rem 0;
   color: #555;
   line-height: 1.7;
-  border-bottom: 1px dashed rgba(45,90,59,0.12);
+  border-bottom: 1px dashed rgba(22, 119, 179,0.12);
 }
 .about-resource-list li:last-child { border-bottom: none; }
-.about-resource-list li strong { color: var(--primary, #2d5a3b); }
-.about-resource-list li a { color: var(--primary, #2d5a3b); text-decoration: underline; }
+.about-resource-list li strong { color: var(--primary, #1677B3); }
+.about-resource-list li a { color: var(--primary, #1677B3); text-decoration: underline; }
 .about-closing {
   text-align: center;
   padding: 2rem 3rem;
@@ -220,7 +220,7 @@ title: 关于
   <div class="about-card about-closing">
     <p class="big-text">感谢每一位偶然或特意来到这个小站的朋友。</p>
     <p>是你们的浏览和留言，让我的"折腾"有了更多意义。</p>
-    <p style="margin-top:1rem; font-weight:600; color:#2d5a3b;">最后，祝大家身体健康，玩得开心！</p>
+    <p style="margin-top:1rem; font-weight:600; color:#1677B3;">最后，祝大家身体健康，玩得开心！</p>
   </div>
 
 </div>

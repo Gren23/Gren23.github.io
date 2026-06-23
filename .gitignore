@@ -1,5 +1,30 @@
-.public/
-.deploy_git/
+# Dependencies
 node_modules/
+
+# Build output
 public/
+.deploy_git/
 .db.js*
+db.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Backup
+backup/
+*.bak
+
+# Temp
+tmp/
+temp/
