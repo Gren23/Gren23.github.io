@@ -23,30 +23,9 @@
 }
 
 /* ================== 公告页 layout 修复 ================== */
-/* 让公告页的 .notice-layout 不破坏主题原有 sidebar 布局 */
-body.type-notice #content-inner.layout {
-  display: flex !important;
-  flex-direction: row !important;
-}
+/* 让 notice 的 .notice-layout 不破坏主题 flex 布局 */
 body.type-notice .notice-layout {
   display: block !important;
-  flex: none !important;
   width: 100% !important;
-}
-body.type-notice #aside-content {
-  flex: 0 0 260px !important;
-  width: 260px !important;
-  align-self: flex-start !important;
-  position: sticky !important;
-  top: 80px !important;
-}
-@media screen and (max-width: 900px) {
-  body.type-notice #content-inner.layout {
-    flex-direction: column !important;
-  }
-  body.type-notice #aside-content {
-    position: static !important;
-    width: 100% !important;
-    flex: none !important;
-  }
+  flex: none !important;
 }
