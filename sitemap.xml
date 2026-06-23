@@ -155,6 +155,15 @@
   </url>
   
   <url>
+    <loc>https://www.hehehey.top/posts/fanuc/</loc>
+    
+    <lastmod>2026-06-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.hehehey.top/posts/jaka/</loc>
     
     <lastmod>2026-06-14</lastmod>
@@ -174,15 +183,6 @@
   
   <url>
     <loc>https://www.hehehey.top/posts/mech-vision-1/</loc>
-    
-    <lastmod>2026-06-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hehehey.top/posts/fanuc/</loc>
     
     <lastmod>2026-06-14</lastmod>
     
@@ -407,15 +407,6 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/categories/orbit/index.html</loc>
-    
-    <lastmod>2026-06-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.hehehey.top/categories/particle/index.html</loc>
     
     <lastmod>2026-06-05</lastmod>
@@ -425,7 +416,7 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/categories/tree/index.html</loc>
+    <loc>https://www.hehehey.top/categories/orbit/index.html</loc>
     
     <lastmod>2026-06-05</lastmod>
     
@@ -435,6 +426,15 @@
   
   <url>
     <loc>https://www.hehehey.top/categories/waterfall/index.html</loc>
+    
+    <lastmod>2026-06-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hehehey.top/categories/tree/index.html</loc>
     
     <lastmod>2026-06-05</lastmod>
     
@@ -580,6 +580,20 @@
   </url>
   
   <url>
+    <loc>https://www.hehehey.top/tags/FANUC/</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hehehey.top/tags/%E5%8F%91%E9%82%A3%E7%A7%91/</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.hehehey.top/tags/JAKA/</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -616,20 +630,6 @@
   
   <url>
     <loc>https://www.hehehey.top/tags/%E6%96%B9%E6%A1%88%E6%9E%84%E5%BB%BA/</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hehehey.top/tags/FANUC/</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hehehey.top/tags/%E5%8F%91%E9%82%A3%E7%A7%91/</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
