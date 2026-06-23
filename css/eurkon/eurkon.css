@@ -2360,9 +2360,23 @@ div.menus_items>div:nth-child(4)>ul {
   right: -8em !important;
 }
 
-/* 小屏导航栏 */
-#sidebar #sidebar-menus .menus_items .site-page.group {
-  cursor: pointer;
+/* 小屏导航栏 - 子菜单默认隐藏 */
+#sidebar #sidebar-menus .menus_item_child {
+  display: none;
+  flex-wrap: wrap;
+  padding-inline-start: 1rem;
+  padding-inline-end: 1rem;
+  justify-content: space-between;
+}
+
+/* 侧边栏打开时才显示子菜单 */
+#sidebar-menus.open .menus_item_child,
+#sidebar #sidebar-menus.open .menus_items .menus_item_child {
+  display: flex;
+}
+
+#sidebar #sidebar-menus .menus_items .menus_item_child li {
+  width: 50%;
 }
 
 #sidebar #sidebar-menus .menus_items .site-page.child {
