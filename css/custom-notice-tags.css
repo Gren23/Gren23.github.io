@@ -1,28 +1,3 @@
-/* ================== 设计系统变量 ================== */
-:root {
-  --color-bg: #F8FAFC;
-  --color-surface: #FFFFFF;
-  --color-primary: #1677B3;
-  --color-primary-dark: #134e75;
-  --color-primary-light: #49b1f5;
-  --color-border: #E5E7EB;
-  --color-text: #374151;
-  --color-text-secondary: #6B7280;
-  --color-footer-bg: #F0F9FF;
-}
-
-[data-theme="dark"] {
-  --color-bg: #1a2533;
-  --color-surface: #243447;
-  --color-primary: #49b1f5;
-  --color-primary-dark: #3a4a5a;
-  --color-primary-light: #93c5fd;
-  --color-border: #3a4a5a;
-  --color-text: #e2e8f0;
-  --color-text-secondary: #94a3b8;
-  --color-footer-bg: #1a2533;
-}
-
 /* ================== 公告页：浅色极简数控工作台样式 ================== */
 
 #vision-canvas {
@@ -306,8 +281,6 @@
   border-bottom-color: rgba(255, 255, 255, 0.05);
 }
 
-
-[data-theme="light"] body{background:linear-gradient(180deg,#f0f9ff 0%,#e8f6fc 30%,#ffffff 100%) !important;}html{scroll-behavior:auto;}#footer-wrap{background-color:#2d5a3b !important;background-image:none!important;border-top:1px solid #e5e9ef !important;padding:10px 0 !important;min-height:unset !important;height:auto !important;line-height:1.6 !important;box-shadow:none !important;text-align:center;}#footer-wrap .copyright{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;}#footer-wrap .framework-info{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:8px;font-size:13px !important;color:#888 !important;flex-wrap:wrap;}#footer-wrap #ghbdages{text-align:center!important;display:flex;justify-content:center;align-items:center;gap:5px;flex-wrap:wrap;}#footer-wrap a{color:#49b1f5!important;text-decoration:none;}#footer-wrap a:hover{text-decoration:underline;}
 /* ================== 标签页：微光圆润浅色气泡样式 ================== */
 
 /* 博客流光字 */
