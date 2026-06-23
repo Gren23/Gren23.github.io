@@ -1,15 +1,20 @@
 class VisionNetwork {
   constructor() {
     this.canvas = document.getElementById('vision-canvas');
+    if (!this.canvas) return;
     this.ctx = this.canvas.getContext('2d');
     this.particles = [];
     this.mouse = { x: null, y: null, radius: 130 };
     this.config = {
-      particleCount: 55,       // 轻量特征点
-      connectionDistance: 110,  // 缩短连线，紧凑高级
-      speedMultiplier: 0.45    // 舒适平缓的飘移阻尼
+      particleCount: 55,
+      connectionDistance: 110,
+      speedMultiplier: 0.45
     };
-    
+
+    this._animId = null;
+    this._resizeTimer = null;
+    this._mousemoveThrottle = null;
+
     this.init();
     this.animate();
     this.bindEvents();
@@ -30,6 +35,7 @@ class VisionNetwork {
   }
 
   resize() {
+    // 只改尺寸，保留粒子当前位置（避免 resize 时粒子跳变）
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
   }
@@ -44,11 +50,20 @@ class VisionNetwork {
   }
 
   bindEvents() {
-    window.addEventListener('resize', () => this.init());
-    
+    // resize 防抖，避免频繁触发
+    window.addEventListener('resize', () => {
+      clearTimeout(this._resizeTimer);
+      this._resizeTimer = setTimeout(() => this.resize(), 150);
+    });
+
+    // mousemove 节流，16ms ≈ 60fps
     window.addEventListener('mousemove', (e) => {
-      this.mouse.x = e.clientX;
-      this.mouse.y = e.clientY;
+      if (this._mousemoveThrottle) return;
+      this._mousemoveThrottle = setTimeout(() => {
+        this.mouse.x = e.clientX;
+        this.mouse.y = e.clientY;
+        this._mousemoveThrottle = null;
+      }, 16);
     });
 
     window.addEventListener('mouseleave', () => {
@@ -58,55 +73,65 @@ class VisionNetwork {
   }
 
   animate() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    const { ctx, particles, config, mouse } = this;
+    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     const theme = this.getColorTheme();
 
-    for (let i = 0; i < this.particles.length; i++) {
-      const p = this.particles[i];
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
       p.x += p.vx;
       p.y += p.vy;
 
+      // 碰边反弹
       if (p.x < 0 || p.x > this.canvas.width) p.vx *= -1;
       if (p.y < 0 || p.y > this.canvas.height) p.vy *= -1;
 
-      this.ctx.beginPath();
-      this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      this.ctx.fillStyle = theme.particleColor;
-      this.ctx.fill();
+      // 绘制粒子
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = theme.particleColor;
+      ctx.fill();
 
-      for (let j = i + 1; j < this.particles.length; j++) {
-        const p2 = this.particles[j];
-        const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+      // 粒子间连线
+      for (let j = i + 1; j < particles.length; j++) {
+        const p2 = particles[j];
+        const dx = p.x - p2.x;
+        const dy = p.y - p2.y;
+        const dist = Math.sqrt(dx * dx + dy * dy); // Math.hypot 兼容写法
 
-        if (dist < this.config.connectionDistance) {
-          const alpha = (1 - dist / this.config.connectionDistance) * 0.4;
-          this.ctx.beginPath();
-          this.ctx.moveTo(p.x, p.y);
-          this.ctx.lineTo(p2.x, p2.y);
-          this.ctx.strokeStyle = theme.lineColor.replace(/[\d.]+\)$/, `${alpha})`);
-          this.ctx.lineWidth = 0.6;
-          this.ctx.stroke();
+        if (dist < config.connectionDistance) {
+          const alpha = (1 - dist / config.connectionDistance) * 0.4;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.strokeStyle = theme.lineColor.replace(/[\d.]+\)$/, `${alpha})`);
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
         }
       }
 
-      if (this.mouse.x !== null && this.mouse.y !== null) {
-        const mDist = Math.hypot(p.x - this.mouse.x, p.y - this.mouse.y);
-        if (mDist < this.mouse.radius) {
-          const mAlpha = (1 - mDist / this.mouse.radius) * 0.35;
-          this.ctx.beginPath();
-          this.ctx.moveTo(p.x, p.y);
-          this.ctx.lineTo(this.mouse.x, this.mouse.y);
-          this.ctx.strokeStyle = theme.interactiveLineColor.replace(/[\d.]+\)$/, `${mAlpha})`);
-          this.ctx.lineWidth = 0.8;
-          this.ctx.stroke();
-          
-          p.x += (this.mouse.x - p.x) * 0.015;
-          p.y += (this.mouse.y - p.y) * 0.015;
+      // 鼠标吸附
+      if (mouse.x !== null && mouse.y !== null) {
+        const dx = p.x - mouse.x;
+        const dy = p.y - mouse.y;
+        const mDist = Math.sqrt(dx * dx + dy * dy);
+
+        if (mDist < mouse.radius) {
+          const mAlpha = (1 - mDist / mouse.radius) * 0.35;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.strokeStyle = theme.interactiveLineColor.replace(/[\d.]+\)$/, `${mAlpha})`);
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+
+          p.x += (mouse.x - p.x) * 0.015;
+          p.y += (mouse.y - p.y) * 0.015;
         }
       }
     }
 
-    requestAnimationFrame(() => this.animate());
+    this._animId = requestAnimationFrame(() => this.animate());
   }
 }
 
