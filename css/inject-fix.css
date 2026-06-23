@@ -7,7 +7,7 @@
 #recent-posts .recent-post-item:hover,
 #articles .article-sort-item:hover {
   transform: translateY(-6px) !important;
-  box-shadow: 0 8px 25px rgba(73, 177, 245, 0.25) !important;
+  box-shadow: 0 8px 25px rgba(var(--color-primary-rgb), 0.25) !important;
 }
 
 /* 侧边栏信息颜色调淡 */
