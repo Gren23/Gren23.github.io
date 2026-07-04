@@ -92,7 +92,41 @@ body.type-notice .notice-layout {
   opacity: 0.85;
 }
 
-/* ================== 页面 Site Title 公告页特殊样式 ================== */
+/* ================== 文章内容区暗黑模式修复 ================== */
+/* butterfly darkmode.styl 的 --font-color 没有被子元素继承，这里强制覆盖 */
+
+html[data-theme='dark'] #article-container {
+  color: var(--c-text);
+}
+
+html[data-theme='dark'] #article-container h1,
+html[data-theme='dark'] #article-container h2,
+html[data-theme='dark'] #article-container h3,
+html[data-theme='dark'] #article-container h4,
+html[data-theme='dark'] #article-container h5,
+html[data-theme='dark'] #article-container h6 {
+  color: var(--c-text);
+}
+
+html[data-theme='dark'] #article-container h1 { font-size: 1.8em; }
+html[data-theme='dark'] #article-container h2 { font-size: 1.5em; }
+html[data-theme='dark'] #article-container h3 { font-size: 1.25em; }
+
+/* 表格边框修复：深色背景用深色边框，不用黑色 */
+html[data-theme='dark'] #article-container table {
+  border-color: var(--c-border) !important;
+}
+html[data-theme='dark'] #article-container table th,
+html[data-theme='dark'] #article-container table td {
+  border-color: var(--c-border) !important;
+}
+html[data-theme='dark'] #article-container table th {
+  background: var(--c-surface);
+  color: var(--c-text);
+}
+html[data-theme='dark'] #article-container table tr:nth-child(even) {
+  background: rgba(255,255,255,0.03);
+}
 #page-site-info {
   position: relative;
   display: inline-block;
