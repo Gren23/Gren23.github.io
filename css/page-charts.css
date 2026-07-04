@@ -1,0 +1,16 @@
+/* ================== 文章统计页 ================== */
+
+.chart-wrapper {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.chart-title {
+  text-align: center;
+  font-size: 1.1em;
+  color: var(--text-highlight-color);
+  margin-bottom: 16px;
+  font-weight: 600;
+}

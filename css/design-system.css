@@ -1,80 +1,141 @@
-/* ================== 设计系统变量 ================== */
+/* ================== 设计系统 · 统一变量体系 ==================
+
+   命名规范：
+   --c-*   博客自定义变量（统一前缀，避免与任何第三方冲突）
+   所有颜色引用统一走 --c-* 变量体系
+   dark mode 使用 html.darkmode（butterfly 标准切换方式）
+
+   ================== */
+
 :root {
-  /* 色彩 */
-  --color-bg: #F8FAFC;
-  --color-surface: #FFFFFF;
-  --color-primary: #1677B3;
-  --color-primary-dark: #134e75;
-  --color-primary-light: #49b1f5;
-  --color-border: #E5E7EB;
-  --color-text: #374151;
-  --color-text-secondary: #6B7280;
-  --color-footer-bg: #F0F9FF;
-  /* RGB 分量（用于 rgba） */
-  --color-primary-rgb: 22, 119, 179;
-  --color-primary-dark-rgb: 19, 78, 117;
-  --color-text-rgb: 55, 65, 81;
-  --color-border-rgb: 229, 231, 235;
+  /* --- 色彩 --- */
+  --c-primary:       #1677B3;
+  --c-primary-dark:  #134e75;
+  --c-primary-light: #49b1f5;
+  --c-primary-rgb:    22, 119, 179;
+  --c-primary-dark-rgb: 19, 78, 117;
 
-  /* 圆角 */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
+  /* 背景 */
+  --c-bg:            #F8FAFC;
+  --c-surface:       #FFFFFF;
+  --c-footer-bg:     #F0F9FF;
 
-  /* 间距 */
-  --space-xs: 4px;
-  --space-sm: 8px;
-  --space-md: 16px;
-  --space-lg: 24px;
-  --space-xl: 40px;
-  --space-2xl: 64px;
+  /* 边框 */
+  --c-border:        #E5E7EB;
 
-  /* 字号 */
-  --text-xs: 12px;
-  --text-sm: 14px;
-  --text-base: 16px;
-  --text-lg: 18px;
-  --text-xl: 20px;
-  --text-2xl: 24px;
-  --text-3xl: 30px;
-  --text-4xl: 36px;
-  /* 文章正文宽度建议 780px */
+  /* 文字 */
+  --c-text:          #374151;
+  --c-text-secondary:#6B7280;
+  --c-text-rgb:      55, 65, 81;
 
-  /* 阴影 */
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-  --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
+  /* 语义色（来自 custom-* 变量归一化） */
+  --c-accent:        #1677B3;   /* 强调色（原 --custom-accent） */
+  --c-meta:          #6B7280;    /* 次要文字（原 --custom-meta） */
+  --c-separator:     #E5E7EB;    /* 分隔线（原 --custom-separator） */
+  --c-card-bg:       rgba(255,255,255,0.85); /* 卡片背景 */
+  --c-highlight:     #1677B3;    /* 高亮（原 --text-highlight, --text-high） */
+  --c-secondary:     #6B7280;    /* 次要文字（原 --secondary） */
+
+  /* --- 圆角 --- */
+  --c-radius-sm: 8px;
+  --c-radius-md: 12px;
+  --c-radius-lg: 16px;
+
+  /* --- 间距 --- */
+  --c-space-xs:  4px;
+  --c-space-sm:  8px;
+  --c-space-md:  16px;
+  --c-space-lg:  24px;
+  --c-space-xl:  40px;
+  --c-space-2xl: 64px;
+
+  /* --- 字号 --- */
+  --c-text-xs:  12px;
+  --c-text-sm:  14px;
+  --c-text-base:16px;
+  --c-text-lg:  18px;
+  --c-text-xl:  20px;
+  --c-text-2xl: 24px;
+  --c-text-3xl: 30px;
+  --c-text-4xl: 36px;
+
+  /* --- 阴影 --- */
+  --c-shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --c-shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --c-shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
+
+  /* --- 动画缓动 --- */
+  --c-ease: cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-[data-theme="dark"] {
-  --color-bg: #1a2533;
-  --color-surface: #243447;
-  --color-primary: #49b1f5;
-  --color-primary-dark: #3a4a5a;
-  --color-primary-light: #93c5fd;
-  --color-border: #3a4a5a;
-  --color-text: #e2e8f0;
-  --color-text-secondary: #94a3b8;
-  --color-footer-bg: #1a2533;
-  --color-primary-rgb: 73, 177, 245;
-  --color-primary-dark-rgb: 58, 74, 90;
-  --color-text-rgb: 226, 232, 240;
-  --color-border-rgb: 58, 74, 90;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
-  --shadow-lg: 0 10px 30px rgba(0,0,0,0.5);
+/* ================== 暗黑模式（butterfly 标准切换方式） ================== */
+html.darkmode,
+html[data-theme='dark'] {
+  --c-bg:            #1a2533;
+  --c-surface:       #243447;
+  --c-footer-bg:     #1a2533;
+  --c-border:        #3a4a5a;
+
+  --c-primary:       #49b1f5;
+  --c-primary-dark:  #3a4a5a;
+  --c-primary-light: #93c5fd;
+  --c-primary-rgb:    73, 177, 245;
+  --c-primary-dark-rgb: 58, 74, 90;
+
+  --c-text:          #e2e8f0;
+  --c-text-secondary:#94a3b8;
+  --c-text-rgb:      226, 232, 240;
+
+  --c-accent:        #49b1f5;
+  --c-meta:          #94a3b8;
+  --c-separator:     #3a4a5a;
+  --c-card-bg:       rgba(26, 37, 51, 0.55);
+  --c-highlight:     #49b1f5;
+  --c-secondary:      #94a3b8;
+
+  --c-shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+  --c-shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+  --c-shadow-lg: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 /* ================== 全局基础样式 ================== */
-[data-theme="light"] body { background: var(--color-bg) !important; }
-[data-theme="dark"] body { background: var(--color-bg) !important; }
 html { scroll-behavior: auto; }
+body { background: var(--c-bg) !important; }
+
+/* ================== 遗留 ad-hoc 变量兼容别名（md 内联样式遗留） ==================
+   这些变量名（--border, --secondary, --accent 等）是 md 文件里自创的，
+   在 --c-* 体系建立前就存在于此博客的各个页面中。
+   通过别名映射确保它们继续正常工作，同时逐步迁移到 --c-* 体系。
+   ================== */
+:root {
+  /* 遗留 ad-hoc 别名 → --c-* 映射 */
+  --border:             var(--c-border);
+  --secondary:          var(--c-secondary);
+  --text-high:          var(--c-highlight);
+  --text-highlight:     var(--c-highlight);
+  --text-highlight-color: var(--c-highlight);
+  --text-color:         var(--c-text);
+  --card-bg:            var(--c-card-bg);
+  --accent:             var(--c-accent);
+  --theme-color:        var(--c-primary);
+  --color-primary:      var(--c-primary);
+  --color-primary-rgb:  var(--c-primary-rgb);
+  --color-primary-dark-rgb: var(--c-primary-dark-rgb);
+  --color-text:         var(--c-text);
+  --color-text-secondary: var(--c-text-secondary);
+  --color-surface:      var(--c-surface);
+  --color-bg:           var(--c-bg);
+  --custom-text:        var(--c-text);
+  --custom-meta:        var(--c-meta);
+  --custom-accent:      var(--c-accent);
+  --custom-separator:   var(--c-separator);
+}
 
 /* ================== 页脚 ================== */
 #footer-wrap {
-  background: var(--color-footer-bg) !important;
+  background: var(--c-footer-bg) !important;
   background-image: none !important;
-  border-top: 1px solid var(--color-border) !important;
+  border-top: 1px solid var(--c-border) !important;
   padding: 10px 0 !important;
   min-height: unset !important;
   height: auto !important;
@@ -91,7 +152,7 @@ html { scroll-behavior: auto; }
   gap: 8px;
   flex-wrap: wrap;
   font-size: 13px !important;
-  color: var(--color-text-secondary) !important;
+  color: var(--c-text-secondary) !important;
 }
 #footer-wrap #ghbdages {
   text-align: center !important;
@@ -101,5 +162,47 @@ html { scroll-behavior: auto; }
   gap: 5px;
   flex-wrap: wrap;
 }
-#footer-wrap a { color: var(--color-primary) !important; text-decoration: none; }
+#footer-wrap a { color: var(--c-primary) !important; text-decoration: none; }
 #footer-wrap a:hover { text-decoration: underline; }
+
+/* ================== 暗黑模式页脚 ================== */
+html.darkmode #footer-wrap,
+html[data-theme='dark'] #footer-wrap {
+  background: var(--c-bg) !important;
+  border-top: 1px solid var(--c-border) !important;
+}
+html.darkmode #footer-wrap .copyright,
+html.darkmode #footer-wrap .framework-info,
+html[data-theme='dark'] #footer-wrap .copyright,
+html[data-theme='dark'] #footer-wrap .framework-info {
+  color: var(--c-text-secondary) !important;
+}
+html.darkmode #footer-wrap a,
+html[data-theme='dark'] #footer-wrap a {
+  color: var(--c-primary-light) !important;
+}
+
+/* ================== 暗黑模式 ad-hoc 别名 ================== */
+html.darkmode,
+html[data-theme='dark'] {
+  --border:             var(--c-border);
+  --secondary:          var(--c-secondary);
+  --text-high:          var(--c-highlight);
+  --text-highlight:     var(--c-highlight);
+  --text-highlight-color: var(--c-highlight);
+  --text-color:         var(--c-text);
+  --card-bg:            var(--c-card-bg);
+  --accent:             var(--c-accent);
+  --theme-color:        var(--c-primary);
+  --color-primary:      var(--c-primary);
+  --color-primary-rgb:  var(--c-primary-rgb);
+  --color-primary-dark-rgb: var(--c-primary-dark-rgb);
+  --color-text:         var(--c-text);
+  --color-text-secondary: var(--c-text-secondary);
+  --color-surface:      var(--c-surface);
+  --color-bg:           var(--c-bg);
+  --custom-text:        var(--c-text);
+  --custom-meta:        var(--c-meta);
+  --custom-accent:      var(--c-accent);
+  --custom-separator:   var(--c-separator);
+}

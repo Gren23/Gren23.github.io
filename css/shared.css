@@ -1,103 +1,60 @@
 /* ================== 通用基调 ================== */
-/* 1. Canvas 静谧背景定位 */
+
+/* Canvas 静谧背景定位 */
 #vision-canvas {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   pointer-events: none;
   z-index: -1;
   opacity: 0.85;
 }
 
-/* 2. 标题区冷冰蓝微光流线效果 */
-.nav-site-title, #site-title {
-  background: linear-gradient(90deg, var(--color-primary-dark), var(--color-primary), var(--color-primary-dark), var(--color-primary-dark));
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shineText 6s linear infinite;
-  font-weight: 700;
-}
-@keyframes shineText {
-  to { background-position: 200% center; }
-}
-
-/* 3. 侧边栏头像冷蓝色扫描线 */
-.card-info .avatar-img {
-  position: relative !important;
-  display: inline-block !important;
-  overflow: hidden !important;
-  border-radius: 50% !important;
-  border: 3px solid rgba(var(--color-primary-rgb), 0.25);
-  transition: border-color 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.card-info .avatar-img:hover {
-  transform: scale(1.05);
-  border-color: var(--color-primary);
-}
-.card-info .avatar-img::after {
-  content: '';
-  position: absolute;
-  top: -100%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to bottom,
-    transparent 45%,
-    rgba(59, 130, 246, 0.8) 50%, /* 冰冷科技蓝扫描线 */
-    rgba(59, 130, 246, 0.2) 53%,
-    transparent 60%
-  );
-  pointer-events: none;
-}
-.card-info .avatar-img:hover::after {
-  animation: scanning 1.5s infinite linear;
-}
-@keyframes scanning {
-  0% { top: -100%; }
-  100% { top: 100%; }
-}
-
-/* 4. 社交媒体图标精致微动 */
-.card-info-social-icons a.social-icon {
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  display: inline-block;
-}
-.card-info-social-icons a.social-icon:hover {
-  transform: translateY(-3px) scale(1.15) !important;
-}
-
-
-/* ================== 统计/动态/关于等子页面通用 ================== */
-#charts, #census, #moments, #update, #about, #life, #notice, #site, #personal, #supertool, #tools, #message, #link, #fcircle, #download, #protocol {
-  background: rgba(255, 255, 255, 0.75) !important;
+/* ================== 页面通用玻璃卡片（深浅通用） ================== */
+#charts, #census, #moments, #update, #about, #life, #notice,
+#site, #personal, #supertool, #tools, #message, #link,
+#fcircle, #download, #protocol {
+  background: var(--c-card-bg) !important;
   border-radius: 20px;
-  border: 1px solid rgba(229, 231, 235, 0.85);
+  border: 1px solid var(--c-border);
   padding: 30px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(var(--color-primary-rgb), 0.03);
+  box-shadow: 0 10px 30px rgba(var(--c-primary-rgb), 0.03);
 }
 
-[data-theme="dark"] #charts,
-[data-theme="dark"] #census,
-[data-theme="dark"] #moments,
-[data-theme="dark"] #update,
-[data-theme="dark"] #about,
-[data-theme="dark"] #life,
-[data-theme="dark"] #notice,
-[data-theme="dark"] #site,
-[data-theme="dark"] #personal,
-[data-theme="dark"] #supertool,
-[data-theme="dark"] #tools,
-[data-theme="dark"] #message,
-[data-theme="dark"] #link,
-[data-theme="dark"] #fcircle,
-[data-theme="dark"] #download,
-[data-theme="dark"] #protocol {
+html.darkmode #charts,
+html.darkmode #census,
+html.darkmode #moments,
+html.darkmode #update,
+html.darkmode #about,
+html.darkmode #life,
+html.darkmode #notice,
+html.darkmode #site,
+html.darkmode #personal,
+html.darkmode #supertool,
+html.darkmode #tools,
+html.darkmode #message,
+html.darkmode #link,
+html.darkmode #fcircle,
+html.darkmode #download,
+html.darkmode #protocol,
+html[data-theme='dark'] #charts,
+html[data-theme='dark'] #census,
+html[data-theme='dark'] #moments,
+html[data-theme='dark'] #update,
+html[data-theme='dark'] #about,
+html[data-theme='dark'] #life,
+html[data-theme='dark'] #notice,
+html[data-theme='dark'] #site,
+html[data-theme='dark'] #personal,
+html[data-theme='dark'] #supertool,
+html[data-theme='dark'] #tools,
+html[data-theme='dark'] #message,
+html[data-theme='dark'] #link,
+html[data-theme='dark'] #fcircle,
+html[data-theme='dark'] #download,
+html[data-theme='dark'] #protocol {
   background: rgba(26, 37, 51, 0.55) !important;
   border-color: rgba(255, 255, 255, 0.05);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);

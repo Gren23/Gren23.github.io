@@ -77,18 +77,18 @@
 }
 
 /* 暗黑模式 */
-[data-theme="dark"] .tag-page,
-[data-theme="dark"] .type-custom-tags #page {
+html.darkmode, html[data-theme="dark"] .tag-page,
+html.darkmode, html[data-theme="dark"] .type-custom-tags #page {
   background: rgba(15, 23, 42, 0.55) !important;
   border-color: rgba(255, 255, 255, 0.05) !important;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25) !important;
 }
-[data-theme="dark"] .tag-cloud-list a {
+html.darkmode, html[data-theme="dark"] .tag-cloud-list a {
   box-shadow: inset 0 0 0 100px rgba(15, 23, 42, 0.85) !important;
   border-color: rgba(255, 255, 255, 0.08) !important;
   color: var(--color-text-secondary) !important;
 }
-[data-theme="dark"] .tag-cloud-list a:hover {
+html.darkmode, html[data-theme="dark"] .tag-cloud-list a:hover {
   box-shadow: inset 0 0 0 100px rgba(15, 23, 42, 0.15) !important;
   color: var(--color-text) !important;
 }
@@ -109,7 +109,7 @@
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 10px 30px rgba(var(--color-primary-rgb), 0.03);
 }
-[data-theme="dark"] #tag, [data-theme="dark"] #archive, [data-theme="dark"] #category {
+html.darkmode, html[data-theme="dark"] #tag, html.darkmode, html[data-theme="dark"] #archive, html.darkmode, html[data-theme="dark"] #category {
   background: rgba(15, 23, 42, 0.55) !important;
   border-color: rgba(255, 255, 255, 0.05);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -185,15 +185,15 @@
 }
 
 /* 7. 暗黑模式 */
-[data-theme="dark"] .article-sort-item:not(.year) {
+html.darkmode, html[data-theme="dark"] .article-sort-item:not(.year) {
   background: rgba(15, 23, 42, 0.5) !important;
   border-color: rgba(255, 255, 255, 0.04) !important;
 }
-[data-theme="dark"] .article-sort-item:not(.year):hover {
+html.darkmode, html[data-theme="dark"] .article-sort-item:not(.year):hover {
   border-color: rgba(var(--color-primary-dark-rgb), 0.3) !important;
   box-shadow: 0 8px 24px rgba(var(--color-primary-dark-rgb), 0.1) !important;
 }
-[data-theme="dark"] .article-sort-item-title {
+html.darkmode, html[data-theme="dark"] .article-sort-item-title {
   color: var(--color-surface);
 }
 
@@ -317,54 +317,54 @@
 }
 
 /* 暗黑模式 */
-[data-theme="dark"] #category .article-sort-title,
-[data-theme="dark"] #tag .article-sort-title {
+html.darkmode, html[data-theme="dark"] #category .article-sort-title,
+html.darkmode, html[data-theme="dark"] #tag .article-sort-title {
   color: var(--color-text-secondary);
 }
 
-[data-theme="dark"] .article-sort-item.year {
+html.darkmode, html[data-theme="dark"] .article-sort-item.year {
   color: var(--color-primary);
   border-color: rgba(var(--color-primary-dark-rgb), 0.1);
 }
 
-[data-theme="dark"] .article-sort-item:not(.year) {
+html.darkmode, html[data-theme="dark"] .article-sort-item:not(.year) {
   background: rgba(15, 23, 42, 0.55) !important;
   border-color: rgba(255, 255, 255, 0.05) !important;
 }
 
-[data-theme="dark"] .article-sort-item:not(.year):hover {
+html.darkmode, html[data-theme="dark"] .article-sort-item:not(.year):hover {
   border-color: rgba(var(--color-primary-dark-rgb), 0.3) !important;
   box-shadow: 0 8px 24px rgba(var(--color-primary-dark-rgb), 0.12) !important;
 }
 
-[data-theme="dark"] .article-sort-item-title {
+html.darkmode, html[data-theme="dark"] .article-sort-item-title {
   color: var(--color-surface);
 }
 
-[data-theme="dark"] .article-sort-item-title:hover {
+html.darkmode, html[data-theme="dark"] .article-sort-item-title:hover {
   color: var(--color-primary);
 }
 
-[data-theme="dark"] .article-sort-item-time {
+html.darkmode, html[data-theme="dark"] .article-sort-item-time {
   color: var(--color-primary);
 }
 
-[data-theme="dark"] .article-sort-item-time i {
+html.darkmode, html[data-theme="dark"] .article-sort-item-time i {
   color: var(--color-primary);
 }
 
-[data-theme="dark"] .pagination .page-number,
-[data-theme="dark"] .pagination .prev,
-[data-theme="dark"] .pagination .next {
+html.darkmode, html[data-theme="dark"] .pagination .page-number,
+html.darkmode, html[data-theme="dark"] .pagination .prev,
+html.darkmode, html[data-theme="dark"] .pagination .next {
   background: rgba(15, 23, 42, 0.55);
   border-color: rgba(255, 255, 255, 0.05);
   color: var(--color-text-secondary);
 }
 
-[data-theme="dark"] .pagination .page-number.current,
-[data-theme="dark"] .pagination .page-number:hover,
-[data-theme="dark"] .pagination .prev:hover,
-[data-theme="dark"] .pagination .next:hover {
+html.darkmode, html[data-theme="dark"] .pagination .page-number.current,
+html.darkmode, html[data-theme="dark"] .pagination .page-number:hover,
+html.darkmode, html[data-theme="dark"] .pagination .prev:hover,
+html.darkmode, html[data-theme="dark"] .pagination .next:hover {
   background: var(--color-primary);
   border-color: var(--color-primary);
   color: var(--color-bg);
