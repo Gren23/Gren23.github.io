@@ -123,12 +123,12 @@
 }
 
 /* 暗黑模式 — 统一使用 butterfly 标准选择器 */
-html.darkmode .about-card,
+html[data-theme='dark'] .about-card,
 html[data-theme='dark'] .about-card {
   background: rgba(30,40,35,0.6);
   border-color: rgba(255,255,255,0.08);
 }
-html.darkmode .about-mini-card,
+html[data-theme='dark'] .about-mini-card,
 html[data-theme='dark'] .about-mini-card {
   background: rgba(255,255,255,0.05);
   border-color: rgba(255,255,255,0.08);
@@ -140,7 +140,7 @@ html[data-theme='dark'] .about-mini-card {
   --primary: var(--c-primary);
   --font-color: var(--c-text);
 }
-html.darkmode,
+html[data-theme='dark'],
 html[data-theme='dark'] {
   --trans-light: rgba(30,40,35,0.6);
   --primary: var(--c-primary);

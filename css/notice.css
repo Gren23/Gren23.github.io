@@ -183,29 +183,29 @@
 }
 
 /* 暗黑模式自适应 */
-html.darkmode .notice-item, html[data-theme="dark"] .notice-item, html.darkmode .notice-monitor-widget , html[data-theme="dark"] .notice-monitor-widget {
+html[data-theme='dark'] .notice-item, html[data-theme="dark"] .notice-item, html[data-theme='dark'] .notice-monitor-widget , html[data-theme="dark"] .notice-monitor-widget {
   background: rgba(15, 23, 42, 0.5) !important;
   border-color: rgba(255, 255, 255, 0.05) !important;
 }
-html.darkmode .notice-item:hover , html[data-theme="dark"] .notice-item:hover {
+html[data-theme='dark'] .notice-item:hover , html[data-theme="dark"] .notice-item:hover {
   border-color: rgba(var(--c-primary-dark-rgb), 0.35) !important;
   box-shadow: 0 8px 24px rgba(var(--c-primary-dark-rgb), 0.1) !important;
 }
-html.darkmode .notice-item::before , html[data-theme="dark"] .notice-item::before {
+html[data-theme='dark'] .notice-item::before , html[data-theme="dark"] .notice-item::before {
   border-top-color: var(--c-primary);
   border-left-color: var(--c-primary);
 }
-html.darkmode .notice-item::after , html[data-theme="dark"] .notice-item::after {
+html[data-theme='dark'] .notice-item::after , html[data-theme="dark"] .notice-item::after {
   border-bottom-color: var(--c-primary);
   border-right-color: var(--c-primary);
 }
-html.darkmode .notice-title , html[data-theme="dark"] .notice-title {
+html[data-theme='dark'] .notice-title , html[data-theme="dark"] .notice-title {
   color: var(--color-surface);
 }
-html.darkmode .notice-content , html[data-theme="dark"] .notice-content {
+html[data-theme='dark'] .notice-content , html[data-theme="dark"] .notice-content {
   color: var(--c-text-secondary);
 }
-html.darkmode .notice-header , html[data-theme="dark"] .notice-header {
+html[data-theme='dark'] .notice-header , html[data-theme="dark"] .notice-header {
   border-bottom-color: rgba(255, 255, 255, 0.05);
 }
 

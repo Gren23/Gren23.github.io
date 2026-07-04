@@ -3,7 +3,7 @@
    命名规范：
    --c-*   博客自定义变量（统一前缀，避免与任何第三方冲突）
    所有颜色引用统一走 --c-* 变量体系
-   dark mode 使用 html.darkmode（butterfly 标准切换方式）
+   dark mode 使用 html[data-theme='dark']（butterfly 标准切换方式）
 
    ================== */
 
@@ -68,34 +68,33 @@
   --c-ease: cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* ================== 暗黑模式（butterfly 标准切换方式） ================== */
-html.darkmode,
+/* ================== 暗黑模式 ================== */
 html[data-theme='dark'] {
-  --c-bg:            #1a2533;
-  --c-surface:       #243447;
-  --c-footer-bg:     #1a2533;
-  --c-border:        #3a4a5a;
+  --c-bg:            #0f1419;
+  --c-surface:       #1a2332;
+  --c-footer-bg:     #0f1419;
+  --c-border:        #2a3a4e;
 
-  --c-primary:       #49b1f5;
-  --c-primary-dark:  #3a4a5a;
-  --c-primary-light: #93c5fd;
-  --c-primary-rgb:    73, 177, 245;
-  --c-primary-dark-rgb: 58, 74, 90;
+  --c-primary:       #64b5f6;
+  --c-primary-dark:  #1e3a5f;
+  --c-primary-light: #90caf9;
+  --c-primary-rgb:   100, 181, 246;
+  --c-primary-dark-rgb: 30, 58, 95;
 
-  --c-text:          #e2e8f0;
-  --c-text-secondary:#94a3b8;
-  --c-text-rgb:      226, 232, 240;
+  --c-text:          #e8eef4;
+  --c-text-secondary:#8b9db5;
+  --c-text-rgb:      232, 238, 244;
 
-  --c-accent:        #49b1f5;
-  --c-meta:          #94a3b8;
-  --c-separator:     #3a4a5a;
-  --c-card-bg:       rgba(26, 37, 51, 0.55);
-  --c-highlight:     #49b1f5;
-  --c-secondary:      #94a3b8;
+  --c-accent:        #64b5f6;
+  --c-meta:          #8b9db5;
+  --c-separator:     #2a3a4e;
+  --c-card-bg:       #1a2332;
+  --c-highlight:     #64b5f6;
+  --c-secondary:     #8b9db5;
 
-  --c-shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
-  --c-shadow-md: 0 4px 12px rgba(0,0,0,0.4);
-  --c-shadow-lg: 0 10px 30px rgba(0,0,0,0.5);
+  --c-shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+  --c-shadow-md: 0 4px 12px rgba(0,0,0,0.5);
+  --c-shadow-lg: 0 10px 30px rgba(0,0,0,0.6);
 }
 
 /* ================== 全局基础样式 ================== */
@@ -166,24 +165,23 @@ body { background: var(--c-bg) !important; }
 #footer-wrap a:hover { text-decoration: underline; }
 
 /* ================== 暗黑模式页脚 ================== */
-html.darkmode #footer-wrap,
+html[data-theme='dark'] #footer-wrap,
 html[data-theme='dark'] #footer-wrap {
   background: var(--c-bg) !important;
   border-top: 1px solid var(--c-border) !important;
 }
-html.darkmode #footer-wrap .copyright,
-html.darkmode #footer-wrap .framework-info,
+html[data-theme='dark'] #footer-wrap .copyright,
+html[data-theme='dark'] #footer-wrap .framework-info,
 html[data-theme='dark'] #footer-wrap .copyright,
 html[data-theme='dark'] #footer-wrap .framework-info {
   color: var(--c-text-secondary) !important;
 }
-html.darkmode #footer-wrap a,
+html[data-theme='dark'] #footer-wrap a,
 html[data-theme='dark'] #footer-wrap a {
   color: var(--c-primary-light) !important;
 }
 
 /* ================== 暗黑模式 ad-hoc 别名 ================== */
-html.darkmode,
 html[data-theme='dark'] {
   --border:             var(--c-border);
   --secondary:          var(--c-secondary);
