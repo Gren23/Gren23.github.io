@@ -1,9 +1,37 @@
-/* ================== 博客统计页 ================== */
+/* ================================================
+   page-census.css · 统计页样式
+   ================================================ */
 
 .census-baidu { text-align: center; margin: 20px 0; }
-.census-title { font-size: 18px; font-weight: 600; margin-bottom: 16px; color: var(--text-color); }
-.census-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 16px; margin: 24px 0; }
-.stat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px 16px; text-align: center; transition: transform 0.2s; }
+.census-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--c-text);
+}
+.census-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+.stat-card {
+  background: var(--c-card-bg);
+  border: 1px solid var(--c-border);
+  border-radius: var(--c-radius-md);
+  padding: 20px 16px;
+  text-align: center;
+  transition: transform 0.2s;
+}
 .stat-card:hover { transform: translateY(-3px); }
-.stat-number { font-size: 28px; font-weight: 700; color: var(--text-highlight-color); margin-bottom: 6px; }
-.stat-label { font-size: 13px; color: var(--text-color); opacity: 0.7; }
+.stat-number {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--c-highlight);
+  margin-bottom: 6px;
+}
+.stat-label {
+  font-size: 13px;
+  color: var(--c-text-secondary);
+}
+

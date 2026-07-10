@@ -1,3 +1,8 @@
+/* ================================================
+   notice.css · 公告页样式
+   ================================================ */
+
+/* ================== 公告页站点信息 ================== */
 #page-site-info {
   position: relative;
   display: inline-block;
@@ -18,20 +23,16 @@
   letter-spacing: 1px;
 }
 
-/* 公告双栏控制台排版 */
+/* ================== 双栏布局 ================== */
 .notice-layout {
   display: flex;
   gap: 20px;
   width: 100%;
   align-items: flex-start;
 }
+.notice-main { flex: 1; }
 
-/* 左侧主要内容 */
-.notice-main {
-  flex: 1;
-}
-
-/* 右侧监视挂件 */
+/* ================== 右侧监视挂件 ================== */
 .notice-monitor-widget {
   width: 260px;
   position: sticky;
@@ -45,7 +46,6 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
-
 .widget-title {
   font-size: 12px;
   font-weight: bold;
@@ -55,7 +55,6 @@
   margin-bottom: 14px;
   letter-spacing: 1px;
 }
-
 .monitor-item {
   display: flex;
   justify-content: space-between;
@@ -64,27 +63,29 @@
   margin-bottom: 10px;
 }
 .monitor-item .status-tag {
-  color: var(--c-primary); /* 精致绿 */
+  color: var(--c-primary);
   font-weight: bold;
 }
 
-/* 公告卡片 (Diagnostic Notice Box) */
+/* ================== 公告卡片 ================== */
 .notice-item {
   position: relative;
   background: rgba(255, 255, 255, 0.85) !important;
   border: 1px solid rgba(229, 231, 235, 0.8) !important;
-  border-radius: 4px !important; /* 精致微直角 */
+  border-radius: 4px !important;
   padding: 24px !important;
   margin-bottom: 20px;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.4s ease,
-              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease,
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-/* 机械对焦框限饰线 */
-.notice-item::before, .notice-item::after {
+/* 对角线装饰框 */
+.notice-item::before,
+.notice-item::after {
   content: '';
   position: absolute;
   width: 10px;
@@ -107,7 +108,6 @@
   border-right-color: var(--c-primary);
 }
 
-/* 悬停对焦动效 */
 .notice-item:hover {
   transform: translateY(-4px) !important;
   border-color: rgba(var(--c-primary-rgb), 0.4) !important;
@@ -124,7 +124,7 @@
   opacity: 1;
 }
 
-/* 公告头部元数据标签 (Log-Style Metadata) */
+/* ================== 公告头部 ================== */
 .notice-header {
   display: flex;
   justify-content: space-between;
@@ -151,7 +151,7 @@
   font-weight: 500;
 }
 
-/* 公告文本 */
+/* ================== 公告正文 ================== */
 .notice-title {
   font-size: 17px;
   font-weight: 700;
@@ -163,18 +163,12 @@
   line-height: 1.6;
   color: var(--c-text);
 }
-.notice-content p {
-  margin: 0 0 10px 0;
-}
-.notice-content p:last-child {
-  margin-bottom: 0;
-}
+.notice-content p { margin: 0 0 10px; }
+.notice-content p:last-child { margin-bottom: 0; }
 
-/* 响应式排版 */
+/* ================== 响应式 ================== */
 @media screen and (max-width: 850px) {
-  .notice-layout {
-    flex-direction: column;
-  }
+  .notice-layout { flex-direction: column; }
   .notice-monitor-widget {
     width: 100%;
     position: static;
@@ -182,30 +176,31 @@
   }
 }
 
-/* 暗黑模式自适应 */
-html[data-theme='dark'] .notice-item, html[data-theme="dark"] .notice-item, html[data-theme='dark'] .notice-monitor-widget , html[data-theme="dark"] .notice-monitor-widget {
+/* ================== 暗黑模式 ================== */
+html[data-theme='dark'] .notice-item,
+html[data-theme='dark'] .notice-monitor-widget {
   background: rgba(15, 23, 42, 0.5) !important;
   border-color: rgba(255, 255, 255, 0.05) !important;
 }
-html[data-theme='dark'] .notice-item:hover , html[data-theme="dark"] .notice-item:hover {
+html[data-theme='dark'] .notice-item:hover {
   border-color: rgba(var(--c-primary-dark-rgb), 0.35) !important;
   box-shadow: 0 8px 24px rgba(var(--c-primary-dark-rgb), 0.1) !important;
 }
-html[data-theme='dark'] .notice-item::before , html[data-theme="dark"] .notice-item::before {
+html[data-theme='dark'] .notice-item::before {
   border-top-color: var(--c-primary);
   border-left-color: var(--c-primary);
 }
-html[data-theme='dark'] .notice-item::after , html[data-theme="dark"] .notice-item::after {
+html[data-theme='dark'] .notice-item::after {
   border-bottom-color: var(--c-primary);
   border-right-color: var(--c-primary);
 }
-html[data-theme='dark'] .notice-title , html[data-theme="dark"] .notice-title {
-  color: var(--color-surface);
+html[data-theme='dark'] .notice-title {
+  color: var(--c-surface);
 }
-html[data-theme='dark'] .notice-content , html[data-theme="dark"] .notice-content {
+html[data-theme='dark'] .notice-content {
   color: var(--c-text-secondary);
 }
-html[data-theme='dark'] .notice-header , html[data-theme="dark"] .notice-header {
+html[data-theme='dark'] .notice-header {
   border-bottom-color: rgba(255, 255, 255, 0.05);
 }
 

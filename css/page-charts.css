@@ -1,16 +1,19 @@
-/* ================== 文章统计页 ================== */
+/* ================================================
+   page-charts.css · 图表页样式
+   ================================================ */
 
 .chart-wrapper {
-  background: var(--card-bg);
-  border-radius: 12px;
+  background: var(--c-card-bg);
+  border-radius: var(--c-radius-md);
   padding: 20px;
   margin-bottom: 24px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: var(--c-shadow-sm);
 }
 .chart-title {
   text-align: center;
   font-size: 1.1em;
-  color: var(--text-highlight-color);
+  color: var(--c-highlight);
   margin-bottom: 16px;
   font-weight: 600;
 }
+
