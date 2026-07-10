@@ -1,0 +1,206 @@
+/* ================================================
+   notice.css · 公告页样式
+   ================================================ */
+
+/* ================== 公告页站点信息 ================== */
+#page-site-info {
+  position: relative;
+  display: inline-block;
+}
+#page-site-info #site-title {
+  font-family: 'Courier New', Courier, monospace !important;
+  letter-spacing: 2px;
+  font-size: 2.2rem;
+  text-shadow: 0 0 10px rgba(var(--c-primary-rgb), 0.4);
+}
+#page-site-info::after {
+  content: '[ BOARD: SYS_NOTICE ]  [ REFRESH: OK ]  [ SYS_VER: 5.5.4 ]';
+  display: block;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+  color: var(--c-text-secondary);
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+
+/* ================== 双栏布局 ================== */
+.notice-layout {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  align-items: flex-start;
+}
+.notice-main { flex: 1; }
+
+/* ================== 右侧监视挂件 ================== */
+.notice-monitor-widget {
+  width: 260px;
+  position: sticky;
+  top: 80px;
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid rgba(229, 231, 235, 0.8);
+  border-radius: 4px;
+  padding: 18px !important;
+  font-family: 'Courier New', Courier, monospace;
+  box-shadow: 0 4px 15px rgba(var(--c-primary-rgb), 0.02);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.widget-title {
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--c-primary);
+  border-bottom: 1px dashed rgba(var(--c-primary-rgb), 0.15);
+  padding-bottom: 8px;
+  margin-bottom: 14px;
+  letter-spacing: 1px;
+}
+.monitor-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--c-text);
+  margin-bottom: 10px;
+}
+.monitor-item .status-tag {
+  color: var(--c-primary);
+  font-weight: bold;
+}
+
+/* ================== 公告卡片 ================== */
+.notice-item {
+  position: relative;
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid rgba(229, 231, 235, 0.8) !important;
+  border-radius: 4px !important;
+  padding: 24px !important;
+  margin-bottom: 20px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease,
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* 对角线装饰框 */
+.notice-item::before,
+.notice-item::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 2px solid transparent;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  pointer-events: none;
+}
+.notice-item::before {
+  top: 14px;
+  left: 14px;
+  border-top-color: var(--c-primary);
+  border-left-color: var(--c-primary);
+}
+.notice-item::after {
+  bottom: 14px;
+  right: 14px;
+  border-bottom-color: var(--c-primary);
+  border-right-color: var(--c-primary);
+}
+
+.notice-item:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(var(--c-primary-rgb), 0.4) !important;
+  box-shadow: 0 8px 24px rgba(var(--c-primary-rgb), 0.06) !important;
+}
+.notice-item:hover::before {
+  top: 8px;
+  left: 8px;
+  opacity: 1;
+}
+.notice-item:hover::after {
+  bottom: 8px;
+  right: 8px;
+  opacity: 1;
+}
+
+/* ================== 公告头部 ================== */
+.notice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed rgba(229, 231, 235, 0.8);
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+}
+.notice-tag {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+  font-weight: bold;
+  color: var(--c-primary);
+  background: rgba(var(--c-primary-rgb), 0.05);
+  border: 1px solid rgba(var(--c-primary-rgb), 0.15);
+  padding: 2px 6px;
+  border-radius: 2px;
+  letter-spacing: 0.5px;
+}
+.notice-date {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  color: var(--c-text-secondary);
+  font-weight: 500;
+}
+
+/* ================== 公告正文 ================== */
+.notice-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--c-text);
+  margin-bottom: 10px;
+}
+.notice-content {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--c-text);
+}
+.notice-content p { margin: 0 0 10px; }
+.notice-content p:last-child { margin-bottom: 0; }
+
+/* ================== 响应式 ================== */
+@media screen and (max-width: 850px) {
+  .notice-layout { flex-direction: column; }
+  .notice-monitor-widget {
+    width: 100%;
+    position: static;
+    margin-bottom: 20px;
+  }
+}
+
+/* ================== 暗黑模式 ================== */
+html[data-theme='dark'] .notice-item,
+html[data-theme='dark'] .notice-monitor-widget {
+  background: rgba(15, 23, 42, 0.5) !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+html[data-theme='dark'] .notice-item:hover {
+  border-color: rgba(var(--c-primary-dark-rgb), 0.35) !important;
+  box-shadow: 0 8px 24px rgba(var(--c-primary-dark-rgb), 0.1) !important;
+}
+html[data-theme='dark'] .notice-item::before {
+  border-top-color: var(--c-primary);
+  border-left-color: var(--c-primary);
+}
+html[data-theme='dark'] .notice-item::after {
+  border-bottom-color: var(--c-primary);
+  border-right-color: var(--c-primary);
+}
+html[data-theme='dark'] .notice-title {
+  color: var(--c-surface);
+}
+html[data-theme='dark'] .notice-content {
+  color: var(--c-text-secondary);
+}
+html[data-theme='dark'] .notice-header {
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+

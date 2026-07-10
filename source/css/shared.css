@@ -1,0 +1,38 @@
+/* ================================================
+   shared.css · 公共页面容器玻璃卡片
+   ================================================ */
+
+/* ================== 页面通用玻璃卡片（深浅通用） ================== */
+#charts, #census, #moments, #update, #about, #life, #notice,
+#site, #personal, #supertool, #tools, #message, #link,
+#fcircle, #download, #protocol {
+  background: var(--c-card-bg);
+  border-radius: 20px;
+  border: 1px solid var(--c-border);
+  padding: 30px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--c-shadow-sm);
+}
+
+/* ================== 暗黑模式 ================== */
+html[data-theme='dark'] #charts,
+html[data-theme='dark'] #census,
+html[data-theme='dark'] #moments,
+html[data-theme='dark'] #update,
+html[data-theme='dark'] #about,
+html[data-theme='dark'] #life,
+html[data-theme='dark'] #notice,
+html[data-theme='dark'] #site,
+html[data-theme='dark'] #personal,
+html[data-theme='dark'] #supertool,
+html[data-theme='dark'] #tools,
+html[data-theme='dark'] #message,
+html[data-theme='dark'] #link,
+html[data-theme='dark'] #fcircle,
+html[data-theme='dark'] #download,
+html[data-theme='dark'] #protocol {
+  background: rgba(26, 37, 51, 0.55);
+  border-color: rgba(255, 255, 255, 0.05);
+  box-shadow: var(--c-shadow-md);
+}
