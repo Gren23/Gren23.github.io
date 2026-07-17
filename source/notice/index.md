@@ -20,6 +20,8 @@ type: notice
     </div>
   </div>
 
+  <hr class="notice-sep">
+
   <div class="notice-item">
     <div class="notice-header">
       <span class="notice-tag">[HELLO_WORLD]</span>

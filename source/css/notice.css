@@ -166,6 +166,13 @@
 .notice-content p { margin: 0 0 10px; }
 .notice-content p:last-child { margin-bottom: 0; }
 
+/* ================== 公告分隔线 ================== */
+.notice-sep {
+  border: none;
+  border-top: 1px dashed rgba(229, 231, 235, 0.8);
+  margin: 28px 0;
+}
+
 /* ================== 响应式 ================== */
 @media screen and (max-width: 850px) {
   .notice-layout { flex-direction: column; }
@@ -203,4 +210,6 @@ html[data-theme='dark'] .notice-content {
 html[data-theme='dark'] .notice-header {
   border-bottom-color: rgba(255, 255, 255, 0.05);
 }
-
+html[data-theme='dark'] .notice-sep {
+  border-color: rgba(255, 255, 255, 0.08);
+}
