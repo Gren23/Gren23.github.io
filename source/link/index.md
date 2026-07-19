@@ -195,18 +195,81 @@ type: "link"
 </div>
 
 <script>
-// 随机高亮一张卡片
-const cards = document.querySelectorAll('.friend-card:not(#link-empty .friend-card)');
-if (cards.length > 0) {
-  const idx = Math.floor(Math.random() * cards.length);
-  cards[idx].classList.add('featured');
+// ========== 友链动态加载 (link-server API) ==========
+// API 地址：通过 Cloudflare Tunnel 暴露，部署后把 link.hehehey.top 改成你的 tunnel 域名
+window.__LINK_API_BASE__ = window.__LINK_API_BASE__ || "https://link.hehehey.top";
+
+const API_LINKS = window.__LINK_API_BASE__ + "/api/links";
+
+// 构造一张友链卡片
+function buildCard(item) {
+  const escape = s => String(s||"").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  const name = escape(item.name);
+  const desc = escape(item.descr);
+  const avatar = item.avatar && item.avatar !== "#"
+    ? `<img class="friend-avatar no-lightbox" src="${item.avatar}" alt="${name}" onerror="this.outerHTML='<div class=\'friend-avatar\'>'+(this.alt||'?').charAt(0)+'</div>'">`
+    : `<div class="friend-avatar">${name.charAt(0)}</div>`;
+
+  return `<div class="friend-card" data-name="${name}">
+    <div class="friend-active-dot" data-tip="近期活跃"></div>
+    <div class="friend-arrow">&#8594;</div>
+    ${avatar}
+    <div class="friend-name">${name}</div>
+    <div class="friend-desc">${desc}</div>
+  </div>`;
 }
-// 活跃光点：手动维护数组（友链名称放这里即为"活跃"）
-const activeFriends = []; // 例如：['博客名A', '博客名B']
-cards.forEach(card => {
-  const name = card.querySelector('.friend-name').textContent.trim();
-  if (activeFriends.includes(name)) {
-    card.classList.add('has-active');
+
+// 渲染友链列表
+function renderLinks(links) {
+  const grid = document.querySelector(".friend-grid");
+  if (!grid) return;
+
+  if (!links || links.length === 0) {
+    const empty = document.getElementById("link-empty");
+    if (empty) empty.style.display = "block";
+    return;
   }
-});
+
+  grid.innerHTML = links.map(buildCard).join("");
+
+  // 随机高亮一张（今日推荐）
+  const allCards = grid.querySelectorAll(".friend-card");
+  if (allCards.length > 0) {
+    const idx = Math.floor(Math.random() * allCards.length);
+    allCards[idx].classList.add("featured");
+  }
+
+  // 活跃光点（手动维护名单）
+  const activeFriends = window.__ACTIVE_FRIENDS__ || [];
+  allCards.forEach(card => {
+    const n = card.dataset.name;
+    if (activeFriends.includes(n)) card.classList.add("has-active");
+  });
+
+  const empty = document.getElementById("link-empty");
+  if (empty) empty.style.display = "none";
+}
+
+// 从 API 加载友链
+async function loadLinks() {
+  try {
+    const res = await fetch(API_LINKS, { signal: AbortSignal.timeout(5000) });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const json = await res.json();
+    if (json.code === 200 && json.data) {
+      renderLinks(json.data);
+    }
+  } catch (err) {
+    console.warn("[link-server] fetch failed:", err.message);
+  }
+}
+
+// 活跃名单配置（友链名称放这里即为"活跃"）
+window.__ACTIVE_FRIENDS__ = [];
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", loadLinks);
+} else {
+  loadLinks();
+}
 </script>
