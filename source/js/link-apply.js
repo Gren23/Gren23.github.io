@@ -7,6 +7,9 @@
   // 只在 /link/ 页面执行
   if (!window.location.pathname.includes('/link/')) return;
 
+  // 如果静态按钮已存在（index.md 自带），跳过 JS 注入避免重复
+  if (document.getElementById('open-apply-form')) return;
+
   // 等待 DOM 就绪
   function init() {
     injectApplySection();
