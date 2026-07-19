@@ -22,6 +22,181 @@ type: "link"
 .info-value { font-size: 14px; font-weight: 500; }
 </style>
 
+<!-- 友链申请入口 -->
+<div style="text-align:center; margin: 28px 0 20px;">
+  <button id="open-apply-form" style="
+    background: linear-gradient(135deg, oklch(0.65 0.18 260), oklch(0.55 0.20 280));
+    color: #fff; border: none; padding: 12px 32px; border-radius: 2rem;
+    font-size: 0.95rem; font-weight: 600; cursor: pointer;
+    box-shadow: 0 4px 14px oklch(0.55 0.20 280 / 0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+  " onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px oklch(0.55 0.20 280 / 0.45)'"
+     " onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 14px oklch(0.55 0.20 280 / 0.35)'">
+    &#x1F4E4; 申请交换友链
+  </button>
+</div>
+
+<!-- 申请表单模态框 -->
+<div id="apply-modal" style="
+  display:none; position:fixed; inset:0; z-index:9999;
+  background:rgba(0,0,0,0.5); backdrop-filter:blur(4px);
+  align-items:center; justify-content:center;
+" onclick="if(event.target===this)closeApplyModal()">
+  <div style="
+    background:var(--card-bg,#fff); border-radius:1.2rem; padding:32px;
+    width:min(520px,92vw); max-height:90vh; overflow-y:auto;
+    box-shadow:0 24px 60px rgba(0,0,0,0.25);
+    position:relative;
+  ">
+    <button onclick="closeApplyModal()" style="
+      position:absolute; top:16px; right:16px; background:none; border:none;
+      font-size:1.4rem; cursor:pointer; opacity:0.5; line-height:1;
+    ">&#x2715;</button>
+
+    <h3 style="margin:0 0 6px; font-size:1.15rem;">&#x1F4E4; 申请交换友链</h3>
+    <p style="margin:0 0 20px; opacity:0.55; font-size:0.82rem;">填写以下信息，我会尽快审核并添加</p>
+
+    <form id="apply-form" onsubmit="submitApply(event)">
+      <div style="display:flex; flex-direction:column; gap:14px;">
+
+        <label style="font-size:0.85rem; font-weight:600; margin-bottom:4px;">
+          网站名称 <span style="color:#e05050">*</span>
+        </label>
+        <input name="site_name" required placeholder="如：鹿话博客"
+          style="width:100%; padding:10px 14px; border-radius:0.7rem;
+                 border:1.5px solid var(--border); font-size:0.9rem;
+                 background:var(--secondary); color:var(--primary);
+                 box-sizing:border-box; outline:none;
+                 transition:border-color 0.2s;"
+          onfocus="this.style.borderColor='oklch(0.65 0.18 260)'"
+          onblur="this.style.borderColor='var(--border)'" />
+
+        <label style="font-size:0.85rem; font-weight:600; margin-bottom:4px;">
+          网站地址 <span style="color:#e05050">*</span>
+        </label>
+        <input name="site_url" type="url" required placeholder="https://your-blog.com"
+          style="width:100%; padding:10px 14px; border-radius:0.7rem;
+                 border:1.5px solid var(--border); font-size:0.9rem;
+                 background:var(--secondary); color:var(--primary);
+                 box-sizing:border-box; outline:none;
+                 transition:border-color 0.2s;"
+          onfocus="this.style.borderColor='oklch(0.65 0.18 260)'"
+          onblur="this.style.borderColor='var(--border)'" />
+
+        <label style="font-size:0.85rem; font-weight:600; margin-bottom:4px;">
+          头像 URL <span style="color:#e05050">*</span>
+        </label>
+        <input name="site_avatar" type="url" required placeholder="https://your-blog.com/avatar.png"
+          style="width:100%; padding:10px 14px; border-radius:0.7rem;
+                 border:1.5px solid var(--border); font-size:0.9rem;
+                 background:var(--secondary); color:var(--primary);
+                 box-sizing:border-box; outline:none;
+                 transition:border-color 0.2s;"
+          onfocus="this.style.borderColor='oklch(0.65 0.18 260)'"
+          onblur="this.style.borderColor='var(--border)'" />
+
+        <label style="font-size:0.85rem; font-weight:600; margin-bottom:4px;">
+          网站简介 <span style="color:#e05050">*</span>
+        </label>
+        <textarea name="site_intro" required placeholder="简单介绍一下你的博客（10-100字）"
+          rows="3"
+          style="width:100%; padding:10px 14px; border-radius:0.7rem;
+                 border:1.5px solid var(--border); font-size:0.9rem;
+                 background:var(--secondary); color:var(--primary);
+                 box-sizing:border-box; outline:none; resize:vertical;
+                 transition:border-color 0.2s; font-family:inherit;"
+          onfocus="this.style.borderColor='oklch(0.65 0.18 260)'"
+          onblur="this.style.borderColor='var(--border)'"></textarea>
+
+        <label style="font-size:0.85rem; font-weight:600; margin-bottom:4px;">
+          分组（可选）
+        </label>
+        <input name="group" placeholder="默认分组"
+          style="width:100%; padding:10px 14px; border-radius:0.7rem;
+                 border:1.5px solid var(--border); font-size:0.9rem;
+                 background:var(--secondary); color:var(--primary);
+                 box-sizing:border-box; outline:none;
+                 transition:border-color 0.2s;"
+          onfocus="this.style.borderColor='oklch(0.65 0.18 260)'"
+          onblur="this.style.borderColor='var(--border)'" />
+
+      </div>
+
+      <div id="apply-msg" style="margin-top:14px; display:none; border-radius:0.7rem;
+           padding:10px 14px; font-size:0.85rem; text-align:center;"></div>
+
+      <button type="submit" id="apply-submit" style="
+        margin-top:20px; width:100%; padding:12px; border-radius:2rem;
+        background:linear-gradient(135deg, oklch(0.65 0.18 260), oklch(0.55 0.20 280));
+        color:#fff; border:none; font-size:0.95rem; font-weight:600;
+        cursor:pointer; box-shadow:0 4px 14px oklch(0.55 0.20 280 / 0.35);
+        transition:transform 0.2s, box-shadow 0.2s;
+      " onmouseover="this.style.transform='translateY(-2px)'"
+         onmouseout="this.style.transform='translateY(0)'">
+        &#x2709; 提交申请
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+function openApplyModal() {
+  document.getElementById('apply-modal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeApplyModal() {
+  document.getElementById('apply-modal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+document.getElementById('open-apply-form').addEventListener('click', openApplyModal);
+
+// 表单提交
+async function submitApply(e) {
+  e.preventDefault();
+  var fd   = new FormData(e.target);
+  var msg  = document.getElementById('apply-msg');
+  var btn  = document.getElementById('apply-submit');
+  msg.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = '提交中...';
+
+  try {
+    var res = await fetch(window.__LINK_API_BASE__ + '/api/links', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        site_name:   fd.get('site_name'),
+        site_url:    fd.get('site_url'),
+        site_avatar: fd.get('site_avatar'),
+        site_intro:  fd.get('site_intro'),
+        group:       fd.get('group') || '默认分组',
+      }),
+    });
+    var json = await res.json();
+    if (json.code === 200) {
+      msg.style.display = 'block';
+      msg.style.background = 'oklch(0.70 0.18 145 / 0.15)';
+      msg.style.color = 'oklch(0.55 0.15 145)';
+      msg.textContent = '✓ 提交成功！网站名称「' + fd.get('site_name') + '」已加入友链列表，刷新页面可见。';
+      e.target.reset();
+      setTimeout(closeApplyModal, 2500);
+    } else {
+      throw new Error(json.detail || '提交失败');
+    }
+  } catch(err) {
+    msg.style.display = 'block';
+    msg.style.background = 'oklch(0.60 0.20 25 / 0.12)';
+    msg.style.color = '#e05050';
+    msg.textContent = '提交失败：' + err.message;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '✉ 提交申请';
+  }
+}
+</script>
+
+
 <div class="info-grid">
   <div class="info-item">
     <span class="info-icon">🏷️</span>
