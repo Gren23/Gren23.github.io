@@ -1095,6 +1095,7 @@ inject:
     - <script src="/js/tag-cloud.js"></script>
     - <script src="/js/scroll-reveal.js" defer></script>
     - <script src="/js/notice-loader.js" defer></script>
+    - <script src="/js/link-apply.js" defer></script>
 
 # CDN Settings
 # Don't modify the following settings unless you know how they work
