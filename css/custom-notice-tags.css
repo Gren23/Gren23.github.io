@@ -1,0 +1,56 @@
+/* ================================================
+   custom-notice-tags.css · 公告/标签附加样式
+   补充 notice.css 之外的标签与通告小样式
+   ================================================ */
+
+/* ================== 公告标签小装饰 ================== */
+.notice-item .notice-tag {
+  letter-spacing: 0.5px;
+}
+.notice-content .tag-inline {
+  display: inline-block;
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 3px;
+  background: rgba(var(--c-primary-rgb), 0.08);
+  color: var(--c-primary);
+  border: 1px solid rgba(var(--c-primary-rgb), 0.2);
+  margin: 0 2px;
+  vertical-align: middle;
+}
+
+/* ================== 标签云增强 ================== */
+.tag-cloud-anchor {
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.tag-cloud-anchor:hover {
+  color: var(--c-primary) !important;
+  transform: scale(1.1);
+}
+.category-item .category-tag {
+  font-size: 12px;
+  color: var(--c-primary);
+  background: rgba(var(--c-primary-rgb), 0.08);
+  border: 1px solid rgba(var(--c-primary-rgb), 0.15);
+  padding: 2px 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+.category-item .category-tag:hover {
+  background: rgba(var(--c-primary-rgb), 0.15);
+}
+
+/* ================== 暗黑模式兼容 ================== */
+html[data-theme=dark] .notice-content .tag-inline {
+  background: rgba(var(--c-primary-dark-rgb), 0.2);
+  color: var(--c-primary-light);
+  border-color: rgba(var(--c-primary-dark-rgb), 0.3);
+}
+html[data-theme=dark] .category-item .category-tag {
+  background: rgba(var(--c-primary-dark-rgb), 0.2);
+  color: var(--c-primary-light);
+  border-color: rgba(var(--c-primary-dark-rgb), 0.3);
+}
+html[data-theme=dark] .tag-cloud-anchor:hover {
+  color: var(--c-primary-light) !important;
+}
