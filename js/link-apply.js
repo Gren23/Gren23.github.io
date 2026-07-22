@@ -77,7 +77,7 @@
       submitBtn.textContent = '提交中...';
       msg.style.display = 'none';
       try {
-        var apiBase = window.__LINK_API_BASE__ || 'https://link.hehehey.top';
+        var apiBase = window.__LINK_API_BASE__ || 'https://link.hehey.top';
         var res = await fetch(apiBase + '/api/links', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
