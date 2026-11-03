@@ -1,0 +1,141 @@
+/* ================================================
+   inject-fix.css · 杂项视觉修复注入
+   ================================================ */
+
+/* ================== 侧边栏信息颜色 ================== */
+#aside-content .author-info-name {
+  color: var(--c-text-secondary) !important;
+  font-weight: 600 !important;
+}
+#aside-content .author-info-description {
+  color: var(--c-text-secondary) !important;
+}
+#aside-content .announcement_content {
+  color: var(--c-text-secondary) !important;
+}
+
+/* ================== 公告页 layout 修复 ================== */
+body.type-notice .notice-layout {
+  display: block !important;
+  width: 100% !important;
+  flex: none !important;
+}
+
+/* ================== 侧边栏头像冷蓝色扫描线 ================== */
+.card-info .avatar-img {
+  position: relative !important;
+  display: inline-block !important;
+  overflow: hidden !important;
+  border-radius: 50% !important;
+  border: 3px solid rgba(var(--c-primary-rgb), 0.25);
+  transition: border-color 0.5s ease, transform 0.5s var(--c-ease);
+}
+.card-info .avatar-img:hover {
+  transform: scale(1.05);
+  border-color: var(--c-primary);
+}
+.card-info .avatar-img::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 45%,
+    rgba(var(--c-primary-rgb), 0.8) 50%,
+    rgba(var(--c-primary-rgb), 0.2) 53%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+.card-info .avatar-img:hover::after {
+  animation: scanning 1.5s infinite linear;
+}
+
+@keyframes scanning {
+  0%   { top: -100%; }
+  100% { top: 100%; }
+}
+
+/* ================== 社交媒体图标精致微动 ================== */
+.card-info-social-icons a.social-icon {
+  display: inline-block;
+  transition: transform 0.3s var(--c-ease) !important;
+}
+.card-info-social-icons a.social-icon:hover {
+  transform: translateY(-3px) scale(1.15) !important;
+}
+
+/* ================== 文章内容区暗黑模式颜色修复 ================== */
+html[data-theme='dark'] #article-container {
+  color: var(--c-text);
+}
+html[data-theme='dark'] #article-container h1,
+html[data-theme='dark'] #article-container h2,
+html[data-theme='dark'] #article-container h3,
+html[data-theme='dark'] #article-container h4,
+html[data-theme='dark'] #article-container h5,
+html[data-theme='dark'] #article-container h6 {
+  color: var(--c-text);
+}
+html[data-theme='dark'] #article-container h1 { font-size: 1.8em; }
+html[data-theme='dark'] #article-container h2 { font-size: 1.5em; }
+html[data-theme='dark'] #article-container h3 { font-size: 1.25em; }
+
+/* 表格边框：深色背景用深色边框 */
+html[data-theme='dark'] #article-container table {
+  border-color: var(--c-border) !important;
+  background: transparent !important;
+}
+html[data-theme='dark'] #article-container table th,
+html[data-theme='dark'] #article-container table td {
+  border-color: var(--c-border) !important;
+}
+html[data-theme='dark'] #article-container table th {
+  background: var(--c-surface);
+  color: var(--c-text);
+}
+/* 斑马纹：原来只给 even 行写了深色底，
+   奇数行仍然继承亮色主题的 #ffffff 白底，而 td 文字色在深色模式下是
+   --c-text（#e8eef4 近白）—— 于是奇数行变成「白底白字」，整行读不出来。
+   这里把 odd 行的底色也接管，并统一 td 的背景来源。 */
+html[data-theme='dark'] #article-container table tr {
+  background: transparent;
+}
+html[data-theme='dark'] #article-container table tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.03);
+}
+html[data-theme='dark'] #article-container table tr:nth-child(odd) {
+  background: transparent;
+}
+html[data-theme='dark'] #article-container table tbody td {
+  background: transparent !important;
+  color: var(--c-text) !important;
+}
+
+/* ================== 社交图标：深色模式下品牌色不可见 ==================
+   GitHub 官方色 #24292e 在深色卡片 #1a2332 上几乎融进背景。
+   深色模式统一提亮，保留各图标原有色相。 */
+html[data-theme='dark'] .card-info-social-icons a.social-icon i {
+  filter: brightness(1.9) saturate(1.15);
+}
+html[data-theme='dark'] .card-info-social-icons a.social-icon[href*='github'] i {
+  color: #e8eef4 !important;
+}
+
+/* ================== 公告卡「查看全部公告」链接可读性 ==================
+   notice-loader 内联写死了 color:#666，深色底上对比不足。 */
+html[data-theme='dark'] .card-announcement .announcement_content a {
+  color: var(--c-primary-light) !important;
+}
+
+/* ================== 深色模式引用块底色 ==================
+   主题在深色下硬编码了 --blockquote-bg: #2c2c2c（纯灰），
+   和全站冷蓝主色不搭。这里改成主色的低透明度块，
+   并把深色下的正文色提到可读水平。 */
+html[data-theme='dark'] {
+  --blockquote-bg: rgba(100, 181, 246, 0.10);
+  --blockquote-color: rgba(232, 238, 244, 0.88);
+}

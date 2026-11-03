@@ -1,0 +1,15 @@
+/* ================================================
+   custom-notice-tags.css · 公告标签样式（全站注入）
+   ================================================
+   原文件有 4 组规则，实测只有第 1 组有对应 DOM。
+   已移除的死代码（全站 0 命中）：
+     .notice-content .tag-inline   —— 没有任何元素带 tag-inline
+     .tag-cloud-anchor             —— 站点没有 #tag-cloud 容器
+     .category-item .category-tag  —— 分类页用的是 .cat-card，不是 .category-item
+   需要时从 .scratch/quarantine_20261103/ 取回原件。
+   ================================================ */
+
+/* 公告标签字距微调 */
+.notice-item .notice-tag {
+  letter-spacing: 0.5px;
+}
