@@ -378,3 +378,64 @@ npm run build:all # tw + clean + generate
 \hexo server\ **只在启动时加载 \scripts/\ 目录**。改了 \scripts/charts.js\ 后
 只跑 \hexo generate\ 是不会生效的，必须重启 server，否则调试会一直看到旧行为。
 本次因此浪费了一轮排查。
+
+---
+
+## 附录二：部署与 CDN 缓存（2026-11-03）
+
+### 推送通道
+
+\github.com:443\ 的 git 协议被网络层阻断（TCP 能握手，TLS 长连接被 reset），
+但 \pi.github.com\ 与 \ssh.github.com:443\ 可达。
+
+最终方案：**GitHub Git Data API**（\.scratch/tools/gh_push.py\、\gh_push_src.py\）
+- 按 git blob sha 增量比对，只上传远端没有的对象
+- 站点：126 个 blob（173 文件中）→ \master- 源码：13 个 blob（674 跟踪文件中）→ \hexo
+### 踩到的坑：CDN 31 天长缓存
+
+第一次推送后，HTML 已更新但 **CSS/JS 仍是旧版**。排查结论：
+
+\Cache-Control: public, max-age=2678400, must-revalidate   # 31 天
+cf-cache-status: HIT
+x-vercel-cache: HIT
+\
+- Vercel 对静态资源下发 31 天缓存，Cloudflare 完全遵循
+- Cloudflare 对静态扩展名**忽略 query string**，所以 \?v=xxx\、\?bust=xxx\ 都打不穿
+- 只有**换路径**才会命中新对象
+
+### 解法：内容哈希文件名
+
+新增 \scripts/asset_version.js\（\generateAfter\ 事件）：
+
+1. 等 HTML 全部落盘（判 \htmlCount >= 100\，最多重试 120 次 ×100ms）
+2. 对 14 个核心资源算 \md5\ 前 8 位，复制出 \<name>.<hash>.<ext>3. 扫描所有 HTML 替换引用
+
+覆盖清单：
+\css/index.css          css/all.min.css
+css/design-system.css  css/custom-index.css
+css/custom-notice-tags.css  css/inject-fix.css
+js/main.js   js/utils.js   js/search/local-search.js
+js/vision-network.js  js/tag-cloud.js  js/scroll-reveal.js
+js/notice-loader.js   js/link-apply.js
+\
+效果：改内容 → hash 变 → URL 变 → CDN 自动回源。**永久解决**，以后不用再手动清缓存。
+
+### 另一个坑：Vercel 不服务根目录 .ico
+
+\/favicon.ico\ 即使存在于仓库根目录也返回 404（\cf-cache-status\ 为空，是 Vercel 直接 404）。
+改放 \/img/favicon.ico\ 并显式声明后正常。独立工具页（不经过主题模板）需单独补 \<link rel=icon>\。
+
+### 上线验证
+
+线上真浏览器（Edge headless）跑 8 个页面 × 亮/暗两种模式：
+
+| 指标 | 结果 |
+|---|---|
+| 页面 404 | **0** |
+| JS 运行时错误 | **0** |
+| favicon 404 | **0** |
+| 深色模式渲染 | 表格/引用块/社交图标/图表坐标轴全部可读 |
+| 资源字节比对 | 6 个 hash 资源与本地**逐字节一致** |
+
+27 项功能校验（配色、深色修复、图表调度、工具页本地化、友链快照、公告日期、
+无 secret 泄漏、13 个页面可达）全部通过。

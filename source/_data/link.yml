@@ -1,7 +1,23 @@
+# 友链数据
+#
+# 格式说明：
+#   - class_name  分组名
+#     class_desc  分组说明（当前页面未展示，保留兼容）
+#     link_list   该组下的友链
+#       name      站点名称（必填）
+#       link      站点地址（必填，http/https）
+#       avatar    头像 URL（可选，留空则显示首字母方块）
+#       descr     一句话描述（可选）
+#
+# 修改本文件后重新 build 即生效：scripts/generators/links_json.js
+# 会把它转成 /data/links.json 供前端读取。无需任何后端服务。
+#
+# 申请流程见 /link/ 页面的三个通道（GitHub Issue / 邮件 / 复制模板）。
+
 - class_name: '朋友们'
   class_desc: 交换链接，携手共进
   link_list:
-  - name: '内部测试'
-    link: 'https://intest.com'
-    avatar: 'https://www.google.com/s2/favicons?domain=intest.com&sz=128'
-    descr: '测试'
+  - name: 'G/ren的小破站'
+    link: 'https://www.hehehey.top/'
+    avatar: 'https://www.hehehey.top/img/头像.JPG'
+    descr: '机器视觉调试工程师 | 技术分享'

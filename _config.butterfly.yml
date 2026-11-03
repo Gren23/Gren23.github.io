@@ -1092,7 +1092,7 @@ inject:
   head:
     # 显式声明 ico：浏览器无论如何都会额外请求 /favicon.ico，
     # 而主题只声明了 /img/favicon.png，导致每次访问多一个 404。
-    - <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    - <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
     - <link rel="stylesheet" href="/css/design-system.css">
     # 百度统计：async 化，原来会在网络差时把整页 load 事件拖到 6s+
     - <script async src="https://hm.baidu.com/hm.js?187613fe21d57ca4e614119d64623d28"></script>
@@ -1107,7 +1107,6 @@ inject:
     - <script src="/js/tag-cloud.js" defer></script>
     - <script src="/js/scroll-reveal.js" defer></script>
     - <script src="/js/notice-loader.js" defer></script>
-    - <script src="/js/link-apply.js" defer></script>
 
 # CDN Settings
 # Don't modify the following settings unless you know how they work

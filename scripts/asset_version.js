@@ -32,7 +32,6 @@ const CUSTOM_ASSETS = [
   'js/tag-cloud.js',
   'js/scroll-reveal.js',
   'js/notice-loader.js',
-  'js/link-apply.js',
 ]
 
 function walk(dir, out) {
