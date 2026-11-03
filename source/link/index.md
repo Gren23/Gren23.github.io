@@ -606,6 +606,8 @@ html[data-theme='dark'] .lp-toast {
   }
 
   // ===== 申请模板 =====
+  // 只保留待填字段。本站信息由页面下方的「复制本站信息」按钮单独提供，
+  // 不塞进模板，避免申请人复制一堆自己用不上的内容。
   function applyTemplate() {
     return [
       '【友链申请】',
@@ -613,13 +615,7 @@ html[data-theme='dark'] .lp-toast {
       '网站名称：',
       '网站地址：',
       '头像 URL：',
-      '网站描述：',
-      '',
-      '--- 本站信息 ---',
-      '名称：' + SITE.name,
-      '地址：' + SITE.url,
-      '图标：' + SITE.avatar,
-      '描述：' + SITE.desc
+      '网站描述：'
     ].join('\n');
   }
 
