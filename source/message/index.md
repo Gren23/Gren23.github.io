@@ -1,725 +1,762 @@
 ---
 title: 给我留言
 date: 2026-05-20 09:00:00
-type: "message"
-comments: true
 ---
 
+{% raw %}
+<div class="message-page" id="msgPage">
+
+  <!-- ========== 顶部 ========== -->
+  <div class="mp-head">
+    <div class="mp-head-label">// LEAVE_A_MESSAGE //</div>
+    <p class="mp-head-desc">
+      有技术问题想交流、发现了文章里的错误，或者只是想打个招呼 —— 都欢迎留在这里。
+      留言公开可见，回复一般在 1~3 天内。
+    </p>
+    <div class="mp-stats">
+      <span class="mp-stat"><b id="msgCount">0</b> 条留言</span>
+      <span class="mp-stat mp-stat--muted">公开可见 · 支持回复</span>
+    </div>
+  </div>
+
+  <!-- ========== 本站信息卡 ========== -->
+  <div class="mp-card">
+    <div class="mp-section-label">// SITE_INFO //</div>
+    <div class="mp-siteinfo">
+      <img class="mp-siteinfo-avatar" src="/img/头像.JPG" alt="G/ren" loading="lazy">
+      <div class="mp-siteinfo-main">
+        <div class="mp-siteinfo-name">G/ren的小破站</div>
+        <div class="mp-siteinfo-desc">机器视觉调试工程师 | 技术分享</div>
+        <a class="mp-siteinfo-url" href="/" target="_blank" rel="noopener">hehehey.top</a>
+      </div>
+      <div class="mp-siteinfo-actions">
+        <button class="mp-btn" id="copyNameUrl" type="button">复制站名和链接</button>
+        <button class="mp-btn" id="copyHtml" type="button">复制 HTML 链接</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 联系方式 ========== -->
+  <div class="mp-card">
+    <div class="mp-section-label">// CONTACT //</div>
+    <div class="mp-contact-grid">
+
+      <a class="mp-contact" href="mailto:1955561070@qq.com">
+        <div class="mp-contact-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m2 7 10 6 10-6"/>
+          </svg>
+        </div>
+        <div class="mp-contact-title">邮箱</div>
+        <div class="mp-contact-info">1955561070@qq.com</div>
+      </a>
+
+      <div class="mp-contact">
+        <div class="mp-contact-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3 2"/>
+          </svg>
+        </div>
+        <div class="mp-contact-title">回复时间</div>
+        <div class="mp-contact-info">一般 1~3 天</div>
+      </div>
+
+      <a class="mp-contact" href="/link/">
+        <div class="mp-contact-icon">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/>
+            <path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>
+          </svg>
+        </div>
+        <div class="mp-contact-title">友链申请</div>
+        <div class="mp-contact-info">去友链页看流程</div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ========== 友链规范（折叠） ========== -->
+  <details class="mp-details">
+    <summary class="mp-details-summary">
+      <span class="mp-details-arrow">▸</span>
+      友链交换规范
+    </summary>
+    <div class="mp-details-body">
+      <ul>
+        <li>站点可正常访问，已稳定运行 <b>3 个月</b>以上</li>
+        <li>内容以<b>原创</b>技术、生活记录为主，无违规内容</li>
+        <li>已在贵站添加本站友链后再申请</li>
+        <li>不接受商业广告、恶意推广、采集站</li>
+      </ul>
+      <a class="mp-btn mp-btn--inline" href="/link/">前往友链页 →</a>
+    </div>
+  </details>
+
+  <!-- ========== 留言输入区锚点 ========== -->
+  <span id="msg-write" style="display:block;height:1px;"></span>
+
+</div>
+
+<!-- 说明：评论区不在这里写。主题会自动在 #article-container 之后
+     渲染标准的 #post-comment > #twikoo-wrap 结构，
+     自己再写一个会造成重复 id，Twikoo 只会挂到其中一个。 -->
+
+<!-- 浮动回顶部 -->
+<button class="mp-gotop" id="msgGotop" type="button" aria-label="回到输入框">↑</button>
+
 <style>
-/* 信箱页面便当盒风格 */
-.message-page {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 32px 16px 80px;
-  font-family: inherit;
+/* ============================================================
+   信箱页 · 对齐全站视觉语言
+   与 /link/ 同一套：16px 主圆角 / 12px 次圆角 / 冷蓝高亮
+   ============================================================ */
+
+.message-page { width: 100%; padding: 4px 2px; box-sizing: border-box; }
+
+/* ---------- 顶部 ---------- */
+.mp-head { margin-bottom: 28px; }
+
+.mp-head-label {
+  font-family: 'Courier New', monospace;
+  font-size: 15px;
+  color: #64748b;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+.mp-head-desc {
+  font-size: 14px;
+  color: var(--c-text-secondary, #6B7280);
+  line-height: 1.75;
+  margin: 0 0 16px;
+}
+.mp-stats { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.mp-stat {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--c-primary, #1677B3);
+  background: rgba(var(--c-primary-rgb, 22,119,179), 0.06);
+  border: 1px solid rgba(var(--c-primary-rgb, 22,119,179), 0.12);
+  border-radius: 10px;
+  padding: 3px 10px;
+}
+.mp-stat b { font-weight: 700; }
+.mp-stat--muted {
+  color: var(--c-text-secondary, #6B7280);
+  background: transparent;
+  border-color: transparent;
+  padding-left: 2px;
 }
 
-/* 页面标题区 */
-.msg-hero {
-  text-align: center;
-  padding: 20px 0 36px;
-}
-.msg-hero h1 {
-  font-size: 1.9rem;
-  font-weight: 700;
-  margin: 0 0 8px;
-  background: linear-gradient(135deg, var(--accent), #a78bfa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.msg-hero p {
-  color: var(--secondary);
-  font-size: 0.95rem;
-  margin: 0;
-  opacity: 0.75;
+/* ---------- 通用卡片 ---------- */
+.mp-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 16px;
 }
 
-/* 分割区 */
-.msg-divider {
+.mp-section-label {
+  font-family: 'Courier New', monospace;
+  font-size: 15px;
+  color: #64748b;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
+}
+
+/* ---------- 本站信息 ---------- */
+.mp-siteinfo {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin: 36px 0;
-  color: var(--border);
-  opacity: 0.6;
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
+  flex-wrap: wrap;
 }
-.msg-divider::before,
-.msg-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-  opacity: 0.5;
+.mp-siteinfo-avatar {
+  flex: 0 0 52px;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: rgba(var(--c-primary-rgb, 22,119,179), 0.08);
+}
+.mp-siteinfo-main { flex: 1; min-width: 160px; }
+.mp-siteinfo-name { font-size: 15px; font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+.mp-siteinfo-desc { font-size: 12.5px; color: #64748b; margin-bottom: 6px; }
+.mp-siteinfo-url {
+  font-family: 'Courier New', monospace;
+  font-size: 11.5px;
+  color: var(--c-primary, #1677B3);
+  text-decoration: none;
+  opacity: 0.75;
+}
+.mp-siteinfo-url:hover { opacity: 1; text-decoration: underline; }
+.mp-siteinfo-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* ---------- 按钮 ---------- */
+.mp-btn {
+  font: inherit;
+  font-size: 12.5px;
+  font-family: 'Courier New', monospace;
+  color: var(--c-primary, #1677B3);
+  background: rgba(var(--c-primary-rgb, 22,119,179), 0.06);
+  border: 1px solid rgba(var(--c-primary-rgb, 22,119,179), 0.18);
+  border-radius: 10px;
+  padding: 8px 16px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+.mp-btn:hover {
+  background: rgba(var(--c-primary-rgb, 22,119,179), 0.12);
+  border-color: rgba(var(--c-primary-rgb, 22,119,179), 0.35);
 }
 
-/* 毛玻璃便当盒卡片 */
-.msg-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 28px 32px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-  transition: box-shadow 0.3s ease;
-}
-.msg-card:hover {
-  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-}
-
-/* 联系卡片区 */
-.contact-grid {
+/* ---------- 联系方式 ---------- */
+.mp-contact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 14px;
-  margin-bottom: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
 }
-.contact-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 14px;
+.mp-contact {
+  display: block;
+  background: rgba(var(--c-primary-rgb, 22,119,179), 0.03);
+  border: 1px solid rgba(var(--c-primary-rgb, 22,119,179), 0.1);
+  border-radius: 12px;
   padding: 18px 16px;
   text-align: center;
-  backdrop-filter: blur(8px);
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease,
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.contact-card:hover {
+a.mp-contact:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  border-color: rgba(var(--c-primary-rgb, 22,119,179), 0.3);
+  box-shadow: 0 8px 24px rgba(var(--c-primary-rgb, 22,119,179), 0.08);
 }
-.contact-icon { font-size: 26px; margin-bottom: 8px; }
-.contact-title { font-weight: 600; font-size: 0.88rem; margin-bottom: 4px; color: var(--text-high); }
-.contact-info { font-size: 0.78rem; opacity: 0.6; }
+.mp-contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: rgba(var(--c-primary-rgb, 22,119,179), 0.08);
+  color: var(--c-primary, #1677B3);
+  margin-bottom: 10px;
+}
+.mp-contact-title { font-size: 13.5px; font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+.mp-contact-info {
+  font-size: 11.5px;
+  color: #64748b;
+  word-break: break-all;
+  font-family: 'Courier New', monospace;
+}
 
-/* 分区标签 */
-.msg-section-label {
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--secondary);
-  opacity: 0.55;
+/* ---------- 折叠详情 ---------- */
+.mp-details {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 16px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.mp-details-summary {
+  cursor: pointer;
+  padding: 16px 24px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1e293b;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+}
+.mp-details-summary::-webkit-details-marker { display: none; }
+.mp-details-arrow {
+  color: var(--c-primary, #1677B3);
+  transition: transform 0.25s ease;
+  font-size: 12px;
+}
+.mp-details[open] .mp-details-arrow { transform: rotate(90deg); }
+.mp-details-body {
+  padding: 0 24px 20px;
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.9;
+}
+.mp-details-body ul { margin: 0 0 14px; padding-left: 18px; }
+.mp-details-body b { color: var(--c-primary, #1677B3); font-weight: 600; }
+.mp-btn--inline { font-size: 12px; padding: 6px 14px; }
+
+/* ---------- 留言区卡片 ---------- */
+.mp-card--comment { padding-bottom: 8px; }
+
+/* ---------- 回到输入框 ---------- */
+.mp-gotop {
+  position: fixed;
+  right: 26px;
+  bottom: 96px;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--c-primary, #1677B3);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+  backdrop-filter: blur(8px);
+  z-index: 90;
+}
+.mp-gotop.is-visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.mp-gotop:hover { border-color: rgba(var(--c-primary-rgb, 22,119,179), 0.4); }
+
+/* ============================================================
+   Twikoo 皮肤
+   Twikoo 1.7.9 实际渲染在自建的 #twikoo，
+   输入框是 Element UI 的 .el-textarea__inner / .el-input__inner。
+   ============================================================ */
+/* 主题自带的评论区容器，给它套上同样的卡片语言 */
+/* 主题在正文和评论区之间插的分隔虚线（2px dashed + 剪刀图标），
+   卡片布局里多余，直接隐藏 */
+.custom-hr,
+.custom-hr::before {
+  display: none !important;
+  border: 0 !important;
+  content: none !important;
+}
+
+#post-comment {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 16px;
+}
+#post-comment .comment-head {
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  padding-bottom: 14px;
+  margin-bottom: 8px;
+}
+#post-comment .comment-headline {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e293b;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+}
+#post-comment .comment-headline i { color: var(--c-primary, #1677B3); }
+
+html[data-theme='dark'] #post-comment {
+  background: rgba(15, 23, 42, 0.5);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+html[data-theme='dark'] #post-comment .comment-head {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+html[data-theme='dark'] #post-comment .comment-headline { color: #e8eef4; }
+html[data-theme='dark'] #post-comment .comment-headline i { color: #64b5f6; }
+
+#twikoo { font-size: 14px; }
+
+#twikoo .tk-comments-title {
+  color: #64748b;
+  font-size: 12.5px;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  padding-bottom: 12px;
   margin-bottom: 18px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
-.msg-section-label::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-  opacity: 0.4;
-}
 
-/* 表单样式 */
-.msg-form { display: flex; flex-direction: column; gap: 14px; }
-
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
-.input-wrap { position: relative; }
-.input-wrap input,
-.msg-form textarea {
-  width: 100%;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 11px 14px;
-  font-size: 0.9rem;
-  color: var(--text-high);
-  font-family: inherit;
-  outline: none;
-  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
-  box-sizing: border-box;
-  backdrop-filter: blur(6px);
-}
-.input-wrap input::placeholder,
-.msg-form textarea::placeholder {
-  color: var(--secondary);
-  opacity: 0.45;
-}
-.input-wrap input:focus,
-.msg-form textarea:focus {
-  border-color: var(--accent);
-  background: rgba(255,255,255,0.1);
-  box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
-}
-.msg-form textarea {
-  resize: vertical;
-  min-height: 120px;
-  line-height: 1.7;
-  /* 横格线效果 */
-  background-image: repeating-linear-gradient(transparent, transparent 27px, var(--border) 27px, var(--border) 28px);
-  background-position: 0 11px;
-  background-size: 100% 28px;
-  padding-top: 14px;
-}
-
-/* 提交按钮 */
-.msg-submit {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 50px;
-  padding: 12px 32px;
-  font-size: 0.92rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-  align-self: flex-end;
-  font-family: inherit;
-  letter-spacing: 0.03em;
-}
-.msg-submit:hover {
-  background: var(--theme-color);
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 6px 20px rgba(99,102,241,0.35);
-}
-.msg-submit:active { transform: translateY(0) scale(0.98); }
-
-/* 留言列表 */
-.msg-list { display: flex; flex-direction: column; gap: 14px; margin-top: 28px; }
-
-.msg-item {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 20px 22px;
-  backdrop-filter: blur(8px);
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s;
-  animation: msgSlideIn 0.4s cubic-bezier(0.34, 1.2, 0.64, 1) both;
-}
-.msg-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-}
-@keyframes msgSlideIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.msg-item-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-.msg-avatar {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), #a78bfa);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 0.85rem;
-  color: #fff;
-  flex-shrink: 0;
-}
-.msg-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-.msg-meta { flex: 1; min-width: 0; }
-.msg-nickname { font-weight: 600; font-size: 0.9rem; color: var(--text-high); }
-.msg-time { font-size: 0.75rem; opacity: 0.45; color: var(--secondary); }
-
-.msg-body {
-  font-size: 0.9rem;
-  line-height: 1.75;
-  color: var(--text);
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-
-.msg-item + .msg-item {
-  border-top: 1px dashed var(--border);
-  opacity: 0.85;
-}
-
-/* 子回复 */
-.msg-children { margin-top: 14px; padding-left: 18px; border-left: 2px solid var(--border); opacity: 0.75; }
-.msg-reply-btn {
-  background: none;
-  border: none;
-  color: var(--secondary);
-  font-size: 0.78rem;
-  cursor: pointer;
-  padding: 4px 0;
-  opacity: 0.6;
-  transition: opacity 0.2s, color 0.2s;
-  font-family: inherit;
-}
-.msg-reply-btn:hover { opacity: 1; color: var(--accent); }
-
-/* 空状态 */
-.msg-empty {
-  text-align: center;
-  padding: 48px 20px;
-  color: var(--secondary);
-  opacity: 0.5;
-}
-.msg-empty-icon { font-size: 3rem; margin-bottom: 14px; display: block; }
-.msg-empty p { font-size: 0.9rem; line-height: 1.7; margin: 0; }
-
-/* 浮动回顶部 */
-.msg-gotop {
-  position: fixed;
-  right: 28px;
-  bottom: 32px;
-  width: 42px;
-  height: 42px;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 1rem;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-  opacity: 0;
-  pointer-events: none;
-}
-.msg-gotop.visible { opacity: 1; pointer-events: auto; }
-.msg-gotop:hover { transform: translateY(-3px); background: var(--accent); color: #fff; }
-
-/* 响应式 */
-@media (max-width: 600px) {
-  .form-row { grid-template-columns: 1fr; }
-  .msg-card { padding: 20px 18px; }
-  .msg-hero h1 { font-size: 1.5rem; }
-  .contact-grid { grid-template-columns: 1fr 1fr; }
-}
-
-/* ===== twikoo 美化：融入便当盒风格 ===== */
-#post-comment {
-  background: transparent;
-  border: none;
-  margin: 0;
-  padding: 0;
-  max-width: 700px;
-  margin: 0 auto;
-}
-.comment-head {
-  display: none; /* 标题区已用页面自带标题 */
-}
-.comment-wrap { background: transparent; border-radius: 0; padding: 0; }
-#twikoo-wrap .tk-comments { margin-top: 0; }
-
-/* 整体容器融入毛玻璃 */
-#twikoo-wrap .tk-comments-container {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 24px 28px;
-  backdrop-filter: blur(10px);
-}
-
-/* 评论区标题 */
-#twikoo-wrap .tk-comments-title {
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--secondary);
-  opacity: 0.5;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-#twikoo-wrap .tk-comments-title::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-  opacity: 0.4;
-}
-
-/* 单条评论卡片 */
-#twikoo-wrap .tk-comment {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 14px;
+#twikoo .tk-comment {
+  background: rgba(248, 250, 252, 0.7);
+  border: 1px solid rgba(226, 232, 240, 0.7);
+  border-radius: 12px;
   padding: 16px 18px;
-  margin-bottom: 14px;
-  backdrop-filter: blur(8px);
-  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s;
-  box-shadow: none;
+  margin-bottom: 12px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
-#twikoo-wrap .tk-comment:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+#twikoo .tk-comment:hover {
+  border-color: rgba(var(--c-primary-rgb, 22,119,179), 0.25);
+  box-shadow: 0 4px 16px rgba(var(--c-primary-rgb, 22,119,179), 0.05);
 }
 
-/* 头像 */
-#twikoo-wrap .tk-comment .tk-avatar {
-  border-radius: 50%;
-  border: 2px solid rgba(99,102,241,0.3);
-  width: 36px;
-  height: 36px;
+#twikoo .tk-avatar {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(226, 232, 240, 0.9);
 }
-#twikoo-wrap .tk-comment .tk-avatar img { border-radius: 50%; }
+#twikoo .tk-avatar img { border-radius: 10px; }
 
-/* 昵称 */
-#twikoo-wrap .tk-comment .tk-nick {
-  color: var(--text-high);
-  font-weight: 600;
-  font-size: 0.88rem;
+#twikoo .tk-nick { color: #1e293b; font-weight: 600; font-size: 13.5px; }
+#twikoo .tk-nick a { color: #1e293b; text-decoration: none; }
+#twikoo .tk-time { color: #94a3b8; font-size: 11.5px; }
+
+#twikoo .tk-content {
+  color: var(--c-text, #374151);
+  font-size: 13.5px;
+  line-height: 1.8;
 }
+#twikoo .tk-content p { margin: 4px 0; }
 
-/* 时间 */
-#twikoo-wrap .tk-comment .tk-time {
-  color: var(--secondary);
-  opacity: 0.45;
-  font-size: 0.73rem;
-}
-
-/* 评论内容 */
-#twikoo-wrap .tk-comment .tk-content {
-  color: var(--text);
-  font-size: 0.9rem;
-  line-height: 1.75;
-}
-#twikoo-wrap .tk-comment .tk-content p { margin: 4px 0; }
-
-/* 嵌套回复 */
-#twikoo-wrap .tk-comment .tk-replies { margin-top: 10px; }
-#twikoo-wrap .tk-comment .tk-reply { margin-top: 10px; }
-#twikoo-wrap .tk-comment .tk-replies .tk-comment {
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.04);
+#twikoo .tk-replies { margin-top: 10px; }
+#twikoo .tk-replies .tk-comment {
+  background: rgba(248, 250, 252, 0.5);
+  border-color: rgba(226, 232, 240, 0.5);
 }
 
-/* ===== 输入框区域 ===== */
-#twikoo-wrap .tk-input {
-  background: rgba(255,255,255,0.06) !important;
-  border: 1px solid var(--border) !important;
+#twikoo .tk-action-icon { color: #94a3b8; }
+#twikoo .tk-action-icon:hover { color: var(--c-primary, #1677B3); }
+#twikoo .tk-action-count { color: #94a3b8; font-size: 11.5px; }
+
+/* ---- 输入区 ---- */
+#twikoo .tk-input,
+#twikoo .el-textarea__inner,
+#twikoo .el-input__inner {
+  background: #f8fafc !important;
+  border: 1px solid rgba(226, 232, 240, 1) !important;
   border-radius: 10px !important;
-  padding: 10px 14px !important;
-  color: var(--text-high) !important;
+  color: var(--c-text, #374151) !important;
   font-family: inherit !important;
-  font-size: 0.9rem !important;
-  backdrop-filter: blur(6px);
-  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
-  outline: none;
+  font-size: 13.5px !important;
   box-shadow: none !important;
+  transition: border-color 0.25s ease, background 0.25s ease;
 }
-#twikoo-wrap .tk-input:focus {
-  border-color: var(--accent) !important;
-  background: rgba(255,255,255,0.09) !important;
-  box-shadow: 0 0 0 3px rgba(99,102,241,0.12) !important;
+#twikoo .el-textarea__inner { padding: 12px 14px !important; line-height: 1.75; }
+#twikoo .el-textarea__inner:focus,
+#twikoo .el-input__inner:focus,
+#twikoo .tk-input:focus {
+  border-color: rgba(var(--c-primary-rgb, 22,119,179), 0.55) !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(var(--c-primary-rgb, 22,119,179), 0.1) !important;
 }
-#twikoo-wrap .tk-input::placeholder { color: var(--secondary); opacity: 0.45; }
+#twikoo .el-textarea__inner::placeholder,
+#twikoo .el-input__inner::placeholder { color: #94a3b8 !important; }
 
-/* 文本框（留言内容）*/
-#twikoo-wrap .tk-textarea {
-  background: rgba(255,255,255,0.06) !important;
-  border: 1px solid var(--border) !important;
+#twikoo .el-input__count,
+#twikoo .el-textarea .el-input__count {
+  background: transparent;
+  color: #94a3b8;
+  font-family: 'Courier New', monospace;
+  font-size: 10.5px;
+}
+
+/* ---- 提交按钮 ---- */
+#twikoo .tk-submit .el-button,
+#twikoo .el-button--primary {
+  background: var(--c-primary, #1677B3) !important;
+  border-color: var(--c-primary, #1677B3) !important;
   border-radius: 10px !important;
-  padding: 12px 14px !important;
-  color: var(--text-high) !important;
-  font-family: inherit !important;
-  font-size: 0.9rem !important;
-  line-height: 1.7;
-  backdrop-filter: blur(6px);
-  transition: border-color 0.25s, box-shadow 0.25s;
-  outline: none;
-  width: 100% !important;
-  resize: vertical;
-  min-height: 100px;
-  box-shadow: none !important;
-}
-#twikoo-wrap .tk-textarea:focus {
-  border-color: var(--accent) !important;
-  background: rgba(255,255,255,0.09) !important;
-  box-shadow: 0 0 0 3px rgba(99,102,241,0.12) !important;
-}
-
-/* 发送按钮 */
-#twikoo-wrap .tk-submit {
-  background: var(--accent) !important;
   color: #fff !important;
-  border: none !important;
-  border-radius: 50px !important;
-  padding: 10px 28px !important;
-  font-size: 0.88rem !important;
-  font-weight: 600 !important;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1) !important;
-  font-family: inherit !important;
-  letter-spacing: 0.03em;
-  box-shadow: none !important;
+  font-size: 13px !important;
+  padding: 9px 22px !important;
+  transition: opacity 0.25s ease, transform 0.2s ease;
 }
-#twikoo-wrap .tk-submit:hover {
-  background: var(--theme-color, #6366f1) !important;
-  transform: translateY(-2px) scale(1.02) !important;
-  box-shadow: 0 6px 20px rgba(99,102,241,0.35) !important;
-}
-#twikoo-wrap .tk-submit:active { transform: translateY(0) scale(0.98) !important; }
+#twikoo .el-button--primary:hover { opacity: 0.88; transform: translateY(-1px); }
 
-/* 回复按钮 */
-#twikoo-wrap .tk-action-btn {
-  color: var(--secondary) !important;
-  font-size: 0.78rem !important;
-  opacity: 0.6;
-  transition: opacity 0.2s, color 0.2s;
-  border: none !important;
-  background: none !important;
-  border-radius: 20px !important;
-  padding: 3px 10px !important;
-}
-#twikoo-wrap .tk-action-btn:hover { opacity: 1; color: var(--accent) !important; }
-
-/* 验证提示 */
-#twikoo-wrap .tk-msg {
-  color: var(--text-high);
-  font-size: 0.85rem;
+#twikoo .tk-submit .el-button:not(.el-button--primary) {
+  background: rgba(var(--c-primary-rgb, 22,119,179), 0.06) !important;
+  border-color: rgba(var(--c-primary-rgb, 22,119,179), 0.18) !important;
+  color: var(--c-primary, #1677B3) !important;
 }
 
-/* 加载动画 */
-#twikoo-wrap .tk-loading {
-  color: var(--secondary);
-  opacity: 0.6;
+#twikoo .tk-owo-emotion { border-radius: 6px; }
+#twikoo .tk-icon,
+#twikoo .tk-submit .tk-owo,
+#twikoo .tk-submit .tk-upload { color: #94a3b8; }
+#twikoo .tk-icon:hover { color: var(--c-primary, #1677B3); }
+
+/* ============================================================
+   深色模式
+   ============================================================ */
+html[data-theme='dark'] .mp-head-label,
+html[data-theme='dark'] .mp-section-label { color: #8b9db5; }
+
+html[data-theme='dark'] .mp-head-desc,
+html[data-theme='dark'] .mp-contact-info,
+html[data-theme='dark'] .mp-siteinfo-desc,
+html[data-theme='dark'] .mp-details-body { color: #8b9db5; }
+
+html[data-theme='dark'] .mp-card,
+html[data-theme='dark'] .mp-details {
+  background: rgba(15, 23, 42, 0.5);
+  border-color: rgba(255, 255, 255, 0.06);
 }
 
-/* 暂无评论 */
-#twikoo-wrap .tk-empty { text-align: center; padding: 32px; color: var(--secondary); opacity: 0.5; font-size: 0.9rem; }
+html[data-theme='dark'] .mp-siteinfo-name,
+html[data-theme='dark'] .mp-contact-title,
+html[data-theme='dark'] .mp-details-summary { color: #e8eef4; }
 
+html[data-theme='dark'] .mp-stat {
+  color: #64b5f6;
+  background: rgba(100, 181, 246, 0.08);
+  border-color: rgba(100, 181, 246, 0.16);
+}
+html[data-theme='dark'] .mp-stat--muted { color: #8b9db5; background: transparent; border-color: transparent; }
+
+html[data-theme='dark'] .mp-contact,
+html[data-theme='dark'] .mp-siteinfo-avatar {
+  background: rgba(100, 181, 246, 0.06);
+  border-color: rgba(100, 181, 246, 0.12);
+}
+html[data-theme='dark'] a.mp-contact:hover {
+  border-color: rgba(100, 181, 246, 0.35);
+  box-shadow: 0 8px 24px rgba(100, 181, 246, 0.1);
+}
+html[data-theme='dark'] .mp-contact-icon {
+  background: rgba(100, 181, 246, 0.12);
+  color: #64b5f6;
+}
+html[data-theme='dark'] .mp-siteinfo-url,
+html[data-theme='dark'] .mp-details-arrow { color: #64b5f6; }
+
+html[data-theme='dark'] .mp-btn {
+  color: #64b5f6;
+  background: rgba(100, 181, 246, 0.08);
+  border-color: rgba(100, 181, 246, 0.2);
+}
+html[data-theme='dark'] .mp-btn:hover {
+  background: rgba(100, 181, 246, 0.15);
+  border-color: rgba(100, 181, 246, 0.4);
+}
+
+html[data-theme='dark'] .mp-gotop {
+  background: rgba(26, 35, 50, 0.9);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: #64b5f6;
+}
+
+html[data-theme='dark'] #twikoo .tk-comment {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+html[data-theme='dark'] #twikoo .tk-replies .tk-comment {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.04);
+}
+html[data-theme='dark'] #twikoo .tk-comments-title {
+  color: #8b9db5;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+html[data-theme='dark'] #twikoo .tk-nick,
+html[data-theme='dark'] #twikoo .tk-nick a { color: #e8eef4; }
+html[data-theme='dark'] #twikoo .tk-content { color: #cdd9e5; }
+html[data-theme='dark'] #twikoo .tk-time,
+html[data-theme='dark'] #twikoo .tk-action-count { color: #6b7f96; }
+
+html[data-theme='dark'] #twikoo .tk-input,
+html[data-theme='dark'] #twikoo .el-textarea__inner,
+html[data-theme='dark'] #twikoo .el-input__inner {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #e8eef4 !important;
+}
+html[data-theme='dark'] #twikoo .el-textarea__inner:focus,
+html[data-theme='dark'] #twikoo .el-input__inner:focus {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(100, 181, 246, 0.55) !important;
+  box-shadow: 0 0 0 3px rgba(100, 181, 246, 0.12) !important;
+}
+html[data-theme='dark'] #twikoo .el-textarea__inner::placeholder,
+html[data-theme='dark'] #twikoo .el-input__inner::placeholder { color: #6b7f96 !important; }
+
+html[data-theme='dark'] #twikoo .tk-submit .el-button,
+html[data-theme='dark'] #twikoo .el-button--primary {
+  background: #1677B3 !important;
+  border-color: #1677B3 !important;
+}
+html[data-theme='dark'] #twikoo .tk-submit .el-button:not(.el-button--primary) {
+  background: rgba(100, 181, 246, 0.08) !important;
+  border-color: rgba(100, 181, 246, 0.2) !important;
+  color: #64b5f6 !important;
+}
+
+/* ---------- 移动端 ---------- */
+@media (max-width: 640px) {
+  .mp-card, .mp-details { padding: 18px; border-radius: 14px; }
+  .mp-details-summary { padding: 14px 18px; }
+  .mp-details-body { padding: 0 18px 16px; }
+  .mp-siteinfo { gap: 12px; }
+  .mp-siteinfo-actions { width: 100%; }
+  .mp-contact-grid { grid-template-columns: 1fr 1fr; }
+  .mp-gotop { right: 14px; bottom: 80px; width: 36px; height: 36px; }
+}
 </style>
 
-<!-- 页面内容 -->
-<div class="message-page" id="msgPage">
-
-  <!-- 标题区 -->
-  <div class="msg-hero">
-    <h1>给我留言</h1>
-    <p>你的每句话，都是这里的星光 ✨</p>
-    <p style="font-size: 0.82rem; opacity: 0.5; margin-top: 6px;">成为友邻的第一步 · <a href="/link/" style="color: var(--accent, oklch(0.65 0.18 260)); text-decoration: none; font-weight: 500;">先看看友链墙 →</a></p>
-  </div>
-
-  <!-- 我的博客信息 -->
-  <div class="msg-card" style="margin-bottom: 0;">
-    <div class="msg-section-label">我的博客信息</div>
-    <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
-      <img src="/img/%E5%A4%B4%E5%83%8F.JPG" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border);" alt="avatar" onerror="this.onerror=null;this.src='/img/friend_404.gif'">
-      <div style="flex: 1; min-width: 180px;">
-        <div style="font-weight: 600; margin-bottom: 4px;">G/ren的小破站</div>
-        <div style="font-size: 0.82rem; opacity: 0.6; margin-bottom: 6px;">机器视觉调试工程师 | 技术分享</div>
-        <div style="font-size: 0.78rem;">
-          <a href="https://www.hehehey.top/" style="color: var(--accent, oklch(0.65 0.18 260)); text-decoration: none;">https://www.hehehey.top/</a>
-        </div>
-      </div>
-      <button onclick="copySiteInfo()" id="copyBtn" style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 50px; padding: 8px 18px; font-size: 0.82rem; cursor: pointer; transition: all 200ms ease; font-family: inherit; color: var(--text-high);">复制站名和链接</button>
-      <button onclick="copySiteHTML()" id="copyHTMLBtn" style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 50px; padding: 8px 18px; font-size: 0.82rem; cursor: pointer; transition: all 200ms ease; font-family: inherit; color: var(--text-high);">复制 HTML 链接</button>
-    </div>
-  </div>
-
-  <script>
-    function copySiteInfo() {
-      const info = "网站名称：G/ren的小破站\n网址：https://www.hehehey.top/";
-      navigator.clipboard.writeText(info).then(() => {
-        const btn = document.getElementById('copyBtn');
-        btn.textContent = '已复制 ✓';
-        btn.style.borderColor = 'var(--accent, oklch(0.65 0.18 260))';
-        btn.style.color = 'var(--accent, oklch(0.65 0.18 260))';
-        setTimeout(() => {
-          btn.textContent = '复制站名和链接';
-          btn.style.borderColor = 'var(--border)';
-          btn.style.color = 'var(--text-high)';
-        }, 2000);
-      });
-    }
-    function copySiteHTML() {
-      const html = '<a href="https://www.hehehey.top/">G/ren的小破站</a>';
-      navigator.clipboard.writeText(html).then(() => {
-        const btn = document.getElementById('copyHTMLBtn');
-        btn.textContent = '已复制 ✓';
-        btn.style.borderColor = 'var(--accent, oklch(0.65 0.18 260))';
-        btn.style.color = 'var(--accent, oklch(0.65 0.18 260))';
-        setTimeout(() => {
-          btn.textContent = '复制 HTML 链接';
-          btn.style.borderColor = 'var(--border)';
-          btn.style.color = 'var(--text-high)';
-        }, 2000);
-      });
-    }
-  </script>
-
-  <!-- 联系卡片 -->
-  <div class="msg-card" style="margin-bottom: 0;">
-    <div class="contact-grid">
-      <div class="contact-card">
-        <div class="contact-icon">📧</div>
-        <div class="contact-title">邮箱</div>
-        <div class="contact-info">mr.he2002@foxmail.com</div>
-      </div>
-      <div class="contact-card">
-        <div class="contact-icon">⏱️</div>
-        <div class="contact-title">回复时间</div>
-        <div class="contact-info">一般 1~3 天</div>
-      </div>
-      <div class="contact-card">
-        <div class="contact-icon">💬</div>
-        <div class="contact-title">公开留言</div>
-        <div class="contact-info">所有人可见</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 分割区 -->
-  <div class="msg-divider">写下你的足迹</div>
-
-  <!-- 友链规范（可折叠） -->
-  <details style="margin-bottom: 24px;">
-    <summary style="cursor: pointer; font-size: 0.85rem; opacity: 0.55; padding: 8px 0; list-style: none; display: flex; align-items: center; gap: 6px;">
-      <span>📋 友链交换规范（点击展开）</span>
-    </summary>
-    <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 0.625rem; padding: 16px 20px; margin-top: 10px; font-size: 0.85rem; line-height: 1.8; opacity: 0.8;">
-      <p style="margin: 0 0 8px;">在交换友链前，请先确认以下几点：</p>
-      <ul style="margin: 0; padding-left: 20px;">
-        <li>内容原创，文章多为亲手撰写</li>
-        <li>保持更新频率，不接受死链或长期不更新的站点</li>
-        <li>不接受商业广告、恶意推广等内容</li>
-        <li>请先在贵站添加本站信息后再留言申请</li>
-      </ul>
-    </div>
-  </details>
-
-  <!-- Twikoo 留言区 -->
-  <div id="twikoo-wrap" style="max-width:700px;margin:0 auto;"></div>
-
-</div>
-
-<!-- 留言输入区锚点（友链页跳转会定位到这里） -->
-<span id="msg-write" style="display:block;height:1px;"></span>
-
-<!-- 浮动回顶部 -->
-<div class="msg-gotop" id="msgGotop" onclick="document.querySelector('.msg-form').scrollIntoView({behavior:'smooth'})">↑</div>
-
 <script>
-// 浮动按钮显示逻辑
-const gotop = document.getElementById('msgGotop');
-window.addEventListener('scroll', () => {
-  gotop.classList.toggle('visible', window.scrollY > 400);
-}, { passive: true });
-</script>
-
-<script>
-/* ============================================================
-   友链申请模板自动填入
-   ------------------------------------------------------------
-   来源：/link/ 页面点「复制申请模板」时，会把模板写进
-   sessionStorage['linkApplyTemplate']，然后跳到 /message/。
-   这里把它读出来，塞进 Twikoo（Element UI）的文本域。
-
-   为什么要轮询：Twikoo 是异步渲染的，DOM 出现时间不确定，
-   而且它可能重渲染（比如登录态变化），所以监听 + 轮询双保险。
-   ============================================================ */
 (function () {
   'use strict';
 
-  var KEY = 'linkApplyTemplate';
-  var FORM_SELECTOR = '.el-textarea__inner';
-  var applied = false;
+  var SITE = {
+    name: 'G/ren的小破站',
+    url: 'https://www.hehehey.top/'
+  };
 
-  function readTemplate() {
-    var v = null;
-    try { v = sessionStorage.getItem(KEY); } catch (e) { return null; }
-    return v && v.trim() ? v : null;
+  function toast(msg) {
+    var el = document.createElement('div');
+    el.textContent = msg;
+    el.style.cssText = 'position:fixed;left:50%;bottom:40px;transform:translateX(-50%) translateY(8px);' +
+      'background:rgba(22,119,179,0.95);color:#fff;font-size:13px;padding:9px 18px;border-radius:10px;' +
+      'z-index:9999;opacity:0;transition:opacity .25s ease,transform .25s ease;pointer-events:none;';
+    document.body.appendChild(el);
+    requestAnimationFrame(function () {
+      el.style.opacity = '1';
+      el.style.transform = 'translateX(-50%) translateY(0)';
+    });
+    setTimeout(function () {
+      el.style.opacity = '0';
+      el.style.transform = 'translateX(-50%) translateY(8px)';
+      setTimeout(function () { el.remove(); }, 300);
+    }, 2200);
   }
 
-  function clearTemplate() {
-    try { sessionStorage.removeItem(KEY); } catch (e) { }
-  }
-
-  // 用原生 setter 写值，Element UI 才能感知到（直接改 .value 它收不到）
-  function setNativeValue(el, value) {
-    var proto = Object.getPrototypeOf(el);
-    var desc = Object.getOwnPropertyDescriptor(proto, 'value');
-    if (desc && desc.set) {
-      desc.set.call(el, value);
-    } else {
-      el.value = value;
+  function copyText(text, okMsg) {
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.cssText = 'position:fixed;left:-9999px;top:0;';
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      toast(ok ? okMsg : '复制失败，请手动选中复制');
     }
-    el.dispatchEvent(new Event('input', { bubbles: true }));
-    el.dispatchEvent(new Event('change', { bubbles: true }));
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { toast(okMsg); }).catch(fallback);
+    } else {
+      fallback();
+    }
   }
 
-  function tryFill() {
-    if (applied) return true;
+  var btnName = document.getElementById('copyNameUrl');
+  if (btnName) {
+    btnName.addEventListener('click', function () {
+      copyText('网站名称：' + SITE.name + '\n网址：' + SITE.url, '已复制站名和链接');
+    });
+  }
 
-    var text = readTemplate();
-    if (!text) return true;   // 没有待填内容，视为完成
+  var btnHtml = document.getElementById('copyHtml');
+  if (btnHtml) {
+    btnHtml.addEventListener('click', function () {
+      copyText('<a href="' + SITE.url + '">' + SITE.name + '</a>', '已复制 HTML 链接');
+    });
+  }
 
-    var ta = document.querySelector(FORM_SELECTOR);
-    if (!ta) return false;
+  var gotop = document.getElementById('msgGotop');
+  if (gotop) {
+    var onScroll = function () {
+      gotop.classList.toggle('is-visible', window.scrollY > 420);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
 
-    // 用户已经自己写了东西就不覆盖
-    if (ta.value && ta.value.trim().length > 0) {
+    gotop.addEventListener('click', function () {
+      var anchor = document.getElementById('msg-write');
+      var ta = document.querySelector('#twikoo .el-textarea__inner');
+      var target = anchor || ta;
+      if (target) {
+        try { target.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+        catch (e) { target.scrollIntoView(); }
+      }
+      setTimeout(function () {
+        var t = document.querySelector('#twikoo .el-textarea__inner');
+        if (t) t.focus();
+      }, 450);
+    });
+  }
+
+  function updateCount() {
+    var el = document.getElementById('msgCount');
+    if (!el) return;
+    var nodes = document.querySelectorAll('#twikoo .tk-comment');
+    el.textContent = nodes.length;
+  }
+  if (window.MutationObserver) {
+    var tries = 0;
+    var mo = new MutationObserver(function () {
+      updateCount();
+      if (++tries > 40) mo.disconnect();
+    });
+    var startObserve = function () {
+      var t = document.getElementById('twikoo');
+      if (t) { mo.observe(t, { childList: true, subtree: true }); updateCount(); }
+      else if (++tries < 60) setTimeout(startObserve, 300);
+    };
+    setTimeout(startObserve, 600);
+  }
+
+  // ================== 友链申请模板自动填入 ==================
+  (function autofill() {
+    var KEY = 'linkApplyTemplate';
+    var SEL = '#twikoo .el-textarea__inner';
+    var applied = false;
+
+    function read() {
+      try { return sessionStorage.getItem(KEY); } catch (e) { return null; }
+    }
+    function clear() {
+      try { sessionStorage.removeItem(KEY); } catch (e) { }
+    }
+    function setNative(el, val) {
+      var d = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(el), 'value');
+      if (d && d.set) d.set.call(el, val); else el.value = val;
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+      el.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+    function fill() {
+      if (applied) return true;
+      var text = read();
+      if (!text || !text.trim()) return true;
+      var ta = document.querySelector(SEL);
+      if (!ta) return false;
+      if (ta.value && ta.value.trim()) { applied = true; clear(); return true; }
+
+      setNative(ta, text);
+      ta.focus();
+      var i = text.indexOf('网站名称：');
+      if (i >= 0) {
+        var pos = i + '网站名称：'.length;
+        try { ta.setSelectionRange(pos, pos); } catch (e) { }
+      }
+      var anchor = document.getElementById('msg-write');
+      if (anchor) {
+        try { anchor.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+        catch (e) { anchor.scrollIntoView(); }
+      }
       applied = true;
-      clearTemplate();
+      clear();
       return true;
     }
-
-    setNativeValue(ta, text);
-    ta.focus();
-
-    // 光标放到「网站名称：」后面，方便直接输入
-    var idx = text.indexOf('网站名称：');
-    if (idx >= 0) {
-      var pos = idx + '网站名称：'.length;
-      try { ta.setSelectionRange(pos, pos); } catch (e) { }
-    }
-
-    // 滚到输入区
-    var wrap = document.getElementById('twikoo-wrap');
-    var anchor = document.getElementById('msg-write');
-    var target = anchor || wrap || ta;
-    try {
-      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    } catch (e) {
-      target.scrollIntoView();
-    }
-
-    applied = true;
-    clearTemplate();
-    return true;
-  }
-
-  // 轮询 + MutationObserver 双保险
-  function boot() {
-    if (!readTemplate()) return;
-
-    var tries = 0;
-    var timer = setInterval(function () {
-      tries++;
-      if (tryFill() || tries > 60) {   // 最多等 60 次 × 250ms = 15s
-        clearInterval(timer);
+    function boot() {
+      if (!read()) return;
+      var n = 0;
+      var timer = setInterval(function () {
+        if (fill() || ++n > 60) clearInterval(timer);
+      }, 250);
+      if (window.MutationObserver && document.body) {
+        var mo = new MutationObserver(function () { if (fill()) mo.disconnect(); });
+        mo.observe(document.body, { childList: true, subtree: true });
+        setTimeout(function () { mo.disconnect(); }, 20000);
       }
-    }, 250);
-
-    if (window.MutationObserver && document.body) {
-      var mo = new MutationObserver(function () {
-        if (tryFill()) mo.disconnect();
-      });
-      mo.observe(document.body, { childList: true, subtree: true });
-      setTimeout(function () { mo.disconnect(); }, 20000);
     }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', boot);
-  } else {
-    boot();
-  }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot);
+    } else {
+      boot();
+    }
+  })();
 })();
 </script>
+{% endraw %}
