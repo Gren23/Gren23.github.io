@@ -19,11 +19,22 @@
   // 注入申请入口按钮和模态框 HTML
   function injectApplySection() {
     // 按钮
+    // 原来插在 .page-title 后面，而 .page-title 在 /link/ 页是居中的 h1，
+    // 插进去会变成「标题右边一个悬空按钮」。改成挂在友链列表之后。
     var btn = document.createElement('div');
     btn.style.cssText = 'text-align:center; margin:28px 0 20px;';
     btn.innerHTML = '<button id="js-open-apply" style="background:linear-gradient(135deg,oklch(0.65 0.18 260),oklch(0.55 0.20 280));color:#fff;border:none;padding:12px 32px;border-radius:2rem;font-size:0.95rem;font-weight:600;cursor:pointer;box-shadow:0 4px 14px oklch(0.55 0.20 280 / 0.35);transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform=\'translateY(-2px)\';this.style.boxShadow=\'0 6px 20px oklch(0.55 0.20 280 / 0.45)\'" onmouseout="this.style.transform=\'translateY(0)\';this.style.boxShadow=\'0 4px 14px oklch(0.55 0.20 280 / 0.35)\'">&#x1F4E4; 申请交换友链</button>';
-    var target = document.querySelector('.page-title') || document.querySelector('#article-container h1') || document.querySelector('#article-container');
-    if (target) target.parentNode.insertBefore(btn, target.nextSibling);
+
+    var grid = document.querySelector('.friend-grid');
+    var emptyBox = document.getElementById('link-empty');
+    var anchor = grid || emptyBox;
+
+    if (anchor && anchor.parentNode) {
+      anchor.parentNode.insertBefore(btn, anchor.nextSibling);
+    } else {
+      var fallback = document.getElementById('article-container') || document.body;
+      fallback.appendChild(btn);
+    }
 
     // 模态框
     var modal = document.createElement('div');
@@ -36,16 +47,26 @@
       '<p style="margin:0 0 20px;opacity:0.55;font-size:0.82rem;">填写以下信息，我会尽快审核并添加</p>' +
       '<form id="js-apply-form" onsubmit="return false">' +
         '<div style="display:flex;flex-direction:column;gap:12px;">' +
-          '<label style="font-size:0.85rem;font-weight:600;">网站名称 <span style="color:#e05050">*</span><input name="site_name" required placeholder="如：鹿话博客" style="width:100%;padding:10px 14px;border-radius:0.7rem;border:1.5px solid var(--border);font-size:0.9rem;background:var(--secondary);color:var(--primary);box-sizing:border-box;outline:none;margin-top:4px;" onfocus="this.style.borderColor=\'oklch(0.65 0.18 260)\'" onblur="this.style.borderColor=\'var(--border)\'" /></label>' +
-          '<label style="font-size:0.85rem;font-weight:600;">网站地址 <span style="color:#e05050">*</span><input name="site_url" type="url" required placeholder="https://your-blog.com" style="width:100%;padding:10px 14px;border-radius:0.7rem;border:1.5px solid var(--border);font-size:0.9rem;background:var(--secondary);color:var(--primary);box-sizing:border-box;outline:none;margin-top:4px;" onfocus="this.style.borderColor=\'oklch(0.65 0.18 260)\'" onblur="this.style.borderColor=\'var(--border)\'" /></label>' +
-          '<label style="font-size:0.85rem;font-weight:600;">头像 URL <span style="color:#e05050">*</span><input name="site_avatar" type="url" required placeholder="https://your-blog.com/avatar.png" style="width:100%;padding:10px 14px;border-radius:0.7rem;border:1.5px solid var(--border);font-size:0.9rem;background:var(--secondary);color:var(--primary);box-sizing:border-box;outline:none;margin-top:4px;" onfocus="this.style.borderColor=\'oklch(0.65 0.18 260)\'" onblur="this.style.borderColor=\'var(--border)\'" /></label>' +
-          '<label style="font-size:0.85rem;font-weight:600;">网站简介 <span style="color:#e05050">*</span><textarea name="site_intro" required placeholder="简单介绍一下你的博客（10-100字）" rows="3" style="width:100%;padding:10px 14px;border-radius:0.7rem;border:1.5px solid var(--border);font-size:0.9rem;background:var(--secondary);color:var(--primary);box-sizing:border-box;outline:none;resize:vertical;margin-top:4px;font-family:inherit;" onfocus="this.style.borderColor=\'oklch(0.65 0.18 260)\'" onblur="this.style.borderColor=\'var(--border)\'"></textarea></label>' +
-          '<label style="font-size:0.85rem;font-weight:600;">分组（可选）<input name="group" placeholder="默认分组" style="width:100%;padding:10px 14px;border-radius:0.7rem;border:1.5px solid var(--border);font-size:0.9rem;background:var(--secondary);color:var(--primary);box-sizing:border-box;outline:none;margin-top:4px;" onfocus="this.style.borderColor=\'oklch(0.65 0.18 260)\'" onblur="this.style.borderColor=\'var(--border)\'" /></label>' +
+          '<label style="font-size:0.85rem;font-weight:600;">网站名称 <span style="color:#e05050">*</span><input name="site_name" required placeholder="如：鹿话博客" style="width:100%;padding:10px 14px;border-radius:0.7rem;border:1.5px solid var(--border);font-size:0.9rem;background:var(--c-bg,#fff);color:var(--c-text,#374151);box-sizing:border-box;outline:none;margin-top:4px;" onfocus="this.style.borderColor=\'oklch(0.65 0.18 260)\'" onblur="this.style.borderColor=\'var(--border)\'" /></label>' +
+          '<label style="font-size:0.85rem;font-weight:600;">网站地址 <span style="color:#e05050">*</span><input name="site_url" type="url" required placeholder="https://your-blog.com" style="width:100%;padding:10px 14px;border-radius:0.7rem;border:1.5px solid var(--border);font-size:0.9rem;background:var(--c-bg,#fff);color:var(--c-text,#374151);box-sizing:border-box;outline:none;margin-top:4px;" onfocus="this.style.borderColor=\'oklch(0.65 0.18 260)\'" onblur="this.style.borderColor=\'var(--border)\'" /></label>' +
+          '<label style="font-size:0.85rem;font-weight:600;">头像 URL <span style="color:#e05050">*</span><input name="site_avatar" type="url" required placeholder="https://your-blog.com/avatar.png" style="width:100%;padding:10px 14px;border-radius:0.7rem;border:1.5px solid var(--border);font-size:0.9rem;background:var(--c-bg,#fff);color:var(--c-text,#374151);box-sizing:border-box;outline:none;margin-top:4px;" onfocus="this.style.borderColor=\'oklch(0.65 0.18 260)\'" onblur="this.style.borderColor=\'var(--border)\'" /></label>' +
+          '<label style="font-size:0.85rem;font-weight:600;">网站简介 <span style="color:#e05050">*</span><textarea name="site_intro" required placeholder="简单介绍一下你的博客（10-100字）" rows="3" style="width:100%;padding:10px 14px;border-radius:0.7rem;border:1.5px solid var(--border);font-size:0.9rem;background:var(--c-bg,#fff);color:var(--c-text,#374151);box-sizing:border-box;outline:none;resize:vertical;margin-top:4px;font-family:inherit;" onfocus="this.style.borderColor=\'oklch(0.65 0.18 260)\'" onblur="this.style.borderColor=\'var(--border)\'"></textarea></label>' +
+          '<label style="font-size:0.85rem;font-weight:600;">分组（可选）<input name="group" placeholder="默认分组" style="width:100%;padding:10px 14px;border-radius:0.7rem;border:1.5px solid var(--border);font-size:0.9rem;background:var(--c-bg,#fff);color:var(--c-text,#374151);box-sizing:border-box;outline:none;margin-top:4px;" onfocus="this.style.borderColor=\'oklch(0.65 0.18 260)\'" onblur="this.style.borderColor=\'var(--border)\'" /></label>' +
         '</div>' +
         '<div id="js-apply-msg" style="margin-top:14px;display:none;border-radius:0.7rem;padding:10px 14px;font-size:0.85rem;text-align:center;"></div>' +
         '<button type="button" id="js-apply-submit" style="margin-top:20px;width:100%;padding:12px;border-radius:2rem;background:linear-gradient(135deg,oklch(0.65 0.18 260),oklch(0.55 0.20 280));color:#fff;border:none;font-size:0.95rem;font-weight:600;cursor:pointer;box-shadow:0 4px 14px oklch(0.55 0.20 280 / 0.35);transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform=\'translateY(-2px)\'" onmouseout="this.style.transform=\'translateY(0)\'">&#x2709; 提交申请</button>' +
       '</form>' +
     '</div></div>';
+    // placeholder 颜色内联样式管不到，补一条作用域内的规则
+    if (!document.getElementById('js-apply-style')) {
+      var st = document.createElement('style');
+      st.id = 'js-apply-style';
+      st.textContent =
+        '#js-apply-form input::placeholder, #js-apply-form textarea::placeholder { color: var(--c-text-secondary, #9ca3af); opacity: 1; }' +
+        '#js-apply-form input:focus, #js-apply-form textarea:focus { border-color: var(--c-primary, #1677B3) !important; }';
+      document.head.appendChild(st);
+    }
+
     document.body.appendChild(modal);
   }
 

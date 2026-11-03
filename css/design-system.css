@@ -128,6 +128,14 @@ body { background: var(--c-bg) !important; }
   --custom-meta:        var(--c-meta);
   --custom-accent:      var(--c-accent);
   --custom-separator:   var(--c-separator);
+
+  /* 以下 3 个是页面里在用了、却一直没有定义的变量（历史遗漏），补上别名。
+     缺定义时 color: var(--sec-text) 整条声明失效，文字退回默认色，
+     深色模式下会变成黑底黑字，实际效果就是「文字不见了」。
+     影响：archives 页 + 5 个分类展示页 + 友链申请弹窗输入框。 */
+  --sec-text:            var(--c-text-secondary);
+  --primary:             var(--c-primary);
+  --color-primary-light: var(--c-primary-light);
 }
 
 /* ================== 页脚 ================== */
