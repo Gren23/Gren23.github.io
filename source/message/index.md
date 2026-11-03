@@ -599,6 +599,9 @@ comments: true
 
 </div>
 
+<!-- 留言输入区锚点（友链页跳转会定位到这里） -->
+<span id="msg-write" style="display:block;height:1px;"></span>
+
 <!-- 浮动回顶部 -->
 <div class="msg-gotop" id="msgGotop" onclick="document.querySelector('.msg-form').scrollIntoView({behavior:'smooth'})">↑</div>
 
@@ -608,4 +611,115 @@ const gotop = document.getElementById('msgGotop');
 window.addEventListener('scroll', () => {
   gotop.classList.toggle('visible', window.scrollY > 400);
 }, { passive: true });
+</script>
+
+<script>
+/* ============================================================
+   友链申请模板自动填入
+   ------------------------------------------------------------
+   来源：/link/ 页面点「复制申请模板」时，会把模板写进
+   sessionStorage['linkApplyTemplate']，然后跳到 /message/。
+   这里把它读出来，塞进 Twikoo（Element UI）的文本域。
+
+   为什么要轮询：Twikoo 是异步渲染的，DOM 出现时间不确定，
+   而且它可能重渲染（比如登录态变化），所以监听 + 轮询双保险。
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var KEY = 'linkApplyTemplate';
+  var FORM_SELECTOR = '.el-textarea__inner';
+  var applied = false;
+
+  function readTemplate() {
+    var v = null;
+    try { v = sessionStorage.getItem(KEY); } catch (e) { return null; }
+    return v && v.trim() ? v : null;
+  }
+
+  function clearTemplate() {
+    try { sessionStorage.removeItem(KEY); } catch (e) { }
+  }
+
+  // 用原生 setter 写值，Element UI 才能感知到（直接改 .value 它收不到）
+  function setNativeValue(el, value) {
+    var proto = Object.getPrototypeOf(el);
+    var desc = Object.getOwnPropertyDescriptor(proto, 'value');
+    if (desc && desc.set) {
+      desc.set.call(el, value);
+    } else {
+      el.value = value;
+    }
+    el.dispatchEvent(new Event('input', { bubbles: true }));
+    el.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+
+  function tryFill() {
+    if (applied) return true;
+
+    var text = readTemplate();
+    if (!text) return true;   // 没有待填内容，视为完成
+
+    var ta = document.querySelector(FORM_SELECTOR);
+    if (!ta) return false;
+
+    // 用户已经自己写了东西就不覆盖
+    if (ta.value && ta.value.trim().length > 0) {
+      applied = true;
+      clearTemplate();
+      return true;
+    }
+
+    setNativeValue(ta, text);
+    ta.focus();
+
+    // 光标放到「网站名称：」后面，方便直接输入
+    var idx = text.indexOf('网站名称：');
+    if (idx >= 0) {
+      var pos = idx + '网站名称：'.length;
+      try { ta.setSelectionRange(pos, pos); } catch (e) { }
+    }
+
+    // 滚到输入区
+    var wrap = document.getElementById('twikoo-wrap');
+    var anchor = document.getElementById('msg-write');
+    var target = anchor || wrap || ta;
+    try {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } catch (e) {
+      target.scrollIntoView();
+    }
+
+    applied = true;
+    clearTemplate();
+    return true;
+  }
+
+  // 轮询 + MutationObserver 双保险
+  function boot() {
+    if (!readTemplate()) return;
+
+    var tries = 0;
+    var timer = setInterval(function () {
+      tries++;
+      if (tryFill() || tries > 60) {   // 最多等 60 次 × 250ms = 15s
+        clearInterval(timer);
+      }
+    }, 250);
+
+    if (window.MutationObserver && document.body) {
+      var mo = new MutationObserver(function () {
+        if (tryFill()) mo.disconnect();
+      });
+      mo.observe(document.body, { childList: true, subtree: true });
+      setTimeout(function () { mo.disconnect(); }, 20000);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+})();
 </script>

@@ -642,11 +642,21 @@ html[data-theme='dark'] .lp-toast {
         '&body=' + encodeURIComponent(applyTemplate());
     }
 
-    // 3) 复制模板
+    // 3) 复制模板 + 跳转信箱页 + 自动填入
+    //    跳转前把模板存进 sessionStorage，信箱页读出来后塞进 Twikoo 输入框。
+    //    因为跳转会丢失剪贴板以外的状态，sessionStorage 是同源同标签页内最轻的传递方式。
     var copyBtn = $('applyCopy');
     if (copyBtn) {
       copyBtn.addEventListener('click', function () {
-        copyText(applyTemplate(), '申请模板已复制，发到留言板或任意联系方式即可');
+        var text = applyTemplate();
+        var go = function () {
+          try { sessionStorage.setItem('linkApplyTemplate', text); } catch (e) { /* 隐私模式可能失败 */ }
+          toast('模板已复制，正在前往信箱页…');
+          setTimeout(function () {
+            window.location.href = '/message/#msg-write';
+          }, 520);
+        };
+        copyText(text, '申请模板已复制', go);
       });
     }
 
@@ -665,7 +675,13 @@ html[data-theme='dark'] .lp-toast {
     }
   }
 
-  function copyText(text, okMsg) {
+  // 复制文本。onDone 无论复制成功与否都会执行（没复制成功也让用户能继续跳转）
+  function copyText(text, okMsg, onDone) {
+    function done(ok) {
+      toast(ok ? okMsg : '复制失败，但模板已带过去，可直接在输入框里取用');
+      if (typeof onDone === 'function') onDone(ok);
+    }
+
     function fallback() {
       var ta = document.createElement('textarea');
       ta.value = text;
@@ -675,13 +691,11 @@ html[data-theme='dark'] .lp-toast {
       var ok = false;
       try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
       document.body.removeChild(ta);
-      toast(ok ? okMsg : '复制失败，请手动选中复制');
+      done(ok);
     }
 
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(function () {
-        toast(okMsg);
-      }).catch(fallback);
+      navigator.clipboard.writeText(text).then(function () { done(true); }).catch(fallback);
     } else {
       fallback();
     }
