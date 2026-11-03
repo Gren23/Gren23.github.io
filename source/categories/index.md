@@ -27,16 +27,24 @@ comments: false
   letter-spacing: 1px;
 }
 .cat-grid {
-  columns: 200px 2;
-  column-gap: 20px;
+  /* 原来是 CSS 多列（columns），5 个分类时第 2 列只有 2 张卡，
+     下方会留下大半屏空白，且列间高度永远对不齐。
+     改成自适应网格：卡片等高、行自动补齐，窄屏自动降列。 */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  align-items: stretch;
 }
 .cat-card {
-  break-inside: avoid;
+  position: relative;
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(226, 232, 240, 0.8);
   border-radius: 16px;
   padding: 20px;
-  margin-bottom: 16px;
+  /* 卡片内部改为竖排，让计数徽标贴到底部，高度自然一致 */
+  display: flex;
+  flex-direction: column;
+  min-height: 88px;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.35s ease,
               box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
@@ -78,13 +86,17 @@ comments: false
   margin-top: 8px;
 }
 .cat-card-tag {
-  display: inline-block;
+  /* 原来用 opacity:0 隐藏但仍在文档流里，卡片底部被这段“隐形文字”撑出空白。
+     改成绝对定位贴到卡片底部，不占高度，悬停时淡入。 */
+  position: absolute;
+  left: 20px;
+  bottom: 12px;
   font-family: 'Courier New', monospace;
   font-size: 8.5px;
   color: #3b82f6;
-  margin-top: 10px;
   opacity: 0;
   transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 .cat-card:hover .cat-card-tag {
   opacity: 1;

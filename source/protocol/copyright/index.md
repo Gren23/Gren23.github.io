@@ -4,8 +4,6 @@ date: 2026-05-20 09:00:00
 type: "protocol"
 ---
 
-# 📜 版权协议
-
 > 本博客所有原创文章采用以下许可协议
 
 ## 🏛️ Creative Commons

@@ -4,7 +4,7 @@ date: 2026-05-20 09:00:00
 type: "link"
 ---
 
-# 🔗 友链
+## 🔗 友链
 
 > 交换链接，携手共进
 
@@ -199,19 +199,40 @@ type: "link"
 
 <script>
 // ========== 友链动态加载 (link-server API) ==========
-// API 地址：通过 Cloudflare Tunnel 暴露，部署后把 link.hehehey.top 改成你的 tunnel 域名
-window.__LINK_API_BASE__ = window.__LINK_API_BASE__ || "https://link.hehehey.top";
+// API 地址：通过 Cloudflare Tunnel 暴露
+window.__LINK_API_BASE__ = window.__LINK_API_BASE__ || "https://link.hehey.top";
 
 const API_LINKS = window.__LINK_API_BASE__ + "/api/links";
 
+// 属性/文本统一转义（原来只转义 < >，双引号能直接逃出属性，属于 DOM XSS）
+function esc(s) {
+  return String(s == null ? "" : s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+// 只放行 http(s) 和站内相对路径，挡住 javascript:/data: 协议
+function safeUrl(u) {
+  const s = String(u == null ? "" : u).trim();
+  if (!s || s === "#") return "";
+  if (/^(https?:)?\/\//i.test(s)) return s;
+  if (/^\/[^\/]/.test(s)) return s;
+  return "";
+}
+
 // 构造一张友链卡片
 function buildCard(item) {
-  const escape = s => String(s||"").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-  const name = escape(item.name);
-  const desc = escape(item.descr);
-  const avatar = item.avatar && item.avatar !== "#"
-    ? `<img class="friend-avatar no-lightbox" src="${item.avatar}" alt="${name}" onerror="this.outerHTML='<div class=\'friend-avatar\'>'+(this.alt||'?').charAt(0)+'</div>'">`
-    : `<div class="friend-avatar">${name.charAt(0)}</div>`;
+  const name = esc(item.name);
+  const rawName = String(item.name == null ? "" : item.name);
+  const desc = esc(item.descr);
+  const avatarUrl = safeUrl(item.avatar);
+
+  const avatar = avatarUrl
+    ? `<img class="friend-avatar no-lightbox" src="${esc(avatarUrl)}" alt="${name}" loading="lazy" decoding="async" onerror="this.outerHTML='&lt;div class=&quot;friend-avatar&quot;&gt;'+(this.alt||'?').charAt(0)+'&lt;/div&gt;'">`
+    : `<div class="friend-avatar">${esc(rawName.charAt(0))}</div>`;
 
   return `<div class="friend-card" data-name="${name}">
     <div class="friend-active-dot" data-tip="近期活跃"></div>
@@ -254,17 +275,35 @@ function renderLinks(links) {
 }
 
 // 从 API 加载友链
-async function loadLinks() {
+// link.hehey.top 目前返回 502（后端已挂），这里改成两段式：
+//   1) 先读构建期生成的 /data/links.json（_data/link.yml 的静态快照），几乎 0 延迟；
+//   2) 再尝试远程 API，成功则覆盖渲染，失败则安静保留静态列表，不留空窗。
+async function loadRemoteLinks() {
   try {
-    const res = await fetch(API_LINKS, { signal: AbortSignal.timeout(5000) });
+    const res = await fetch(API_LINKS, {
+      signal: AbortSignal.timeout(4000),
+      cache: "no-store"
+    });
     if (!res.ok) throw new Error("HTTP " + res.status);
     const json = await res.json();
-    if (json.code === 200 && json.data) {
+    if (json.code === 200 && Array.isArray(json.data) && json.data.length) {
       renderLinks(json.data);
     }
   } catch (err) {
-    console.warn("[link-server] fetch failed:", err.message);
+    console.warn("[link-server] remote fetch failed, kept static list:", err.message);
   }
+}
+
+async function loadLinks() {
+  try {
+    const res = await fetch("/data/links.json", { credentials: "same-origin" });
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data) && data.length) renderLinks(data);
+    }
+  } catch (e) { /* 快照不存在则直接走远程 */ }
+
+  loadRemoteLinks();
 }
 
 // 活跃名单配置（友链名称放这里即为"活跃"）

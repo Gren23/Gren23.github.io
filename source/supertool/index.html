@@ -4,44 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>独立博主超级工具台 | Blog Studio Pro</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 引入谷歌高质感字体 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <!-- Lucide 图标 -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- 引入轻量级 Markdown 编译器 marked 用于微信排版工具 -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'Noto Sans SC', 'sans-serif'],
-                        mono: ['Fira Code', 'monospace'],
-                    },
-                    colors: {
-                        brand: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            200: '#bae6fd',
-                            300: '#7dd3fc',
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e',
-                            950: '#082f49',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Tailwind CSS：本地预编译静态产物。
+         原来是 cdn.tailwindcss.com 运行时脚本，国内网络拉不到就是整页无样式 -->
+    <link rel="stylesheet" href="/supertool/tailwind.build.css">
+    <!-- Lucide 图标：本地版 -->
+    <script src="/supertool/lucide.min.js"></script>
+    <!-- 轻量 Markdown 编译器 marked：本地版 -->
+    <script src="/supertool/marked.min.js"></script>
     <style>
         body {
             font-family: 'Inter', 'Noto Sans SC', 'sans-serif';
@@ -941,8 +910,13 @@
             const slug = document.getElementById('fm-slug').value || '';
             const date = document.getElementById('fm-date').value || '';
             const author = document.getElementById('fm-author').value || '';
-            const isDraft = document.getElementById('fm-draft').checked;
-            const isComment = document.getElementById('fm-comment').checked;
+            // 这两个复选框在页面上并不存在（早期版本遗留），直接 .checked 会抛
+            // TypeError: Cannot read properties of null，导致整个 Front Matter 生成器失效。
+            // 取不到就按默认值 false 处理。
+            const draftEl = document.getElementById('fm-draft');
+            const commentEl = document.getElementById('fm-comment');
+            const isDraft = draftEl ? draftEl.checked : false;
+            const isComment = commentEl ? commentEl.checked : true;
 
             let output = "";
             if (currentFmFormat === 'yaml') {

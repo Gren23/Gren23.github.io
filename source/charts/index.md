@@ -5,7 +5,7 @@ type: "charts"
 comments: false
 ---
 
-<script src="https://img.hehey.top/echarts.min.js"></script>
+<script src="/lib/echarts.min.js" defer></script>
 
 <style>
 .chart-wrapper {
@@ -26,9 +26,7 @@ comments: false
 
 <center>
 
-# <i class="fas fa-chart-bar" style="margin-right:8px"></i>文章统计
-
-> 自 2025-01 开始统计
+> 自 2025-01 开始统计 · 数据随构建自动更新
 
 </center>
 

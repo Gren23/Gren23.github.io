@@ -5,8 +5,6 @@ type: "census"
 comments: false
 ---
 
-# 📈 博客统计
-
 > 数据更新于 2026-05-24
 
 ## 📊 基础统计

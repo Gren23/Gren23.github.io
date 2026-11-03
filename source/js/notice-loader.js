@@ -1,34 +1,68 @@
 // notice-loader.js
-// 自动从 /notice/ 页面读取第一条公告，注入到侧边栏公告卡片
+// 从 /data/latest-notice.json（构建时生成，约 150B）读取最新公告，注入侧边栏公告卡片。
+// 旧实现会 fetch 整个 /notice/ 页面（约 34KB）只为抠第一条，等于每个页面都多下一次全页请求。
+// 现在改读 JSON，并且全部走 DOM API 而不是拼 HTML 字符串。
 (function () {
-  function getNotice() {
-    fetch('/notice/')
-      .then(function (r) { return r.text(); })
-      .then(function (html) {
-        var parser = new DOMParser();
-        var doc = parser.parseFromString(html, 'text/html');
-        var firstNotice = doc.querySelector('.notice-item');
-        if (!firstNotice) return;
+  'use strict';
 
-        var tag = firstNotice.querySelector('.notice-tag');
-        var date = firstNotice.querySelector('.notice-date');
-        var title = firstNotice.querySelector('.notice-title');
+  var ENDPOINT = '/data/latest-notice.json';
+  var FALLBACK_URL = '/notice/';
 
-        var tagText = tag ? tag.textContent.trim() : '';
-        var dateText = date ? date.textContent.trim() : '';
-        var titleText = title ? title.textContent.trim() : '';
+  function render(card, data) {
+    while (card.firstChild) card.removeChild(card.firstChild);
 
-        var card = document.querySelector('.card-announcement .announcement_content');
-        if (!card) return;
+    var item = document.createElement('div');
+    item.className = 'notice-item';
+    item.style.cssText = 'margin:-12px -12px 0 -12px;padding:0 12px 12px 12px;';
 
-        card.innerHTML = '\n          <div class="notice-item" style="margin:-12px -12px 0 -12px;padding:0 12px 12px 12px;">\n            <div class="notice-header" style="font-size:12px;color:#999;margin-bottom:4px;">\n              ' + tagText + '\n              <span style="float:right;">' + dateText + '</span>\n            </div>\n            <div class="notice-title" style="font-weight:bold;font-size:14px;margin-bottom:6px;">' + titleText + '</div>\n            <div style="font-size:12px;">\n              <a href="/notice/" style="color:#666;">查看全部公告 &raquo;</a>\n            </div>\n          </div>\n        ';
+    var header = document.createElement('div');
+    header.className = 'notice-header';
+    header.style.cssText = 'font-size:12px;color:#999;margin-bottom:4px;';
+    header.appendChild(document.createTextNode(data.tag || ''));
+
+    var date = document.createElement('span');
+    date.style.cssText = 'float:right;';
+    date.textContent = data.date || '';
+    header.appendChild(date);
+
+    var title = document.createElement('div');
+    title.className = 'notice-title';
+    title.style.cssText = 'font-weight:bold;font-size:14px;margin-bottom:6px;';
+    title.textContent = data.title || '';
+
+    var foot = document.createElement('div');
+    foot.style.cssText = 'font-size:12px;';
+    var a = document.createElement('a');
+    a.href = data.url || FALLBACK_URL;
+    a.style.cssText = 'color:#666;';
+    a.textContent = '查看全部公告 »';
+    foot.appendChild(a);
+
+    item.appendChild(header);
+    item.appendChild(title);
+    item.appendChild(foot);
+    card.appendChild(item);
+  }
+
+  function load() {
+    var card = document.querySelector('.card-announcement .announcement_content');
+    if (!card) return;
+
+    // 构建异常时 JSON 不存在，静默保留模板自带的静态内容
+    fetch(ENDPOINT, { credentials: 'same-origin' })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
       })
-      .catch(function () {});
+      .then(function (data) {
+        if (data && data.title) render(card, data);
+      })
+      .catch(function () { /* 保持静态内容 */ });
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', getNotice);
+    document.addEventListener('DOMContentLoaded', load);
   } else {
-    getNotice();
+    load();
   }
 })();

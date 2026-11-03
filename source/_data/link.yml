@@ -1,3 +1,7 @@
-- class_name: 鹿话分组
-  class_desc: 这些是我常读的博客，他们值得被看到
-  link_list: []
+- class_name: '朋友们'
+  class_desc: 交换链接，携手共进
+  link_list:
+  - name: '内部测试'
+    link: 'https://intest.com'
+    avatar: 'https://www.google.com/s2/favicons?domain=intest.com&sz=128'
+    descr: '测试'

@@ -592,12 +592,14 @@ livere:
 
 # Gitalk
 # https://github.com/gitalk/gitalk
+# 安全提示：client_secret 绝不能写进前端模板（会打包进 HTML 明文暴露）。
+# Gitalk 是纯前端 OAuth，只需要 client_id。下面留空，改用 Twikoo。
 gitalk:
-  client_id: Ov23liGVOU9j7eZo8LZl
-  client_secret: 61841f9d8711d3e8558515ba304d2c2557078d67
-  repo: Blogcomments
-  owner: Gren23
-  admin: Gren23
+  client_id:
+  client_secret:
+  repo:
+  owner:
+  admin:
   option:
 
 # Valine
@@ -780,24 +782,29 @@ site_verification:
 
 # Theme color for customize
 # Notice: color value must in double quotes like "#000" or may cause error!
-
-# theme_color:
-#   enable: true
-#   main: "#49B1F5"
-#   paginator: "#00c4b6"
-#   button_hover: "#FF7242"
-#   text_selection: "#00c4b6"
-#   link_color: "#99a9bf"
-#   meta_color: "#858585"
-#   hr_color: "#A4D8FA"
-#   code_foreground: "#F47466"
-#   code_background: "rgba(27, 31, 35, .05)"
-#   toc_color: "#00c4b6"
-#   blockquote_padding_color: "#49b1f5"
-#   blockquote_background_color: "#49b1f5"
-#   scrollbar_color: "#49b1f5"
-#   meta_theme_color_light: "ffffff"
-#   meta_theme_color_dark: "#0d0d0d"
+#
+# 重要：原来这段是整段注释掉的，Hexo 会回退到 themes/butterfly/_config.yml 里的
+# 默认值 —— 而那套是早期的绿色系（#2d5a3b / #4a7c59 / #e07a5f）。
+# 于是链接色、分页器、文字选中、滚动条、引用块边框/底色、代码高亮都变成绿的，
+# 和全站的冷蓝主色 #1677B3 冲突（引用块的绿边框就是这么来的）。
+# 这里显式声明一套对齐 design-system.css 的配色，覆盖主题默认值。
+theme_color:
+  enable: true
+  main: "#1677B3"
+  paginator: "#1677B3"
+  button_hover: "#49B1F5"
+  text_selection: "#1677B3"
+  link_color: "#1677B3"
+  meta_color: "#6B7280"
+  hr_color: "#D6E8F5"
+  code_foreground: "#1677B3"
+  code_background: "rgba(22, 119, 179, .06)"
+  toc_color: "#1677B3"
+  blockquote_padding_color: "#1677B3"
+  blockquote_background_color: "#1677B3"
+  scrollbar_color: "#1677B3"
+  meta_theme_color_light: "ffffff"
+  meta_theme_color_dark: "#0d0d0d"
 
 # The user interface setting of category and tag page
 # Choose: index - same as Homepage UI / default - same as archives UI
@@ -1084,15 +1091,17 @@ css_prefix: true
 inject:
   head:
     - <link rel="stylesheet" href="/css/design-system.css">
-    - <script defer src="https://hm.baidu.com/hm.js?187613fe21d57ca4e614119d64623d28"></script>
+    # 百度统计：async 化，原来会在网络差时把整页 load 事件拖到 6s+
+    - <script async src="https://hm.baidu.com/hm.js?187613fe21d57ca4e614119d64623d28"></script>
   bottom:
-    - <script>window.HYVOR_TALK_WEBSITE = "15451";</script>
-    - <script async src="https://talk.hyvor.com/embed/embed.js" type="module"></script>
+    # 注意：这里原来注入了 Hyvor Talk 的 embed.js（约 6.6s、全站 104 个页面），
+    # 但站点评论用的是 Twikoo，页面里没有任何 hyvor-talk 宿主元素，
+    # 该脚本纯属无用请求，已移除。若将来真要用 Hyvor，在主题 comments.use 里配。
     - <link rel="stylesheet" href="/css/custom-index.css">
     - <link rel="stylesheet" href="/css/custom-notice-tags.css">
     - <link rel="stylesheet" href="/css/inject-fix.css">
     - <script src="/js/vision-network.js" defer></script>
-    - <script src="/js/tag-cloud.js"></script>
+    - <script src="/js/tag-cloud.js" defer></script>
     - <script src="/js/scroll-reveal.js" defer></script>
     - <script src="/js/notice-loader.js" defer></script>
     - <script src="/js/link-apply.js" defer></script>
@@ -1138,7 +1147,8 @@ CDN:
     # egjs_infinitegrid:
     fontawesome: /css/all.min.css
     egjs_infinitegrid: https://img.hehey.top/js/infinitegrid.min.js
-    twikoo: https://cdn.jsdelivr.net/npm/twikoo@1.7.9/dist/twikoo.all.min.js
+    # Twikoo 改本地：原来走 jsdelivr，实测单次加载 7.4s，直接把评论区的可见时间拖到十几秒
+    twikoo: /lib/twikoo.min.js
     # fancybox:
     # fancybox_css:
     # fireworks:
