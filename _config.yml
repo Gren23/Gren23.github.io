@@ -26,8 +26,6 @@ archive_generator: ~
 skip_render:
   - supertool/*.html
   - tools/*/*.html
-  - Gallery/*.html
-
 robotstxt:
   useragent: '*'
   allow:

@@ -274,7 +274,6 @@ noticeOutdate:
 footer:
   nav:
     封面生成: /supertool/ || fas fa-image
-    Front Matter: /tools/frontmatter-generator/ || fas fa-file-code
     文章统计: /charts/ || fas fa-chart-bar
     博客统计: /census/ || fas fa-chart-line
     更新: /update/ || fas fa-sync
@@ -478,7 +477,11 @@ math:
   # Choose: mathjax, katex
   # Leave it empty if you don't need math
   use: mathjax
-  per_page: true
+  # per_page: true 会让【每一页】都从 jsdelivr 加载 MathJax（约 1MB），
+  # 而本站 23 篇文章里只有 markdown.md 真正用到公式。
+  # 该域名在国内被墙，实测每页都会出现 ERR_CONNECTION_RESET。
+  # 改成 false：只有 frontmatter 里写了 mathjax: true 的页面才加载。
+  per_page: false
   hide_scrollbar: false
 
   mathjax:

@@ -10,19 +10,12 @@ menu:
     标签: /tags/ || icon-biaoqian || faa-tada
     分类: /categories/ || icon-fenlei || faa-tada
   休闲 || hide:
-    音乐: /life/music/ ||icon-yinle || faa-tada
-    影院: /life/movies/ ||icon-dianying || faa-tada
-    图片: /life/photos/ || icon-tupian || faa-tada
   社交 || hide:
     留言板: /comments/ || icon-liuyan || faa-tada
     友人帐: /social/link/ || icon-lianjie || faa-tada
   网站 || hide:
     网站统计: /site/census/ || icon-wangzhan || faa-tada
-    文章统计: /site/echarts/ || icon-jiaoyujiaoxue- || faa-tada
-    旧时光: /site/time/ || icon-xianxingshalou || faa-tada
   个人 || hide:
-    唠叨: /personal/bb/ || icon-icon-test || faa-tada
-    关于: /personal/about/ || icon-geren || faa-tada
 
 # Code Blocks (代碼相關)
 # --------------------------------------

@@ -1,4 +1,4 @@
-/** Tailwind 预编译配置：给 /supertool/ 与 /tools/frontmatter-generator/ 两个独立工具页生成静态 CSS。
+/** Tailwind 预编译配置：给 /supertool/ 独立工具页生成静态 CSS。
  *  页面原本用 <script src="https://cdn.tailwindcss.com"></script> 运行时生成样式，
  *  国内网络下该域名经常拉不下来，导致整页无样式（tailwind is not defined）。
  *  这里把用到的类一次性编译成静态文件 source/supertool/tailwind.build.css。
@@ -7,7 +7,6 @@ module.exports = {
   darkMode: 'class',
   content: [
     './source/supertool/index.html',
-    './source/tools/frontmatter-generator/index.html',
     './source/supertool/*.js',
   ],
   theme: {

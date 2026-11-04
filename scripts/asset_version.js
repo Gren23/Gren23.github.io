@@ -51,18 +51,25 @@ function countHtml(pub) {
   return walk(pub, []).filter(function (f) { return f.endsWith('.html') }).length
 }
 
+let lastCount = -1
+
 function doVersion(attempt) {
   const pub = hexo.public_dir
   const log = hexo.log
 
-  // 关键：必须等 HTML 全部落盘。之前只判资源在不在，
-  // 结果 hash 副本一写出来就提前触发，此时 HTML 还没生成 → 0 个被改写。
+  // 必须等 HTML 全部落盘再动手。
+  // 判据：连续两次扫描数量相同（说明写入已停止），且至少有个位数的页面。
+  // 不能写死阈值——页面会增删（曾因写死 100 在 94 页时永不触发；
+  // 改成 >=10 又会在只写了 18 个时就提前触发）。
   const htmlCount = countHtml(pub)
-  if (htmlCount < 100) {
-    if (attempt < 120) {
+  const settled = htmlCount === lastCount && htmlCount > 5
+  lastCount = htmlCount
+
+  if (!settled) {
+    if (attempt < 300) {
       setTimeout(function () { doVersion(attempt + 1) }, 100)
     } else {
-      log.warn('asset_version: gave up, only %d html files after %d attempts', htmlCount, attempt)
+      log.warn('asset_version: gave up, html never settled (last count %d, %d attempts)', htmlCount, attempt)
     }
     return
   }
