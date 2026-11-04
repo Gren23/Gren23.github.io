@@ -347,18 +347,66 @@ var SITE = {
 
 ## 七、图标子集化（改图标时必看）
 
-`source/webfonts/` 里的三份 woff2 **已被裁剪到只剩 51 个字形**（237KB → 11.5KB）。
+`source/webfonts/` 里的三份 woff2 **已被裁剪**（237KB → 约 9.8KB）。
+solid 71 字形 / brands 7 / regular 2。
 
-如果新页面用了之前没用过的 `fa-*` 图标，字体里没有对应字形 → 显示成方块。
+如果新页面用了之前没用过的 `fa-*` 图标，字体里没有对应字形 → 显示空白。
 
-**重跑方法**（脚本在 `.scratch/subset_fonts4.py`，需 `fonttools`）：
+### 重跑方法
 
 ```powershell
 $py='C:\Users\Administrator\.dsh\dsh-runtimes\dsh-primary-runtime\dependencies\python\python.exe'
-& $py -X utf8 D:\blog\.scratch\subset_fonts4.py     # 会扫 public/ 里的实际用到的图标
+& $py -X utf8 D:\blog\.scratch\tools\refont3.py
+# 然后把 .scratch/fontsub/ 下的 woff2 拷到 source/webfonts/
 ```
 
 原始字体备份在 `.scratch/fontsub/original/`。
+
+### 三个坑（都是实际踩过的）
+
+**坑 1：`.notdef` 不是缺字标志**
+
+用 fontTools 查 cmap 时，字形名全是 `.notdef.xxx`。这不是字体坏了 ——
+FA 官方 woff2 本身就剥离了字形名，原始字体也是 1993 个 `.notdef`。
+不能用字形名判断有没有该字形。
+
+**坑 2：按宽度检测会误判**
+
+用 `measureText` 比对宽度时，`fa-arrow-up`、`fa-times` 的字形宽度
+恰好等于缺字方块宽度（都是 12px），被误判为缺失。
+正确做法是**逐像素比对 alpha 通道**（见 `.scratch/tools/fullcheck.js`）。
+
+**坑 3：改了字形但用户看不到（最坑）**
+
+字体文件名固定为 `fa-solid-900.woff2`，浏览器按 URL 缓存，换字体不重下。
+所以补了字形也白补，用户端还是旧字体。
+
+**已通过 `asset_version.js` 解决**：字体现在带内容哈希
+（`fa-solid-900.38bcece5.woff2`），内容一变文件名就变。
+**新增图标只需重跑 refont3.py + 重新构建，不用再管缓存。**
+
+### 验证图标是否真的渲染
+
+```powershell
+cd D:\blog\.scratch\tools
+& $node fullcheck.js http://127.0.0.1:4100      # 本地（静态服务器）
+& $node fullcheck.js https://www.hehehey.top    # 线上
+```
+
+会报告全站每个页面上未渲染的图标。
+
+### 验证构建产物必须用静态服务器
+
+`hexo server` **不读 `public/` 目录**，它在内存里自己渲染。
+所以 `asset_version.js` 的哈希改写对 `hexo server` 完全无效。
+
+验证 `public/` 里的真实产物要用：
+
+```powershell
+$py -m http.server 4100 --bind 127.0.0.1 --directory D:\blog\public
+```
+
+这个坑导致两次误判「字体已修好」，实际线上还是旧的。
 
 ---
 
