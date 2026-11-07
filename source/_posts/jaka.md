@@ -292,6 +292,3 @@ https://www.jaka.com/download
 - JAKA标准接口通信配置：https://docs.mech-mind.net/zh/robot-integration/latest/standard-interface-robot/jaka-setup-instructions.html
 - JAKA自动标定：https://docs.mech-mind.net/zh/robot-integration/latest/standard-interface-robot/jaka-calibration-program.html
 - JAKA程序实现标准接口：https://docs.mech-mind.net/zh/robot-integration/latest/standard-interface-robot/jaka-program-implementation.html
-
-文档创建：2026-04-02
-如有问题请联系梅卡曼德技术支持

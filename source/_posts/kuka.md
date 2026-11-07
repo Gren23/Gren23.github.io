@@ -315,6 +315,3 @@ Ethernet KRL版本对应：
 - KUKA标准接口通信配置：https://docs.mech-mind.net/zh/robot-integration/latest/standard-interface-robot/kuka-setup-instructions.html
 - KUKA自动标定：https://docs.mech-mind.net/zh/robot-integration/latest/standard-interface-robot/kuka-calibration-program.html
 - KUKA标准接口指令：https://docs.mech-mind.net/zh/robot-integration/latest/standard-interface-robot/kuka-interface-commands.html
-
-文档创建：2026-04-02
-如有问题请联系梅卡曼德技术支持

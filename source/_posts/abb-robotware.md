@@ -340,6 +340,3 @@ ABB机器人通过RobotWare系统与梅卡曼德视觉系统通信，支持自�
 - ABB RobotWare 6：https://docs.mech-mind.net/zh/robot-integration/latest/standard-interface-robot/abb-setup-instructions.html
 - ABB RobotWare 7：https://docs.mech-mind.net/zh/robot-integration/latest/standard-interface-robot/abb-robotware7.html
 - ABB标准接口指令：https://docs.mech-mind.net/zh/robot-integration/latest/standard-interface-robot/abb-interface-commands.html
-
-文档创建：2026-04-02
-如有问题请联系梅卡曼德技术支持

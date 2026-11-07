@@ -273,6 +273,3 @@ CGXi机器人通过控制器与梅卡曼德视觉系统通信，使用TCP协议�
 
 - CGXi标准接口通信配置：https://docs.mech-mind.net/zh/robot-integration/latest/standard-interface-robot/cgxi-setup-instructions.html
 - CGXi自动标定：https://docs.mech-mind.net/zh/robot-integration/latest/standard-interface-robot/cgxi-calibration-program.html
-
-文档创建：2026-04-02
-如有问题请联系梅卡曼德技术支持

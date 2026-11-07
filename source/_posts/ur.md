@@ -317,6 +317,3 @@ A：检查 TCP 是否正确设置，抓取点/放置点是否需要重新示教
 - UR E系列：https://docs.mech-mind.net/zh/robot-integration/latest/standard-interface-robot/ur-e-series150.html
 - UR CB系列：https://docs.mech-mind.net/zh/robot-integration/latest/standard-interface-robot/ur-cb-series.html
 - UR X系列：https://docs.mech-mind.net/zh/robot-integration/latest/standard-interface-robot/ur-x-series.html
-
-文档创建：2026-04-02
-如有问题请联系梅卡曼德技术支持

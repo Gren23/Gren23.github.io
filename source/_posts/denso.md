@@ -275,6 +275,3 @@ DENSO机器人通过RC8控制器与梅卡曼德视觉系统通信，使用TCP协
 - DENSO标准接口通信配置：https://docs.mech-mind.net/zh/robot-integration/latest/standard-interface-robot/denso-setup-instructions.html
 - DENSO自动标定：https://docs.mech-mind.net/zh/robot-integration/latest/standard-interface-robot/denso-calibration-program.html
 - DENSO标准接口指令：https://docs.mech-mind.net/zh/robot-integration/latest/standard-interface-robot/denso-interface-commands.html
-
-文档创建：2026-04-02
-如有问题请联系梅卡曼德技术支持

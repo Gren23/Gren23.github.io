@@ -259,6 +259,3 @@ DOBOT CR系列机器人通过DobotStudio Pro软件与梅卡曼德视觉系统通
 
 - DOBOT CR系列：https://docs.mech-mind.net/zh/robot-integration/latest/standard-interface-robot/dobot-setup-instructions-cr.html
 - DOBOT CRA系列：https://docs.mech-mind.net/zh/robot-integration/latest/standard-interface-robot/dobot-setup-instructions-cra.html
-
-文档创建：2026-04-02
-如有问题请联系梅卡曼德技术支持
