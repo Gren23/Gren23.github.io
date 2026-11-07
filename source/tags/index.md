@@ -7,6 +7,15 @@ comments: false
 
 <style>
 #page-site-info { text-align: left !important; }
+
+/* 加载提示 */
+.tag-card-loading {
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  color: #94a3b8;
+  padding: 20px 4px;
+  letter-spacing: 1px;
+}
 </style>
 
 {% raw %}
@@ -16,54 +25,10 @@ comments: false
   <div class="tag-card-grid" id="tagGrid">
     <!-- 正交投影 X-Y 双轴准星 -->
     <div id="point-cloud-axis-x"></div>
-    <div id="point-cloud-axis-y"></div>
+    <div id="point-cloud-axis-y"></div><div id="point-cloud-axis-y"></div>
 
-    <a href="/tags/梅卡曼德/" class="tag-card-item" style="font-size: 1.50em;">梅卡曼德<span class="tag-card-count">12</span><div class="tag-point-telemetry">[C:01] [Z:385.2mm] [LOCK]</div></a>
-    <a href="/tags/Mech-Vision/" class="tag-card-item" style="font-size: 1.27em;">Mech-Vision<span class="tag-card-count">3</span><div class="tag-point-telemetry">[C:02] [Z:210.5mm] [LOCK]</div></a>
-    <a href="/tags/SOP/" class="tag-card-item" style="font-size: 1.25em;">SOP<span class="tag-card-count">2</span><div class="tag-point-telemetry">[C:03] [Z:156.8mm] [LOCK]</div></a>
-    <a href="/tags/拆垛/" class="tag-card-item" style="font-size: 1.25em;">拆垛<span class="tag-card-count">2</span><div class="tag-point-telemetry">[C:04] [Z:198.3mm] [LOCK]</div></a>
-    <a href="/tags/YASKAWA/" class="tag-card-item" style="font-size: 1.25em;">YASKAWA<span class="tag-card-count">2</span><div class="tag-point-telemetry">[C:05] [Z:245.1mm] [LOCK]</div></a>
-    <a href="/tags/安川/" class="tag-card-item" style="font-size: 1.25em;">安川<span class="tag-card-count">2</span><div class="tag-point-telemetry">[C:06] [Z:177.9mm] [LOCK]</div></a>
-    <a href="/tags/VisionMaster/" class="tag-card-item" style="font-size: 1.25em;">VisionMaster<span class="tag-card-count">2</span><div class="tag-point-telemetry">[C:07] [Z:302.4mm] [LOCK]</div></a>
-    <a href="/tags/3D视觉/" class="tag-card-item" style="font-size: 1.22em;">3D视觉<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:08] [Z:88.6mm] [LOCK]</div></a>
-    <a href="/tags/手眼标定/" class="tag-card-item" style="font-size: 1.22em;">手眼标定<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:09] [Z:133.7mm] [LOCK]</div></a>
-    <a href="/tags/ABB/" class="tag-card-item" style="font-size: 1.22em;">ABB<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:10] [Z:267.3mm] [LOCK]</div></a>
-    <a href="/tags/RobotWare/" class="tag-card-item" style="font-size: 1.22em;">RobotWare<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:11] [Z:195.8mm] [LOCK]</div></a>
-    <a href="/tags/CGXi/" class="tag-card-item" style="font-size: 1.22em;">CGXi<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:12] [Z:344.2mm] [LOCK]</div></a>
-    <a href="/tags/希克斯/" class="tag-card-item" style="font-size: 1.22em;">希克斯<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:13] [Z:421.1mm] [LOCK]</div></a>
-    <a href="/tags/DENSO/" class="tag-card-item" style="font-size: 1.22em;">DENSO<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:14] [Z:112.9mm] [LOCK]</div></a>
-    <a href="/tags/电装/" class="tag-card-item" style="font-size: 1.22em;">电装<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:15] [Z:78.4mm] [LOCK]</div></a>
-    <a href="/tags/DOBOT/" class="tag-card-item" style="font-size: 1.22em;">DOBOT<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:16] [Z:356.7mm] [LOCK]</div></a>
-    <a href="/tags/越疆/" class="tag-card-item" style="font-size: 1.22em;">越疆<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:17] [Z:289.3mm] [LOCK]</div></a>
-    <a href="/tags/ELITE/" class="tag-card-item" style="font-size: 1.22em;">ELITE<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:18] [Z:201.5mm] [LOCK]</div></a>
-    <a href="/tags/艾利特/" class="tag-card-item" style="font-size: 1.22em;">艾利特<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:19] [Z:167.8mm] [LOCK]</div></a>
-    <a href="/tags/ESTUN/" class="tag-card-item" style="font-size: 1.22em;">ESTUN<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:20] [Z:234.6mm] [LOCK]</div></a>
-    <a href="/tags/埃斯顿/" class="tag-card-item" style="font-size: 1.22em;">埃斯顿<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:21] [Z:312.9mm] [LOCK]</div></a>
-    <a href="/tags/JAKA/" class="tag-card-item" style="font-size: 1.22em;">JAKA<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:22] [Z:145.3mm] [LOCK]</div></a>
-    <a href="/tags/节卡/" class="tag-card-item" style="font-size: 1.22em;">节卡<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:23] [Z:398.1mm] [LOCK]</div></a>
-    <a href="/tags/FANUC/" class="tag-card-item" style="font-size: 1.22em;">FANUC<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:24] [Z:223.7mm] [LOCK]</div></a>
-    <a href="/tags/发那科/" class="tag-card-item" style="font-size: 1.22em;">发那科<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:25] [Z:71.2mm] [LOCK]</div></a>
-    <a href="/tags/KUKA/" class="tag-card-item" style="font-size: 1.22em;">KUKA<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:26] [Z:456.8mm] [LOCK]</div></a>
-    <a href="/tags/库卡/" class="tag-card-item" style="font-size: 1.22em;">库卡<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:27] [Z:189.4mm] [LOCK]</div></a>
-    <a href="/tags/方案构建/" class="tag-card-item" style="font-size: 1.22em;">方案构建<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:28] [Z:334.5mm] [LOCK]</div></a>
-    <a href="/tags/Markdown/" class="tag-card-item" style="font-size: 1.22em;">Markdown<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:29] [Z:62.1mm] [LOCK]</div></a>
-    <a href="/tags/外挂标签/" class="tag-card-item" style="font-size: 1.22em;">外挂标签<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:30] [Z:108.9mm] [LOCK]</div></a>
-    <a href="/tags/步骤参考/" class="tag-card-item" style="font-size: 1.22em;">步骤参考<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:31] [Z:278.6mm] [LOCK]</div></a>
-    <a href="/tags/安装/" class="tag-card-item" style="font-size: 1.22em;">安装<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:32] [Z:445.2mm] [LOCK]</div></a>
-    <a href="/tags/图床/" class="tag-card-item" style="font-size: 1.22em;">图床<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:33] [Z:93.7mm] [LOCK]</div></a>
-    <a href="/tags/nsfw/" class="tag-card-item" style="font-size: 1.22em;">nsfw<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:34] [Z:367.4mm] [LOCK]</div></a>
-    <a href="/tags/辅助工具/" class="tag-card-item" style="font-size: 1.22em;">辅助工具<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:35] [Z:156.9mm] [LOCK]</div></a>
-    <a href="/tags/ModbusTCP/" class="tag-card-item" style="font-size: 1.22em;">ModbusTCP<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:36] [Z:412.3mm] [LOCK]</div></a>
-    <a href="/tags/西门子/" class="tag-card-item" style="font-size: 1.22em;">西门子<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:37] [Z:234.8mm] [LOCK]</div></a>
-    <a href="/tags/PLC/" class="tag-card-item" style="font-size: 1.22em;">PLC<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:38] [Z:89.5mm] [LOCK]</div></a>
-    <a href="/tags/模板/" class="tag-card-item" style="font-size: 1.22em;">模板<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:39] [Z:301.6mm] [LOCK]</div></a>
-    <a href="/tags/TM/" class="tag-card-item" style="font-size: 1.22em;">TM<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:40] [Z:178.2mm] [LOCK]</div></a>
-    <a href="/tags/创孔/" class="tag-card-item" style="font-size: 1.22em;">创孔<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:41] [Z:256.9mm] [LOCK]</div></a>
-    <a href="/tags/UR/" class="tag-card-item" style="font-size: 1.22em;">UR<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:42] [Z:389.7mm] [LOCK]</div></a>
-    <a href="/tags/优傲/" class="tag-card-item" style="font-size: 1.22em;">优傲<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:43] [Z:123.4mm] [LOCK]</div></a>
-    <a href="/tags/通信基础/" class="tag-card-item" style="font-size: 1.22em;">通信基础<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:44] [Z:345.8mm] [LOCK]</div></a>
-    <a href="/tags/通讯/" class="tag-card-item" style="font-size: 1.22em;">通讯<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:45] [Z:167.1mm] [LOCK]</div></a>
-    <a href="/tags/入门/" class="tag-card-item" style="font-size: 1.22em;">入门<span class="tag-card-count">1</span><div class="tag-point-telemetry">[C:46] [Z:422.5mm] [LOCK]</div></a>
+    <!-- 卡片由 JS 从 /api/tags.json 动态生成，增删文章自动同步 -->
+    <div class="tag-card-loading" id="tagLoading">加载中…</div>
   </div>
 </div>
 {% endraw %}
@@ -223,30 +188,116 @@ comments: false
 </style>
 
 <script>
-// 三维特征点正交对准轴运动脚本
-document.addEventListener('DOMContentLoaded', function() {
-  var tagAxisX = document.getElementById('point-cloud-axis-x');
-  var tagAxisY = document.getElementById('point-cloud-axis-y');
+(function () {
+  'use strict';
 
-  function trackTagTarget(element) {
-    var parent = element.offsetParent;
-    var elementCenterX = element.offsetLeft + element.offsetWidth / 2;
-    var elementCenterY = element.offsetTop + element.offsetHeight / 2;
-
-    tagAxisX.style.top = elementCenterY + 'px';
-    tagAxisY.style.left = elementCenterX + 'px';
-    tagAxisX.style.display = 'block';
-    tagAxisY.style.display = 'block';
+  // ===== 字体大小分档（按文章数）=====
+  // 保持原有的视觉层级：12+ 篇最大，3+ 次之，2+ 再次，1 最小
+  function fontSizeOf(count) {
+    if (count >= 10) return 1.50;
+    if (count >= 5) return 1.30;
+    if (count >= 3) return 1.27;
+    if (count >= 2) return 1.25;
+    return 1.22;
   }
 
-  function untrackTagTarget() {
-    tagAxisX.style.display = 'none';
-    tagAxisY.style.display = 'none';
+  // ===== 遥测坐标（纯装饰，用稳定伪随机保证刷新不变）=====
+  function telemetryOf(name, index) {
+    // 用标签名做种子，保证同一标签每次显示相同数值
+    var seed = 0;
+    for (var i = 0; i < name.length; i++) {
+      seed = (seed * 31 + name.charCodeAt(i)) % 100000;
+    }
+    var z = (seed % 4000) / 10 + 40;          // 40.0 ~ 440.0
+    var code = String(index + 1).padStart(2, '0');
+    return '[C:' + code + '] [Z:' + z.toFixed(1) + 'mm] [LOCK]';
   }
 
-  document.querySelectorAll('.tag-card-item').forEach(function(item) {
-    item.addEventListener('mouseenter', function() { trackTagTarget(item); });
-    item.addEventListener('mouseleave', untrackTagTarget);
-  });
-});
+  // ===== 渲染卡片 =====
+  function render(tags) {
+    var grid = document.getElementById('tagGrid');
+    var loading = document.getElementById('tagLoading');
+    if (!grid) return;
+    if (loading) loading.remove();
+
+    // 按文章数降序，同数量按名称排
+    tags.sort(function (a, b) {
+      if (b.length !== a.length) return b.length - a.length;
+      return a.name.localeCompare(b.name, 'zh');
+    });
+
+    var frag = document.createDocumentFragment();
+    tags.forEach(function (tag, idx) {
+      var a = document.createElement('a');
+      a.href = '/tags/' + encodeURIComponent(tag.name) + '/';
+      a.className = 'tag-card-item';
+      a.style.fontSize = fontSizeOf(tag.length) + 'em';
+
+      var nameSpan = document.createElement('span');
+      nameSpan.textContent = tag.name;
+      a.appendChild(nameSpan);
+
+      var countSpan = document.createElement('span');
+      countSpan.className = 'tag-card-count';
+      countSpan.textContent = tag.length;
+      a.appendChild(countSpan);
+
+      var tele = document.createElement('div');
+      tele.className = 'tag-point-telemetry';
+      tele.textContent = telemetryOf(tag.name, idx);
+      a.appendChild(tele);
+
+      frag.appendChild(a);
+    });
+
+    grid.appendChild(frag);
+
+    // 绑定准星追踪（原有效果）
+    var axisX = document.getElementById('point-cloud-axis-x');
+    var axisY = document.getElementById('point-cloud-axis-y');
+    if (!axisX || !axisY) return;
+
+    grid.querySelectorAll('.tag-card-item').forEach(function (item) {
+      item.addEventListener('mouseenter', function () {
+        var cx = item.offsetLeft + item.offsetWidth / 2;
+        var cy = item.offsetTop + item.offsetHeight / 2;
+        axisX.style.top = cy + 'px';
+        axisY.style.left = cx + 'px';
+        axisX.style.display = 'block';
+        axisY.style.display = 'block';
+      });
+      item.addEventListener('mouseleave', function () {
+        axisX.style.display = 'none';
+        axisY.style.display = 'none';
+      });
+    });
+  }
+
+  // ===== 加载数据 =====
+  function load() {
+    fetch('/api/tags.json')
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (tags) {
+        if (!Array.isArray(tags) || tags.length === 0) throw new Error('空数据');
+        render(tags);
+      })
+      .catch(function (err) {
+        var loading = document.getElementById('tagLoading');
+        if (loading) {
+          loading.textContent = '标签加载失败：' + err.message;
+          loading.style.color = '#ef4444';
+        }
+        console.error('[tags] 加载失败', err);
+      });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', load);
+  } else {
+    load();
+  }
+})();
 </script>

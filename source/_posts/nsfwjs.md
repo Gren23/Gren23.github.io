@@ -1,7 +1,6 @@
 ---
 title: 兰空图床图片审核-nsfwjs配置
 slug: nsfwjs
-mathjax: true
 abbrlink: 1ebbe831
 date: 2025-02-23 09:51:10
 description: 🥧本文简单介绍图床内容审核功能的搭建

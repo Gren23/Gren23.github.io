@@ -25,7 +25,6 @@ archive_generator: ~
 # 原样拷贝、不做 Markdown/模板渲染的静态页
 skip_render:
   - supertool/*.html
-  - tools/*/*.html
 robotstxt:
   useragent: '*'
   allow:
