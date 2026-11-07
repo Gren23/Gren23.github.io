@@ -480,7 +480,7 @@ math:
   # Leave it empty if you don't need math
   use: mathjax
   # per_page: true 会让【每一页】都从 jsdelivr 加载 MathJax（约 1MB），
-  # 而本站 23 篇文章里只有 markdown.md 真正用到公式。
+  # 而本站真正用到公式的只有少数几篇（当前: nsfwjs.md）。
   # 该域名在国内被墙，实测每页都会出现 ERR_CONNECTION_RESET。
   # 改成 false：只有 frontmatter 里写了 mathjax: true 的页面才加载。
   per_page: false
@@ -1121,7 +1121,11 @@ CDN:
   # Note: Dev version can only use 'local' for internal scripts
   # Note: When setting third-party scripts to 'local', you need to install hexo-butterfly-extjs
   internal_provider: local
-  third_party_provider: jsdelivr
+  # 原来是 jsdelivr。但本站所有第三方资源都已本地化（fontawesome/twikoo 指向 /css/、/lib/），
+  # 且 gitalk/utterances 均为空（评论用 Twikoo），jsdelivr 一次都不会真的请求。
+  # 只有 preconnect.pug 会因为 != local 而白渲染一条 preconnect。
+  # 改成 local 后不再产生任何 cdn.jsdelivr.net 的预连接。
+  third_party_provider: local
 
   # Add version number to url, true or false
   version: true

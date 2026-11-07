@@ -1058,8 +1058,10 @@ css_prefix: true
 inject:
   head:
     # - <link rel="stylesheet" href="/xxx.css">
-    - <link rel="preconnect" href="https://fonts.googleapis.com">
-    - <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    # 已移除 google fonts 的 preconnect：
+    #   本站字体全用系统字体 + 本地子集化 FontAwesome，
+    #   全站 94 个页面零引用 fonts.googleapis/gstatic。
+    #   这两条会白做 DNS+TLS 握手（实测 gstatic TLS 389ms、googleapis 102ms）。
   bottom:
     # - <script src="xxxx"></script>
 

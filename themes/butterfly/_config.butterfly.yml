@@ -888,9 +888,8 @@ css_prefix: true
 inject:
   head:
     # - <link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"> # 常规css
-    - <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    - <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    - <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+    # 已移除 google fonts（preconnect x2 + Inter/JetBrains Mono 样式表）：
+    #   本站用系统字体，全站零引用，留着只会白付握手成本。
     # 综合美化模块样式引入
     - <style id="themeColor"></style> # 主题色
     - <style id="rightSide"></style> # 侧边栏
