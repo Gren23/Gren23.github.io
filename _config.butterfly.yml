@@ -1099,8 +1099,6 @@ inject:
     # 而主题只声明了 /img/favicon.png，导致每次访问多一个 404。
     - <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
     - <link rel="stylesheet" href="/css/design-system.css">
-    # 百度统计：async 化，原来会在网络差时把整页 load 事件拖到 6s+
-    - <script async src="https://hm.baidu.com/hm.js?187613fe21d57ca4e614119d64623d28"></script>
   bottom:
     # 注意：这里原来注入了 Hyvor Talk 的 embed.js（约 6.6s、全站 104 个页面），
     # 但站点评论用的是 Twikoo，页面里没有任何 hyvor-talk 宿主元素，

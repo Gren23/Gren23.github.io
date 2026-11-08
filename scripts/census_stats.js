@@ -62,16 +62,44 @@ hexo.extend.filter.register('after_render:html', function (locals) {
     <div class="stat-label">总字数(万)</div>
   </div>
   <div class="stat-card">
-    <div class="stat-number">${totalWords}</div>
-    <div class="stat-label">总词数</div>
-  </div>
-  <div class="stat-card">
     <div class="stat-number">${topMonth}</div>
     <div class="stat-label">最活跃月(${topMonthCount}篇)</div>
   </div>
 </div>`
 
+    // ---------- 月度趋势（纯 CSS 柱状图，零 JS 依赖）----------
+    const monthKeys = Object.keys(monthMap).sort()
+    const maxCount = Math.max(...Object.values(monthMap), 1)
+    const barsHtml = monthKeys.map(m => {
+      const c = monthMap[m]
+      const h = Math.round((c / maxCount) * 100)
+      const label = m.slice(2)          // 2025-09 -> 25-09
+      return `<div class="census-bar-wrap" title="${m}：${c} 篇">
+        <div class="census-bar-count">${c}</div>
+        <div class="census-bar" style="height:${h}%"></div>
+        <div class="census-bar-label">${label}</div>
+      </div>`
+    }).join('')
+
+    // ---------- 最后更新时间 ----------
+    const now = moment().format('YYYY-MM-DD HH:mm')
+    const metaHtml = `<div class="census-meta">数据生成于 ${now}（每次构建自动更新）</div>`
+
+    const trendHtml = `
+<div class="census-trend">
+  <div class="census-trend-bars">${barsHtml}</div>
+</div>`
+
     census.after(statsHtml)
+    census.parent().append(metaHtml)
+
+    // 趋势图插入到专用容器 #census-trend
+    const trendSlot = $('#census-trend')
+    if (trendSlot.length > 0) {
+      trendSlot.html('<div class="census-trend-bars">' + barsHtml + '</div>')
+      // 给容器本身套上 census-trend 的卡片样式
+      trendSlot.addClass('census-trend')
+    }
   }
 
   return $.root().html()
