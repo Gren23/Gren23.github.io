@@ -1,0 +1,80 @@
+/* ==========================================================================
+   微信公众号排版微样式
+   仅作用于 #wechat-preview 容器（Markdown 转公众号富文本的预览区）。
+   全部 !important 是刻意的：要压过 Tailwind 的 prose 默认样式。
+   ========================================================================== */
+
+#wechat-preview h1 {
+            font-size: 1.45em !important;
+            font-weight: bold !important;
+            color: #0284c7 !important;
+            border-bottom: 2px solid #bae6fd !important;
+            padding-bottom: 6px !important;
+            margin-top: 1.5em !important;
+            margin-bottom: 0.8em !important;
+        }
+        #wechat-preview h2 {
+            font-size: 1.25em !important;
+            font-weight: bold !important;
+            color: #0c4a6e !important;
+            margin-top: 1.3em !important;
+            margin-bottom: 0.6em !important;
+            display: flex !important;
+            align-items: center !important;
+        }
+        #wechat-preview h2::before {
+            content: "◆";
+            color: #0ea5e9;
+            margin-right: 6px;
+            font-size: 0.8em;
+        }
+        #wechat-preview p {
+            line-height: 1.75 !important;
+            color: #374151 !important;
+            margin-bottom: 1.2em !important;
+            text-align: justify !important;
+            font-size: 14px !important;
+        }
+        #wechat-preview pre {
+            background-color: #f1f5f9 !important;
+            border-radius: 12px !important;
+            padding: 14px !important;
+            overflow-x: auto !important;
+            border: 1px solid #cbd5e1 !important;
+            margin-bottom: 1.2em !important;
+        }
+        #wechat-preview code {
+            font-family: 'Fira Code', 'JetBrains Mono', monospace !important;
+            font-size: 12px !important;
+            color: #334155 !important; /* 修复4: 微信排版中的代码块字体前景色设为深灰色，保障对比度 */
+        }
+        #wechat-preview p code {
+            background-color: #f0f9ff !important;
+            color: #0284c7 !important;
+            padding: 2px 6px !important;
+            border-radius: 4px !important;
+            font-size: 13px !important;
+            border: 1px solid #bae6fd !important;
+        }
+        #wechat-preview blockquote {
+            border-left: 4px solid #0284c7 !important;
+            background-color: #f0f9ff !important;
+            padding: 12px 16px !important;
+            margin-bottom: 1.2em !important;
+            border-radius: 0 8px 8px 0 !important;
+            color: #075985 !important;
+        }
+        #wechat-preview blockquote p {
+            margin-bottom: 0 !important;
+            color: #075985 !important;
+        }
+        #wechat-preview ul, #wechat-preview ol {
+            margin-bottom: 1.2em !important;
+            padding-left: 20px !important;
+            font-size: 14px !important;
+            color: #374151 !important;
+        }
+        #wechat-preview li {
+            margin-bottom: 0.4em !important;
+            line-height: 1.6 !important;
+        }
