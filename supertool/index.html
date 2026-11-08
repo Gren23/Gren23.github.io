@@ -1,83 +1,180 @@
-<!DOCTYPE html>
-<html lang="zh-CN" class="light">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>独立博主超级工具台 | Blog Studio Pro</title>
-    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
-    <!-- Tailwind CSS：本地预编译静态产物。
-         原来是 cdn.tailwindcss.com 运行时脚本，国内网络拉不到就是整页无样式 -->
-    <link rel="stylesheet" href="/supertool/tailwind.build.css">
-    <!-- Lucide 图标：本地版 -->
-    <script src="/supertool/lucide.min.js"></script>
-    <!-- 轻量 Markdown 编译器 marked：本地版 -->
-    <script src="/supertool/marked.min.js"></script>
-    <style>
-        body {
-            font-family: 'Inter', 'Noto Sans SC', 'sans-serif';
-            background-color: #f8fafc;
-            color: #334155; /* 修复1: 整体文字颜色改为深灰色，确保亮色下清晰可读 */
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><meta name="baidu-site-verification" content="codeva-hfv5Au82rN"><title>超级工作台 | G/ren的小破站</title><meta name="author" content="G/ren"><meta name="copyright" content="G/ren"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="封面生成                        Front Matter                        微信/自媒体排版                        图片极速 WebP 压缩">
+<meta property="og:type" content="website">
+<meta property="og:title" content="超级工作台">
+<meta property="og:url" content="https://www.hehehey.top/supertool/index.html">
+<meta property="og:site_name" content="G/ren的小破站">
+<meta property="og:description" content="封面生成                        Front Matter                        微信/自媒体排版                        图片极速 WebP 压缩">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.hehehey.top/img/%E5%A4%B4%E5%83%8F.JPG">
+<meta property="article:published_time" content="2026-11-08T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-11-08T05:05:20.724Z">
+<meta property="article:author" content="G/ren">
+<meta property="article:tag" content="机器视觉,Vision Master,Mech-Vision,视觉定位,海康,Hexo博客,技术分享,编程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.hehehey.top/img/%E5%A4%B4%E5%83%8F.JPG"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.hehehey.top/supertool/index.html"><link rel="preconnect"><link rel="stylesheet" href="/css/index.24ab2dec.css"><link rel="stylesheet" href="/css/all.min.07ac87dd.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
         }
-        /* 自定义美化滚动条 */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #e2e8f0;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-    </style>
-</head>
-<body class="min-h-screen flex flex-col antialiased selection:bg-brand-500/30 selection:text-brand-900">
+        return value
+      }
+    }
 
-    <!-- 顶部导航栏 -->
-    <header class="border-b border-slate-200/80 bg-white/80 backdrop-blur-md sticky top-0 z-50 px-6 py-4">
-        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-                <a href="/">
-                    <div class="p-2.5 bg-gradient-to-tr from-blue-500 to-indigo-600 rounded-xl text-white shadow-lg shadow-brand-500/20 hover:scale-105 transition-transform">
-                        <i data-lucide="layout-grid" class="w-6 h-6"></i>
-                    </div>
-                </a>
-                <div>
-                    <h1 class="text-lg font-bold tracking-tight text-slate-800 flex items-center gap-2">
-                        G/ren's Blog <span class="text-xs bg-brand-500/10 text-brand-600 border border-brand-500/30 px-2.5 py-0.5 rounded-full">超级工具台 Pro</span>
-                    </h1>
-                    <p class="text-xs text-slate-500">一站式解决博主：设计封面、配置前缀、全网排版与图片极速压缩</p>
-                </div>
-            </div>
-            
-            <!-- 四大工具切卡 -->
-            <div class="flex flex-wrap justify-center bg-slate-100 p-1 rounded-xl border border-slate-200 gap-1">
-                <button onclick="switchTab('cover')" id="tab-cover" class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all duration-200 bg-brand-600 text-white shadow-sm">
-                    <i data-lucide="image" class="w-3.5 h-3.5"></i>
-                    封面生成
-                </button>
-                <button onclick="switchTab('fm')" id="tab-fm" class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all duration-200 text-slate-600 hover:text-slate-900">
-                    <i data-lucide="file-code" class="w-3.5 h-3.5"></i>
-                    Front Matter
-                </button>
-                <button onclick="switchTab('markdown')" id="tab-markdown" class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all duration-200 text-slate-600 hover:text-slate-900">
-                    <i data-lucide="languages" class="w-3.5 h-3.5"></i>
-                    微信/自媒体排版
-                </button>
-                <button onclick="switchTab('compress')" id="tab-compress" class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all duration-200 text-slate-600 hover:text-slate-900">
-                    <i data-lucide="shrink" class="w-3.5 h-3.5"></i>
-                    图片极速 WebP 压缩
-                </button>
-            </div>
-        </div>
-    </header>
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
 
-    <!-- 工作区主体 -->
-    <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6 lg:p-8">
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://img.hehey.top/js/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '超级工作台',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'page'
+}</script><link rel="icon" type="image/x-icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/design-system.cd6e41b2.css"><script async="" src="https://hm.baidu.com/hm.js?187613fe21d57ca4e614119d64623d28"></script><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="G/ren的小破站" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/%E5%A4%B4%E5%83%8F.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">44</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><span class="site-page group hide"><span> 内容</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-clock"></i><span> 更新</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 统计</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/charts/"><i class="fa-fw fas fa-chart-bar"></i><span> 文章统计</span></a></li><li><a class="site-page child" href="/census/"><i class="fa-fw fas fa-chart-line"></i><span> 博客统计</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 互动</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/moments/"><i class="fa-fw fas fa-comment-dots"></i><span> 动态</span></a></li><li><a class="site-page child" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 信箱</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/supertool/"><i class="fa-fw fas fa-wand-magic-sparkles"></i><span> 超级工作台</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 关于</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fas fa-bullhorn"></i><span> 公告</span></a></li><li><a class="site-page child" href="/protocol/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> 评论协议</span></a></li><li><a class="site-page child" href="/protocol/copyright/"><i class="fa-fw fas fa-copyright"></i><span> 版权协议</span></a></li></ul></div></div></div></div><div class="page type-supertool" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">G/ren的小破站</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><span class="site-page group hide"><span> 内容</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-clock"></i><span> 更新</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 统计</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/charts/"><i class="fa-fw fas fa-chart-bar"></i><span> 文章统计</span></a></li><li><a class="site-page child" href="/census/"><i class="fa-fw fas fa-chart-line"></i><span> 博客统计</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 互动</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/moments/"><i class="fa-fw fas fa-comment-dots"></i><span> 动态</span></a></li><li><a class="site-page child" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 信箱</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/supertool/"><i class="fa-fw fas fa-wand-magic-sparkles"></i><span> 超级工作台</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 关于</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fas fa-bullhorn"></i><span> 公告</span></a></li><li><a class="site-page child" href="/protocol/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> 评论协议</span></a></li><li><a class="site-page child" href="/protocol/copyright/"><i class="fa-fw fas fa-copyright"></i><span> 版权协议</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><h1 class="title-seo">超级工作台</h1></header><main class="layout hide-aside" id="content-inner"><div id="page"><div class="page-title">超级工作台</div><div class="container" id="article-container">
+<!-- 三个依赖：Tailwind 预编译样式、lucide 图标、marked 的 Markdown 解析 -->
+<link rel="stylesheet" href="/supertool/tailwind.build.css">
+<script src="/supertool/lucide.min.js"></script>
+<script src="/supertool/marked.min.js"></script>
+
+<div class="st-page" id="stPage">
+
+  <!-- ===== 工具切换条（原独立页的 header tab，移到内容区）===== -->
+  <div class="st-tabs">
+        <button data-tab="cover" id="tab-cover">
+      <i data-lucide="image" style="width:14px;height:14px"></i>
+      封面生成
+    </button>
+    <button data-tab="fm" id="tab-fm">
+      <i data-lucide="file-code" style="width:14px;height:14px"></i>
+      Front Matter
+    </button>
+    <button data-tab="markdown" id="tab-markdown">
+      <i data-lucide="languages" style="width:14px;height:14px"></i>
+      微信/自媒体排版
+    </button>
+    <button data-tab="compress" id="tab-compress">
+      <i data-lucide="shrink" style="width:14px;height:14px"></i>
+      图片极速 WebP 压缩
+    </button>
+  </div>
+
+  <!-- ===== 工具主体 ===== -->
+  <div class="st-body">
         
         <!-- ==================== 1. 封面生成器 ==================== -->
         <div id="panel-cover" class="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -90,28 +187,24 @@
                     </h3>
                     <p class="text-xs text-slate-500 mt-0.5">简单的配置项，生成极高视觉水准的封面</p>
                 </div>
-                <hr class="border-slate-200" />
+                <hr class="border-slate-200">
                 <div class="space-y-4">
                     <div>
                         <label class="block text-xs font-semibold text-slate-600 mb-1.5">大标题 (Title)</label>
-                        <input type="text" id="cover-title" value="如何使用 Tailwind CSS 极速设计现代个人网站" oninput="drawCover()"
-                               class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
+                        <input type="text" id="cover-title" value="如何使用 Tailwind CSS 极速设计现代个人网站" oninput="drawCover()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-600 mb-1.5">核心导读摘要 (Subtitle)</label>
-                        <textarea id="cover-subtitle" rows="2" oninput="drawCover()"
-                                  class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">探索现代前端最高效的实用原子化样式方案，从零构建响应式高阶暗黑模式组件。</textarea>
+                        <textarea id="cover-subtitle" rows="2" oninput="drawCover()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">探索现代前端最高效的实用原子化样式方案，从零构建响应式高阶暗黑模式组件。</textarea>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1.5">主分类标签</label>
-                            <input type="text" id="cover-tag" value="DESIGN" oninput="drawCover()"
-                                   class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
+                            <input type="text" id="cover-tag" value="DESIGN" oninput="drawCover()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1.5">作者署名</label>
-                            <input type="text" id="cover-author" value="hehehey.top" oninput="drawCover()"
-                                   class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
+                            <input type="text" id="cover-author" value="hehehey.top" oninput="drawCover()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
                         </div>
                     </div>
                 </div>
@@ -140,7 +233,7 @@
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1.5">尺寸比例</label>
                             <select id="cover-aspect" onchange="changeAspect()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
-                                <option value="2-1" selected>2:1 (1200x600) 自适应</option>
+                                <option value="2-1" selected="">2:1 (1200x600) 自适应</option>
                                 <option value="16-9">16:9 (1280x720) 社交卡片</option>
                                 <option value="1-1">1:1 (800x800) 正方形</option>
                             </select>
@@ -198,28 +291,24 @@
                     </h3>
                     <p class="text-xs text-slate-500 mt-0.5">控制静态渲染引擎识别的标题、分类与自定义变量</p>
                 </div>
-                <hr class="border-slate-200" />
+                <hr class="border-slate-200">
                 <div class="space-y-4">
                     <div>
                         <label class="block text-xs font-semibold text-slate-600 mb-1.5">文章主标题 (Title)</label>
-                        <input type="text" id="fm-title" value="使用 Tailwind CSS 零代码搭建极致审美页面" oninput="updateFrontMatter()"
-                               class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
+                        <input type="text" id="fm-title" value="使用 Tailwind CSS 零代码搭建极致审美页面" oninput="updateFrontMatter()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-600 mb-1.5">自定义访问别名 (Slug)</label>
-                        <input type="text" id="fm-slug" value="tailwind-css-best-practices" oninput="updateFrontMatter()"
-                               class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
+                        <input type="text" id="fm-slug" value="tailwind-css-best-practices" oninput="updateFrontMatter()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1.5">发布时间 (Date)</label>
-                            <input type="text" id="fm-date" oninput="updateFrontMatter()"
-                                   class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
+                            <input type="text" id="fm-date" oninput="updateFrontMatter()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1.5">作者署名 (Author)</label>
-                            <input type="text" id="fm-author" value="HeHeHey" oninput="updateFrontMatter()"
-                                   class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
+                            <input type="text" id="fm-author" value="HeHeHey" oninput="updateFrontMatter()" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-brand-500 transition">
                         </div>
                     </div>
                     <!-- 动态列表组件 -->
@@ -228,8 +317,7 @@
                         <p class="text-[10px] text-slate-400 mb-1.5">回车或逗号分隔快速添加</p>
                         <div class="flex flex-wrap gap-1.5 p-2 bg-slate-50 border border-slate-200 rounded-lg min-h-[42px]">
                             <div id="fm-categories-chips" class="flex flex-wrap gap-1.5"></div>
-                            <input type="text" id="fm-category-input" placeholder="按回车添加..." onkeydown="handleChipInput(event, 'category')"
-                                   class="flex-1 min-w-[80px] bg-transparent text-sm text-slate-800 outline-none">
+                            <input type="text" id="fm-category-input" placeholder="按回车添加..." onkeydown="handleChipInput(event, 'category')" class="flex-1 min-w-[80px] bg-transparent text-sm text-slate-800 outline-none">
                         </div>
                     </div>
                     <div>
@@ -237,8 +325,7 @@
                         <p class="text-[10px] text-slate-400 mb-1.5">回车或逗号分隔快速添加</p>
                         <div class="flex flex-wrap gap-1.5 p-2 bg-slate-50 border border-slate-200 rounded-lg min-h-[42px]">
                             <div id="fm-tags-chips" class="flex flex-wrap gap-1.5"></div>
-                            <input type="text" id="fm-tag-input" placeholder="按回车添加..." onkeydown="handleChipInput(event, 'tag')"
-                                   class="flex-1 min-w-[80px] bg-transparent text-sm text-slate-800 outline-none">
+                            <input type="text" id="fm-tag-input" placeholder="按回车添加..." onkeydown="handleChipInput(event, 'tag')" class="flex-1 min-w-[80px] bg-transparent text-sm text-slate-800 outline-none">
                         </div>
                     </div>
                 </div>
@@ -329,7 +416,7 @@
                     </h3>
                     <p class="text-xs text-slate-500 mt-0.5">大幅缩减博文配图体积，纯前端秒级处理</p>
                 </div>
-                <hr class="border-slate-200" />
+                <hr class="border-slate-200">
                 
                 <!-- 拖拽上传区域 -->
                 <div id="drop-zone" class="border-2 border-dashed border-slate-200 hover:border-brand-500 rounded-2xl p-8 flex flex-col items-center justify-center gap-3 cursor-pointer transition bg-slate-50/50 relative">
@@ -362,7 +449,7 @@
                 </div>
 
                 <div class="pt-2">
-                    <button id="compress-btn" disabled onclick="executeCompress()" class="w-full bg-brand-600 disabled:opacity-40 disabled:pointer-events-none hover:bg-brand-700 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition active:scale-95 shadow-md">
+                    <button id="compress-btn" disabled="" onclick="executeCompress()" class="w-full bg-brand-600 disabled:opacity-40 disabled:pointer-events-none hover:bg-brand-700 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition active:scale-95 shadow-md">
                         <i data-lucide="file-image" class="w-4 h-4"></i>
                         极速生成 WebP 图像
                     </button>
@@ -376,7 +463,7 @@
                         <h4 class="text-xs font-semibold text-slate-500 uppercase">压缩数据对比分析</h4>
                         <p class="text-[11px] text-slate-400">展示前后大小及最终节省的空间率</p>
                     </div>
-                    <button id="download-compressed-btn" disabled onclick="downloadCompressedImage()" class="bg-emerald-600 hover:bg-emerald-700 text-white disabled:opacity-40 px-3.5 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition">
+                    <button id="download-compressed-btn" disabled="" onclick="downloadCompressedImage()" class="bg-emerald-600 hover:bg-emerald-700 text-white disabled:opacity-40 px-3.5 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition">
                         <i data-lucide="download" class="w-3.5 h-3.5"></i> 一键下载 WebP
                     </button>
                 </div>
@@ -406,26 +493,21 @@
             </div>
         </div>
 
-    </main>
+  </div>
 
-    <!-- 弹窗提示通知 -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-2 px-4 py-3 bg-white border border-slate-200 text-slate-800 rounded-xl shadow-xl">
-        <div class="p-1 rounded bg-brand-500/10 text-brand-600" id="toast-icon-box">
-            <i data-lucide="check" class="w-4 h-4"></i>
-        </div>
-        <p class="text-xs font-semibold text-slate-700" id="toast-message">操作已成功</p>
-    </div>
+</div>
 
-    <!-- 隐藏的下载引擎 -->
-    <a id="download-helper" class="hidden"></a>
+<!-- 弹窗提示通知 -->
+<div id="toast" class="st-toast">
+  <div class="st-toast-icon" id="toast-icon-box">
+    <i data-lucide="check"></i>
+  </div>
+  <p class="st-toast-msg" id="toast-message">操作已成功</p>
+</div>
 
-    <footer class="mt-auto py-6 border-t border-slate-200 bg-white text-center">
-        <p class="text-xs text-slate-400">
-            © 2026 hehehey.top | 独立博客超级排版与性能工作台
-        </p>
-    </footer>
+<!-- 隐藏的下载引擎 -->
+<a id="download-helper" style="display:none"></a>
 
-    <!-- 排版微样式库内置（微信公众号自适应） -->
     <style>
         #wechat-preview h1 {
             font-size: 1.45em !important;
@@ -503,8 +585,299 @@
         }
     </style>
 
-    <!-- 工作台系统主控制 JS 逻辑 -->
-    <script>
+<style>
+/* ==========================================================================
+   超级工作台 — 融入博客设计体系
+   原为独立 Tailwind 应用，现改用博客的 --c-* 变量，与全站统一。
+   Tailwind 仍然加载（4 个面板内部大量使用工具类），这里只覆盖外层框架。
+   ========================================================================== */
+
+.st-page {
+  width: 100%;
+  padding: 4px 2px;
+}
+
+/* ---------- 宽度：超级工作台内容多，需要比普通页面更宽 ---------- */
+/* 主题默认 html.hide-aside .layout > div:first-child 是 80%，这里放开到 100% */
+html.hide-aside .layout > div:first-child {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* 页面主容器也放宽（默认 1300px） */
+body[data-page-type='supertool'] .layout.hide-aside,
+.layout.hide-aside:has(.st-page) {
+  max-width: 1400px !important;
+}
+
+/* ---------- 工具切换条 ---------- */
+.st-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  background: rgba(var(--c-primary-rgb), 0.04);
+  border: 1px solid rgba(var(--c-primary-rgb), 0.10);
+  border-radius: 14px;
+  padding: 6px;
+  margin-bottom: 20px;
+}
+
+.st-tabs button {
+  font: inherit;
+  font-size: 13px;
+  font-family: 'Courier New', monospace;
+  color: var(--c-text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 9px 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.22s ease;
+}
+
+.st-tabs button:hover {
+  color: var(--c-primary);
+  background: rgba(var(--c-primary-rgb), 0.06);
+}
+
+.st-tabs button[aria-selected="true"] {
+  color: #fff !important;
+  background: var(--c-primary) !important;
+  border-color: var(--c-primary) !important;
+  box-shadow: 0 2px 8px rgba(var(--c-primary-rgb), 0.25) !important;
+}
+
+/* 原 switchTab() 会重写按钮的 className，把 Tailwind 的 bg-brand-600 贴回来。
+   下面这条把这些残留的 Tailwind 类统一压回博客主色。 */
+.st-tabs button.bg-brand-600,
+.st-tabs button.text-white {
+  background-color: var(--c-primary) !important;
+  color: #fff !important;
+  border-color: var(--c-primary) !important;
+  box-shadow: 0 2px 8px rgba(var(--c-primary-rgb), 0.25) !important;
+}
+.st-tabs button.text-slate-600 {
+  background: transparent !important;
+  color: var(--c-text-secondary) !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* ---------- 内容区卡片统一圆角 ---------- */
+.st-body .rounded-2xl { border-radius: 16px !important; }
+.st-body .rounded-xl  { border-radius: 12px !important; }
+.st-body .rounded-lg  { border-radius: 10px !important; }
+
+/* ---------- 主色替换：Tailwind 的 brand 色 → 博客主色 ---------- */
+.st-body .bg-brand-600 {
+  background-color: var(--c-primary) !important;
+}
+.st-body .text-brand-600 { color: var(--c-primary) !important; }
+.st-body .text-brand-500 { color: var(--c-primary) !important; }
+.st-body .border-brand-500 { border-color: var(--c-primary) !important; }
+.st-body .bg-brand-500 { background-color: var(--c-primary) !important; }
+.st-body .bg-brand-500\/10 { background-color: rgba(var(--c-primary-rgb), 0.10) !important; }
+.st-body .text-brand-900 { color: var(--c-primary-dark) !important; }
+.st-body .shadow-brand-500\/20 { box-shadow: 0 4px 14px rgba(var(--c-primary-rgb), 0.20) !important; }
+.st-body .shadow-brand-500\/25 { box-shadow: 0 4px 14px rgba(var(--c-primary-rgb), 0.25) !important; }
+
+/* ---------- 字体：与博客一致 ---------- */
+.st-page,
+.st-page button,
+.st-page input,
+.st-page textarea,
+.st-page select {
+  font-family: inherit;
+}
+
+/* ---------- toast ---------- */
+.st-toast {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background: var(--c-surface, #fff);
+  border: 1px solid var(--c-border, #E5E7EB);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+.st-toast.st-show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.st-toast-icon {
+  padding: 4px;
+  border-radius: 6px;
+  background: rgba(var(--c-primary-rgb), 0.10);
+  color: var(--c-primary);
+  display: flex;
+}
+.st-toast-icon svg { width: 16px; height: 16px; }
+.st-toast-msg {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-text);
+  margin: 0;
+}
+
+/* ---------- 深色模式 ---------- */
+/* ---------- 深色模式：Tailwind 的 slate / white 系全量映射 ---------- */
+/* supertool 内部大量使用 Tailwind 工具类，深色下要把这些颜色压到暗色系，
+   否则会出现「页面框变暗、内容卡片还是白的」这种割裂。 */
+
+/* 背景 */
+html[data-theme='dark'] .st-body .bg-white,
+html[data-theme='dark'] .st-body .bg-white\/80 { background-color: #1a2332 !important; }
+html[data-theme='dark'] .st-body .bg-slate-50 { background-color: #0f172a !important; }
+html[data-theme='dark'] .st-body .bg-slate-100 { background-color: #1e293b !important; }
+html[data-theme='dark'] .st-body .bg-slate-200 { background-color: #334155 !important; }
+
+/* 文字 */
+html[data-theme='dark'] .st-body .text-slate-900 { color: #f1f5f9 !important; }
+html[data-theme='dark'] .st-body .text-slate-800 { color: #e2e8f0 !important; }
+html[data-theme='dark'] .st-body .text-slate-700 { color: #cbd5e1 !important; }
+html[data-theme='dark'] .st-body .text-slate-600 { color: #94a3b8 !important; }
+html[data-theme='dark'] .st-body .text-slate-500 { color: #8494a8 !important; }
+html[data-theme='dark'] .st-body .text-slate-400 { color: #6b7f96 !important; }
+
+/* 边框 */
+html[data-theme='dark'] .st-body .border-slate-200,
+html[data-theme='dark'] .st-body .border-slate-200\/80 { border-color: rgba(255, 255, 255, 0.09) !important; }
+html[data-theme='dark'] .st-body .border-slate-300 { border-color: rgba(255, 255, 255, 0.13) !important; }
+html[data-theme='dark'] .st-body .border-slate-400 { border-color: rgba(255, 255, 255, 0.18) !important; }
+html[data-theme='dark'] .st-body .border-slate-800 { border-color: rgba(255, 255, 255, 0.06) !important; }
+
+/* 输入控件 */
+html[data-theme='dark'] .st-body input,
+html[data-theme='dark'] .st-body textarea,
+html[data-theme='dark'] .st-body select {
+  background-color: #0f172a !important;
+  border-color: rgba(255, 255, 255, 0.10) !important;
+  color: #e2e8f0 !important;
+}
+html[data-theme='dark'] .st-body input::placeholder,
+html[data-theme='dark'] .st-body textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* 画布预览区（点阵背景在深色下太亮） */
+html[data-theme='dark'] .st-body .bg-\[radial-gradient\(\#cbd5e1_1px\,transparent_1px\)\] {
+  opacity: 0.08 !important;
+}
+
+/* 微信公众号预览区（保持浅色，因为那是给公众号用的白底内容） */
+html[data-theme='dark'] #wechat-preview {
+  background: #fff !important;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+html[data-theme='dark'] .st-tabs {
+  background: rgba(var(--c-primary-rgb), 0.06);
+  border-color: rgba(var(--c-primary-rgb), 0.15);
+}
+html[data-theme='dark'] .st-toast {
+  background: #1e293b;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+html[data-theme='dark'] .st-toast-msg { color: #e2e8f0; }
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 640px) {
+  .st-tabs button {
+    font-size: 12px;
+    padding: 8px 12px;
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+  .st-toast {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+  }
+}
+</style>
+
+<script>
+(function () {
+  'use strict';
+
+  // ===== tab 切换 =====
+  // 原页面靠 <button onclick="switchTab('cover')"> 直接调用原脚本里的 switchTab()。
+  // 这里改为事件绑定，仍然调用同一个 switchTab，避免两套切换逻辑打架。
+  // 注意：switchTab 会重写 btn.className，所以高亮样式靠 CSS 的 [aria-selected]
+  //       和 .st-active 双保险 —— 见下方 patchSwitchTab()。
+
+  var TAB_IDS = ['cover', 'fm', 'markdown', 'compress'];
+
+  function bindTabs() {
+    var buttons = document.querySelectorAll('.st-tabs button[data-tab]');
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var target = btn.getAttribute('data-tab');
+
+        // 调用原函数（它会处理面板显隐 + 触发 drawCover）
+        if (typeof window.switchTab === 'function') {
+          window.switchTab(target);
+        } else {
+          // 兜底：原函数没就绪时自己切
+          TAB_IDS.forEach(function (id) {
+            var panel = document.getElementById('panel-' + id);
+            if (!panel) return;
+            if (id === target) panel.classList.remove('hidden');
+            else panel.classList.add('hidden');
+          });
+        }
+
+        // 维护高亮（原 switchTab 用 className 覆盖，所以这里用 setAttribute 另存）
+        buttons.forEach(function (b) {
+          b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+        });
+
+        // lucide 图标重绘
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+          window.lucide.createIcons();
+        }
+      });
+    });
+
+    // 初始激活
+    var first = document.querySelector('.st-tabs button[data-tab="cover"]');
+    if (first) first.setAttribute('aria-selected', 'true');
+  }
+
+  function boot() {
+    // 等原脚本的 switchTab 挂到 window 上（它在后一个 <script> 里，已先执行完）
+    bindTabs();
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
+    // 触发一次封面渲染
+    if (typeof window.drawCover === 'function') {
+      setTimeout(function () { try { window.drawCover(); } catch (e) { } }, 100);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+})();
+</script>
+
+<script>
         // 1. 全局配置切换状态机
         let currentTab = 'cover';
         let currentFmFormat = 'yaml';
@@ -1142,7 +1515,7 @@
             const i = Math.floor(Math.log(bytes) / Math.log(k));
             return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
         }
-    </script>
-</body>
-</html>
+</script>
 
+
+</div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"></div><div class="copyright"><span><b>©2025-2026</b></span><span><b>&nbsp;&nbsp;By G/ren</b></span></div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div id="workboard"></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.d4a47557.js"></script><script src="/js/main.6296e7da.js"></script><div class="js-pjax"></div><link rel="stylesheet" href="/css/custom-index.9d5c91a5.css"><link rel="stylesheet" href="/css/custom-notice-tags.d60d71f1.css"><link rel="stylesheet" href="/css/inject-fix.b659a02a.css"><script src="/js/vision-network.75b885be.js" defer=""></script><script src="/js/tag-cloud.c15d1698.js" defer=""></script><script src="/js/scroll-reveal.163ca44b.js" defer=""></script><script src="/js/notice-loader.6648c755.js" defer=""></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="输入关键词搜索..." type="text"></div><hr><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.24eae077.js"></script></div></div><script>var posts=[{"title":"ABB RobotWare + 梅卡曼德视觉系统完整操作流程","path":"/posts/abb-robotware/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"ABB","path":"/tags/ABB/"},{"name":"RobotWare","path":"/tags/RobotWare/"},{"name":"梅卡曼德","path":"/tags/梅卡曼德/"}],"cover":"/img/默认封面图.webp","date":"2025-03-28T08:46:17.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"梅卡曼德 3D 视觉引导系统 通用 SOP","path":"/posts/3d-sop/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"SOP","path":"/tags/SOP/"},{"name":"拆垛","path":"/tags/拆垛/"},{"name":"3D视觉","path":"/tags/3D视觉/"},{"name":"手眼标定","path":"/tags/手眼标定/"}],"cover":"/img/默认封面图.webp","date":"2026-02-14T01:37:16.000Z","updated":"2026-07-11T04:17:33.000Z"},{"title":"CGXi（希克斯）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/cgxi/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"CGXi","path":"/tags/CGXi/"},{"name":"希克斯","path":"/tags/希克斯/"}],"cover":"/img/默认封面图.webp","date":"2025-10-09T08:44:07.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"DENSO（电装）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/denso/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"DENSO","path":"/tags/DENSO/"},{"name":"电装","path":"/tags/电装/"}],"cover":"/img/默认封面图.webp","date":"2025-01-20T15:37:33.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"DOBOT（越疆）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/dobot/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"DOBOT","path":"/tags/DOBOT/"},{"name":"越疆","path":"/tags/越疆/"}],"cover":"/img/默认封面图.webp","date":"2026-02-25T18:20:51.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"ELITE（艾利特）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/elite/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"ELITE","path":"/tags/ELITE/"},{"name":"艾利特","path":"/tags/艾利特/"}],"cover":"/img/默认封面图.webp","date":"2025-09-25T21:30:32.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"ESTUN（埃斯顿）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/estun/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"ESTUN","path":"/tags/ESTUN/"},{"name":"埃斯顿","path":"/tags/埃斯顿/"}],"cover":"/img/默认封面图.webp","date":"2025-09-02T23:24:22.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"FANUC（发那科）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/fanuc/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"FANUC","path":"/tags/FANUC/"},{"name":"发那科","path":"/tags/发那科/"}],"cover":"/img/默认封面图.webp","date":"2025-01-03T06:02:34.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"JAKA（节卡）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/jaka/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"JAKA","path":"/tags/JAKA/"},{"name":"节卡","path":"/tags/节卡/"}],"cover":"/img/默认封面图.webp","date":"2025-09-30T02:09:15.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"Mech-Vision 方案构建思路","path":"/posts/mech-vision-1/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"Mech-Vision","path":"/tags/Mech-Vision/"},{"name":"方案构建","path":"/tags/方案构建/"}],"cover":"/img/默认封面图.webp","date":"2025-03-03T04:14:39.000Z","updated":"2026-07-11T04:17:33.000Z"},{"title":"KUKA（库卡）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/kuka/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"KUKA","path":"/tags/KUKA/"},{"name":"库卡","path":"/tags/库卡/"}],"cover":"/img/默认封面图.webp","date":"2025-11-06T01:12:19.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"Mech-Vision 步骤参考指南","path":"/posts/mech-vision-2/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"Mech-Vision","path":"/tags/Mech-Vision/"},{"name":"步骤参考","path":"/tags/步骤参考/"}],"cover":"/img/默认封面图.webp","date":"2025-05-17T23:59:08.000Z","updated":"2026-07-11T04:17:33.000Z"},{"title":"Mech-Vision 安装指南","path":"/posts/mech-vision/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"Mech-Vision","path":"/tags/Mech-Vision/"},{"name":"安装","path":"/tags/安装/"}],"cover":"/img/默认封面图.webp","date":"2026-02-13T17:42:31.000Z","updated":"2026-07-11T04:17:33.000Z"},{"title":"兰空图床图片审核-nsfwjs配置","path":"/posts/nsfwjs/","categories":[{"name":"文章","path":"/categories/文章/"}],"tags":[{"name":"图床","path":"/tags/图床/"},{"name":"nsfw","path":"/tags/nsfw/"},{"name":"辅助工具","path":"/tags/辅助工具/"}],"cover":"/img/默认封面图.webp","date":"2025-02-23T01:51:10.000Z","updated":"2026-11-07T14:50:22.558Z"},{"title":"西门子PLC Modbus TCP通讯教程","path":"/posts/plc-modbus-tcp/","categories":[{"name":"PLC通讯","path":"/categories/PLC通讯/"}],"tags":[{"name":"ModbusTCP","path":"/tags/ModbusTCP/"},{"name":"西门子","path":"/tags/西门子/"},{"name":"PLC","path":"/tags/PLC/"}],"cover":"/img/默认封面图.webp","date":"2025-04-28T11:29:24.000Z","updated":"2026-07-11T04:17:33.000Z"},{"title":"拆垛工程项目 SOP 模板","path":"/posts/sop/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"SOP","path":"/tags/SOP/"},{"name":"拆垛","path":"/tags/拆垛/"},{"name":"模板","path":"/tags/模板/"}],"cover":"/img/默认封面图.webp","date":"2025-03-05T18:05:18.000Z","updated":"2026-11-07T08:38:38.069Z"},{"title":"Vision Master 通讯配置","path":"/posts/visionmaster-1/","categories":[{"name":"视觉","path":"/categories/视觉/"}],"tags":[{"name":"VisionMaster","path":"/tags/VisionMaster/"},{"name":"通讯","path":"/tags/通讯/"}],"cover":"/img/默认封面图.webp","date":"2025-09-01T20:27:12.000Z","updated":"2026-07-11T04:17:33.000Z"},{"title":"UR（优傲）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/ur/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"UR","path":"/tags/UR/"},{"name":"优傲","path":"/tags/优傲/"}],"cover":"/img/默认封面图.webp","date":"2025-07-30T23:06:09.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"TM（创孔）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/tm/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"TM","path":"/tags/TM/"},{"name":"创孔","path":"/tags/创孔/"}],"cover":"/img/默认封面图.webp","date":"2025-09-27T16:38:26.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"Vision Master 入门指南","path":"/posts/visionmaster/","categories":[{"name":"视觉","path":"/categories/视觉/"}],"tags":[{"name":"VisionMaster","path":"/tags/VisionMaster/"},{"name":"入门","path":"/tags/入门/"}],"cover":"/img/默认封面图.webp","date":"2025-10-21T01:52:26.000Z","updated":"2026-07-11T04:17:33.000Z"},{"title":"YASKAWA（安川）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/yaskawa-1/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"YASKAWA","path":"/tags/YASKAWA/"},{"name":"安川","path":"/tags/安川/"}],"cover":"/img/默认封面图.webp","date":"2026-02-27T02:17:12.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"YASKAWA + 梅卡曼德通信教程","path":"/posts/yaskawa/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"YASKAWA","path":"/tags/YASKAWA/"},{"name":"安川","path":"/tags/安川/"},{"name":"通信基础","path":"/tags/通信基础/"}],"cover":"/img/默认封面图.webp","date":"2026-01-24T04:32:12.000Z","updated":"2026-07-11T04:17:33.000Z"}];function toRandomPost(){ window.pjax ? pjax.loadUrl(posts[Math.floor(Math.random()*posts.length)].path) : window.open(posts[Math.floor(Math.random()*posts.length)].path, "_self"); };</script><script>var flinks=[{"name":"G/ren的小破站","link":"https://www.hehehey.top/","avatar":"https://www.hehehey.top/img/头像.JPG","descr":"机器视觉调试工程师 | 技术分享"}];function toRandomFlink(){ let to_flink = flinks[Math.floor(Math.random()*flinks.length)]; btf.snackbarShow('正在前往「 '+ to_flink.name +' 」友链，请稍后...', false, 3000); setTimeout(function() { window.open(to_flink.link); }, 3000); }</script></body></html>
