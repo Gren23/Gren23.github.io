@@ -1,0 +1,229 @@
+/* ==========================================================================
+   超级工作台 — 融入博客设计体系
+   原为独立 Tailwind 应用，这里把外层框架映射到博客的 --c-* 变量体系，
+   与全站视觉统一（主色 / 字体 / 圆角 / 深色模式）。
+
+   Tailwind 仍然加载（工具面板内部大量使用工具类），此文件只覆盖外层。
+   ========================================================================== */
+
+/* ==========================================================================
+   超级工作台 — 融入博客设计体系
+   原为独立 Tailwind 应用，现改用博客的 --c-* 变量，与全站统一。
+   Tailwind 仍然加载（4 个面板内部大量使用工具类），这里只覆盖外层框架。
+   ========================================================================== */
+
+.st-page {
+  width: 100%;
+  padding: 4px 2px;
+}
+
+/* ---------- 宽度：超级工作台内容多，需要比普通页面更宽 ---------- */
+/* 主题默认 html.hide-aside .layout > div:first-child 是 80%，这里放开到 100% */
+html.hide-aside .layout > div:first-child {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* 页面主容器也放宽（默认 1300px） */
+body[data-page-type='supertool'] .layout.hide-aside,
+.layout.hide-aside:has(.st-page) {
+  max-width: 1400px !important;
+}
+
+/* ---------- 工具切换条 ---------- */
+.st-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  background: rgba(var(--c-primary-rgb), 0.04);
+  border: 1px solid rgba(var(--c-primary-rgb), 0.10);
+  border-radius: 14px;
+  padding: 6px;
+  margin-bottom: 20px;
+}
+
+.st-tabs button {
+  font: inherit;
+  font-size: 13px;
+  font-family: 'Courier New', monospace;
+  color: var(--c-text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 9px 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.22s ease;
+}
+
+.st-tabs button:hover {
+  color: var(--c-primary);
+  background: rgba(var(--c-primary-rgb), 0.06);
+}
+
+.st-tabs button[aria-selected="true"] {
+  color: #fff !important;
+  background: var(--c-primary) !important;
+  border-color: var(--c-primary) !important;
+  box-shadow: 0 2px 8px rgba(var(--c-primary-rgb), 0.25) !important;
+}
+
+/* 原 switchTab() 会重写按钮的 className，把 Tailwind 的 bg-brand-600 贴回来。
+   下面这条把这些残留的 Tailwind 类统一压回博客主色。 */
+.st-tabs button.bg-brand-600,
+.st-tabs button.text-white {
+  background-color: var(--c-primary) !important;
+  color: #fff !important;
+  border-color: var(--c-primary) !important;
+  box-shadow: 0 2px 8px rgba(var(--c-primary-rgb), 0.25) !important;
+}
+.st-tabs button.text-slate-600 {
+  background: transparent !important;
+  color: var(--c-text-secondary) !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* ---------- 内容区卡片统一圆角 ---------- */
+.st-body .rounded-2xl { border-radius: 16px !important; }
+.st-body .rounded-xl  { border-radius: 12px !important; }
+.st-body .rounded-lg  { border-radius: 10px !important; }
+
+/* ---------- 主色替换：Tailwind 的 brand 色 → 博客主色 ---------- */
+.st-body .bg-brand-600 {
+  background-color: var(--c-primary) !important;
+}
+.st-body .text-brand-600 { color: var(--c-primary) !important; }
+.st-body .text-brand-500 { color: var(--c-primary) !important; }
+.st-body .border-brand-500 { border-color: var(--c-primary) !important; }
+.st-body .bg-brand-500 { background-color: var(--c-primary) !important; }
+.st-body .bg-brand-500\/10 { background-color: rgba(var(--c-primary-rgb), 0.10) !important; }
+.st-body .text-brand-900 { color: var(--c-primary-dark) !important; }
+.st-body .shadow-brand-500\/20 { box-shadow: 0 4px 14px rgba(var(--c-primary-rgb), 0.20) !important; }
+.st-body .shadow-brand-500\/25 { box-shadow: 0 4px 14px rgba(var(--c-primary-rgb), 0.25) !important; }
+
+/* ---------- 字体：与博客一致 ---------- */
+.st-page,
+.st-page button,
+.st-page input,
+.st-page textarea,
+.st-page select {
+  font-family: inherit;
+}
+
+/* ---------- toast ---------- */
+.st-toast {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background: var(--c-surface, #fff);
+  border: 1px solid var(--c-border, #E5E7EB);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+.st-toast.st-show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.st-toast-icon {
+  padding: 4px;
+  border-radius: 6px;
+  background: rgba(var(--c-primary-rgb), 0.10);
+  color: var(--c-primary);
+  display: flex;
+}
+.st-toast-icon svg { width: 16px; height: 16px; }
+.st-toast-msg {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-text);
+  margin: 0;
+}
+
+/* ---------- 深色模式 ---------- */
+/* ---------- 深色模式：Tailwind 的 slate / white 系全量映射 ---------- */
+/* supertool 内部大量使用 Tailwind 工具类，深色下要把这些颜色压到暗色系，
+   否则会出现「页面框变暗、内容卡片还是白的」这种割裂。 */
+
+/* 背景 */
+html[data-theme='dark'] .st-body .bg-white,
+html[data-theme='dark'] .st-body .bg-white\/80 { background-color: #1a2332 !important; }
+html[data-theme='dark'] .st-body .bg-slate-50 { background-color: #0f172a !important; }
+html[data-theme='dark'] .st-body .bg-slate-100 { background-color: #1e293b !important; }
+html[data-theme='dark'] .st-body .bg-slate-200 { background-color: #334155 !important; }
+
+/* 文字 */
+html[data-theme='dark'] .st-body .text-slate-900 { color: #f1f5f9 !important; }
+html[data-theme='dark'] .st-body .text-slate-800 { color: #e2e8f0 !important; }
+html[data-theme='dark'] .st-body .text-slate-700 { color: #cbd5e1 !important; }
+html[data-theme='dark'] .st-body .text-slate-600 { color: #94a3b8 !important; }
+html[data-theme='dark'] .st-body .text-slate-500 { color: #8494a8 !important; }
+html[data-theme='dark'] .st-body .text-slate-400 { color: #6b7f96 !important; }
+
+/* 边框 */
+html[data-theme='dark'] .st-body .border-slate-200,
+html[data-theme='dark'] .st-body .border-slate-200\/80 { border-color: rgba(255, 255, 255, 0.09) !important; }
+html[data-theme='dark'] .st-body .border-slate-300 { border-color: rgba(255, 255, 255, 0.13) !important; }
+html[data-theme='dark'] .st-body .border-slate-400 { border-color: rgba(255, 255, 255, 0.18) !important; }
+html[data-theme='dark'] .st-body .border-slate-800 { border-color: rgba(255, 255, 255, 0.06) !important; }
+
+/* 输入控件 */
+html[data-theme='dark'] .st-body input,
+html[data-theme='dark'] .st-body textarea,
+html[data-theme='dark'] .st-body select {
+  background-color: #0f172a !important;
+  border-color: rgba(255, 255, 255, 0.10) !important;
+  color: #e2e8f0 !important;
+}
+html[data-theme='dark'] .st-body input::placeholder,
+html[data-theme='dark'] .st-body textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* 画布预览区（点阵背景在深色下太亮） */
+html[data-theme='dark'] .st-body .bg-\[radial-gradient\(\#cbd5e1_1px\,transparent_1px\)\] {
+  opacity: 0.08 !important;
+}
+
+/* 微信公众号预览区（保持浅色，因为那是给公众号用的白底内容） */
+html[data-theme='dark'] #wechat-preview {
+  background: #fff !important;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+html[data-theme='dark'] .st-tabs {
+  background: rgba(var(--c-primary-rgb), 0.06);
+  border-color: rgba(var(--c-primary-rgb), 0.15);
+}
+html[data-theme='dark'] .st-toast {
+  background: #1e293b;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+html[data-theme='dark'] .st-toast-msg { color: #e2e8f0; }
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 640px) {
+  .st-tabs button {
+    font-size: 12px;
+    padding: 8px 12px;
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+  .st-toast {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+  }
+}
