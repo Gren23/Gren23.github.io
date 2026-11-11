@@ -66,6 +66,7 @@ social:
   fab fa-weixin: /img/wechat.jpg || 微信 || '#07c160'
   fab fa-qq: tencent://message/?uin=1955561070 || QQ || '#1296db'
   fas fa-envelope: mailto:1955561070@qq.com || 邮箱 || '#4a7dbe'
+  fas fa-rss: /atom.xml || RSS || '#f26522'
 
 # --------------------------------------
 # Image Settings
