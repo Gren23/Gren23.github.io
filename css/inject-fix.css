@@ -244,29 +244,28 @@ html[data-theme='dark'] .search-dialog .search-nav {
 }
 
 /* 面板高度：主题只限制了 .search-result-list，面板本身没限制，
-   搜索 17 条结果时会撑到 749px 超出屏幕。这里给面板加最大高度 + 内部滚动。 */
+   搜索 17 条结果时会撑到 749px 超出屏幕。这里给面板加最大高度 + 内部滚动。
+
+   ⚠ 踩过的坑：不能直接写 `.search-dialog { display: flex !important }` ——
+   主题的显隐机制是 btf.animateIn/animateOut 写内联 style：
+     打开 -> ele.style.display = 'block'
+     关闭 -> ele.style.display = ''      （回落到 CSS 的 display:none）
+   加 !important 的 display 会盖掉 CSS 的 none，导致面板永久可见（一进页面就弹出来）。
+
+   正确做法：display 交给主题，只覆盖 max-height。
+   内层布局用 flex 由主题的 display:block 容器承载不成立，
+   所以改用「块级 + 结果区独立滚动」，不依赖父级 flex。 */
+
 .search-dialog {
   max-height: 80vh !important;
-  display: flex !important;
-  flex-direction: column !important;
   overflow: hidden !important;
 }
 
-/* 标题栏固定 */
-.search-dialog .search-nav {
-  flex: 0 0 auto !important;
-}
-
-/* 输入框固定 */
-.search-dialog .local-search-input {
-  flex: 0 0 auto !important;
-}
-
-/* 结果列表滚动 */
+/* 让结果列表在面板内独立滚动。父级不是 flex 时，
+   max-height 用 calc 直接算出可用高度（面板 80vh 减去标题栏和输入框）。 */
 .search-dialog .search-result-list {
-  flex: 1 1 auto !important;
   overflow-y: auto !important;
-  max-height: none !important;
+  max-height: calc(80vh - 130px) !important;
   margin: 0 -20px !important;
   padding: 0 22px !important;
 }
