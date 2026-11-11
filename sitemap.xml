@@ -92,15 +92,6 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/posts/fanuc/</loc>
-    
-    <lastmod>2026-11-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.hehehey.top/posts/estun/</loc>
     
     <lastmod>2026-11-07</lastmod>
@@ -110,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/posts/kuka/</loc>
+    <loc>https://www.hehehey.top/posts/fanuc/</loc>
     
     <lastmod>2026-11-07</lastmod>
     
@@ -120,6 +111,15 @@
   
   <url>
     <loc>https://www.hehehey.top/posts/jaka/</loc>
+    
+    <lastmod>2026-11-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hehehey.top/posts/kuka/</loc>
     
     <lastmod>2026-11-07</lastmod>
     
@@ -245,7 +245,7 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/posts/mech-vision-2/</loc>
+    <loc>https://www.hehehey.top/posts/mech-vision/</loc>
     
     <lastmod>2026-07-11</lastmod>
     
@@ -254,7 +254,7 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/posts/mech-vision/</loc>
+    <loc>https://www.hehehey.top/posts/mech-vision-2/</loc>
     
     <lastmod>2026-07-11</lastmod>
     
@@ -272,7 +272,7 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/posts/visionmaster/</loc>
+    <loc>https://www.hehehey.top/posts/visionmaster-1/</loc>
     
     <lastmod>2026-07-11</lastmod>
     
@@ -281,7 +281,7 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/posts/visionmaster-1/</loc>
+    <loc>https://www.hehehey.top/posts/visionmaster/</loc>
     
     <lastmod>2026-07-11</lastmod>
     
@@ -449,20 +449,6 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/tags/FANUC/</loc>
-    <lastmod>2026-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hehehey.top/tags/%E5%8F%91%E9%82%A3%E7%A7%91/</loc>
-    <lastmod>2026-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.hehehey.top/tags/ESTUN/</loc>
     <lastmod>2026-11-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -477,14 +463,14 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/tags/KUKA/</loc>
+    <loc>https://www.hehehey.top/tags/FANUC/</loc>
     <lastmod>2026-11-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/tags/%E5%BA%93%E5%8D%A1/</loc>
+    <loc>https://www.hehehey.top/tags/%E5%8F%91%E9%82%A3%E7%A7%91/</loc>
     <lastmod>2026-11-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -519,7 +505,14 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/tags/%E6%AD%A5%E9%AA%A4%E5%8F%82%E8%80%83/</loc>
+    <loc>https://www.hehehey.top/tags/KUKA/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hehehey.top/tags/%E5%BA%93%E5%8D%A1/</loc>
     <lastmod>2026-11-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -554,7 +547,7 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/tags/%E6%A8%A1%E6%9D%BF/</loc>
+    <loc>https://www.hehehey.top/tags/%E6%AD%A5%E9%AA%A4%E5%8F%82%E8%80%83/</loc>
     <lastmod>2026-11-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -582,6 +575,13 @@
   </url>
   
   <url>
+    <loc>https://www.hehehey.top/tags/%E6%A8%A1%E6%9D%BF/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.hehehey.top/tags/TM/</loc>
     <lastmod>2026-11-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -596,14 +596,21 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/tags/VisionMaster/</loc>
+    <loc>https://www.hehehey.top/tags/UR/</loc>
     <lastmod>2026-11-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/tags/%E5%85%A5%E9%97%A8/</loc>
+    <loc>https://www.hehehey.top/tags/%E4%BC%98%E5%82%B2/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hehehey.top/tags/VisionMaster/</loc>
     <lastmod>2026-11-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -617,14 +624,7 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/tags/UR/</loc>
-    <lastmod>2026-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hehehey.top/tags/%E4%BC%98%E5%82%B2/</loc>
+    <loc>https://www.hehehey.top/tags/%E5%85%A5%E9%97%A8/</loc>
     <lastmod>2026-11-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
