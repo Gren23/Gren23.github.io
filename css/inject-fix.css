@@ -139,3 +139,163 @@ html[data-theme='dark'] {
   --blockquote-bg: rgba(100, 181, 246, 0.10);
   --blockquote-color: rgba(232, 238, 244, 0.88);
 }
+
+/* ==== 搜索框（主题默认 transparent，叠在内容上完全看不清） ==== */
+/* 根因：themes/butterfly/source/css/_global/var.styl L81  $search-bg = transparent
+   主题原本可能是配合某种背景图设计，但本站叠加自定义设计变量后，
+   搜索面板和输入框完全透明，底下的彩色文章卡片直接透出来。 */
+
+:root {
+  --search-bg: var(--c-surface, #ffffff);
+  --search-input-color: var(--c-text, #374151);
+}
+
+html[data-theme='dark'] {
+  --search-bg: #1a2332;
+  --search-input-color: #e2e8f0;
+}
+
+/* 搜索面板：实底 + 圆角 + 投影 */
+.search-dialog {
+  background: var(--search-bg) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18) !important;
+  border: 1px solid var(--c-border, #e5e7eb) !important;
+}
+
+html[data-theme='dark'] .search-dialog {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* 输入框：实底背景，与博客其他输入框保持一致 */
+.search-dialog .local-search-input input,
+.search-dialog #algolia-search-input input,
+#local-search .search-dialog input {
+  background: var(--search-bg) !important;
+  color: var(--search-input-color) !important;
+  border: 1px solid var(--c-border, #e5e7eb) !important;
+  border-radius: 10px !important;
+  padding: 8px 16px !important;
+  font-family: inherit !important;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.search-dialog .local-search-input input:focus,
+#local-search .search-dialog input:focus {
+  border-color: var(--c-primary, #1677B3) !important;
+  box-shadow: 0 0 0 3px rgba(var(--c-primary-rgb, 22, 119, 179), 0.12) !important;
+  outline: none !important;
+}
+
+html[data-theme='dark'] .search-dialog .local-search-input input,
+html[data-theme='dark'] #local-search .search-dialog input {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* 输入框 placeholder */
+.search-dialog input::placeholder {
+  color: var(--c-text-secondary, #6b7280) !important;
+  opacity: 0.7 !important;
+}
+
+/* 搜索标题栏 */
+.search-dialog .search-nav {
+  border-bottom: 1px solid var(--c-border, #e5e7eb) !important;
+  padding-bottom: 10px !important;
+  margin-bottom: 12px !important;
+}
+
+html[data-theme='dark'] .search-dialog .search-nav {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.search-dialog .search-nav .search-dialog-title {
+  color: var(--c-primary, #1677B3) !important;
+  font-weight: 600 !important;
+}
+
+/* 搜索关闭按钮 */
+.search-dialog .search-nav .search-close-button {
+  color: var(--c-text-secondary, #6b7280) !important;
+}
+.search-dialog .search-nav .search-close-button:hover {
+  color: var(--c-primary, #1677B3) !important;
+}
+
+/* 搜索结果 */
+.search-dialog .search-result-list a {
+  color: var(--c-text, #374151) !important;
+}
+.search-dialog .search-result-list a:hover {
+  color: var(--c-primary, #1677B3) !important;
+}
+.search-dialog .search-keyword {
+  color: var(--c-primary, #1677B3) !important;
+  background: rgba(var(--c-primary-rgb, 22, 119, 179), 0.10) !important;
+  padding: 0 2px !important;
+  border-radius: 3px !important;
+}
+
+/* 遮罩：加深一点，让搜索面板更聚焦 */
+#search-mask {
+  background: rgba(15, 23, 42, 0.55) !important;
+  backdrop-filter: blur(2px);
+}
+
+/* 面板高度：主题只限制了 .search-result-list，面板本身没限制，
+   搜索 17 条结果时会撑到 749px 超出屏幕。这里给面板加最大高度 + 内部滚动。 */
+.search-dialog {
+  max-height: 80vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+
+/* 标题栏固定 */
+.search-dialog .search-nav {
+  flex: 0 0 auto !important;
+}
+
+/* 输入框固定 */
+.search-dialog .local-search-input {
+  flex: 0 0 auto !important;
+}
+
+/* 结果列表滚动 */
+.search-dialog .search-result-list {
+  flex: 1 1 auto !important;
+  overflow-y: auto !important;
+  max-height: none !important;
+  margin: 0 -20px !important;
+  padding: 0 22px !important;
+}
+
+/* 滚动条美化 */
+.search-dialog .search-result-list::-webkit-scrollbar {
+  width: 6px;
+}
+.search-dialog .search-result-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.search-dialog .search-result-list::-webkit-scrollbar-thumb {
+  background: rgba(var(--c-primary-rgb, 22, 119, 179), 0.25);
+  border-radius: 3px;
+}
+.search-dialog .search-result-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--c-primary-rgb, 22, 119, 179), 0.45);
+}
+
+/* 移动端：面板占满，用 100dvh 适配手机浏览器地址栏 */
+@media (max-width: 768px) {
+  .search-dialog {
+    max-height: 100vh !important;
+    max-height: 100dvh !important;
+  }
+}
+
+/* 主题在搜索框里插的分隔线（剪刀图标），面板变实底后显得突兀 */
+.search-dialog .custom-hr,
+.search-dialog hr {
+  display: none !important;
+}
