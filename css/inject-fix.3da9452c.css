@@ -140,6 +140,136 @@ html[data-theme='dark'] {
   --blockquote-color: rgba(232, 238, 244, 0.88);
 }
 
+/* ==== 脱敏内容（密码遮蔽） ==== */
+/* 用法：<span class="secret" data-key="xxx" data-hint="提示">******</span>
+   默认显示星号，悬停显示提示，点击弹内联输入框解锁。 */
+
+.secret[data-key] {
+  display: inline-block;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+  color: var(--c-text-secondary, #6b7280);
+  background: rgba(var(--c-primary-rgb, 22, 119, 179), 0.08);
+  border: 1px dashed rgba(var(--c-primary-rgb, 22, 119, 179), 0.35);
+  border-radius: 5px;
+  padding: 1px 8px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  vertical-align: baseline;
+  line-height: 1.5;
+}
+
+.secret[data-key]:hover {
+  background: rgba(var(--c-primary-rgb, 22, 119, 179), 0.14);
+  border-color: rgba(var(--c-primary-rgb, 22, 119, 179), 0.6);
+  color: var(--c-primary, #1677B3);
+}
+
+/* 已解锁 */
+.secret.secret-revealed {
+  color: var(--c-text, #374151);
+  background: rgba(var(--c-primary-rgb, 22, 119, 179), 0.06);
+  border: 1px solid rgba(var(--c-primary-rgb, 22, 119, 179), 0.25);
+  cursor: text;
+  user-select: text;
+  letter-spacing: 0;
+}
+
+.secret.secret-revealed:hover {
+  background: rgba(var(--c-primary-rgb, 22, 119, 179), 0.06);
+  color: var(--c-text, #374151);
+}
+
+/* 内联编辑区 */
+.secret-editor {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  vertical-align: middle;
+}
+
+.secret-input {
+  width: 130px;
+  padding: 2px 8px;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--c-text, #374151);
+  background: var(--c-surface, #fff) !important;
+  border: 1px solid var(--c-primary, #1677B3);
+  border-radius: 5px;
+  outline: none;
+}
+
+.secret-btn {
+  padding: 2px 10px;
+  font-size: 12px;
+  font-family: inherit;
+  color: #fff;
+  background: var(--c-primary, #1677B3);
+  border: 1px solid var(--c-primary, #1677B3);
+  border-radius: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+
+.secret-btn:hover { opacity: 0.85; }
+
+.secret-btn-ghost {
+  color: var(--c-text-secondary, #6b7280);
+  background: transparent;
+  border-color: var(--c-border, #e5e7eb);
+}
+
+.secret-msg {
+  font-size: 12px;
+  letter-spacing: 0;
+  color: var(--c-text-secondary, #6b7280);
+  white-space: nowrap;
+}
+
+.secret-msg-err { color: #dc2626; }
+
+/* 深色模式 */
+html[data-theme='dark'] .secret[data-key] {
+  background: rgba(100, 181, 246, 0.10);
+  border-color: rgba(100, 181, 246, 0.35);
+  color: rgba(226, 232, 240, 0.7);
+}
+
+html[data-theme='dark'] .secret[data-key]:hover {
+  background: rgba(100, 181, 246, 0.18);
+  border-color: rgba(100, 181, 246, 0.65);
+  color: #64b5f6;
+}
+
+html[data-theme='dark'] .secret.secret-revealed {
+  color: #e2e8f0;
+  background: rgba(100, 181, 246, 0.08);
+  border-color: rgba(100, 181, 246, 0.22);
+}
+
+html[data-theme='dark'] .secret-input {
+  color: #e2e8f0;
+  background: #0f172a !important;
+  border-color: #64b5f6;
+}
+
+html[data-theme='dark'] .secret-btn {
+  background: var(--c-primary, #1677B3);
+  border-color: var(--c-primary, #1677B3);
+}
+
+html[data-theme='dark'] .secret-msg { color: rgba(226, 232, 240, 0.6); }
+html[data-theme='dark'] .secret-msg-err { color: #f87171; }
+
+/* 移动端：输入框窄一点 */
+@media (max-width: 640px) {
+  .secret-input { width: 96px; }
+  .secret-btn { padding: 2px 8px; font-size: 11px; }
+}
+
 /* ==== 搜索框（主题默认 transparent，叠在内容上完全看不清） ==== */
 /* 根因：themes/butterfly/source/css/_global/var.styl L81  $search-bg = transparent
    主题原本可能是配合某种背景图设计，但本站叠加自定义设计变量后，
