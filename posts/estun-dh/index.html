@@ -1,0 +1,707 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><meta name="baidu-site-verification" content="codeva-hfv5Au82rN"><title>埃斯顿（ESTUN）机器人 DH 参数查看与修改全流程 | G/ren的小破站</title><meta name="author" content="G/ren"><meta name="copyright" content="G/ren"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="一句话摘要：埃斯顿机器人逐台出厂的实际 D-H 参数都不一样，直接用它做手眼标定，精度一定对不上。本文记录从接线、配 IP、VNC 进控制器后台读 RobotParam，到改 Mech-Viz 模型 algo.json 的完整操作，附密码、路径、踩坑清单和原文勘误。   先看结论整件事只有三步：    步骤 做什么 在哪做    ① 读 从机器人控制器里读出这台机器实际的 D-H 参数 网线直连">
+<meta property="og:type" content="article">
+<meta property="og:title" content="埃斯顿（ESTUN）机器人 DH 参数查看与修改全流程">
+<meta property="og:url" content="https://www.hehehey.top/posts/estun-dh/index.html">
+<meta property="og:site_name" content="G/ren的小破站">
+<meta property="og:description" content="一句话摘要：埃斯顿机器人逐台出厂的实际 D-H 参数都不一样，直接用它做手眼标定，精度一定对不上。本文记录从接线、配 IP、VNC 进控制器后台读 RobotParam，到改 Mech-Viz 模型 algo.json 的完整操作，附密码、路径、踩坑清单和原文勘误。   先看结论整件事只有三步：    步骤 做什么 在哪做    ① 读 从机器人控制器里读出这台机器实际的 D-H 参数 网线直连">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.hehehey.top/img/%E9%BB%98%E8%AE%A4%E5%B0%81%E9%9D%A2%E5%9B%BE.webp">
+<meta property="article:published_time" content="2026-11-12T05:40:00.000Z">
+<meta property="article:modified_time" content="2026-11-12T05:42:19.571Z">
+<meta property="article:author" content="G/ren">
+<meta property="article:tag" content="DH参数">
+<meta property="article:tag" content="ESTUN">
+<meta property="article:tag" content="Mech-Viz">
+<meta property="article:tag" content="VNC">
+<meta property="article:tag" content="埃斯顿">
+<meta property="article:tag" content="手眼标定">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.hehehey.top/img/%E9%BB%98%E8%AE%A4%E5%B0%81%E9%9D%A2%E5%9B%BE.webp"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "埃斯顿（ESTUN）机器人 DH 参数查看与修改全流程",
+  "url": "https://www.hehehey.top/posts/estun-dh/",
+  "image": "https://www.hehehey.top/img/%E9%BB%98%E8%AE%A4%E5%B0%81%E9%9D%A2%E5%9B%BE.webp",
+  "datePublished": "2026-11-12T05:40:00.000Z",
+  "dateModified": "2026-11-12T05:42:19.571Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "G/ren",
+      "url": "https://www.hehehey.top"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.hehehey.top/posts/estun-dh/index.html"><link rel="preconnect"><link rel="stylesheet" href="/css/index.24ab2dec.css"><link rel="stylesheet" href="/css/all.min.9429b4b7.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://img.hehey.top/js/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '埃斯顿（ESTUN）机器人 DH 参数查看与修改全流程',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="icon" type="image/x-icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/design-system.cd6e41b2.css"><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="G/ren的小破站" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/%E5%A4%B4%E5%83%8F.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><span class="site-page group hide"><span> 内容</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-clock"></i><span> 更新</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 统计</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/charts/"><i class="fa-fw fas fa-chart-bar"></i><span> 文章统计</span></a></li><li><a class="site-page child" href="/census/"><i class="fa-fw fas fa-chart-line"></i><span> 博客统计</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 互动</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/moments/"><i class="fa-fw fas fa-comment-dots"></i><span> 动态</span></a></li><li><a class="site-page child" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 信箱</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/supertool/"><i class="fa-fw fas fa-wand-magic-sparkles"></i><span> 超级工作台</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 关于</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fas fa-bullhorn"></i><span> 公告</span></a></li><li><a class="site-page child" href="/protocol/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> 评论协议</span></a></li><li><a class="site-page child" href="/protocol/copyright/"><i class="fa-fw fas fa-copyright"></i><span> 版权协议</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">G/ren的小破站</span></a><a class="nav-page-title" href="/"><span class="site-name">埃斯顿（ESTUN）机器人 DH 参数查看与修改全流程</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><span class="site-page group hide"><span> 内容</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-clock"></i><span> 更新</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 统计</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/charts/"><i class="fa-fw fas fa-chart-bar"></i><span> 文章统计</span></a></li><li><a class="site-page child" href="/census/"><i class="fa-fw fas fa-chart-line"></i><span> 博客统计</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 互动</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/moments/"><i class="fa-fw fas fa-comment-dots"></i><span> 动态</span></a></li><li><a class="site-page child" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 信箱</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/supertool/"><i class="fa-fw fas fa-wand-magic-sparkles"></i><span> 超级工作台</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 关于</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fas fa-bullhorn"></i><span> 公告</span></a></li><li><a class="site-page child" href="/protocol/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> 评论协议</span></a></li><li><a class="site-page child" href="/protocol/copyright/"><i class="fa-fw fas fa-copyright"></i><span> 版权协议</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">埃斯顿（ESTUN）机器人 DH 参数查看与修改全流程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-11-12T05:40:00.000Z" title="发表于 2026-11-12 13:40:00">2026-11-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-11-12T05:42:19.571Z" title="更新于 2026-11-12 13:42:19">2026-11-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA%E9%80%9A%E8%AE%AF/">机器人通讯</a></span></div><div class="meta-secondline"></div></div></div><article class="container post-content" id="article-container"><blockquote>
+<p><strong>一句话摘要</strong>：埃斯顿机器人逐台出厂的实际 D-H 参数都不一样，直接用它做手眼标定，精度一定对不上。本文记录从接线、配 IP、VNC 进控制器后台读 <code>RobotParam</code>，到改 Mech-Viz 模型 <code>algo.json</code> 的完整操作，附密码、路径、踩坑清单和原文勘误。</p>
+</blockquote>
+<hr>
+<h2 id="先看结论"><a href="#先看结论" class="headerlink" title="先看结论"></a>先看结论</h2><p>整件事只有三步：</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>做什么</th>
+<th>在哪做</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>① 读</td>
+<td>从机器人控制器里读出<strong>这台机器实际</strong>的 D-H 参数</td>
+<td>网线直连控制器 LAN4 → VNC 进后台 → 看 <code>RobotParam</code></td>
+</tr>
+<tr>
+<td>② 抄</td>
+<td>把 L1~L7 七个连杆值抄下来</td>
+<td>记事本</td>
+</tr>
+<tr>
+<td>③ 改</td>
+<td>把这七个值填进 Mech-Viz 的机器人模型</td>
+<td>Mech-Viz → 右键模型 → 打开资源文件 → <code>[robot]_algo.json</code></td>
+</tr>
+</tbody></table>
+<p>难点全在 ①，因为要进控制器后台。②③ 是纯抄写操作。</p>
+<hr>
+<h2 id="为什么埃斯顿必须一台一台改"><a href="#为什么埃斯顿必须一台一台改" class="headerlink" title="为什么埃斯顿必须一台一台改"></a>为什么埃斯顿必须一台一台改</h2><p>这不是配置疏忽，是埃斯顿的设计特点。</p>
+<p><strong>控制器里存的是「这台」的真实值，Mech-Viz 里用的是「这个型号」的标准模型。</strong></p>
+<p>机器人本体在加工和装配时存在公差，每台六轴的连杆实际长度、关节零位都有微小差异。埃斯顿在出厂时会对每台机器单独做运动学标定，把结果写进控制器的配置文件 <code>RobotParam</code>。所以同一型号的 10 台机器人，<code>RobotParam</code> 里的数值是 10 组不同的数。</p>
+<p>而 Mech-Viz 的机器人模型库里放的是<strong>该型号的标准模型</strong>——一套理论值。</p>
+<p>这就产生了一个隐形误差源。官方文档对后果写得很直接：</p>
+<blockquote>
+<p>当机器人与视觉系统之间通过关节角发送位姿数据时，如果真实机器人 DH 参数与仿真用的机器人 DH 参数不一致，会引入机器人精度误差。</p>
+</blockquote>
+<p>三个典型会踩到的场景：</p>
+<ol>
+<li>部分机器人的手眼标定（走主控通信）</li>
+<li>只接收机器人关节角、不接收位姿的 EIH 场景</li>
+<li>向机器人发送路径点关节角的场景</li>
+</ol>
+<p>这三种情况下，Mech-Viz 要<strong>用 DH 参数自己算出位姿</strong>。模型里的连杆长度错 1 mm，算出来的位姿就偏 1 mm，标定再准也没用——误差在源头。</p>
+<p>所以流程是：<strong>现场每台 ESTUN 都要单独核对一遍 D-H，不能拿一台的参数套全部。</strong></p>
+<hr>
+<h2 id="准备清单"><a href="#准备清单" class="headerlink" title="准备清单"></a>准备清单</h2><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>要求</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>网线</td>
+<td>1 根</td>
+<td>直连，不需要交换机</td>
+</tr>
+<tr>
+<td>VNC 客户端</td>
+<td>TightVNC（用 <code>tvnviewer.exe</code>）</td>
+<td>控制器自带服务端，只需装查看器</td>
+</tr>
+<tr>
+<td>笔记本/工控机</td>
+<td>Windows</td>
+<td>与视觉工控机同一台最方便</td>
+</tr>
+<tr>
+<td>Mech-Viz</td>
+<td>已装，且已导入该型号机器人模型</td>
+<td>否则没有 <code>algo.json</code> 可改</td>
+</tr>
+<tr>
+<td>机器人状态</td>
+<td>上电、可进入示教器界面</td>
+<td>改参数不用使能</td>
+</tr>
+</tbody></table>
+<p><strong>两个密码（控制器默认值，现场可能被改过）：</strong></p>
+<ul>
+<li>VNC 远程连接密码：<code>ERC654321</code></li>
+<li>控制器后台登录：用户名 <code>estun</code> / 密码 <code>estun</code></li>
+</ul>
+<blockquote>
+<p>⚠️ 上面两个是出厂默认。如果现场改过，找集成商或埃斯顿售后要。改密码是常规安全操作，不要硬猜。</p>
+</blockquote>
+<hr>
+<h2 id="第一步：接线"><a href="#第一步：接线" class="headerlink" title="第一步：接线"></a>第一步：接线</h2><p>用网线把<strong>视觉工控机</strong>接到<strong>机器人控制器的 LAN4 网口</strong>。</p>
+<p><img src="/img/estun-dh/01-lan4-port.jpg" alt="控制器 LAN4 网口位置"></p>
+<p>认准标着 <code>LAN4</code> 的那个口。旁边 <code>LAN1/2/3</code> 是别的用途，<code>DBG</code> 是调试口，都别插。</p>
+<p>埃斯顿控制器对网口的功能划分是这样的：</p>
+<table>
+<thead>
+<tr>
+<th>网口</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ETH1（LAN3）</td>
+<td>TCP/IP、ModbusTCP</td>
+</tr>
+<tr>
+<td><strong>ETH2（LAN4）</strong></td>
+<td><strong>VNC、EtherNet/IP、PROFINET</strong></td>
+</tr>
+</tbody></table>
+<p>VNC 服务挂在 LAN4 上，所以必须插这个口。</p>
+<hr>
+<h2 id="第二步：查控制器-LAN4-的-IP"><a href="#第二步：查控制器-LAN4-的-IP" class="headerlink" title="第二步：查控制器 LAN4 的 IP"></a>第二步：查控制器 LAN4 的 IP</h2><p>在示教器上依次操作：</p>
+<p><strong>主界面左上角主页图标 → 高级设置 → 网络设置 → 网口显示切到 <code>ETH2(1an4)</code></strong></p>
+<p><img src="/img/estun-dh/02-controller-home.jpg" alt="示教器主页"></p>
+<p><img src="/img/estun-dh/03-advanced-settings.jpg" alt="进入高级设置"></p>
+<p>切到 <code>ETH2(1an4)</code> 之后，看到这一组值：</p>
+<p><img src="/img/estun-dh/04-network-lan4-ip.jpg" alt="LAN4 网络设置"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">IP          : 192.168.60.63</span><br><span class="line">Subnet mask : 255.255.255.0</span><br><span class="line">Gateway     : 192.168.60.1</span><br></pre></td></tr></tbody></table></figure>
+
+<p>界面下方还有一行厂家的备注，值得记一下：</p>
+<blockquote>
+<ol>
+<li>出厂默认设置，不建议修改。</li>
+<li>外部网口不能与调试网段相同，否则影响外部通讯。</li>
+</ol>
+</blockquote>
+<p><strong>记下这个 IP</strong>，下一步要用。</p>
+<blockquote>
+<p>📌 <strong>勘误</strong>：不少流传的教程（包括原始社区帖）把这里写成 <code>196.168.60.63</code>，是笔误。实际是 <strong>192</strong>.168.60.63，示教器截图上写得很清楚。照 196 段配 IP 是连不上的。</p>
+</blockquote>
+<hr>
+<h2 id="第三步：给工控机配同网段-IP"><a href="#第三步：给工控机配同网段-IP" class="headerlink" title="第三步：给工控机配同网段 IP"></a>第三步：给工控机配同网段 IP</h2><p>打开工控机的网络适配器（就是刚插网线那个口），改成和 LAN4 同一网段：</p>
+<p><img src="/img/estun-dh/05-ipc-network.png" alt="工控机 IP 配置"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">IP          : 192.168.60.161   ← 同网段，别和 .63 撞</span><br><span class="line">Subnet mask : 255.255.255.0</span><br><span class="line">Gateway     : 192.168.60.1     ← 与控制器一致</span><br></pre></td></tr></tbody></table></figure>
+
+<p>配完<strong>先 ping 一下</strong>，通了再往下：</p>
+<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping <span class="number">192.168</span>.<span class="number">60.63</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>看到 <code>来自 192.168.60.63 的回复: 字节=32 时间&lt;1ms TTL=64</code> 才算成功。</p>
+<p>ping 不通就去查：网线是不是插错口、防火墙是不是拦了、两边是不是真在同一网段。<strong>这一步不通，后面全白搭</strong>，别急着开 VNC。</p>
+<hr>
+<h2 id="第四步：VNC-连进控制器后台"><a href="#第四步：VNC-连进控制器后台" class="headerlink" title="第四步：VNC 连进控制器后台"></a>第四步：VNC 连进控制器后台</h2><h3 id="启动-VNC-查看器"><a href="#启动-VNC-查看器" class="headerlink" title="启动 VNC 查看器"></a>启动 VNC 查看器</h3><p>解压 VNC 安装包，运行 <code>tvnviewer.exe</code>（不是 <code>tvnserver.exe</code>，那是服务端）：</p>
+<p><img src="/img/estun-dh/06-vnc-exe.png" alt="VNC 程序目录"></p>
+<h3 id="填-IP-连接"><a href="#填-IP-连接" class="headerlink" title="填 IP 连接"></a>填 IP 连接</h3><p>远程主机填刚才记下的 <code>192.168.60.63</code>，点「连接」：</p>
+<p><img src="/img/estun-dh/07-vnc-connect.png" alt="VNC 连接界面"></p>
+<h3 id="输入远程密码"><a href="#输入远程密码" class="headerlink" title="输入远程密码"></a>输入远程密码</h3><p>密码：<code>ERC654321</code></p>
+<p><img src="/img/estun-dh/08-vnc-password.png" alt="VNC 身份验证"></p>
+<h3 id="进入控制器后台"><a href="#进入控制器后台" class="headerlink" title="进入控制器后台"></a>进入控制器后台</h3><p>连上后会看到 <code>ESTUN TOOL SERVER</code> 界面，右侧竖排四个按钮：<strong>主界 / 管理 / 最小化 / 关闭</strong>。</p>
+<p>点 <strong>「管理」</strong>：</p>
+<p><img src="/img/estun-dh/09-tool-server.png" alt="ESTUN TOOL SERVER"></p>
+<p>会弹登录框，用户名和密码都填 <code>estun</code>：</p>
+<p><img src="/img/estun-dh/10-controller-login.png" alt="控制器登录"></p>
+<h3 id="最小化，露出-Windows-桌面"><a href="#最小化，露出-Windows-桌面" class="headerlink" title="最小化，露出 Windows 桌面"></a>最小化，露出 Windows 桌面</h3><p>登录后点 <strong>「最小化」</strong>，把 TOOL SERVER 窗口缩下去，露出控制器的 Windows 桌面：</p>
+<p><img src="/img/estun-dh/11-minimize.png" alt="最小化按钮"></p>
+<blockquote>
+<p>⚠️ <strong>这里是最容易出事的一步。</strong></p>
+<p>控制器屏幕上跑着一个常驻的运行窗口，那是机器人实时任务。<strong>千万不要点它的关闭按钮。</strong> 原始教程在这里连用了 8 个感叹号强调——关掉轻则通讯中断要重启控制器，重则影响正在运行的生产任务。</p>
+<p>只点「最小化」，别去碰桌面上其它窗口的 ✕。</p>
+</blockquote>
+<hr>
+<h2 id="第五步：进控制器桌面找文件"><a href="#第五步：进控制器桌面找文件" class="headerlink" title="第五步：进控制器桌面找文件"></a>第五步：进控制器桌面找文件</h2><p>在控制器桌面上双击「我的电脑 / 计算机」，进文件管理器：</p>
+<p><img src="/img/estun-dh/12-controller-desktop.png" alt="控制器桌面"></p>
+<p>导航到：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\runtime\config\</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这个目录里是一堆机器人配置文件：</p>
+<p><img src="/img/estun-dh/13-runtime-config.png" alt="runtime\config 目录"></p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>大小</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>AxisParam</code></td>
+<td>12 KB</td>
+<td>轴参数</td>
+</tr>
+<tr>
+<td><code>DynParam.json</code></td>
+<td>8 KB</td>
+<td>动力学参数</td>
+</tr>
+<tr>
+<td><strong><code>RobotParam</code></strong></td>
+<td><strong>5 KB</strong></td>
+<td><strong>← 连杆/D-H 参数在这个里面</strong></td>
+</tr>
+<tr>
+<td><code>AutoGainServoParam.json</code></td>
+<td>1 KB</td>
+<td>伺服增益</td>
+</tr>
+<tr>
+<td><code>FreqParam</code></td>
+<td>—</td>
+<td>频率参数</td>
+</tr>
+<tr>
+<td><code>PID_ParamCheck</code></td>
+<td>1 KB</td>
+<td>PID 校验</td>
+</tr>
+</tbody></table>
+<p><strong><code>RobotParam</code> 没有扩展名</strong>，双击大概率不会自动打开。右键 → 打开方式 → 记事本。</p>
+<hr>
+<h2 id="第六步：读出实际-D-H-参数"><a href="#第六步：读出实际-D-H-参数" class="headerlink" title="第六步：读出实际 D-H 参数"></a>第六步：读出实际 D-H 参数</h2><p>用记事本打开后，开头 <code>[Mach]</code> 段就是机器人连杆参数：</p>
+<p><img src="/img/estun-dh/14-robotparam.png" alt="RobotParam 内容"></p>
+<figure class="highlight ini"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Mach]</span>                    <span class="comment">;机器人杆件参数</span></span><br><span class="line"><span class="attr">RobotType</span>  = ER<span class="number">270_2700_</span>A6   <span class="comment">;机型：ER270_2700_A6机器人</span></span><br><span class="line"><span class="attr">L1</span>         = <span class="number">688.0000</span></span><br><span class="line"><span class="attr">L2</span>         = <span class="number">283.5757</span></span><br><span class="line"><span class="attr">L3</span>         = <span class="number">1151.1047</span></span><br><span class="line"><span class="attr">L4</span>         = <span class="number">232.2853</span></span><br><span class="line"><span class="attr">L5</span>         = <span class="number">1265.5455</span></span><br><span class="line"><span class="attr">L6</span>         = <span class="number">260.0000</span></span><br><span class="line"><span class="attr">L7</span>         = <span class="number">0.0000</span></span><br><span class="line"><span class="attr">AuxAxes</span>    = <span class="number">0</span>            <span class="comment">;附加轴个数</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>把这 8 行（<code>L1</code> 到 <code>L7</code>，加 <code>RobotType</code>）原样抄下来。</strong></p>
+<blockquote>
+<p>🔎 <strong>一个重要提醒</strong>：右侧注释栏里写的「SCARA-大臂长度」「码垛-腕部水平偏移距离」之类，是埃斯顿配置文件里的<strong>通用注释模板</strong>，SCARA、码垛、六轴共用一个文件格式。对 ER270 这种六轴机型，这些字面意思<strong>不完全对应</strong>，别按注释去理解 L2 到底代表什么。</p>
+<p>你需要做的只是：<strong>原样抄数字，原样填到 Mech-Viz</strong>。中间不需要知道每个 L 对应哪根连杆。</p>
+</blockquote>
+<p>上面的数值只是示例（一台 ER270-2700），<strong>你的机器一定是别的数</strong>。照抄示例 = 精度直接崩。</p>
+<hr>
+<h2 id="第七步：改-Mech-Viz-的机器人模型"><a href="#第七步：改-Mech-Viz-的机器人模型" class="headerlink" title="第七步：改 Mech-Viz 的机器人模型"></a>第七步：改 Mech-Viz 的机器人模型</h2><h3 id="找到模型对应的资源文件"><a href="#找到模型对应的资源文件" class="headerlink" title="找到模型对应的资源文件"></a>找到模型对应的资源文件</h3><p>打开 Mech-Viz，在场景里选中现场对应的机器人模型（这里是 <code>ESTUN_ER270_2700</code>），<strong>右键 → 打开资源文件</strong>：</p>
+<p><img src="/img/estun-dh/15-mech-viz-model.jpg" alt="Mech-Viz 机器人模型"></p>
+<p><img src="/img/estun-dh/16-open-resource.jpg" alt="右键打开资源文件"></p>
+<p>资源目录会打开，一般在这个路径：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\&lt;用户名&gt;\AppData\Roaming\Mmind\robot\estun\estun_er270_2700\</span><br></pre></td></tr></tbody></table></figure>
+
+<p>里面有 4 个文件：</p>
+<p><img src="/img/estun-dh/17-algo-json-folder.png" alt="模型资源目录"></p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>estun_er270_2700_3dpkg</code></td>
+<td>3D 模型包，别动</td>
+</tr>
+<tr>
+<td><strong><code>estun_er270_2700_algo.json</code></strong></td>
+<td><strong>← 连杆参数在这里，要改的就是它</strong></td>
+</tr>
+<tr>
+<td><code>estun_er270_2700_preview.png</code></td>
+<td>缩略图</td>
+</tr>
+<tr>
+<td><code>estun_er270_2700_profile.json</code></td>
+<td>机型属性</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>📌 <strong>勘误</strong>：原始社区帖写的是「选择对应的【aglo】文件」，<code>aglo</code> 是 <code>algo</code> 的笔误。实际扩展名是 <code>.json</code>，文件名以 <code>_algo.json</code> 结尾。</p>
+</blockquote>
+<h3 id="对比两边的值"><a href="#对比两边的值" class="headerlink" title="对比两边的值"></a>对比两边的值</h3><p>用记事本打开 <code>estun_er270_2700_algo.json</code>，它的连杆参数不在 <code>L1</code>~`L7<code> 这种字段里，而是一个叫 **</code>ph`** 的数组：</p>
+<p><img src="/img/estun-dh/18-compare-dh.png" alt="左右对比"></p>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">{</span></span><br><span class="line">    <span class="attr">"algo_type"</span><span class="punctuation">:</span> <span class="string">"SphericalWrist_SixAxis"</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">"ph"</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="number">0.688</span><span class="punctuation">,</span></span><br><span class="line">        <span class="number">0.2835757</span><span class="punctuation">,</span></span><br><span class="line">        <span class="number">1.1511047</span><span class="punctuation">,</span></span><br><span class="line">        <span class="number">0.2322853</span><span class="punctuation">,</span></span><br><span class="line">        <span class="number">1.2655455</span><span class="punctuation">,</span></span><br><span class="line">        <span class="number">0.26</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">"min_limits"</span><span class="punctuation">:</span> <span class="punctuation">[</span> <span class="number">-180</span><span class="punctuation">,</span> <span class="number">-60</span><span class="punctuation">,</span> <span class="number">-95</span><span class="punctuation">,</span> <span class="number">-200</span><span class="punctuation">,</span> <span class="number">-125</span><span class="punctuation">,</span> <span class="number">-360</span> <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">"max_limits"</span><span class="punctuation">:</span> <span class="punctuation">[</span>  <span class="number">180</span><span class="punctuation">,</span>  <span class="number">80</span><span class="punctuation">,</span>  <span class="number">80</span><span class="punctuation">,</span>  <span class="number">200</span><span class="punctuation">,</span>  <span class="number">125</span><span class="punctuation">,</span>  <span class="number">360</span> <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">"axis_flip"</span><span class="punctuation">:</span> <span class="string">"100101"</span></span><br><span class="line"><span class="punctuation">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>对照上面从 <code>RobotParam</code> 抄下来的值，能看出一条很关键的换算关系：</p>
+<table>
+<thead>
+<tr>
+<th>RobotParam（mm）</th>
+<th><code>ph</code> 数组（m）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>L1 = 688.0000</code></td>
+<td><code>0.688</code></td>
+</tr>
+<tr>
+<td><code>L2 = 283.5757</code></td>
+<td><code>0.2835757</code></td>
+</tr>
+<tr>
+<td><code>L3 = 1151.1047</code></td>
+<td><code>1.1511047</code></td>
+</tr>
+<tr>
+<td><code>L4 = 232.2853</code></td>
+<td><code>0.2322853</code></td>
+</tr>
+<tr>
+<td><code>L5 = 1265.5455</code></td>
+<td><code>1.2655455</code></td>
+</tr>
+<tr>
+<td><code>L6 = 260.0000</code></td>
+<td><code>0.26</code></td>
+</tr>
+<tr>
+<td><code>L7 = 0.0000</code></td>
+<td><strong>不在数组里</strong></td>
+</tr>
+</tbody></table>
+<p>两条必须记住：</p>
+<blockquote>
+<p>🔴 <strong>单位不同</strong>：<code>RobotParam</code> 是<strong>毫米</strong>，<code>algo.json</code> 的 <code>ph</code> 数组是<strong>米</strong>。直接把 <code>688</code> 填进数组会让机器人变成 688 米长的怪物，Mech-Viz 当场崩或模型飞到天边。<strong>一律除以 1000</strong>。</p>
+<p>🔴 <strong>只填 6 个，不是 7 个</strong>：<code>ph</code> 数组固定 6 个元素，对应 L1~L6。<code>RobotParam</code> 里的 <code>L7</code>（附加轴偏移，通常为 0）不进这个数组，别硬塞第 7 个值——数组变成 7 个元素会导致解析失败。</p>
+</blockquote>
+<p><code>algo_type</code>、<code>min_limits</code>、<code>max_limits</code>、<code>axis_flip</code> 这些<strong>不要动</strong>。它们是机型运动学类型和关节限位，跟这台机器的加工公差无关，改了会让模型行为异常。</p>
+<p>判断标准：</p>
+<ul>
+<li><code>ph</code> 六个值和 <code>RobotParam</code> 的 L1~L6 ÷ 1000 完全一致 → 这台机器不用改</li>
+<li>有任何一位不同 → 逐个替换成实机值（保留原有小数位精度，别四舍五入）</li>
+</ul>
+<h3 id="保存并重启"><a href="#保存并重启" class="headerlink" title="保存并重启"></a>保存并重启</h3><ol>
+<li>保存 <code>algo.json</code>（UTF-8，别用 Word 打开）</li>
+<li><strong>关闭 Mech-Viz 和 Mech-Vision</strong></li>
+<li>重新启动视觉软件</li>
+</ol>
+<p>模型参数是启动时加载并缓存的，不重启不生效。</p>
+<blockquote>
+<p>💡 动手前先<strong>备份原文件</strong>：把 <code>estun_er270_2700_algo.json</code> 复制一份改名成 <code>estun_er270_2700_algo.json.bak</code> 放在同目录。改错了直接换回来，比重装模型快得多。</p>
+<p>另外：升级 Mech-Viz 或重新导入机器人模型时，<code>AppData</code> 下这个目录可能被覆盖。<strong>升级后要重新核对一遍 <code>ph</code> 数组</strong>。</p>
+</blockquote>
+<hr>
+<h2 id="第八步：验证"><a href="#第八步：验证" class="headerlink" title="第八步：验证"></a>第八步：验证</h2><p>改完之后怎么确认真的生效了？三个层次的验证：</p>
+<p><strong>① 看数值</strong>：重新打开 <code>algo.json</code>，确认 <code>ph</code> 六个值还在（有的编辑器崩溃会丢改动）。</p>
+<p><strong>② 看软件</strong>：重启 Mech-Viz，选中机器人模型，看模型属性里的连杆参数是否变成了新值。</p>
+<p><strong>③ 看精度</strong>：这是真正的验收。做完手眼标定后走一遍标准验证流程，看绝对精度是否在允许范围内。如果改前改后精度没区别，说明：</p>
+<ul>
+<li>要么改动根本没生效（回 ①② 查）</li>
+<li>要么这台机器的 <code>RobotParam</code> 本来就等于标准模型（少见，但存在）</li>
+</ul>
+<hr>
+<h2 id="踩坑清单"><a href="#踩坑清单" class="headerlink" title="踩坑清单"></a>踩坑清单</h2><table>
+<thead>
+<tr>
+<th>坑</th>
+<th>现象</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>网线插错口</td>
+<td>VNC 连不上</td>
+<td>必须插 <strong>LAN4</strong>，不是 LAN1/2/3</td>
+</tr>
+<tr>
+<td>IP 按 196 段配</td>
+<td>ping 不通</td>
+<td>实际是 <strong>192</strong>.168.60.63</td>
+</tr>
+<tr>
+<td>工控机 IP 和控制器撞</td>
+<td>时通时不通</td>
+<td>工控机用 .161 之类的其他地址</td>
+</tr>
+<tr>
+<td>防火墙拦 VNC</td>
+<td>连接超时</td>
+<td>关掉工控机防火墙对应网段的拦截</td>
+</tr>
+<tr>
+<td><strong>关掉控制器运行窗口</strong></td>
+<td>通讯中断 / 需重启控制器</td>
+<td>只点「最小化」，绝对不点 ✕</td>
+</tr>
+<tr>
+<td>照抄教程里的 L1~L7</td>
+<td>精度反而变差</td>
+<td>每台不同，必须读自己这台</td>
+</tr>
+<tr>
+<td><strong>mm 直接填进 <code>ph</code> 数组</strong></td>
+<td>模型巨大 / Mech-Viz 崩溃</td>
+<td><code>ph</code> 单位是<strong>米</strong>，一律 ÷1000</td>
+</tr>
+<tr>
+<td><strong>往 <code>ph</code> 里塞第 7 个值</strong></td>
+<td>json 解析失败、模型加载不出来</td>
+<td><code>ph</code> 固定 6 个，<code>L7</code> 不进数组</td>
+</tr>
+<tr>
+<td>改了 <code>min/max_limits</code></td>
+<td>关节限位异常、规划报错</td>
+<td>只改 <code>ph</code>，其它字段不要动</td>
+</tr>
+<tr>
+<td>用 Word 编辑 json</td>
+<td>文件损坏、Mech-Viz 起不来</td>
+<td>用记事本 / VS Code，UTF-8</td>
+</tr>
+<tr>
+<td>改完没重启软件</td>
+<td>参数不生效</td>
+<td>关掉 Mech-Vision + Mech-Viz 再开</td>
+</tr>
+<tr>
+<td>升级 Mech-Viz 后没复查</td>
+<td>参数被重置回标准模型</td>
+<td>升级/重导模型后重新核对 <code>ph</code></td>
+</tr>
+<tr>
+<td>找错模型目录</td>
+<td>改了没反应</td>
+<td>右键的是<strong>场景里正在用的那个模型</strong></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><p><strong>Q：每台都要改吗？一个车间 20 台怎么办？</strong></p>
+<p>每台都要核对。但可以批量做：把 20 台的 <code>RobotParam</code> 都读出来存成文本，逐台比对一次。如果某一批是同批次出厂的，值可能相同，那就一次改完覆盖。<strong>但一定要核对过再下结论</strong>——「应该一样吧」是这类项目最常见的翻车起点。</p>
+<p><strong>Q：<code>RobotParam</code> 能不能直接改？</strong></p>
+<p>不建议。这是控制器运动学模型，改错了机器人会动到不该去的地方，有安全风险。这里<strong>只读</strong>。要改的是 Mech-Viz 那边。</p>
+<p><strong>Q：<code>base_offset</code> 要不要改？</strong></p>
+<p><code>algo.json</code> 里如果还有 <code>base_offset</code> 之类的字段，一般不用动。它描述机器人基座相对世界坐标的偏移，和连杆 D-H 是两回事。除非机器人装在倾斜底座或移动平台上，否则保持原值。</p>
+<p><strong>Q：VNC 密码被改过怎么办？</strong></p>
+<p>找集成商或埃斯顿售后。硬猜没意义，而且频繁试错可能触发锁定。</p>
+<p><strong>Q：能不能不进控制器就读到 D-H？</strong></p>
+<p>部分机型可以在示教器的「系统信息 / 机器人参数」界面直接看。但 <code>RobotParam</code> 是权威来源，数值最全——示教器上显示的可能只是其中一部分。有条件还是读文件。</p>
+<hr>
+<h2 id="原文勘误（如果你也在照社区帖做）"><a href="#原文勘误（如果你也在照社区帖做）" class="headerlink" title="原文勘误（如果你也在照社区帖做）"></a>原文勘误（如果你也在照社区帖做）</h2><p>网上流传的这份操作指南（梅卡曼德在线社区，ESTUN 机器人查看 DH 参数）内容是对的，但有几处笔误值得提前知道，省得现场卡住：</p>
+<table>
+<thead>
+<tr>
+<th>原文</th>
+<th>实际</th>
+<th>影响</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>默认 IP <code>196.168.60.63</code></td>
+<td><code>192.168.60.63</code></td>
+<td>按 196 配 IP 直接连不上</td>
+</tr>
+<tr>
+<td>「选择对应的【aglo】文件」</td>
+<td><code>[robot]_algo.json</code></td>
+<td>找不到 aglo 这个后缀</td>
+</tr>
+<tr>
+<td>「找到对应的 RobotParam」</td>
+<td><code>C:\runtime\config\RobotParam</code>，无扩展名</td>
+<td>双击不打开，会以为文件坏了</td>
+</tr>
+<tr>
+<td><strong>只说「修改对应的 D-H 参数」</strong></td>
+<td><strong><code>ph</code> 是米制、6 个值、对应 L1~L6</strong></td>
+<td><strong>照 L1~L7 逐字段填会改错，单位错了直接崩</strong></td>
+</tr>
+<tr>
+<td>未说明控制器运行窗口的风险</td>
+<td>关掉会中断机器人运行</td>
+<td>原文用了 8 个感叹号强调，别当玩笑</td>
+</tr>
+</tbody></table>
+<p>第 4 条是这份原教程最大的坑：它只写「修改机器人模型配置文件中对应的 D-H 参数和当前机器人实际 D-H 参数一致」，但控制器里叫 <code>L1~L7</code> 毫米值，模型里叫 <code>ph</code> 数组米制 6 值。中间这层换算完全没写，只能靠截图对照发现。</p>
+<hr>
+<h2 id="附：参考"><a href="#附：参考" class="headerlink" title="附：参考"></a>附：参考</h2><ul>
+<li>梅卡曼德官方文档：<a target="_blank" rel="noopener" href="https://docs.mech-mind.net/zh/suite-software-manual/latest/vision-tools/accuracy-error-analysis-tool-robot-dh-parameters-checking.html">机器人 DH 参数检查</a>（DH 参数定义、使用场景、检查三步法）</li>
+<li>梅卡曼德官方文档：<a target="_blank" rel="noopener" href="https://docs.mech-mind.net/zh/suite-software-manual/latest/appendix/robot-parameters-verification.html">机器人模型参数校验教程</a></li>
+<li>梅卡曼德官方文档：<a target="_blank" rel="noopener" href="https://docs.mech-mind.net/zh/suite-software-manual/latest/viz-tools/robot-library.html">机器人模型库</a></li>
+<li>梅卡曼德在线社区：<a target="_blank" rel="noopener" href="https://community.mech-mind.com.cn/t/topic/3665">操作指南-ESTUN机器人查看DH参数</a>（本文原始操作流程来源）</li>
+</ul>
+<hr>
+<p><em>本文操作流程整理自梅卡曼德在线社区公开教程，结合现场实践补充了勘误、验证方法和踩坑清单。文中截图来自原教程，版权归原作者及梅卡曼德所有。</em></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.hehehey.top">G/ren</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.hehehey.top/posts/estun-dh/">https://www.hehehey.top/posts/estun-dh/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.hehehey.top" target="_blank">G/ren的小破站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%89%8B%E7%9C%BC%E6%A0%87%E5%AE%9A/">手眼标定</a><a class="post-meta__tags" href="/tags/ESTUN/">ESTUN</a><a class="post-meta__tags" href="/tags/%E5%9F%83%E6%96%AF%E9%A1%BF/">埃斯顿</a><a class="post-meta__tags" href="/tags/DH%E5%8F%82%E6%95%B0/">DH参数</a><a class="post-meta__tags" href="/tags/Mech-Viz/">Mech-Viz</a><a class="post-meta__tags" href="/tags/VNC/">VNC</a></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/posts/yaskawa-1/" title="YASKAWA（安川）+ 梅卡曼德视觉系统完整操作流程"><img class="cover" src="/img/%E9%BB%98%E8%AE%A4%E5%B0%81%E9%9D%A2%E5%9B%BE.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">YASKAWA（安川）+ 梅卡曼德视觉系统完整操作流程</div></div><div class="info-2"><div class="info-item-1">YASKAWA（安川）+ 梅卡曼德视觉系统完整操作流程适用机器人型号：YRC1000、DX200、YRC1000micro适用Mech-Vision版本：V2.1.2及以上  一、烧录程序到机器人1.1 准备工作   项目 要求    U盘 FAT32格式，提前备份重要数据   网线 标准以太网网线   电脑 运行Mech-Vision的工控机   确认机器人系统版本：  YRC1000 → YAS2.94.00-00 DX200 → DN3.16.00A-00 YRC1000micro → YBS2.31.00-00  1.2 烧录后台程序（只需烧录一次）后台程序是通信底层程序，烧录后永久生效。 步骤：  把U盘插入工控机USB接口 复制文件到U盘根目录： YRC1000系列：复制 mm_module_yrc1000.out + JBI文件夹 DX200系列：复制 mm_module_dx200.out + JBI文件夹   安全弹出U盘 U盘插入示教器USB接口（示教器后面板） 按住示教器主菜单键的同时开机 → 进入维护模式 输入密码：9999999999999999（16个...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/estun/" title="ESTUN（埃斯顿）+ 梅卡曼德视觉系统完整操作流程"><img class="cover" src="/img/%E9%BB%98%E8%AE%A4%E5%B0%81%E9%9D%A2%E5%9B%BE.webp" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-09-03</div><div class="info-item-2">ESTUN（埃斯顿）+ 梅卡曼德视觉系统完整操作流程</div></div><div class="info-2"><div class="info-item-1">ESTUN（埃斯顿）+ 梅卡曼德视觉系统完整操作流程ESTUN机器人通过RCS2控制系统与梅卡曼德视觉系统通信，使用TCP协议和ASCII格式。 ⚠️ 注意：请勿使用V1.35版本控制器，该版本无法与视觉系统正常通信。 适用系统版本：RCS2 V1.31适用控制器版本：V1.31适用Mech-Vision版本：V2.1.2及以上  一、烧录前准备1.1 检查硬件和软件版本   项目 要求    系统版本 RCS2 V1.31   控制器版本 V1.31   ⚠️ 重要：不要使用V1.35版本！ 查看方法：示教器主界面 → 用户登录 → 查看版本信息 1.2 准备烧录文件从Mech-Vision安装目录复制：  MM_Interface.er 文件夹（含MM_AUTO_CALIBRATION.erp和MM_INIT_SKT.erp）  文件位置：Mech-Vision安装目录/Communication Component/Robot_Interface/ESTUN/  二、配置Mech-Vision软件2.1 创建/打开方案打开M...</div></div></div></a><a class="pagination-related" href="/posts/3d-sop/" title="梅卡曼德 3D 视觉引导系统 通用 SOP"><img class="cover" src="/img/%E9%BB%98%E8%AE%A4%E5%B0%81%E9%9D%A2%E5%9B%BE.webp" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-14</div><div class="info-item-2">梅卡曼德 3D 视觉引导系统 通用 SOP</div></div><div class="info-2"><div class="info-item-1">梅卡曼德 3D 视觉引导系统 通用 SOP 适用版本：Mech-Vision &amp; Mech-Viz 2.1.0适用相机：Mech-Eye V3 / V4 系列适用机器人：六轴 / 四轴 / 桁架适用场景：抓取、装配、拆码垛、定位、检测   一、部署前检查清单1.1 硬件检查   检查项 标准 备注    机器人底座安装 牢固无晃动 六个月检查一次   机器人零点 未丢失 两月检查一次   相机支架安装 稳固无变形 两周检查一次   相机支架连接螺栓 无松动 两周检查一次   相机网线连接 牢固无老化 每天检查   相机电源线连接 牢固无破损 每天检查   工控机电源/网线/加密狗 正常 每周检查   交换机网线 连接正常 每周检查   1.2 环境检查  光照均匀，无强烈反光或过暗区域  工作温度：LSR/DEEP 系列 -1045℃，DLP 系列 045℃  海拔 ≤ 4000 米  相机附近无易燃易爆物品  工控机通风良好，周围预留 ≥ 5cm 间隙  1.3 软件准备  Mech-Eye Viewer、Me...</div></div></div></a></div></div><hr class="custom-hr"><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/%E5%A4%B4%E5%83%8F.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info-name">G/ren</div><div class="author-info-description">机器视觉调试工程师 | 技术分享</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Gren23" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/img/wechat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #07c160;"></i></a><a class="social-icon" href="tencent://message/?uin=1955561070" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #1296db;"></i></a><a class="social-icon" href="mailto:1955561070@qq.com" target="_blank" title="邮箱"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss" style="color: #f26522;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div id="latest-notice-placeholder"></div><script>(function() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/data/latest-notice.json', true);
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      var data = JSON.parse(xhr.responseText);
+      var el = document.getElementById('latest-notice-placeholder');
+      if (el && data.title) {
+        el.outerHTML = '<a href="' + data.url + '" style="color:inherit;text-decoration:none;display:block;">' +
+          '<span style="font-size:11px;opacity:0.7;margin-right:6px;">' + data.tag + '</span>' +
+          '<span style="font-size:11px;opacity:0.5;margin-right:6px;">' + data.date + '</span>' +
+          '<div style="margin-top:4px;font-weight:600;">' + data.title + '</div>' +
+          '</a>';
+      }
+    }
+  };
+  xhr.onerror = function() {
+    var el = document.getElementById('latest-notice-placeholder');
+    if (el) el.outerHTML = '<span style="opacity:0.5;font-size:13px;">暂无公告</span>';
+  };
+  xhr.send();
+})();</script></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%88%E7%9C%8B%E7%BB%93%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">先看结论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%9F%83%E6%96%AF%E9%A1%BF%E5%BF%85%E9%A1%BB%E4%B8%80%E5%8F%B0%E4%B8%80%E5%8F%B0%E6%94%B9"><span class="toc-number">2.</span> <span class="toc-text">为什么埃斯顿必须一台一台改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E6%B8%85%E5%8D%95"><span class="toc-number">3.</span> <span class="toc-text">准备清单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E6%8E%A5%E7%BA%BF"><span class="toc-number">4.</span> <span class="toc-text">第一步：接线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E6%9F%A5%E6%8E%A7%E5%88%B6%E5%99%A8-LAN4-%E7%9A%84-IP"><span class="toc-number">5.</span> <span class="toc-text">第二步：查控制器 LAN4 的 IP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E7%BB%99%E5%B7%A5%E6%8E%A7%E6%9C%BA%E9%85%8D%E5%90%8C%E7%BD%91%E6%AE%B5-IP"><span class="toc-number">6.</span> <span class="toc-text">第三步：给工控机配同网段 IP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9AVNC-%E8%BF%9E%E8%BF%9B%E6%8E%A7%E5%88%B6%E5%99%A8%E5%90%8E%E5%8F%B0"><span class="toc-number">7.</span> <span class="toc-text">第四步：VNC 连进控制器后台</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-VNC-%E6%9F%A5%E7%9C%8B%E5%99%A8"><span class="toc-number">7.1.</span> <span class="toc-text">启动 VNC 查看器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A1%AB-IP-%E8%BF%9E%E6%8E%A5"><span class="toc-number">7.2.</span> <span class="toc-text">填 IP 连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E8%BF%9C%E7%A8%8B%E5%AF%86%E7%A0%81"><span class="toc-number">7.3.</span> <span class="toc-text">输入远程密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E6%8E%A7%E5%88%B6%E5%99%A8%E5%90%8E%E5%8F%B0"><span class="toc-number">7.4.</span> <span class="toc-text">进入控制器后台</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E5%8C%96%EF%BC%8C%E9%9C%B2%E5%87%BA-Windows-%E6%A1%8C%E9%9D%A2"><span class="toc-number">7.5.</span> <span class="toc-text">最小化，露出 Windows 桌面</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E8%BF%9B%E6%8E%A7%E5%88%B6%E5%99%A8%E6%A1%8C%E9%9D%A2%E6%89%BE%E6%96%87%E4%BB%B6"><span class="toc-number">8.</span> <span class="toc-text">第五步：进控制器桌面找文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%9A%E8%AF%BB%E5%87%BA%E5%AE%9E%E9%99%85-D-H-%E5%8F%82%E6%95%B0"><span class="toc-number">9.</span> <span class="toc-text">第六步：读出实际 D-H 参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E6%AD%A5%EF%BC%9A%E6%94%B9-Mech-Viz-%E7%9A%84%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A8%A1%E5%9E%8B"><span class="toc-number">10.</span> <span class="toc-text">第七步：改 Mech-Viz 的机器人模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%BE%E5%88%B0%E6%A8%A1%E5%9E%8B%E5%AF%B9%E5%BA%94%E7%9A%84%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6"><span class="toc-number">10.1.</span> <span class="toc-text">找到模型对应的资源文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%AF%94%E4%B8%A4%E8%BE%B9%E7%9A%84%E5%80%BC"><span class="toc-number">10.2.</span> <span class="toc-text">对比两边的值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E5%B9%B6%E9%87%8D%E5%90%AF"><span class="toc-number">10.3.</span> <span class="toc-text">保存并重启</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E6%AD%A5%EF%BC%9A%E9%AA%8C%E8%AF%81"><span class="toc-number">11.</span> <span class="toc-text">第八步：验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B8%A9%E5%9D%91%E6%B8%85%E5%8D%95"><span class="toc-number">12.</span> <span class="toc-text">踩坑清单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-number">13.</span> <span class="toc-text">常见问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E6%96%87%E5%8B%98%E8%AF%AF%EF%BC%88%E5%A6%82%E6%9E%9C%E4%BD%A0%E4%B9%9F%E5%9C%A8%E7%85%A7%E7%A4%BE%E5%8C%BA%E5%B8%96%E5%81%9A%EF%BC%89"><span class="toc-number">14.</span> <span class="toc-text">原文勘误（如果你也在照社区帖做）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%EF%BC%9A%E5%8F%82%E8%80%83"><span class="toc-number">15.</span> <span class="toc-text">附：参考</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"></div><div class="copyright"><span><b>©2025-2026</b></span><span><b>&nbsp;&nbsp;By G/ren</b></span></div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div id="workboard"></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.d4a47557.js"></script><script src="/js/main.6296e7da.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twiikoo.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = (el = document, path = location.pathname) => {
+    twikoo.init({
+      el: el.querySelector('#twikoo-wrap'),
+      envId: 'https://twiikoo.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      },
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    
+
+    isShuoshuo && (window.shuoshuoComment.destroyTwikoo = () => {
+      if (el.children.length) {
+        el.innerHTML = ''
+        el.classList.add('no-comment')
+      }
+    })
+  }
+
+  const loadTwikoo = (el, path) => {
+    if (typeof twikoo === 'object') setTimeout(() => init(el, path), 0)
+    else btf.getScript('/lib/twikoo.min.js').then(() => init(el, path))
+  }
+
+  if (isShuoshuo) {
+    'Twikoo' === 'Twikoo'
+      ? window.shuoshuoComment = { loadComment: loadTwikoo }
+      : window.loadOtherComment = loadTwikoo
+    return
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><link rel="stylesheet" href="/css/custom-index.9d5c91a5.css"><link rel="stylesheet" href="/css/custom-notice-tags.d60d71f1.css"><link rel="stylesheet" href="/css/inject-fix.c9496e86.css"><script src="/js/vision-network.75b885be.js" defer=""></script><script src="/js/tag-cloud.c15d1698.js" defer=""></script><script src="/js/scroll-reveal.163ca44b.js" defer=""></script><script src="/js/notice-loader.6648c755.js" defer=""></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="输入关键词搜索..." type="text"></div><hr><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.24eae077.js"></script></div></div><script>var posts=[{"title":"梅卡曼德 3D 视觉引导系统 通用 SOP","path":"/posts/3d-sop/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"SOP","path":"/tags/SOP/"},{"name":"拆垛","path":"/tags/拆垛/"},{"name":"3D视觉","path":"/tags/3D视觉/"},{"name":"手眼标定","path":"/tags/手眼标定/"}],"cover":"/img/默认封面图.webp","date":"2026-02-14T01:37:16.000Z","updated":"2026-07-11T04:17:33.000Z"},{"title":"ABB RobotWare + 梅卡曼德视觉系统完整操作流程","path":"/posts/abb-robotware/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"ABB","path":"/tags/ABB/"},{"name":"RobotWare","path":"/tags/RobotWare/"},{"name":"梅卡曼德","path":"/tags/梅卡曼德/"}],"cover":"/img/默认封面图.webp","date":"2025-03-28T08:46:17.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"CGXi（希克斯）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/cgxi/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"CGXi","path":"/tags/CGXi/"},{"name":"希克斯","path":"/tags/希克斯/"}],"cover":"/img/默认封面图.webp","date":"2025-10-09T08:44:07.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"DENSO（电装）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/denso/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"DENSO","path":"/tags/DENSO/"},{"name":"电装","path":"/tags/电装/"}],"cover":"/img/默认封面图.webp","date":"2025-01-20T15:37:33.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"DOBOT（越疆）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/dobot/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"DOBOT","path":"/tags/DOBOT/"},{"name":"越疆","path":"/tags/越疆/"}],"cover":"/img/默认封面图.webp","date":"2026-02-25T18:20:51.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"ELITE（艾利特）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/elite/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"ELITE","path":"/tags/ELITE/"},{"name":"艾利特","path":"/tags/艾利特/"}],"cover":"/img/默认封面图.webp","date":"2025-09-25T21:30:32.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"埃斯顿（ESTUN）机器人 DH 参数查看与修改全流程","path":"/posts/estun-dh/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"手眼标定","path":"/tags/手眼标定/"},{"name":"ESTUN","path":"/tags/ESTUN/"},{"name":"埃斯顿","path":"/tags/埃斯顿/"},{"name":"DH参数","path":"/tags/DH参数/"},{"name":"Mech-Viz","path":"/tags/Mech-Viz/"},{"name":"VNC","path":"/tags/VNC/"}],"cover":"/img/默认封面图.webp","date":"2026-11-12T05:40:00.000Z","updated":"2026-11-12T05:42:19.571Z"},{"title":"ESTUN（埃斯顿）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/estun/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"ESTUN","path":"/tags/ESTUN/"},{"name":"埃斯顿","path":"/tags/埃斯顿/"}],"cover":"/img/默认封面图.webp","date":"2025-09-02T23:24:22.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"JAKA（节卡）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/jaka/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"JAKA","path":"/tags/JAKA/"},{"name":"节卡","path":"/tags/节卡/"}],"cover":"/img/默认封面图.webp","date":"2025-09-30T02:09:15.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"FANUC（发那科）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/fanuc/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"FANUC","path":"/tags/FANUC/"},{"name":"发那科","path":"/tags/发那科/"}],"cover":"/img/默认封面图.webp","date":"2025-01-03T06:02:34.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"KUKA（库卡）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/kuka/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"KUKA","path":"/tags/KUKA/"},{"name":"库卡","path":"/tags/库卡/"}],"cover":"/img/默认封面图.webp","date":"2025-11-06T01:12:19.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"Mech-Vision 方案构建思路","path":"/posts/mech-vision-1/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"Mech-Vision","path":"/tags/Mech-Vision/"},{"name":"方案构建","path":"/tags/方案构建/"}],"cover":"/img/默认封面图.webp","date":"2025-03-03T04:14:39.000Z","updated":"2026-07-11T04:17:33.000Z"},{"title":"Mech-Vision 安装指南","path":"/posts/mech-vision/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"Mech-Vision","path":"/tags/Mech-Vision/"},{"name":"安装","path":"/tags/安装/"}],"cover":"/img/默认封面图.webp","date":"2026-02-13T17:42:31.000Z","updated":"2026-07-11T04:17:33.000Z"},{"title":"Mech-Vision 步骤参考指南","path":"/posts/mech-vision-2/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"Mech-Vision","path":"/tags/Mech-Vision/"},{"name":"步骤参考","path":"/tags/步骤参考/"}],"cover":"/img/默认封面图.webp","date":"2025-05-17T23:59:08.000Z","updated":"2026-07-11T04:17:33.000Z"},{"title":"兰空图床图片审核-nsfwjs配置","path":"/posts/nsfwjs/","categories":[{"name":"文章","path":"/categories/文章/"}],"tags":[{"name":"图床","path":"/tags/图床/"},{"name":"nsfw","path":"/tags/nsfw/"},{"name":"辅助工具","path":"/tags/辅助工具/"}],"cover":"/img/默认封面图.webp","date":"2025-02-23T01:51:10.000Z","updated":"2026-11-07T14:50:22.558Z"},{"title":"拆垛工程项目 SOP 模板","path":"/posts/sop/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"SOP","path":"/tags/SOP/"},{"name":"拆垛","path":"/tags/拆垛/"},{"name":"模板","path":"/tags/模板/"}],"cover":"/img/默认封面图.webp","date":"2025-03-05T18:05:18.000Z","updated":"2026-11-07T08:38:38.069Z"},{"title":"西门子PLC Modbus TCP通讯教程","path":"/posts/plc-modbus-tcp/","categories":[{"name":"PLC通讯","path":"/categories/PLC通讯/"}],"tags":[{"name":"ModbusTCP","path":"/tags/ModbusTCP/"},{"name":"西门子","path":"/tags/西门子/"},{"name":"PLC","path":"/tags/PLC/"}],"cover":"/img/默认封面图.webp","date":"2025-04-28T11:29:24.000Z","updated":"2026-07-11T04:17:33.000Z"},{"title":"TM（创孔）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/tm/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"TM","path":"/tags/TM/"},{"name":"创孔","path":"/tags/创孔/"}],"cover":"/img/默认封面图.webp","date":"2025-09-27T16:38:26.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"UR（优傲）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/ur/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"UR","path":"/tags/UR/"},{"name":"优傲","path":"/tags/优傲/"}],"cover":"/img/默认封面图.webp","date":"2025-07-30T23:06:09.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"Vision Master 通讯配置","path":"/posts/visionmaster-1/","categories":[{"name":"视觉","path":"/categories/视觉/"}],"tags":[{"name":"VisionMaster","path":"/tags/VisionMaster/"},{"name":"通讯","path":"/tags/通讯/"}],"cover":"/img/默认封面图.webp","date":"2025-09-01T20:27:12.000Z","updated":"2026-07-11T04:17:33.000Z"},{"title":"Vision Master 入门指南","path":"/posts/visionmaster/","categories":[{"name":"视觉","path":"/categories/视觉/"}],"tags":[{"name":"VisionMaster","path":"/tags/VisionMaster/"},{"name":"入门","path":"/tags/入门/"}],"cover":"/img/默认封面图.webp","date":"2025-10-21T01:52:26.000Z","updated":"2026-07-11T04:17:33.000Z"},{"title":"YASKAWA + 梅卡曼德通信教程","path":"/posts/yaskawa/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"YASKAWA","path":"/tags/YASKAWA/"},{"name":"安川","path":"/tags/安川/"},{"name":"通信基础","path":"/tags/通信基础/"}],"cover":"/img/默认封面图.webp","date":"2026-01-24T04:32:12.000Z","updated":"2026-07-11T04:17:33.000Z"},{"title":"YASKAWA（安川）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/yaskawa-1/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"YASKAWA","path":"/tags/YASKAWA/"},{"name":"安川","path":"/tags/安川/"}],"cover":"/img/默认封面图.webp","date":"2026-02-27T02:17:12.000Z","updated":"2026-11-07T08:32:36.283Z"}];function toRandomPost(){ window.pjax ? pjax.loadUrl(posts[Math.floor(Math.random()*posts.length)].path) : window.open(posts[Math.floor(Math.random()*posts.length)].path, "_self"); };</script><script>var flinks=[{"name":"G/ren的小破站","link":"https://www.hehehey.top/","avatar":"https://www.hehehey.top/img/头像.JPG","descr":"机器视觉调试工程师 | 技术分享"}];function toRandomFlink(){ let to_flink = flinks[Math.floor(Math.random()*flinks.length)]; btf.snackbarShow('正在前往「 '+ to_flink.name +' 」友链，请稍后...', false, 3000); setTimeout(function() { window.open(to_flink.link); }, 3000); }</script></body></html>
