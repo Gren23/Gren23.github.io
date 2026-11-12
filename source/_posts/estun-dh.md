@@ -69,8 +69,8 @@ tags:
 
 **两个密码（控制器默认值，现场可能被改过）：**
 
-- VNC 远程连接密码：`ERC654321`
-- 控制器后台登录：用户名 `estun` / 密码 `estun`
+- VNC 远程连接密码：`[[secret:vnc-pwd|ERC654321]]`
+- 控制器后台登录：用户名 `[[secret:ctl-user|estun]]` / 密码 `[[secret:ctl-pwd|estun]]`
 
 > ⚠️ 上面两个是出厂默认。如果现场改过，找集成商或埃斯顿售后要。改密码是常规安全操作，不要硬猜。
 
@@ -166,7 +166,7 @@ ping 不通就去查：网线是不是插错口、防火墙是不是拦了、两
 
 ### 输入远程密码
 
-密码：`ERC654321`
+密码：`[[secret:vnc-pwd|ERC654321]]`
 
 ![VNC 身份验证](/img/estun-dh/08-vnc-password.png)
 
@@ -178,7 +178,7 @@ ping 不通就去查：网线是不是插错口、防火墙是不是拦了、两
 
 ![ESTUN TOOL SERVER](/img/estun-dh/09-tool-server.png)
 
-会弹登录框，用户名和密码都填 `estun`：
+会弹登录框，用户名和密码都填 `[[secret:ctl-user|estun]]`：
 
 ![控制器登录](/img/estun-dh/10-controller-login.png)
 
