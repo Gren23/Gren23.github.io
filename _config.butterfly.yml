@@ -35,8 +35,7 @@ menu:
   关于:
     关于: /about/ || fas fa-heart
     公告: /notice/ || fas fa-bullhorn
-    评论协议: /protocol/comment/ || fas fa-comment-dots
-    版权协议: /protocol/copyright/ || fas fa-copyright
+    站点协议: /protocol/ || fas fa-file-alt
 # --------------------------------------
 # Code Blocks Settings
 # --------------------------------------

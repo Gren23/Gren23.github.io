@@ -412,25 +412,67 @@ $py -m http.server 4100 --bind 127.0.0.1 --directory D:\blog\public
 
 ## 八、部署
 
+> ⚠️ **构建前必须先加载环境变量**，否则脱敏内容（`[[secret:...]]`）解不开。
+> 见下方「环境变量（必读）」。
+
 ```powershell
+# 0) 加载构建环境变量（必做，否则密码解锁功能失效）
+#    用 .env 读取，不依赖 PowerShell 执行策略
+Get-Content D:\blog\.scratch\build-env.env -Encoding UTF8 |
+  Where-Object { $_ -match '^\s*BLOG_SECRET_PASSWORD=(.+)$' } |
+  ForEach-Object { $env:BLOG_SECRET_PASSWORD = $Matches[1].Trim() }
+
 # 1) 改完先备份
-powershell -File .backup\blog_backup.ps1 -Reason "改xxx"
+powershell -NoProfile -ExecutionPolicy Bypass -File .backup\blog_backup.ps1 -Reason "改xxx"
 
 # 2) 构建
-$node='C:\Users\Administrator\.dsh\dsh-runtimes\dsh-primary-runtime\dependencies\node\bin\node.exe'
-$env:Path = Split-Path $node
-& $node node_modules\hexo-cli\bin\hexo clean
-& $node node_modules\hexo-cli\bin\hexo generate
+$deps='C:\Users\Administrator\.dsh\dsh-runtimes\dsh-primary-runtime\dependencies'
+$node="$deps\node\bin\node.exe"
+$py="$deps\python\python.exe"
+$env:Path = (Split-Path $node) + ';' + [Environment]::GetEnvironmentVariable('Path','Machine')
+& $node D:\blog\node_modules\hexo-cli\bin\hexo clean
+& $node D:\blog\node_modules\hexo-cli\bin\hexo generate
+# 产物里应出现：INFO  secret_lock: 加密 N 条 [...] -> data/secrets.json
 
 # 3) 同步产物到 .deploy_git
 Get-ChildItem D:\blog\.deploy_git -Force | Where-Object { $_.Name -ne '.git' } | Remove-Item -Recurse -Force
 Copy-Item D:\blog\public\* D:\blog\.deploy_git -Recurse -Force
+# ISSUE_TEMPLATE 会被清掉，要补回
+New-Item -ItemType Directory -Force -Path D:\blog\.deploy_git\.github\ISSUE_TEMPLATE | Out-Null
+Copy-Item D:\blog\.github\ISSUE_TEMPLATE\*.yml D:\blog\.deploy_git\.github\ISSUE_TEMPLATE\ -Force
 
 # 4) 推送（github.com:443 的 git 协议被墙，走 API）
-$py='C:\Users\Administrator\.dsh\dsh-runtimes\dsh-primary-runtime\dependencies\python\python.exe'
 & $py -X utf8 D:\blog\.scratch\tools\gh_push.py site      # 推产物到 master（触发 Vercel）
-& $py -X utf8 D:\blog\.scratch\tools\gh_push_src.py       # 推源码到 hexo 分支
+& $py -X utf8 D:\blog\.scratch\tools\gh_push_src2.py      # 推源码到 hexo 分支
 ```
+
+### 环境变量（必读）
+
+**`BLOG_SECRET_PASSWORD`** 是脱敏内容密码解锁功能的密钥。
+
+| 位置 | 说明 |
+|---|---|
+| `.scratch\build-env.ps1` | 本地存放（已 gitignore），内容是 `$env:BLOG_SECRET_PASSWORD = '...'` |
+| `scripts\secret_lock.js` | 构建时读这个变量，用 PBKDF2 派生密钥加密 |
+| `public\data\secrets.json` | 生成的密文（286 字节），**不含任何明文** |
+
+**没设置变量会怎样**：构建照常成功，但 `secret_lock` 会输出
+`BLOG_SECRET_PASSWORD 未设置，脱敏内容将无法解锁`，页面上仍显示 `******`，
+访客输任何密码都解不开。
+
+**换密码**：改 `.scratch\build-env.ps1` 里的值 → 重新 `hexo generate` →
+重新推送。密文会重新生成，旧密码自动失效。
+
+**验证密文正确**：
+```powershell
+# 应该不含明文
+Select-String -Path D:\blog\public\data\secrets.json -Pattern 'ERC654321|hehehey|estun'
+# 应该输出 iter=600000 和 3 个 key
+Get-Content D:\blog\public\data\secrets.json -Raw | ConvertFrom-Json | Select-Object iter, salt
+```
+
+**注意**：`source\data\secrets.json` 也可能存在（旧库遗留），实际生效的是
+`public\data\secrets.json`。前者如果存在会被 `asset_version` 一并处理，无害。
 
 ### CDN 缓存注意
 
