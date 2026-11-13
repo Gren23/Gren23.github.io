@@ -44,6 +44,7 @@ const CUSTOM_ASSETS = [
   'css/custom-index.css',
   'css/custom-notice-tags.css',
   'css/inject-fix.css',
+  'css/comment-style.css',
   'js/vision-network.js',
   'js/tag-cloud.js',
   'js/scroll-reveal.js',

@@ -1111,6 +1111,7 @@ inject:
     - <link rel="stylesheet" href="/css/custom-index.css">
     - <link rel="stylesheet" href="/css/custom-notice-tags.css">
     - <link rel="stylesheet" href="/css/inject-fix.css">
+    - <link rel="stylesheet" href="/css/comment-style.css">
     - <script src="/js/vision-network.js" defer></script>
     - <script src="/js/tag-cloud.js" defer></script>
     - <script src="/js/scroll-reveal.js" defer></script>
