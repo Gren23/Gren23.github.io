@@ -1162,7 +1162,7 @@ CDN:
     # docsearch_js:
     # egjs_infinitegrid:
     fontawesome: /css/all.min.css
-    egjs_infinitegrid: https://img.hehey.top/js/infinitegrid.min.js
+    egjs_infinitegrid: # 原 https://img.hehey.top/js/infinitegrid.min.js 已失效，需要相册页时配 CDN
     # Twikoo 改本地：原来走 jsdelivr，实测单次加载 7.4s，直接把评论区的可见时间拖到十几秒
     twikoo: /lib/twikoo.min.js
     # fancybox:

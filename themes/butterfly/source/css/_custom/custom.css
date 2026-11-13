@@ -203,8 +203,6 @@ center#name-container {
     background-color: transparent!important;
 } */
 
-
-
 /* 一级菜单居中 */
 #nav .menus_items {
   /* 这个带不带都可以，本来就是inline */
@@ -1326,19 +1324,6 @@ button#go-up:hover #percent {
   }
 } */
 
-/* 个人信息卡片背景图 */
-[data-theme="light"] #aside-content > .card-widget.card-info {
-  background-image: url(https://img.hehey.top/img/2023/6551901277b2c.webp);
-  background-repeat: no-repeat;
-  background-attachment: inherit;
-  background-size: 100%;
-}
-[data-theme="dark"] #aside-content > .card-widget.card-info {
-  background-image: url(https://img.hehey.top/img/2023/6551901277b2c.webp);
-  background-repeat: no-repeat;
-  background-attachment: inherit;
-  background-size: 100%;
-}
 /* 头像呼吸灯 */
 [data-theme="light"] .avatar-img {
   animation: huxi_light 4s ease-in-out infinite;
@@ -1400,8 +1385,7 @@ input#pic-link {
 
 /* heo 加载动画头像 */
 .loading-img {
-  background: url(https://img.hehey.top/img/2023/655193153ce4f.gif)
-    no-repeat center center;
+    
   background-size: cover;
 }
 
@@ -3249,7 +3233,6 @@ hr:before {
     min-width: 100%;
   }
 }
-
 
 /* ========== 渐变+剪影背景 ========== */
 /* 渐变背景 - 顶部淡紫到淡粉蓝 */
