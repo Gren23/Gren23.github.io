@@ -118,7 +118,7 @@ date: 2026-05-20 09:00:00
 .mp-head { margin-bottom: 28px; }
 
 .mp-head-label {
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   font-size: 15px;
   color: #64748b;
   letter-spacing: 1px;
@@ -132,7 +132,7 @@ date: 2026-05-20 09:00:00
 }
 .mp-stats { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .mp-stat {
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   font-size: 12px;
   color: var(--c-primary, #1677B3);
   background: rgba(var(--c-primary-rgb, 22,119,179), 0.06);
@@ -158,7 +158,7 @@ date: 2026-05-20 09:00:00
 }
 
 .mp-section-label {
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   font-size: 15px;
   color: #64748b;
   letter-spacing: 1px;
@@ -184,7 +184,7 @@ date: 2026-05-20 09:00:00
 .mp-siteinfo-name { font-size: 15px; font-weight: 700; color: #1e293b; margin-bottom: 4px; }
 .mp-siteinfo-desc { font-size: 12.5px; color: #64748b; margin-bottom: 6px; }
 .mp-siteinfo-url {
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   font-size: 11.5px;
   color: var(--c-primary, #1677B3);
   text-decoration: none;
@@ -197,7 +197,7 @@ date: 2026-05-20 09:00:00
 .mp-btn {
   font: inherit;
   font-size: 12.5px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   color: var(--c-primary, #1677B3);
   background: rgba(var(--c-primary-rgb, 22,119,179), 0.06);
   border: 1px solid rgba(var(--c-primary-rgb, 22,119,179), 0.18);
@@ -253,7 +253,7 @@ a.mp-contact:hover {
   font-size: 11.5px;
   color: #64748b;
   word-break: break-all;
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
 }
 
 /* ---------- 折叠详情 ---------- */
@@ -351,7 +351,7 @@ a.mp-contact:hover {
   font-size: 15px;
   font-weight: 700;
   color: #1e293b;
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   letter-spacing: 1px;
 }
 #post-comment .comment-headline i { color: var(--c-primary, #1677B3); }
@@ -448,7 +448,7 @@ html[data-theme='dark'] #post-comment .comment-headline i { color: #64b5f6; }
 #twikoo .el-textarea .el-input__count {
   background: transparent;
   color: #94a3b8;
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   font-size: 10.5px;
 }
 

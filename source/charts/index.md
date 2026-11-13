@@ -14,7 +14,7 @@ comments: false
   height: 320px;
   color: var(--c-text-secondary, #6b7280);
   font-size: 13px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   letter-spacing: 1px;
 }
 </style>

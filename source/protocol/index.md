@@ -219,7 +219,7 @@ comments: false
 }
 .proto-nav a {
   font-size: 13px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   color: var(--c-primary, #1677B3);
   background: rgba(var(--c-primary-rgb, 22, 119, 179), 0.06);
   border: 1px solid rgba(var(--c-primary-rgb, 22, 119, 179), 0.20);
@@ -259,7 +259,7 @@ comments: false
 }
 .proto-badge {
   font-size: 11px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   padding: 2px 8px;
   border-radius: 5px;
   font-weight: 600;
@@ -328,7 +328,7 @@ comments: false
 .proto-col-head {
   font-size: 13px;
   font-weight: 700;
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   letter-spacing: 0.05em;
   margin-bottom: 10px;
 }

@@ -10,7 +10,7 @@ comments: false
 
 /* 加载提示 */
 .tag-card-loading {
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   font-size: 13px;
   color: #94a3b8;
   padding: 20px 4px;
@@ -49,7 +49,7 @@ comments: false
   font-size: 15px;
   margin-bottom: 30px;
   color: #64748b;
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   letter-spacing: 1px;
 }
 
@@ -127,7 +127,7 @@ comments: false
   font-size: 10.5px;
   font-weight: bold;
   color: #3b82f6;
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   border: 1px solid rgba(59, 130, 246, 0.12);
   transition: all 0.3s ease;
 }
@@ -147,7 +147,7 @@ comments: false
   border: 1px solid rgba(59, 130, 246, 0.15);
   border-radius: 5px;
   padding: 2px 6px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   font-size: 8.5px;
   color: #3b82f6;
   white-space: nowrap;

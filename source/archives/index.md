@@ -20,7 +20,7 @@ comments: false
   font-size: 15px;
   margin-bottom: 30px;
   color: #64748b;
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   letter-spacing: 1px;
 }
 
@@ -39,7 +39,7 @@ comments: false
   margin-bottom: 28px;
   font-size: 13px;
   color: #64748b;
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
 }
 .archive-stats .num {
   font-weight: 700;

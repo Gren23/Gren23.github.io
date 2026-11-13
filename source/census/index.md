@@ -41,7 +41,7 @@ comments: false
   font-weight: 700;
   color: var(--c-primary);
   margin-bottom: 6px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   line-height: 1.2;
 }
 .stat-label {
@@ -55,7 +55,7 @@ comments: false
   font-size: 12px;
   color: var(--c-text-secondary);
   opacity: 0.7;
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   margin: -6px 0 22px;
 }
 
@@ -106,14 +106,14 @@ comments: false
   font-size: 11px;
   font-weight: 700;
   color: var(--c-primary);
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   margin-bottom: 4px;
   opacity: 0.85;
 }
 .census-bar-label {
   font-size: 10px;
   color: var(--c-text-secondary);
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   margin-top: 8px;
   opacity: 0.65;
   white-space: nowrap;

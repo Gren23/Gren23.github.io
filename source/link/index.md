@@ -119,7 +119,7 @@ comments: false
 .lp-head { margin-bottom: 28px; }
 
 .lp-head-label {
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   font-size: 15px;
   color: #64748b;
   letter-spacing: 1px;
@@ -138,7 +138,7 @@ comments: false
   align-items: center;
 }
 .lp-stat {
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   font-size: 12px;
   color: var(--c-primary, #1677B3);
   background: rgba(var(--c-primary-rgb, 22,119,179), 0.06);
@@ -241,7 +241,7 @@ img.lp-avatar { display: block; }
   min-height: 2.6em;
 }
 .lp-card-host {
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   font-size: 10.5px;
   color: var(--c-primary, #1677B3);
   opacity: 0.65;
@@ -268,7 +268,7 @@ img.lp-avatar { display: block; }
 .lp-apply { margin-top: 8px; }
 
 .lp-section-label {
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   font-size: 15px;
   color: #64748b;
   letter-spacing: 1px;
@@ -383,7 +383,7 @@ img.lp-avatar { display: block; }
   font-size: 12px;
 }
 .lp-selfinfo-row > code {
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   font-size: 12px;
   color: var(--c-primary, #1677B3);
   word-break: break-all;
@@ -394,7 +394,7 @@ img.lp-avatar { display: block; }
 .lp-selfinfo-copy {
   font: inherit;
   font-size: 12.5px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   color: var(--c-primary, #1677B3);
   background: rgba(var(--c-primary-rgb, 22,119,179), 0.06);
   border: 1px solid rgba(var(--c-primary-rgb, 22,119,179), 0.18);

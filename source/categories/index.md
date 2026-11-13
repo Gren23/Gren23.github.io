@@ -23,7 +23,7 @@ comments: false
   font-size: 15px;
   margin-bottom: 30px;
   color: #64748b;
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   letter-spacing: 1px;
 }
 .cat-grid {
@@ -68,7 +68,7 @@ comments: false
   font-size: 18px;
 }
 .cat-card-count {
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   font-size: 12px;
   color: #3b82f6;
   background: rgba(59, 130, 246, 0.06);
@@ -91,7 +91,7 @@ comments: false
   position: absolute;
   left: 20px;
   bottom: 12px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   font-size: 8.5px;
   color: #3b82f6;
   opacity: 0;
