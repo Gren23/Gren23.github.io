@@ -128,15 +128,6 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/posts/denso/</loc>
-    
-    <lastmod>2026-11-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.hehehey.top/posts/dobot/</loc>
     
     <lastmod>2026-11-07</lastmod>
@@ -146,7 +137,7 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/posts/estun/</loc>
+    <loc>https://www.hehehey.top/posts/denso/</loc>
     
     <lastmod>2026-11-07</lastmod>
     
@@ -156,6 +147,15 @@
   
   <url>
     <loc>https://www.hehehey.top/posts/elite/</loc>
+    
+    <lastmod>2026-11-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hehehey.top/posts/estun/</loc>
     
     <lastmod>2026-11-07</lastmod>
     
@@ -236,7 +236,7 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/404.html</loc>
+    <loc>https://www.hehehey.top/about/index.html</loc>
     
     <lastmod>2026-07-11</lastmod>
     
@@ -245,7 +245,7 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/about/index.html</loc>
+    <loc>https://www.hehehey.top/404.html</loc>
     
     <lastmod>2026-07-11</lastmod>
     
@@ -272,7 +272,7 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/posts/mech-vision-1/</loc>
+    <loc>https://www.hehehey.top/posts/mech-vision-2/</loc>
     
     <lastmod>2026-06-21</lastmod>
     
@@ -281,7 +281,7 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/posts/mech-vision-2/</loc>
+    <loc>https://www.hehehey.top/posts/mech-vision-1/</loc>
     
     <lastmod>2026-06-21</lastmod>
     
@@ -344,27 +344,6 @@
 
   
   <url>
-    <loc>https://www.hehehey.top/tags/ABB/</loc>
-    <lastmod>2026-11-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hehehey.top/tags/RobotWare/</loc>
-    <lastmod>2026-11-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hehehey.top/tags/%E6%A2%85%E5%8D%A1%E6%9B%BC%E5%BE%B7/</loc>
-    <lastmod>2026-11-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.hehehey.top/tags/SOP/</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -393,6 +372,27 @@
   </url>
   
   <url>
+    <loc>https://www.hehehey.top/tags/ABB/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hehehey.top/tags/RobotWare/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hehehey.top/tags/%E6%A2%85%E5%8D%A1%E6%9B%BC%E5%BE%B7/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.hehehey.top/tags/CGXi/</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -401,6 +401,20 @@
   
   <url>
     <loc>https://www.hehehey.top/tags/%E5%B8%8C%E5%85%8B%E6%96%AF/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hehehey.top/tags/DOBOT/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hehehey.top/tags/%E8%B6%8A%E7%96%86/</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -421,14 +435,14 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/tags/DOBOT/</loc>
+    <loc>https://www.hehehey.top/tags/ELITE/</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/tags/%E8%B6%8A%E7%96%86/</loc>
+    <loc>https://www.hehehey.top/tags/%E8%89%BE%E5%88%A9%E7%89%B9/</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -464,20 +478,6 @@
   
   <url>
     <loc>https://www.hehehey.top/tags/VNC/</loc>
-    <lastmod>2026-11-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hehehey.top/tags/ELITE/</loc>
-    <lastmod>2026-11-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hehehey.top/tags/%E8%89%BE%E5%88%A9%E7%89%B9/</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -533,13 +533,6 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/tags/%E6%96%B9%E6%A1%88%E6%9E%84%E5%BB%BA/</loc>
-    <lastmod>2026-11-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.hehehey.top/tags/%E6%AD%A5%E9%AA%A4%E5%8F%82%E8%80%83/</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -547,7 +540,7 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/tags/%E5%AE%89%E8%A3%85/</loc>
+    <loc>https://www.hehehey.top/tags/%E6%96%B9%E6%A1%88%E6%9E%84%E5%BB%BA/</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -575,6 +568,20 @@
   </url>
   
   <url>
+    <loc>https://www.hehehey.top/tags/%E5%AE%89%E8%A3%85/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hehehey.top/tags/%E6%A8%A1%E6%9D%BF/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.hehehey.top/tags/ModbusTCP/</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -596,13 +603,6 @@
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/tags/%E6%A8%A1%E6%9D%BF/</loc>
-    <lastmod>2026-11-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.hehehey.top/tags/TM/</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -611,20 +611,6 @@
   
   <url>
     <loc>https://www.hehehey.top/tags/%E5%88%9B%E5%AD%94/</loc>
-    <lastmod>2026-11-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hehehey.top/tags/UR/</loc>
-    <lastmod>2026-11-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hehehey.top/tags/%E4%BC%98%E5%82%B2/</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -646,6 +632,20 @@
   
   <url>
     <loc>https://www.hehehey.top/tags/%E5%85%A5%E9%97%A8/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hehehey.top/tags/UR/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hehehey.top/tags/%E4%BC%98%E5%82%B2/</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -675,14 +675,14 @@
 
   
   <url>
-    <loc>https://www.hehehey.top/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA%E9%80%9A%E8%AE%AF/</loc>
+    <loc>https://www.hehehey.top/categories/%E6%A2%85%E5%8D%A1%E6%9B%BC%E5%BE%B7/</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.hehehey.top/categories/%E6%A2%85%E5%8D%A1%E6%9B%BC%E5%BE%B7/</loc>
+    <loc>https://www.hehehey.top/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA%E9%80%9A%E8%AE%AF/</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
