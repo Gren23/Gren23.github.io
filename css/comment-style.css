@@ -177,25 +177,42 @@
 }
 
 /* 头像：圆形 */
+/* 头像：圆形。
+   注意：.tk-avatar-img 有时是 <img>（真实头像），
+   有时是 <div>包 <svg>（默认占位图）。所以不能假设它是 img。
+   用 min-width/min-height 而非固定尺寸，避免 flex 布局下算出 0。 */
 .twikoo .tk-avatar {
   border-radius: 50% !important;
   overflow: hidden !important;
   width: 40px !important;
   height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
   flex-shrink: 0 !important;
   border: 2px solid rgba(var(--c-primary-rgb, 22, 119, 179), 0.12) !important;
   transition: border-color 0.25s ease !important;
+  /* 不要用 display:flex，会影响内部 svg 定位 */
+  position: relative !important;
 }
 
 .twikoo .tk-comment:hover .tk-avatar {
   border-color: rgba(var(--c-primary-rgb, 22, 119, 179), 0.3) !important;
 }
 
+/* 同时兼容 <img> 和 <div>（默认占位图是 div+svg） */
 .twikoo .tk-avatar-img {
   width: 100% !important;
   height: 100% !important;
+  min-width: 0 !important;
   object-fit: cover !important;
   border-radius: 50% !important;
+  display: block !important;
+}
+
+/* 占位图（svg）居中且填满 */
+.twikoo .tk-avatar-img svg {
+  width: 100% !important;
+  height: 100% !important;
   display: block !important;
 }
 
@@ -430,11 +447,13 @@ html[data-theme='dark'] .twikoo .tk-preview {
   .twikoo .tk-avatar {
     width: 34px !important;
     height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
   }
 
-  .twikoo .tk-comments-container > .tk-comment::before {
-    bottom: 10px;
-    right: 12px;
+  .twikoo .tk-comment:not(.tk-replies .tk-comment)::before {
+    top: 56px;
+    left: 17px;
     font-size: 10px;
     padding: 0 5px;
   }
