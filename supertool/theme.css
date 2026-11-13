@@ -45,7 +45,7 @@ body[data-page-type='supertool'] .layout.hide-aside,
 .st-tabs button {
   font: inherit;
   font-size: 13px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono);
   color: var(--c-text-secondary);
   background: transparent;
   border: 1px solid transparent;

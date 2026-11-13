@@ -140,13 +140,128 @@ html[data-theme='dark'] {
   --blockquote-color: rgba(232, 238, 244, 0.88);
 }
 
+/* ==== 全站排版统一 ==== */
+/* 目的：把主题内部因 em 相对单位而产生的碎片行高收敛到 4 档。
+   不改字号本身（字号已由 --c-text-* 阶梯管理），只统一行高。 */
+
+/* 正文区：统一 1.75 倍行高 */
+#article-container {
+  font-size: var(--c-text-base) !important;
+  line-height: var(--c-lh-normal) !important;
+}
+
+#article-container p,
+#article-container li {
+  font-size: var(--c-text-base) !important;
+  line-height: var(--c-lh-normal) !important;
+}
+
+/* 标题：收紧行高 */
+#article-container h1 {
+  font-size: var(--c-text-2xl) !important;
+  line-height: var(--c-lh-tight) !important;
+}
+
+#article-container h2 {
+  font-size: var(--c-text-xl) !important;
+  line-height: var(--c-lh-tight) !important;
+}
+
+#article-container h3 {
+  font-size: var(--c-text-lg) !important;
+  line-height: var(--c-lh-tight) !important;
+}
+
+#article-container h4,
+#article-container h5,
+#article-container h6 {
+  font-size: var(--c-text-md) !important;
+  line-height: var(--c-lh-tight) !important;
+}
+
+/* 代码块：等宽字体 + 统一字号 */
+#article-container pre,
+#article-container pre code,
+#article-container .highlight,
+#article-container figure.highlight {
+  font-family: var(--c-font-mono) !important;
+  font-size: var(--c-text-sm) !important;
+  line-height: var(--c-lh-loose) !important;
+}
+
+#article-container code:not([class*="hljs"]):not(pre code) {
+  font-family: var(--c-font-mono) !important;
+  font-size: 0.92em !important;
+}
+
+/* 表格：统一字号和行高 */
+#article-container table {
+  font-size: var(--c-text-sm) !important;
+}
+#article-container table th {
+  font-size: var(--c-text-sm) !important;
+  line-height: var(--c-lh-snug) !important;
+}
+#article-container table td {
+  font-size: var(--c-text-sm) !important;
+  line-height: var(--c-lh-snug) !important;
+}
+
+/* 引用块和列表：统一行高 */
+#article-container blockquote p {
+  font-size: var(--c-text-base) !important;
+  line-height: var(--c-lh-normal) !important;
+}
+
+/* 主题卡片标题：收紧行高，避免因 15px 基准而被撑大 */
+.recent-post-item .recent-post-info .article-title,
+.card-info .author-info__name,
+.card-widget .item-headline {
+  line-height: var(--c-lh-tight) !important;
+}
+
+/* 文章标题：主题用 2.5em，基准 15px 时会变成 37.5px 并换行。
+   收到 28px，与 --c-text-2xl 对齐。 */
+#post-info .post-title,
+#article-container .post-title {
+  font-size: var(--c-text-2xl) !important;
+  line-height: var(--c-lh-tight) !important;
+}
+
+/* 等宽数字（统计数字、日期等）：收敛到 Consolas */
+/* 统计数字、日期、标签计数：全部用等宽字体，对齐更整齐 */
+.stat-number,
+.census-bar-count,
+.census-bar-label,
+.census-meta,
+.tag-cloud-amount,
+.post-meta-date,
+.site-data > a .length-num,
+#aside-content .site-data .length-num {
+  font-family: var(--c-font-mono) !important;
+  font-feature-settings: "tnum" 1;
+}
+
+/* 侧边栏经典数字：原 1.2em（约 18px）偏大，收到 17px */
+.site-data > a .length-num {
+  font-size: 17px !important;
+  font-weight: 600 !important;
+  line-height: var(--c-lh-tight) !important;
+}
+
+/* 侧边栏文字标签：原 0.95em 偏小，提到 13px */
+.site-data > a .headline {
+  font-size: var(--c-text-sm) !important;
+  line-height: var(--c-lh-snug) !important;
+}
+
 /* ==== 脱敏内容（密码遮蔽） ==== */
 /* 用法：<span class="secret" data-key="xxx" data-hint="提示">******</span>
    默认显示星号，悬停显示提示，点击弹内联输入框解锁。 */
 
 .secret[data-key] {
   display: inline-block;
-  font-family: 'Courier New', monospace;
+  font-family: var(--c-font-mono) !important;
   letter-spacing: 1px;
   color: var(--c-text-secondary, #6b7280);
   background: rgba(var(--c-primary-rgb, 22, 119, 179), 0.08);

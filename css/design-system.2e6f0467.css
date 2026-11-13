@@ -49,15 +49,27 @@
   --c-space-xl:  40px;
   --c-space-2xl: 64px;
 
-  /* --- 字号 --- */
-  --c-text-xs:  12px;
-  --c-text-sm:  14px;
-  --c-text-base:16px;
-  --c-text-lg:  18px;
-  --c-text-xl:  20px;
-  --c-text-2xl: 24px;
-  --c-text-3xl: 30px;
-  --c-text-4xl: 36px;
+  /* --- 字号阶梯（全站唯一来源）---
+     原来有 8 档（12/14/16/18/20/24/30/36）太密，且与正文 15px 基准不匹。
+     改为 7 档，步长接近 1.125（Minor Second），全部整数化。
+     用法：font-size: var(--c-text-base) */
+  --c-text-xs:   12px;   /* 辅助信息、时间戳、标签云小字 */
+  --c-text-sm:   13px;   /* 次要文字、表格备注、卡片描述 */
+  --c-text-base: 15px;   /* 正文基准（与 _config.butterfly.yml 的 global_font_size 一致） */
+  --c-text-md:   16px;   /* 强调正文、列表项 */
+  --c-text-lg:   18px;   /* H3、卡片标题 */
+  --c-text-xl:   21px;   /* H2 */
+  --c-text-2xl:  28px;   /* H1 文章标题 */
+  --c-text-3xl:  34px;   /* 首页大标题 */
+
+  /* --- 行高（只用 4 档）--- */
+  --c-lh-tight:  1.35;   /* 标题 */
+  --c-lh-snug:   1.5;    /* 卡片、紧凑列表 */
+  --c-lh-normal: 1.75;   /* 正文 */
+  --c-lh-loose:  2;      /* 代码块、引用 */
+
+  /* --- 等宽字体（去掉 Courier New，字重过细）--- */
+  --c-font-mono: Consolas, Menlo, Monaco, 'Courier New', monospace;
 
   /* --- 阴影 --- */
   --c-shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
