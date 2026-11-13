@@ -1,0 +1,710 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><meta name="baidu-site-verification" content="codeva-hfv5Au82rN"><title>站点协议 | G/ren的小破站</title><meta name="author" content="G/ren"><meta name="copyright" content="G/ren"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="本站的内容授权、评论规则与免责声明都在这页。浏览或参与互动即视为你已知悉以下约定。     一、内容版权   二、评论规则   三、免责声明    一、内容版权  本站内容分两类，授权方式不同。    原创 完全由本人撰写  采用 CC BY-NC-SA 4.0（署名—非商业性使用—相同方式共享） 可以自由转载、改编，但需：    注明作者与原文链接   不用于商业目的   改编后以相同协议">
+<meta property="og:type" content="website">
+<meta property="og:title" content="站点协议">
+<meta property="og:url" content="https://www.hehehey.top/protocol/index.html">
+<meta property="og:site_name" content="G/ren的小破站">
+<meta property="og:description" content="本站的内容授权、评论规则与免责声明都在这页。浏览或参与互动即视为你已知悉以下约定。     一、内容版权   二、评论规则   三、免责声明    一、内容版权  本站内容分两类，授权方式不同。    原创 完全由本人撰写  采用 CC BY-NC-SA 4.0（署名—非商业性使用—相同方式共享） 可以自由转载、改编，但需：    注明作者与原文链接   不用于商业目的   改编后以相同协议">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.hehehey.top/img/%E5%A4%B4%E5%83%8F.JPG">
+<meta property="article:published_time" content="2026-11-13T10:00:00.000Z">
+<meta property="article:modified_time" content="2026-11-13T10:18:57.671Z">
+<meta property="article:author" content="G/ren">
+<meta property="article:tag" content="机器视觉,Vision Master,Mech-Vision,视觉定位,海康,Hexo博客,技术分享,编程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.hehehey.top/img/%E5%A4%B4%E5%83%8F.JPG"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.hehehey.top/protocol/index.html"><link rel="preconnect"><link rel="stylesheet" href="/css/index.24ab2dec.css"><link rel="stylesheet" href="/css/all.min.9429b4b7.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://img.hehey.top/js/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '站点协议',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'page'
+}</script><link rel="icon" type="image/x-icon" href="/img/favicon.ico"><link rel="stylesheet" href="/css/design-system.cd6e41b2.css"><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="G/ren的小破站" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/%E5%A4%B4%E5%83%8F.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><span class="site-page group hide"><span> 内容</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-clock"></i><span> 更新</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 统计</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/charts/"><i class="fa-fw fas fa-chart-bar"></i><span> 文章统计</span></a></li><li><a class="site-page child" href="/census/"><i class="fa-fw fas fa-chart-line"></i><span> 博客统计</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 互动</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/moments/"><i class="fa-fw fas fa-comment-dots"></i><span> 动态</span></a></li><li><a class="site-page child" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 信箱</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/supertool/"><i class="fa-fw fas fa-wand-magic-sparkles"></i><span> 超级工作台</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 关于</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fas fa-bullhorn"></i><span> 公告</span></a></li><li><a class="site-page child" href="/protocol/"><i class="fa-fw fas fa-file-alt"></i><span> 站点协议</span></a></li></ul></div></div></div></div><div class="page type-protocol" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">G/ren的小破站</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><span class="site-page group hide"><span> 内容</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-clock"></i><span> 更新</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 统计</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/charts/"><i class="fa-fw fas fa-chart-bar"></i><span> 文章统计</span></a></li><li><a class="site-page child" href="/census/"><i class="fa-fw fas fa-chart-line"></i><span> 博客统计</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 互动</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/moments/"><i class="fa-fw fas fa-comment-dots"></i><span> 动态</span></a></li><li><a class="site-page child" href="/message/"><i class="fa-fw fas fa-envelope"></i><span> 信箱</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/supertool/"><i class="fa-fw fas fa-wand-magic-sparkles"></i><span> 超级工作台</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><span> 关于</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fas fa-bullhorn"></i><span> 公告</span></a></li><li><a class="site-page child" href="/protocol/"><i class="fa-fw fas fa-file-alt"></i><span> 站点协议</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><h1 class="title-seo">站点协议</h1></header><main class="layout" id="content-inner"><div id="page"><div class="page-title">站点协议</div><div class="container" id="article-container"><div class="proto-wrap">
+
+<blockquote>
+<p>本站的内容授权、评论规则与免责声明都在这页。浏览或参与互动即视为你已知悉以下约定。</p>
+</blockquote>
+<div class="proto-nav">
+  <a href="#copyright">一、内容版权</a>
+  <a href="#comment">二、评论规则</a>
+  <a href="#disclaimer">三、免责声明</a>
+</div>
+
+<hr>
+<h2 id="copyright">一、内容版权</h2>
+
+<p>本站内容分两类，授权方式不同。</p>
+<div class="proto-split">
+
+<div class="proto-half">
+<div class="proto-half-head"><span class="proto-badge proto-badge-own">原创</span> 完全由本人撰写</div>
+<div class="proto-half-body">
+<p>采用 <strong>CC BY-NC-SA 4.0</strong>（署名—非商业性使用—相同方式共享）</p>
+<p class="proto-small">可以自由转载、改编，但需：</p>
+<ol class="proto-list">
+  <li>注明作者与原文链接</li>
+  <li>不用于商业目的</li>
+  <li>改编后以相同协议发布</li>
+</ol>
+</div>
+</div>
+
+<div class="proto-half">
+<div class="proto-half-head"><span class="proto-badge proto-badge-ref">整理 / 引用</span> 基于他人资料</div>
+<div class="proto-half-body">
+<p>版权归<strong>原作者</strong>所有，本站仅作技术交流与学习记录</p>
+<p class="proto-small">典型来源：</p>
+<ul class="proto-list">
+  <li>梅卡曼德官方文档与在线社区</li>
+  <li>各机器人厂商的公开技术资料</li>
+  <li>公开论文、标准与论坛讨论</li>
+</ul>
+<p class="proto-small">此类内容<strong>不适用</strong>本站的 CC 协议。如需商业使用，请向原始版权方获取授权。</p>
+</div>
+</div>
+
+</div>
+
+<div class="proto-note">
+<strong>如何判断属于哪一类</strong>：文章开头或结尾注明来源的，属于「整理 / 引用」；没有注明的，视为「原创」。
+</div>
+
+<h3>转载与引用</h3>
+
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>要求</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>转载原创文章</td>
+<td>注明作者 + 原文链接，禁止商业使用，改编需同协议</td>
+</tr>
+<tr>
+<td>引用文中代码</td>
+<td>可自由使用，建议注明出处</td>
+</tr>
+<tr>
+<td>转载本站整理的内容</td>
+<td>请追溯到原始出处并遵守原版权方的要求</td>
+</tr>
+<tr>
+<td>商业使用</td>
+<td>需事先取得授权</td>
+</tr>
+</tbody></table>
+<p class="proto-small">如需授权或其他合作，联系 <a href="mailto:1955561070@qq.com">1955561070@qq.com</a>。</p>
+
+<hr>
+<h2 id="comment">二、评论规则</h2>
+
+<p>本站评论区用于技术讨论。发言即视为同意以下规则。</p>
+<div class="proto-cols">
+
+<div class="proto-col proto-col-ok">
+<div class="proto-col-head">可以</div>
+<ul>
+  <li>友善讨论、理性交流</li>
+  <li>提出问题和质疑</li>
+  <li>补充技术细节、指出错误</li>
+  <li>分享相关经验</li>
+</ul>
+</div>
+
+<div class="proto-col proto-col-no">
+<div class="proto-col-head">不可以</div>
+<ul>
+  <li>人身攻击、侮辱歧视</li>
+  <li>广告、推广、拉群</li>
+  <li>无意义灌水刷屏</li>
+  <li>发布违法内容</li>
+</ul>
+</div>
+
+</div>
+
+<h3>评论数据处理</h3>
+
+<p>这部分说明可能和你想的不一样，先看清楚：</p>
+
+<div class="proto-data">
+
+<div class="proto-data-row">
+<div class="proto-data-q">存在哪里</div>
+<div class="proto-data-a">本站评论使用 <strong>Twikoo</strong>。评论内容（昵称、邮箱、网址、正文、IP）存储在第三方服务 <code>twiikoo.netlify.app</code>（Netlify 托管的云函数 + 数据库），<strong>不在本博客服务器上</strong>。</div>
+</div>
+
+<div class="proto-data-row">
+<div class="proto-data-q">收集什么</div>
+<div class="proto-data-a">昵称、邮箱（用于识别身份和回复通知）、可选的个人网址、评论正文、IP 地址与 User-Agent（用于反垃圾）。</div>
+</div>
+
+<div class="proto-data-row">
+<div class="proto-data-q">邮箱会公开吗</div>
+<div class="proto-data-a">不会。邮箱仅用于显示头像（Gravatar / Cravatar）和接收回复提醒，不在页面展示。</div>
+</div>
+
+<div class="proto-data-row">
+<div class="proto-data-q">能删除吗</div>
+<div class="proto-data-a">可以。发邮件到 <a href="mailto:1955561070@qq.com">1955561070@qq.com</a> 说明要删除哪条评论，我会尽量处理；但技术上需要同时清理 Twikoo 后端数据。</div>
+</div>
+
+<div class="proto-data-row">
+<div class="proto-data-q">Cookie</div>
+<div class="proto-data-a">Twikoo 会在浏览器存少量本地数据记住你的昵称和邮箱，避免重复填写。本站不使用第三方广告或追踪 Cookie。</div>
+</div>
+
+</div>
+
+<h3>违规处理</h3>
+
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>广告、灌水</td>
+<td>直接删除</td>
+</tr>
+<tr>
+<td>人身攻击</td>
+<td>删除，视情况屏蔽</td>
+</tr>
+<tr>
+<td>违法内容</td>
+<td>删除并向平台举报</td>
+</tr>
+</tbody></table>
+<p class="proto-small">说明：本站为个人博客，无专职审核。处理以维护讨论质量为目的，不做程序化申诉。</p>
+
+<hr>
+<h2 id="disclaimer">三、免责声明</h2>
+
+<div class="proto-warn">
+<div class="proto-warn-head">⚠️ 涉及实体设备操作的内容，请务必注意</div>
+<p>本站大量文章涉及工业机器人、视觉系统、控制器、PLC 等<strong>实体设备</strong>的操作。这些内容基于个人实践整理，供参考。</p>
+</div>
+
+<div class="proto-disclaimer">
+
+<div class="proto-dis-row">
+<div class="proto-dis-icon"><i class="fas fa-cog"></i></div>
+<div class="proto-dis-body">
+<strong>操作风险自负</strong>
+<p>按本站教程操作设备前，请确认：已阅读设备官方手册、已做好安全防护、已在非生产环境验证。因照做导致的设备损坏、人身伤害、生产事故或数据丢失，本站及作者不承担责任。</p>
+</div>
+</div>
+
+<div class="proto-dis-row">
+<div class="proto-dis-icon"><i class="fas fa-list-ul"></i></div>
+<div class="proto-dis-body">
+<strong>参数与数据仅供参考</strong>
+<p>文中出现的 IP、密码、DH 参数、配置文件路径等均为特定现场环境的示例，<strong>不同设备、不同批次、不同固件版本可能完全不同</strong>。请以自己设备的实际读数为准。</p>
+</div>
+</div>
+
+<div class="proto-dis-row">
+<div class="proto-dis-icon"><i class="fas fa-clock"></i></div>
+<div class="proto-dis-body">
+<strong>内容可能过时</strong>
+<p>软件版本迭代较快，文章发布时的操作步骤和界面在后续版本中可能已变化。以官方最新文档为准。</p>
+</div>
+</div>
+
+<div class="proto-dis-row">
+<div class="proto-dis-icon"><i class="fas fa-link"></i></div>
+<div class="proto-dis-body">
+<strong>外部链接</strong>
+<p>文中引用的第三方网站、工具、文档由相应方维护，本站不对其内容、可用性或安全性负责。</p>
+</div>
+</div>
+
+<div class="proto-dis-row">
+<div class="proto-dis-icon"><i class="fas fa-book-open"></i></div>
+<div class="proto-dis-body">
+<strong>非官方立场</strong>
+<p>本站为个人技术博客，内容仅代表个人理解与实践，<strong>不代表任何雇主、厂商或机构的官方立场</strong>。涉及产品的问题请以官方渠道为准。</p>
+</div>
+</div>
+
+</div>
+
+<hr>
+<div class="proto-footer">
+<p>本页内容可能随站点调整更新，重大变更会在<a href="/notice/">公告</a>中说明。</p>
+<p class="proto-small">最后更新：2026-11-13 · 有任何疑问联系 <a href="mailto:1955561070@qq.com">1955561070@qq.com</a></p>
+</div>
+
+</div>
+
+<style>
+/* ===================== 站点协议页 ===================== */
+.proto-wrap {
+  --proto-ok: #16a34a;
+  --proto-no: #dc2626;
+  --proto-warn: #d97706;
+}
+
+/* 顶部快速导航 */
+.proto-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0 8px;
+}
+.proto-nav a {
+  font-size: 13px;
+  font-family: 'Courier New', monospace;
+  color: var(--c-primary, #1677B3);
+  background: rgba(var(--c-primary-rgb, 22, 119, 179), 0.06);
+  border: 1px solid rgba(var(--c-primary-rgb, 22, 119, 179), 0.20);
+  border-radius: 8px;
+  padding: 6px 14px;
+  text-decoration: none !important;
+  transition: all 0.22s ease;
+}
+.proto-nav a:hover {
+  background: rgba(var(--c-primary-rgb, 22, 119, 179), 0.13);
+  border-color: rgba(var(--c-primary-rgb, 22, 119, 179), 0.45);
+  transform: translateY(-1px);
+}
+
+/* 版权：原创 vs 整理 左右分栏 */
+.proto-split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+.proto-half {
+  background: var(--c-surface, #fff);
+  border: 1px solid var(--c-border, #e5e7eb);
+  border-radius: 14px;
+  padding: 18px 20px;
+}
+.proto-half-head {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-text, #374151);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.proto-badge {
+  font-size: 11px;
+  font-family: 'Courier New', monospace;
+  padding: 2px 8px;
+  border-radius: 5px;
+  font-weight: 600;
+}
+.proto-badge-own {
+  color: var(--proto-ok);
+  background: rgba(22, 163, 74, 0.10);
+  border: 1px solid rgba(22, 163, 74, 0.28);
+}
+.proto-badge-ref {
+  color: var(--proto-warn);
+  background: rgba(217, 119, 6, 0.10);
+  border: 1px solid rgba(217, 119, 6, 0.28);
+}
+.proto-half-body p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+.proto-small {
+  font-size: 12.5px !important;
+  color: var(--c-text-secondary, #6b7280) !important;
+  line-height: 1.65 !important;
+}
+.proto-list {
+  margin: 8px 0 10px !important;
+  padding-left: 20px !important;
+  font-size: 13.5px !important;
+}
+.proto-list li {
+  margin-bottom: 5px !important;
+  line-height: 1.6 !important;
+}
+
+/* 提示条 */
+.proto-note {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--c-text, #374151);
+  background: rgba(var(--c-primary-rgb, 22, 119, 179), 0.05);
+  border-left: 3px solid var(--c-primary, #1677B3);
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px;
+  margin: 16px 0 24px;
+}
+
+/* 评论：可以做 / 不可以做 */
+.proto-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+.proto-col {
+  border-radius: 14px;
+  padding: 16px 20px;
+}
+.proto-col-ok {
+  background: rgba(22, 163, 74, 0.055);
+  border: 1px solid rgba(22, 163, 74, 0.20);
+}
+.proto-col-no {
+  background: rgba(220, 38, 38, 0.055);
+  border: 1px solid rgba(220, 38, 38, 0.20);
+}
+.proto-col-head {
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+.proto-col-ok .proto-col-head { color: var(--proto-ok); }
+.proto-col-no .proto-col-head { color: var(--proto-no); }
+.proto-col ul {
+  margin: 0 !important;
+  padding-left: 20px !important;
+  font-size: 13.5px !important;
+}
+.proto-col li {
+  margin-bottom: 6px !important;
+  line-height: 1.6 !important;
+}
+
+/* 数据处理表格化 */
+.proto-data {
+  border: 1px solid var(--c-border, #e5e7eb);
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 18px 0 24px;
+}
+.proto-data-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--c-border, #e5e7eb);
+}
+.proto-data-row:last-child { border-bottom: none; }
+.proto-data-q {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-text, #374151);
+  background: rgba(var(--c-primary-rgb, 22, 119, 179), 0.04);
+  padding: 12px 16px;
+  line-height: 1.6;
+}
+.proto-data-a {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--c-text, #374151);
+  padding: 12px 16px;
+}
+.proto-data-a code {
+  font-size: 12px;
+  background: rgba(var(--c-primary-rgb, 22, 119, 179), 0.08);
+  color: var(--c-primary, #1677B3);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+/* 免责声明警示框 */
+.proto-warn {
+  background: rgba(217, 119, 6, 0.07);
+  border: 1px solid rgba(217, 119, 6, 0.25);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin: 20px 0;
+}
+.proto-warn-head {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--proto-warn);
+  margin-bottom: 8px;
+}
+.proto-warn p {
+  font-size: 13.5px !important;
+  line-height: 1.7 !important;
+  margin: 0 !important;
+  color: var(--c-text, #374151) !important;
+}
+
+/* 免责声明条目 */
+.proto-disclaimer {
+  margin: 18px 0 24px;
+}
+.proto-dis-row {
+  display: flex;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px dashed var(--c-border, #e5e7eb);
+}
+.proto-dis-row:last-child { border-bottom: none; }
+.proto-dis-icon {
+  font-size: 15px;
+  line-height: 1;
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  color: var(--c-primary, #1677B3);
+  background: rgba(var(--c-primary-rgb, 22, 119, 179), 0.08);
+  border: 1px solid rgba(var(--c-primary-rgb, 22, 119, 179), 0.16);
+}
+.proto-dis-body strong {
+  display: block;
+  font-size: 14px;
+  color: var(--c-text, #374151);
+  margin-bottom: 5px;
+}
+.proto-dis-body p {
+  font-size: 13.5px !important;
+  line-height: 1.7 !important;
+  margin: 0 !important;
+  color: var(--c-text-secondary, #6b7280) !important;
+}
+.proto-dis-body p strong {
+  display: inline;
+  font-size: inherit;
+  color: var(--c-text, #374151);
+  font-weight: 600;
+}
+
+/* 页脚 */
+.proto-footer {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--c-border, #e5e7eb);
+  text-align: center;
+}
+.proto-footer p {
+  font-size: 13px;
+  color: var(--c-text-secondary, #6b7280);
+  line-height: 1.7;
+  margin-bottom: 6px !important;
+}
+
+/* ===================== 深色模式 ===================== */
+html[data-theme='dark'] {
+  --proto-ok: #4ade80;
+  --proto-no: #f87171;
+  --proto-warn: #fbbf24;
+}
+html[data-theme='dark'] .proto-half {
+  background: rgba(255, 255, 255, 0.025);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+html[data-theme='dark'] .proto-data {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+html[data-theme='dark'] .proto-data-row {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+html[data-theme='dark'] .proto-data-q {
+  background: rgba(100, 181, 246, 0.06);
+}
+html[data-theme='dark'] .proto-col-ok {
+  background: rgba(74, 222, 128, 0.06);
+  border-color: rgba(74, 222, 128, 0.20);
+}
+html[data-theme='dark'] .proto-col-no {
+  background: rgba(248, 113, 113, 0.06);
+  border-color: rgba(248, 113, 113, 0.20);
+}
+html[data-theme='dark'] .proto-warn {
+  background: rgba(251, 191, 36, 0.07);
+  border-color: rgba(251, 191, 36, 0.22);
+}
+html[data-theme='dark'] .proto-dis-row {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+html[data-theme='dark'] .proto-dis-icon {
+  color: #64b5f6;
+  background: rgba(100, 181, 246, 0.08);
+  border-color: rgba(100, 181, 246, 0.16);
+}
+html[data-theme='dark'] .proto-note {
+  background: rgba(100, 181, 246, 0.06);
+}
+
+/* ===================== 移动端 ===================== */
+@media (max-width: 640px) {
+  .proto-data-row {
+    grid-template-columns: 1fr;
+  }
+  .proto-data-q {
+    padding: 10px 14px 4px;
+    background: transparent;
+  }
+  .proto-data-a {
+    padding: 0 14px 12px;
+  }
+  .proto-nav a {
+    font-size: 12px;
+    padding: 5px 11px;
+  }
+}
+</style>
+</div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/%E5%A4%B4%E5%83%8F.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info-name">G/ren</div><div class="author-info-description">机器视觉调试工程师 | 技术分享</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Gren23" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/img/wechat.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #07c160;"></i></a><a class="social-icon" href="tencent://message/?uin=1955561070" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #1296db;"></i></a><a class="social-icon" href="mailto:1955561070@qq.com" target="_blank" title="邮箱"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss" style="color: #f26522;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><div id="latest-notice-placeholder"></div><script>(function() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/data/latest-notice.json', true);
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      var data = JSON.parse(xhr.responseText);
+      var el = document.getElementById('latest-notice-placeholder');
+      if (el && data.title) {
+        el.outerHTML = '<a href="' + data.url + '" style="color:inherit;text-decoration:none;display:block;">' +
+          '<span style="font-size:11px;opacity:0.7;margin-right:6px;">' + data.tag + '</span>' +
+          '<span style="font-size:11px;opacity:0.5;margin-right:6px;">' + data.date + '</span>' +
+          '<div style="margin-top:4px;font-weight:600;">' + data.title + '</div>' +
+          '</a>';
+      }
+    }
+  };
+  xhr.onerror = function() {
+    var el = document.getElementById('latest-notice-placeholder');
+    if (el) el.outerHTML = '<span style="opacity:0.5;font-size:13px;">暂无公告</span>';
+  };
+  xhr.send();
+})();</script></div></div><div class="sticky_layout"></div></div></main><footer id="footer"><div id="footer-wrap"><div id="ft"></div><div class="copyright"><span><b>©2025-2026</b></span><span><b>&nbsp;&nbsp;By G/ren</b></span></div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div id="workboard"></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.d4a47557.js"></script><script src="/js/main.6296e7da.js"></script><div class="js-pjax"></div><link rel="stylesheet" href="/css/custom-index.9d5c91a5.css"><link rel="stylesheet" href="/css/custom-notice-tags.d60d71f1.css"><link rel="stylesheet" href="/css/inject-fix.3da9452c.css"><script src="/js/vision-network.75b885be.js" defer=""></script><script src="/js/tag-cloud.c15d1698.js" defer=""></script><script src="/js/scroll-reveal.163ca44b.js" defer=""></script><script src="/js/notice-loader.6648c755.js" defer=""></script><script src="/js/secret-unlock.js" defer=""></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="输入关键词搜索..." type="text"></div><hr><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.24eae077.js"></script></div></div><script>var posts=[{"title":"梅卡曼德 3D 视觉引导系统 通用 SOP","path":"/posts/3d-sop/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"SOP","path":"/tags/SOP/"},{"name":"拆垛","path":"/tags/拆垛/"},{"name":"3D视觉","path":"/tags/3D视觉/"},{"name":"手眼标定","path":"/tags/手眼标定/"}],"cover":"/img/默认封面图.webp","date":"2026-02-14T01:37:16.000Z","updated":"2026-07-11T04:17:33.000Z"},{"title":"ABB RobotWare + 梅卡曼德视觉系统完整操作流程","path":"/posts/abb-robotware/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"ABB","path":"/tags/ABB/"},{"name":"RobotWare","path":"/tags/RobotWare/"},{"name":"梅卡曼德","path":"/tags/梅卡曼德/"}],"cover":"/img/默认封面图.webp","date":"2025-03-28T08:46:17.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"CGXi（希克斯）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/cgxi/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"CGXi","path":"/tags/CGXi/"},{"name":"希克斯","path":"/tags/希克斯/"}],"cover":"/img/默认封面图.webp","date":"2025-10-09T08:44:07.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"DENSO（电装）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/denso/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"DENSO","path":"/tags/DENSO/"},{"name":"电装","path":"/tags/电装/"}],"cover":"/img/默认封面图.webp","date":"2025-01-20T15:37:33.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"DOBOT（越疆）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/dobot/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"DOBOT","path":"/tags/DOBOT/"},{"name":"越疆","path":"/tags/越疆/"}],"cover":"/img/默认封面图.webp","date":"2026-02-25T18:20:51.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"ELITE（艾利特）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/elite/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"ELITE","path":"/tags/ELITE/"},{"name":"艾利特","path":"/tags/艾利特/"}],"cover":"/img/默认封面图.webp","date":"2025-09-25T21:30:32.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"埃斯顿（ESTUN）机器人 DH 参数查看与修改全流程","path":"/posts/estun-dh/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"手眼标定","path":"/tags/手眼标定/"},{"name":"ESTUN","path":"/tags/ESTUN/"},{"name":"埃斯顿","path":"/tags/埃斯顿/"},{"name":"DH参数","path":"/tags/DH参数/"},{"name":"Mech-Viz","path":"/tags/Mech-Viz/"},{"name":"VNC","path":"/tags/VNC/"}],"cover":"/img/默认封面图.webp","date":"2026-11-12T05:40:00.000Z","updated":"2026-11-12T06:35:34.999Z"},{"title":"ESTUN（埃斯顿）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/estun/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"ESTUN","path":"/tags/ESTUN/"},{"name":"埃斯顿","path":"/tags/埃斯顿/"}],"cover":"/img/默认封面图.webp","date":"2025-09-02T23:24:22.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"FANUC（发那科）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/fanuc/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"FANUC","path":"/tags/FANUC/"},{"name":"发那科","path":"/tags/发那科/"}],"cover":"/img/默认封面图.webp","date":"2025-01-03T06:02:34.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"Mech-Vision 方案构建思路","path":"/posts/mech-vision-1/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"Mech-Vision","path":"/tags/Mech-Vision/"},{"name":"方案构建","path":"/tags/方案构建/"}],"cover":"/img/默认封面图.webp","date":"2025-03-03T04:14:39.000Z","updated":"2026-07-11T04:17:33.000Z"},{"title":"Mech-Vision 安装指南","path":"/posts/mech-vision/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"Mech-Vision","path":"/tags/Mech-Vision/"},{"name":"安装","path":"/tags/安装/"}],"cover":"/img/默认封面图.webp","date":"2026-02-13T17:42:31.000Z","updated":"2026-07-11T04:17:33.000Z"},{"title":"KUKA（库卡）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/kuka/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"KUKA","path":"/tags/KUKA/"},{"name":"库卡","path":"/tags/库卡/"}],"cover":"/img/默认封面图.webp","date":"2025-11-06T01:12:19.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"兰空图床图片审核-nsfwjs配置","path":"/posts/nsfwjs/","categories":[{"name":"文章","path":"/categories/文章/"}],"tags":[{"name":"图床","path":"/tags/图床/"},{"name":"nsfw","path":"/tags/nsfw/"},{"name":"辅助工具","path":"/tags/辅助工具/"}],"cover":"/img/默认封面图.webp","date":"2025-02-23T01:51:10.000Z","updated":"2026-11-07T14:50:22.558Z"},{"title":"西门子PLC Modbus TCP通讯教程","path":"/posts/plc-modbus-tcp/","categories":[{"name":"PLC通讯","path":"/categories/PLC通讯/"}],"tags":[{"name":"ModbusTCP","path":"/tags/ModbusTCP/"},{"name":"西门子","path":"/tags/西门子/"},{"name":"PLC","path":"/tags/PLC/"}],"cover":"/img/默认封面图.webp","date":"2025-04-28T11:29:24.000Z","updated":"2026-07-11T04:17:33.000Z"},{"title":"拆垛工程项目 SOP 模板","path":"/posts/sop/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"SOP","path":"/tags/SOP/"},{"name":"拆垛","path":"/tags/拆垛/"},{"name":"模板","path":"/tags/模板/"}],"cover":"/img/默认封面图.webp","date":"2025-03-05T18:05:18.000Z","updated":"2026-11-07T08:38:38.069Z"},{"title":"JAKA（节卡）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/jaka/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"JAKA","path":"/tags/JAKA/"},{"name":"节卡","path":"/tags/节卡/"}],"cover":"/img/默认封面图.webp","date":"2025-09-30T02:09:15.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"TM（创孔）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/tm/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"TM","path":"/tags/TM/"},{"name":"创孔","path":"/tags/创孔/"}],"cover":"/img/默认封面图.webp","date":"2025-09-27T16:38:26.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"UR（优傲）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/ur/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"UR","path":"/tags/UR/"},{"name":"优傲","path":"/tags/优傲/"}],"cover":"/img/默认封面图.webp","date":"2025-07-30T23:06:09.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"Vision Master 通讯配置","path":"/posts/visionmaster-1/","categories":[{"name":"视觉","path":"/categories/视觉/"}],"tags":[{"name":"VisionMaster","path":"/tags/VisionMaster/"},{"name":"通讯","path":"/tags/通讯/"}],"cover":"/img/默认封面图.webp","date":"2025-09-01T20:27:12.000Z","updated":"2026-07-11T04:17:33.000Z"},{"title":"Vision Master 入门指南","path":"/posts/visionmaster/","categories":[{"name":"视觉","path":"/categories/视觉/"}],"tags":[{"name":"VisionMaster","path":"/tags/VisionMaster/"},{"name":"入门","path":"/tags/入门/"}],"cover":"/img/默认封面图.webp","date":"2025-10-21T01:52:26.000Z","updated":"2026-07-11T04:17:33.000Z"},{"title":"Mech-Vision 步骤参考指南","path":"/posts/mech-vision-2/","categories":[{"name":"梅卡曼德","path":"/categories/梅卡曼德/"}],"tags":[{"name":"Mech-Vision","path":"/tags/Mech-Vision/"},{"name":"步骤参考","path":"/tags/步骤参考/"}],"cover":"/img/默认封面图.webp","date":"2025-05-17T23:59:08.000Z","updated":"2026-07-11T04:17:33.000Z"},{"title":"YASKAWA（安川）+ 梅卡曼德视觉系统完整操作流程","path":"/posts/yaskawa-1/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"梅卡曼德","path":"/tags/梅卡曼德/"},{"name":"YASKAWA","path":"/tags/YASKAWA/"},{"name":"安川","path":"/tags/安川/"}],"cover":"/img/默认封面图.webp","date":"2026-02-27T02:17:12.000Z","updated":"2026-11-07T08:32:36.283Z"},{"title":"YASKAWA + 梅卡曼德通信教程","path":"/posts/yaskawa/","categories":[{"name":"机器人通讯","path":"/categories/机器人通讯/"}],"tags":[{"name":"YASKAWA","path":"/tags/YASKAWA/"},{"name":"安川","path":"/tags/安川/"},{"name":"通信基础","path":"/tags/通信基础/"}],"cover":"/img/默认封面图.webp","date":"2026-01-24T04:32:12.000Z","updated":"2026-07-11T04:17:33.000Z"}];function toRandomPost(){ window.pjax ? pjax.loadUrl(posts[Math.floor(Math.random()*posts.length)].path) : window.open(posts[Math.floor(Math.random()*posts.length)].path, "_self"); };</script><script>var flinks=[{"name":"G/ren的小破站","link":"https://www.hehehey.top/","avatar":"https://www.hehehey.top/img/头像.JPG","descr":"机器视觉调试工程师 | 技术分享"}];function toRandomFlink(){ let to_flink = flinks[Math.floor(Math.random()*flinks.length)]; btf.snackbarShow('正在前往「 '+ to_flink.name +' 」友链，请稍后...', false, 3000); setTimeout(function() { window.open(to_flink.link); }, 3000); }</script></body></html>
