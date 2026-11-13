@@ -2,6 +2,7 @@
 title: 西门子PLC Modbus TCP通讯教程
 slug: plc-modbus-tcp
 date: 2025-04-28 19:29:24
+updated: 2026-06-21 21:52:13
 categories:
   - PLC通讯
 tags:

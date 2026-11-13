@@ -147,7 +147,8 @@ post_meta:
     # Choose: left / center
     position: left
     # Choose: created / updated / both
-    date_type: both
+    # 改为 updated：只显示「更新于」，不显示「发表于」
+    date_type: updated
     # Choose: date / relative
     date_format: date
     categories: true

@@ -2,6 +2,7 @@
 title: ABB RobotWare + 梅卡曼德视觉系统完整操作流程
 slug: abb-robotware
 date: 2025-03-28 16:46:17
+updated: 2026-11-07 16:35:15
 categories:
   - 机器人通讯
 tags:

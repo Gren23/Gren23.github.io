@@ -2,6 +2,7 @@
 title: DENSO（电装）+ 梅卡曼德视觉系统完整操作流程
 slug: denso
 date: 2025-01-20 23:37:33
+updated: 2026-11-07 16:35:15
 categories:
   - 机器人通讯
 tags:

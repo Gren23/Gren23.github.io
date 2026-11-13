@@ -2,6 +2,7 @@
 title: ELITE（艾利特）+ 梅卡曼德视觉系统完整操作流程
 slug: elite
 date: 2025-09-26 05:30:32
+updated: 2026-11-07 16:35:15
 categories:
   - 机器人通讯
 tags:

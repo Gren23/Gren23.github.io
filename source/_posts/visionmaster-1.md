@@ -2,6 +2,7 @@
 title: Vision Master 通讯配置
 slug: visionmaster-1
 date: 2025-09-02 04:27:12
+updated: 2026-06-21 21:52:13
 categories:
   - 视觉
 tags:

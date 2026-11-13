@@ -2,6 +2,7 @@
 title: YASKAWA + 梅卡曼德通信教程
 slug: yaskawa
 date: 2026-01-24 12:32:12
+updated: 2026-06-21 21:52:13
 categories:
   - 机器人通讯
 tags:

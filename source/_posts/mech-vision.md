@@ -2,6 +2,7 @@
 title: Mech-Vision 安装指南
 slug: mech-vision
 date: 2026-02-14 01:42:31
+updated: 2026-06-21 21:52:13
 categories:
   - 梅卡曼德
 tags:

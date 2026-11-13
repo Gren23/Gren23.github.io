@@ -2,6 +2,7 @@
 title: CGXi（希克斯）+ 梅卡曼德视觉系统完整操作流程
 slug: cgxi
 date: 2025-10-09 16:44:07
+updated: 2026-11-07 16:35:15
 categories:
   - 机器人通讯
 tags:
