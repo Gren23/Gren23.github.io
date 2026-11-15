@@ -1,0 +1,76 @@
+# ============================================================
+# Vercel 安全响应头 + 缓存策略
+# 修复清单：M3（安全头缺失）、L2（CSP/Permissions-Policy 缺失）
+#
+# 站点依赖的外部域名（实测，按使用次数）：
+#   twiikoo.netlify.app   评论后端
+#   weavatar.com          头像
+#   owo.imaegoo.com       emoji 表情
+#   cdn.jsdelivr.net      部分库
+#   api.github.com        友链/GitHub 卡片
+#   github.com            链接跳转
+#
+# 注意：站点有 589 个内联 <script> + 300 个内联事件属性，
+#       CSP 必须含 'unsafe-inline'，否则全站 JS 失效。
+# ============================================================
+
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), interest-cohort=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://twiikoo.netlify.app https://cdn.jsdelivr.net https://owo.imaegoo.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net; connect-src 'self' https://twiikoo.netlify.app https://weavatar.com https://api.github.com https://owo.imaegoo.com; frame-src 'self' https://twiikoo.netlify.app https://www.youtube.com https://player.bilibili.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests
+
+# ============================================================
+# 静态资源长缓存
+# ============================================================
+
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+  X-Content-Type-Options: nosniff
+
+/js/*
+  Cache-Control: public, max-age=31536000, immutable
+  X-Content-Type-Options: nosniff
+
+/lib/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/webfonts/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/assets/*
+  Cache-Control: public, max-age=2592000
+
+/images/*
+  Cache-Control: public, max-age=2592000
+
+/img/*
+  Cache-Control: public, max-age=2592000
+
+# ============================================================
+# HTML 短缓存
+# ============================================================
+
+/*.html
+  Cache-Control: public, max-age=300, must-revalidate
+
+# ============================================================
+# 数据文件：不缓存 + 禁止索引
+# ============================================================
+
+/data/*
+  Cache-Control: no-cache
+  X-Robots-Tag: noindex, nofollow
+
+/search.json
+  Cache-Control: no-cache
+  X-Robots-Tag: noindex
+
+/atom.xml
+  Cache-Control: public, max-age=1800
+
+/sitemap.xml
+  Cache-Control: public, max-age=3600

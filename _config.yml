@@ -48,3 +48,8 @@ sitemap:
   rel: true
   tags: true
   categories: true
+
+# _headers 等以下划线开头的文件默认被跳过，需显式 include
+include:
+  - _headers
+  - _redirects
