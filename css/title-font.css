@@ -1,0 +1,133 @@
+/* ==========================================================================
+   标题拉丁字符放大（修「3D」视觉错位）
+   --------------------------------------------------------------------------
+   现象：标题「梅卡曼德 3D 视觉引导系统 通用 SOP」里，3D / SOP 看起来比汉字小一号。
+
+   实测数据（3 倍缩放截图，逐字符量墨水高度）：
+     中文 12 个:  墨高 74~75 px
+     拉丁 3 组:   墨高 54~56 px
+     比例 76%
+
+   根因是字形高度而非基线：
+     雅黑汉字字面高度 = 0.94em
+     Segoe UI 数字 cap height ≈ 0.71em
+     → 76%
+
+   CDP getPlatformFontsForNode 确认实际用了两个字体：
+     .post-title:
+       Segoe UI          9 字形    ← 3D / SOP
+       Microsoft YaHei  12 字形    ← 中文
+
+   已验证无效的两个方向：
+     1. 换字体栈：测 7 种栈（雅黑优先/苹方优先/纯雅黑/裸 sans-serif/
+        雅黑UI/系统UI栈/加数字特性），拉丁墨高全是 76.0，无变化
+     2. 换拉丁字体：Consolas 71.7% / Arial 79.1% / Bahnschrift 81.9%
+        都不如直接放大
+
+   解法：@font-face + unicode-range + size-adjust
+     造一个只覆盖 [0-9 A-Z a-z] 的虚拟字体，整体放大 150%。
+     汉字没有对应字形，自动回退到后面的中文字体，不受影响。
+
+   为什么是 150%：
+     ×1.00  → 77.0/94.0 = 81.9%
+     ×1.15  → 90.0/94.0 = 95.7%
+     ×1.50  → 92.6/94.0 = 98.5%   ← 采用
+     ×1.22  → 95.0/94.0 = 101.1%（过头）
+
+   作用范围只限标题。正文不动——正文里「2.1.0」「±2mm」「192.168.0.63」
+   这类数字很多，放大 18% 会忽大忽小，影响阅读。
+   ========================================================================== */
+
+/* 常规字重 */
+@font-face {
+  font-family: 'TitleLatinBoost';
+  src: local('Segoe UI'),
+       local('Microsoft YaHei'),
+       local('PingFang SC'),
+       local('Arial');
+  unicode-range: U+0030-0039, U+0041-005A, U+0061-007A;
+  size-adjust: 150%;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 粗体（首页卡片标题用 600/700，必须单独声明否则不生效） */
+@font-face {
+  font-family: 'TitleLatinBoost';
+  src: local('Segoe UI Semibold'),
+       local('Segoe UI Bold'),
+       local('Microsoft YaHei Bold'),
+       local('Microsoft YaHei'),
+       local('PingFang SC Semibold'),
+       local('PingFang SC');
+  unicode-range: U+0030-0039, U+0041-005A, U+0061-007A;
+  size-adjust: 150%;
+  font-weight: 600 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* ---------- 应用范围：只限标题 ---------- */
+
+/* 文章页大标题 */
+.post-title,
+#post-info .post-title,
+#page-header #post-info .post-title,
+h1.post-title {
+  font-family:
+    'TitleLatinBoost',
+    'PingFang SC',
+    'Microsoft YaHei',
+    'Hiragino Sans GB',
+    'Source Han Sans SC',
+    'Noto Sans CJK SC',
+    sans-serif;
+}
+
+/* 首页卡片标题 */
+#recent-posts .recent-post-item .article-title,
+#recent-posts .recent-post-item > .recent-post-info > .article-title,
+#recent-posts > .recent-post-item .article-title,
+.article-sort-item-title {
+  font-family:
+    'TitleLatinBoost',
+    'PingFang SC',
+    'Microsoft YaHei',
+    'Hiragino Sans GB',
+    'Source Han Sans SC',
+    'Noto Sans CJK SC',
+    sans-serif;
+}
+
+/* 侧边栏最近文章标题 */
+#aside-content .card-recent-post .item-content .title,
+#rightside .card-recent-post .aside-list-item .content .title {
+  font-family:
+    'TitleLatinBoost',
+    'PingFang SC',
+    'Microsoft YaHei',
+    sans-serif;
+}
+
+/* 相关推荐 / 上下篇 */
+.relatedPosts .item-title,
+.pagination-post .info .title {
+  font-family:
+    'TitleLatinBoost',
+    'PingFang SC',
+    'Microsoft YaHei',
+    sans-serif;
+}
+
+
+/* ---------- 正文：不动字号，只让数字等宽等高 ---------- */
+
+#article-container,
+.post-content {
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+
+/* ---------- 移动端：标题字号本身变小，150% 依然合适，不需另调 ---------- */

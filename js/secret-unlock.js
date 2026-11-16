@@ -181,12 +181,34 @@
         });
     }
 
-    ok.addEventListener('click', submit);
-    input.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') { e.preventDefault(); submit(); }
-      if (e.key === 'Escape') { e.preventDefault(); if (onDone) onDone(false); }
+    ok.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      submit();
     });
-    cancel.addEventListener('click', function () { if (onDone) onDone(false); });
+
+    input.addEventListener('click', function (e) {
+      e.stopPropagation();
+    });
+
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        e.stopPropagation();
+        submit();
+      }
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        e.stopPropagation();
+        if (onDone) onDone(false);
+      }
+    });
+
+    cancel.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (onDone) onDone(false);
+    });
 
     return { wrap: wrap, input: input };
   }
@@ -207,6 +229,12 @@
 
         el.addEventListener('click', function (ev) {
           ev.preventDefault();
+
+          // 点击来自 editor 内部（输入框/按钮）一律忽略，
+          // 防止子元素的 stopPropagation 漏掉时重新创建 editor
+          var t = ev.target;
+          if (t && t.closest && t.closest('.secret-editor')) return;
+
           if (el.classList.contains('secret-revealed')) return;
           if (el.querySelector('.secret-editor')) return;
 
