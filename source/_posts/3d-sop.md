@@ -531,9 +531,6 @@ Eye to Eye（ETE）：双相机标定（主相机+副相机）
 | 相机 DC 电源线 | 3M / 5M / 10M / 15M / 20M / 30M |
 | 适配器电源线 | L10~L60（10~60米，24V DC） |
 
-**采购热线：400-9696-010**
-**服务邮箱：service@mech-mind.net**
-**远程支持：向日葵 / TeamViewer / AnyDesk**
 
 ---
 

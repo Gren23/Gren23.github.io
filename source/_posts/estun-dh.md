@@ -14,7 +14,7 @@ tags:
   - 手眼标定
 ---
 
-> **一句话摘要**：埃斯顿机器人逐台出厂的实际 D-H 参数都不一样，直接用它做手眼标定，精度一定对不上。本文记录从接线、配 IP、VNC 进控制器后台读 `RobotParam`，到改 Mech-Viz 模型 `algo.json` 的完整操作，附密码、路径、踩坑清单和原文勘误。
+> **摘要**：埃斯顿机器人逐台出厂的实际 D-H 参数都不一样，直接用它做手眼标定，精度一定对不上。本文记录从接线、配 IP、VNC 进控制器后台读 `RobotParam`，到改 Mech-Viz 模型 `algo.json` 的完整操作，附密码、路径、踩坑清单和原文勘误。
 
 ---
 
@@ -34,8 +34,6 @@ tags:
 
 ## 为什么埃斯顿必须一台一台改
 
-这不是配置疏忽，是埃斯顿的设计特点。
-
 **控制器里存的是「这台」的真实值，Mech-Viz 里用的是「这个型号」的标准模型。**
 
 机器人本体在加工和装配时存在公差，每台六轴的连杆实际长度、关节零位都有微小差异。埃斯顿在出厂时会对每台机器单独做运动学标定，把结果写进控制器的配置文件 `RobotParam`。所以同一型号的 10 台机器人，`RobotParam` 里的数值是 10 组不同的数。
@@ -52,7 +50,7 @@ tags:
 2. 只接收机器人关节角、不接收位姿的 EIH 场景
 3. 向机器人发送路径点关节角的场景
 
-这三种情况下，Mech-Viz 要**用 DH 参数自己算出位姿**。模型里的连杆长度错 1 mm，算出来的位姿就偏 1 mm，标定再准也没用——误差在源头。
+这三种情况下，Mech-Viz 要**用 DH 参数自己算出位姿**。模型里的连杆长度错 1 mm，算出来的位姿就偏 1 mm，标定再准也没用。
 
 所以流程是：**现场每台 ESTUN 都要单独核对一遍 D-H，不能拿一台的参数套全部。**
 
@@ -81,7 +79,7 @@ tags:
 
 用网线把**视觉工控机**接到**机器人控制器的 LAN4 网口**。
 
-![控制器 LAN4 网口位置](/img/estun-dh/01-lan4-port.jpg)
+![控制器 LAN4 网口位置](https://hehey.top/imgbed/2026/11/0ead9d510a05d447701d6af145fa1845.jpg)
 
 认准标着 `LAN4` 的那个口。旁边 `LAN1/2/3` 是别的用途，`DBG` 是调试口，都别插。
 
@@ -102,13 +100,13 @@ VNC 服务挂在 LAN4 上，所以必须插这个口。
 
 **主界面左上角主页图标 → 高级设置 → 网络设置 → 网口显示切到 `ETH2(1an4)`**
 
-![示教器主页](/img/estun-dh/02-controller-home.jpg)
+![示教器主页](https://hehey.top/imgbed/2026/11/d57c14477025e09f26f375c8dfef7771.jpg)
 
-![进入高级设置](/img/estun-dh/03-advanced-settings.jpg)
+![进入高级设置](https://hehey.top/imgbed/2026/11/850e02e546a4a709cd932805b4c33071.jpg)
 
 切到 `ETH2(1an4)` 之后，看到这一组值：
 
-![LAN4 网络设置](/img/estun-dh/04-network-lan4-ip.jpg)
+![LAN4 网络设置](https://hehey.top/imgbed/2026/11/460b954efcb1098f44c01a8b25082ab1.jpg)
 
 ```
 IP          : 192.168.60.63
@@ -131,7 +129,7 @@ Gateway     : 192.168.60.1
 
 打开工控机的网络适配器（就是刚插网线那个口），改成和 LAN4 同一网段：
 
-![工控机 IP 配置](/img/estun-dh/05-ipc-network.png)
+![工控机 IP 配置](https://hehey.top/imgbed/2026/11/ecde5ee7a37192bc600b9f2a13f0083f.png)
 
 ```
 IP          : 192.168.60.161   ← 同网段，别和 .63 撞
@@ -157,19 +155,19 @@ ping 不通就去查：网线是不是插错口、防火墙是不是拦了、两
 
 解压 VNC 安装包，运行 `tvnviewer.exe`（不是 `tvnserver.exe`，那是服务端）：
 
-![VNC 程序目录](/img/estun-dh/06-vnc-exe.png)
+![VNC 程序目录](https://hehey.top/imgbed/2026/11/693fd4398f934615b551d9c3ee505d3e.png)
 
 ### 填 IP 连接
 
 远程主机填刚才记下的 `192.168.60.63`，点「连接」：
 
-![VNC 连接界面](/img/estun-dh/07-vnc-connect.png)
+![VNC 连接界面](https://hehey.top/imgbed/2026/11/fa14cf55fafc88f8a568401d088afe06.png)
 
 ### 输入远程密码
 
 密码：`[[secret:vnc-pwd|ERC654321]]`
 
-![VNC 身份验证](/img/estun-dh/08-vnc-password.png)
+![VNC 身份验证](https://hehey.top/imgbed/2026/11/67d494f3b60509eeeca773012a963903.png)
 
 ### 进入控制器后台
 
@@ -177,17 +175,17 @@ ping 不通就去查：网线是不是插错口、防火墙是不是拦了、两
 
 点 **「管理」**：
 
-![ESTUN TOOL SERVER](/img/estun-dh/09-tool-server.png)
+![ESTUN TOOL SERVER](https://hehey.top/imgbed/2026/11/84af094deb3b70358177b10037b0eeea.png)
 
 会弹登录框，用户名和密码都填 `[[secret:ctl-user|estun]]`：
 
-![控制器登录](/img/estun-dh/10-controller-login.png)
+![控制器登录](https://hehey.top/imgbed/2026/11/0301ea5334555c7b7f657efba3dff286.png)
 
 ### 最小化，露出 Windows 桌面
 
 登录后点 **「最小化」**，把 TOOL SERVER 窗口缩下去，露出控制器的 Windows 桌面：
 
-![最小化按钮](/img/estun-dh/11-minimize.png)
+![最小化按钮](https://hehey.top/imgbed/2026/11/2056895c009e8ab5c97216582dde3bf0.png)
 
 > ⚠️ **这里是最容易出事的一步。**
 >
@@ -201,7 +199,7 @@ ping 不通就去查：网线是不是插错口、防火墙是不是拦了、两
 
 在控制器桌面上双击「我的电脑 / 计算机」，进文件管理器：
 
-![控制器桌面](/img/estun-dh/12-controller-desktop.png)
+![控制器桌面](https://hehey.top/imgbed/2026/11/b612c26e05a58ecd0b709b14d1d860b5.png)
 
 导航到：
 
@@ -211,7 +209,7 @@ C:\runtime\config\
 
 这个目录里是一堆机器人配置文件：
 
-![runtime\config 目录](/img/estun-dh/13-runtime-config.png)
+![runtime\config 目录](https://hehey.top/imgbed/2026/11/79b6f92ec926ad03621961294aaad182.png)
 
 | 文件 | 大小 | 内容 |
 |---|---|---|
@@ -230,7 +228,7 @@ C:\runtime\config\
 
 用记事本打开后，开头 `[Mach]` 段就是机器人连杆参数：
 
-![RobotParam 内容](/img/estun-dh/14-robotparam.png)
+![RobotParam 内容](https://hehey.top/imgbed/2026/11/3e14340e9682d2efc54cc3452125611c.png)
 
 ```ini
 [Mach]                    ;机器人杆件参数
@@ -261,9 +259,9 @@ AuxAxes    = 0            ;附加轴个数
 
 打开 Mech-Viz，在场景里选中现场对应的机器人模型（这里是 `ESTUN_ER270_2700`），**右键 → 打开资源文件**：
 
-![Mech-Viz 机器人模型](/img/estun-dh/15-mech-viz-model.jpg)
+![Mech-Viz 机器人模型](https://hehey.top/imgbed/2026/11/fa1e21a9b731703d2521dfc0357bba8e.jpg)
 
-![右键打开资源文件](/img/estun-dh/16-open-resource.jpg)
+![右键打开资源文件](https://hehey.top/imgbed/2026/11/ec5393a0e93eaac647b90a9839c0ba85.jpg)
 
 资源目录会打开，一般在这个路径：
 
@@ -273,7 +271,7 @@ C:\Users\<用户名>\AppData\Roaming\Mmind\robot\estun\estun_er270_2700\
 
 里面有 4 个文件：
 
-![模型资源目录](/img/estun-dh/17-algo-json-folder.png)
+![模型资源目录](https://hehey.top/imgbed/2026/11/ad195512b4aa22114367b3bdaf6f1def.png)
 
 | 文件 | 作用 |
 |---|---|
@@ -288,7 +286,7 @@ C:\Users\<用户名>\AppData\Roaming\Mmind\robot\estun\estun_er270_2700\
 
 用记事本打开 `estun_er270_2700_algo.json`，它的连杆参数不在 `L1`~`L7` 这种字段里，而是一个叫 **`ph`** 的数组：
 
-![左右对比](/img/estun-dh/18-compare-dh.png)
+![左右对比](https://hehey.top/imgbed/2026/11/39529d899653e98ae4d4512b4833d763.png)
 
 ```json
 {
