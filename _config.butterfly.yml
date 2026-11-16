@@ -1102,7 +1102,6 @@ inject:
   head:
     # 显式声明 ico：浏览器无论如何都会额外请求 /favicon.ico，
     # 而主题只声明了 /img/favicon.png，导致每次访问多一个 404。
-    - <link rel=stylesheet href=/css/title-font.css>
     - <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
     - <link rel="stylesheet" href="/css/design-system.css">
   bottom:
